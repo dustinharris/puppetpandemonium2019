@@ -1,0 +1,21 @@
+fileFormatVersion: 2
+guid: 25b16e45280eeb044a17fa7c6a40a623
+timeCreated: 1512098102
+licenseType: Free
+TrueTypeFontImporter:
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: Katahdin Round
+  fontNames:
+  - Katahdin Round
+  fallbackFontReferences: []
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
