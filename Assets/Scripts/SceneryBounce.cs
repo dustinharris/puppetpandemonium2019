@@ -6,11 +6,15 @@ public class SceneryBounce : MonoBehaviour {
 
     public float bounceSpeed = 1f;
     public float distanceMultiplier = 1f;
-    private float individualRandomizer = 1f;
+    private float individualRandomizer = 0.1f;
+	public bool randomize = true;
+
     // Use this for initialization
     void Start()
     {
-        individualRandomizer = Random.Range(0.01f, 0.1f);
+		if (randomize) {
+			individualRandomizer = Random.Range (0.01f, 0.1f);
+		}
     }
 
     // Update is called once per frame
