@@ -1,12 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class StartScreenController : MonoBehaviour
 {
-    public string NextScene = "";
-
     [SerializeField]
     private GameObject RedPuppetUI;
     [SerializeField]
@@ -19,10 +16,10 @@ public class StartScreenController : MonoBehaviour
     private GameObject AudienceBar;
     private AudienceBarScript AudienceScript;
 
+    private SceneSwitcher SceneSwitcher;
+
     private const AudienceUIScript.Notice ALERT = AudienceUIScript.Notice.Alert;
     private const AudienceUIScript.Notice CORRECT = AudienceUIScript.Notice.Correct;
-
-    private AsyncOperation LoadOp;
 
     void Start()
     {
@@ -41,8 +38,7 @@ public class StartScreenController : MonoBehaviour
 
         AudienceScript.ShowAll(AudienceUIScript.Notice.Alert);
 
-        LoadOp = SceneManager.LoadSceneAsync(NextScene);
-        LoadOp.allowSceneActivation = false;
+        SceneSwitcher = GetComponent<SceneSwitcher>();
 
         StartCoroutine(WaitForReady());
     }
@@ -54,12 +50,7 @@ public class StartScreenController : MonoBehaviour
             yield return null;
         }
 
-        StartNextScene();
-    }
-
-    private void StartNextScene()
-    {
-        LoadOp.allowSceneActivation = true;
+        SceneSwitcher.SwitchScenes();
     }
 
     public bool IsReady()
