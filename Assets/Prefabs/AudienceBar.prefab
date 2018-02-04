@@ -693,7 +693,7 @@ GameObject:
   - component: {fileID: 114202692298675452}
   - component: {fileID: 114995240568327824}
   m_Layer: 5
-  m_Name: Glow Red
+  m_Name: GlowRed
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
