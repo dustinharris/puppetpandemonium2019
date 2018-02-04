@@ -1,82 +1,129 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
-public class StartScreenController : MonoBehaviour {
+public class StartScreenController : MonoBehaviour
+{
+    public string NextScene = "";
 
+    [SerializeField]
+    private GameObject RedPuppetUI;
+    [SerializeField]
+    private GameObject BluePuppetUI;
 
-	[SerializeField]
-	private GameObject RedPuppetUI;
-	[SerializeField]
-	private GameObject BluePuppetUI;
+    private PlayerUIScript RedScript;
+    private PlayerUIScript BlueScript;
 
-	private PlayerUIScript RedScript;
-	private PlayerUIScript BlueScript;
+    [SerializeField]
+    private GameObject AudienceBar;
+    private AudienceBarScript AudienceScript;
 
-	[SerializeField]
-	private GameObject AudienceBar;
-	private AudienceBarScript AudienceScript;
+    private const AudienceUIScript.Notice ALERT = AudienceUIScript.Notice.Alert;
+    private const AudienceUIScript.Notice CORRECT = AudienceUIScript.Notice.Correct;
 
-	private const AudienceUIScript.Notice ALERT = AudienceUIScript.Notice.Alert;
-	private const AudienceUIScript.Notice CORRECT = AudienceUIScript.Notice.Correct;
+    private AsyncOperation LoadOp;
 
-	void Start () {
-		RedScript = RedPuppetUI.GetComponent<PlayerUIScript> ();
-		BlueScript = BluePuppetUI.GetComponent<PlayerUIScript> ();
-		if (RedScript != null) {
-			RedScript.Show (true);
-		}
-		if (BlueScript != null) {
-			BlueScript.Show (true);
-		}
-			
-		AudienceScript = AudienceBar.GetComponent<AudienceBarScript> ();
+    void Start()
+    {
+        RedScript = RedPuppetUI.GetComponent<PlayerUIScript>();
+        BlueScript = BluePuppetUI.GetComponent<PlayerUIScript>();
+        if (RedScript != null)
+        {
+            RedScript.Show(true);
+        }
+        if (BlueScript != null)
+        {
+            BlueScript.Show(true);
+        }
 
-		AudienceScript.ShowAll (AudienceUIScript.Notice.Alert);
-	}
+        AudienceScript = AudienceBar.GetComponent<AudienceBarScript>();
 
-	public bool IsReady() {
-		bool ready = true;
+        AudienceScript.ShowAll(AudienceUIScript.Notice.Alert);
 
-		if (RedScript != null) {
-			if (RedScript.IsVisible (true)) {
-				if (Input.GetButtonDown("RedPuppet")) {
-					RedScript.Show (false);
-				} else {
-					ready = false;
-				}
-			}
-		}
+        LoadOp = SceneManager.LoadSceneAsync(NextScene);
+        LoadOp.allowSceneActivation = false;
 
-		if (BlueScript != null) {
-			if (BlueScript.IsVisible (true)) {
-				if (Input.GetButtonDown("BluePuppet")) {
-					BlueScript.Show (false);
-				} else {
-					ready = false;
-				}
-			}
-		}
+        StartCoroutine(WaitForReady());
+    }
 
-		// Check if each audience member has pressed buttons
-		int sections = AudienceScript.Size();
-		for (int i = 0; i < sections; i++) {
-			if (AudienceScript.IsVisible (i, ALERT, true)) {
-				if (Input.GetButtonDown ("Audience" + i + "Red")) {
-					AudienceScript.Show (i, CORRECT, true);
-				} else {
-					ready = false;
-				}
-			}
-			if (AudienceScript.IsVisible (i, ALERT, false)) {
-				if (Input.GetButtonDown ("Audience" + i + "Blue")) {
-					AudienceScript.Show (i, CORRECT, false);
-				} else {
-					ready = false;
-				}
-			}
-		}
+    private IEnumerator WaitForReady()
+    {
+        while (!this.IsReady())
+        {
+            yield return null;
+        }
 
-		return ready;
-	}
+        StartNextScene();
+    }
+
+    private void StartNextScene()
+    {
+        LoadOp.allowSceneActivation = true;
+    }
+
+    public bool IsReady()
+    {
+        bool ready = true;
+
+        if (RedScript != null)
+        {
+            if (RedScript.IsVisible(true))
+            {
+                if (Input.GetButtonDown("RedPuppet"))
+                {
+                    RedScript.Show(false);
+                }
+                else
+                {
+                    ready = false;
+                }
+            }
+        }
+
+        if (BlueScript != null)
+        {
+            if (BlueScript.IsVisible(true))
+            {
+                if (Input.GetButtonDown("BluePuppet"))
+                {
+                    BlueScript.Show(false);
+                }
+                else
+                {
+                    ready = false;
+                }
+            }
+        }
+
+        // Check if each audience member has pressed buttons
+        int sections = AudienceScript.Size();
+        for (int i = 0; i < sections; i++)
+        {
+            if (AudienceScript.IsVisible(i, ALERT, true))
+            {
+                if (Input.GetButtonDown("Audience" + i + "Red"))
+                {
+                    AudienceScript.Show(i, CORRECT, true);
+                }
+                else
+                {
+                    ready = false;
+                }
+            }
+            if (AudienceScript.IsVisible(i, ALERT, false))
+            {
+                if (Input.GetButtonDown("Audience" + i + "Blue"))
+                {
+                    AudienceScript.Show(i, CORRECT, false);
+                }
+                else
+                {
+                    ready = false;
+                }
+            }
+        }
+
+        return ready;
+    }
 }

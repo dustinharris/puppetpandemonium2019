@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 224402939631887142}
   - component: {fileID: 114025541622233392}
   m_Layer: 5
-  m_Name: PlayerNotice
+  m_Name: '[PlayerNotice]'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

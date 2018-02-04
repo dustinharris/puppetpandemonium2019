@@ -95,7 +95,7 @@ GameObject:
   - component: {fileID: 114402011903888292}
   - component: {fileID: 114797043195018074}
   m_Layer: 5
-  m_Name: AudienceSection
+  m_Name: '[AudienceSection]'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
