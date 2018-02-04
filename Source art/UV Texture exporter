@@ -1,0 +1,20 @@
+import bpy
+ 
+selObj = []
+ 
+for obj in bpy.context.selected_objects:
+ selObj.append(obj.name)
+ 
+bpy.ops.object.select_all(action='TOGGLE')
+ 
+i=0
+while i < len(selObj):
+ bpy.context.scene.objects.active = bpy.context.scene.objects[selObj[i]]
+ bpy.ops.object.mode_set(mode="EDIT")
+ bpy.ops.mesh.select_all(action='TOGGLE')
+ bpy.ops.mesh.select_all(action='TOGGLE')
+ f="C:\\Users\\teren\OneDrive\\Documents\\GitHub\\puppetpandemonium\\Assets\\Textures\\" + bpy.data.objects[selObj[i]].name
+ bpy.ops.uv.export_layout(filepath=f, mode='PNG', size=(256, 256), opacity=0) 
+ bpy.ops.object.mode_set(mode="OBJECT")
+ bpy.ops.object.select_all(action='TOGGLE')
+ i+=1

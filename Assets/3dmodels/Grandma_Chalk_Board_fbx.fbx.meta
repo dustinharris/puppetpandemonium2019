@@ -53,6 +53,11 @@ ModelImporter:
     100090: house.003
     100092: Book
     100094: Bowl
+    100096: bookshelf_seethgouth
+    100098: coffee table
+    100100: kitchen chair
+    100102: kitchentable
+    100104: side table
     400000: big window
     400002: bookshelf
     400004: bookshelf.seethgouth
@@ -101,8 +106,14 @@ ModelImporter:
     400090: house.003
     400092: Book
     400094: Bowl
+    400096: bookshelf_seethgouth
+    400098: coffee table
+    400100: kitchen chair
+    400102: kitchentable
+    400104: side table
     2100000: No Name
     2100002: Material
+    2100004: Material.001
     2300000: big window
     2300002: bookshelf
     2300004: bookshelf.seethgouth
@@ -150,6 +161,12 @@ ModelImporter:
     2300088: house.003
     2300090: Book
     2300092: Bowl
+    2300094: bookshelf_seethgouth
+    2300096: coffee table
+    2300098: kitchen chair
+    2300100: kitchentable
+    2300102: side table
+    2300104: //RootNode
     3300000: big window
     3300002: bookshelf
     3300004: bookshelf.seethgouth
@@ -197,6 +214,12 @@ ModelImporter:
     3300088: house.003
     3300090: Book
     3300092: Bowl
+    3300094: bookshelf_seethgouth
+    3300096: coffee table
+    3300098: kitchen chair
+    3300100: kitchentable
+    3300102: side table
+    3300104: //RootNode
     4300000: cookie
     4300002: cookie tray
     4300004: toaster
@@ -244,6 +267,11 @@ ModelImporter:
     4300088: house.003
     4300090: Bowl
     4300092: Book
+    4300094: bookshelf_seethgouth
+    4300096: side table
+    4300098: coffee table
+    4300100: kitchentable
+    4300102: kitchen chair
   externalObjects: {}
   materials:
     importMaterials: 1
