@@ -8,19 +8,9 @@ public class PowerupScript : MonoBehaviour {
     
     void OnTriggerEnter2D(Collider2D other)
     {
-        //Debug.Log("Triggered powerup");
-        if (other.tag == "Player1")
-        {
+        if (other.tag == "Player1" || other.tag == "Player2") {
             hud = GameObject.Find("Main Camera").GetComponent<HUDScript>();
-            hud.player1IncreaseScore(10);
-            //Debug.Log("Trying to destroy powerup");
-            Destroy(this.gameObject);
-        }
-        if (other.tag == "Player2")
-        {
-            hud = GameObject.Find("Main Camera").GetComponent<HUDScript>();
-            hud.player2IncreaseScore(10);
-            //Debug.Log("Trying to destroy powerup");
+            hud.increaseScore(10);
             Destroy(this.gameObject);
         }
     }

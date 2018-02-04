@@ -26,14 +26,14 @@ namespace UnityStandardAssets._2D
                 if (playerNumber == 1)
                 {
                     // Read the jump input in Update so button presses aren't missed.
-                    //m_Jump = Input.GetKeyDown("a");
-                    m_Jump = gameCon.GetComponent<ArduinoManager>().readP1Jump();
-                    gameCon.GetComponent<ArduinoManager>().endP1Jump();
+                    m_Jump = Input.GetKeyDown("l");
+                    //m_Jump = gameCon.GetComponent<ArduinoManager>().readP1Jump();
+                    //gameCon.GetComponent<ArduinoManager>().endP1Jump();
                 } else
                 {
-                    //m_Jump = Input.GetKeyDown("l");
-                    m_Jump = gameCon.GetComponent<ArduinoManager>().readP2Jump();
-                    gameCon.GetComponent<ArduinoManager>().endP2Jump();
+                    m_Jump = Input.GetKeyDown("a");
+                    //m_Jump = gameCon.GetComponent<ArduinoManager>().readP2Jump();
+                    //gameCon.GetComponent<ArduinoManager>().endP2Jump();
                 }
             }
         }

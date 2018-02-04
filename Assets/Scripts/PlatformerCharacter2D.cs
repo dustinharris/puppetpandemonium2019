@@ -20,32 +20,7 @@ namespace UnityStandardAssets._2D
         const float k_CeilingRadius = .01f; // Radius of the overlap circle to determine if the player can stand up
         private Animator m_Anim;            // Reference to the player's animator component.
         private Rigidbody2D m_Rigidbody2D;
-        private Rigidbody2D block_Rigidbody2D;
-        private Rigidbody2D scenery_Rigidbody2D;
         private bool m_FacingRight = true;  // For determining which way the player is currently facing.
-
-        public GameObject blocksEmpty;
-        public GameObject groundBlockReference;
-        public GameObject powerupReference;
-        public int playerNumber;
-        public GameObject blockEmpty;
-        public GameObject sceneryEmpty;
-        public GameObject cameraReference;
-        private List<string> platformsFromFileList;
-        public HandleTextFile levelFileHandle;
-        public float powerupScale;
-        public float powerupYOffset;
-        public float platformScale = 0f;
-        
-        private int onListItem = 0;
-        private float LowBlockYOffset = -.302f;
-        private float MidBlockYOffset = 0.135f;
-        private float HighBlockYOffset = .581f;
-
-        private LinkedList<GameObject> PlatformObjects;
-
-        private float blockWidth = .45f;
-        private Vector3 lastPlatformPosition;
 
         bool doubleJump = false;
 
@@ -56,25 +31,10 @@ namespace UnityStandardAssets._2D
             m_CeilingCheck = transform.Find("CeilingCheck");
             m_Anim = GetComponent<Animator>();
             m_Rigidbody2D = GetComponent<Rigidbody2D>();
-            block_Rigidbody2D = blockEmpty.GetComponent<Rigidbody2D>();
-            scenery_Rigidbody2D = sceneryEmpty.GetComponent<Rigidbody2D>();
-            PlatformObjects = new LinkedList<GameObject>();
-            platformsFromFileList = levelFileHandle.ConvertLevelLayoutToList();
         }
 
         private void Start()
         {
-            if (playerNumber == 1)
-            {
-                LowBlockYOffset = -.302f;
-                MidBlockYOffset = 0.135f;
-                HighBlockYOffset = .581f;
-            } else
-            {
-                LowBlockYOffset = -2.5f;
-                MidBlockYOffset = -2f;
-                HighBlockYOffset = -1.5f;
-            }
         }
 
         private void FixedUpdate()
@@ -100,8 +60,7 @@ namespace UnityStandardAssets._2D
                 doubleJump = false;
             }
         }
-
-
+        
         public void Move(float move, bool crouch, bool jump)
         {
             // If crouching, check to see if the character can stand up
@@ -127,22 +86,12 @@ namespace UnityStandardAssets._2D
                 m_Anim.SetFloat("Speed", Mathf.Abs(move));
 
                 // Move the character
-                //m_Rigidbody2D.velocity = new Vector2(move*m_MaxSpeed, m_Rigidbody2D.velocity.y);
+                m_Rigidbody2D.velocity = new Vector2(move*m_MaxSpeed, m_Rigidbody2D.velocity.y);
 
                 // Character maintains its x position on screen
-                m_Rigidbody2D.velocity = new Vector2(0, m_Rigidbody2D.velocity.y);
-                transform.position = new Vector3(-.75f, transform.position.y, transform.position.z); 
-
-                // Move the blocks
-                block_Rigidbody2D.velocity = new Vector2(move * m_MaxSpeed * -1, 0);
+                //m_Rigidbody2D.velocity = new Vector2(0, m_Rigidbody2D.velocity.y);
+                //transform.position = new Vector3(-.75f, transform.position.y, transform.position.z); 
                 
-                // If Player 1, Move the scenery
-                if (playerNumber == 1)
-                {
-                    scenery_Rigidbody2D.velocity = new Vector2(move * m_MaxSpeed * -1, 0);
-                }
-
-
                 // If the input is moving the player right and the player is facing left...
                     if (move > 0 && !m_FacingRight)
                 {
@@ -189,175 +138,7 @@ namespace UnityStandardAssets._2D
 
         private void Update()
         {
-            // If there is at least one platform, check current position of last element in list.
-            if (PlatformObjects.Count != 0)
-            {
-                lastPlatformPosition = new Vector3((PlatformObjects.Last().transform.position.x + blockWidth), 0, 0);
-
-                // If there is about to be a gap on screen, load next Platform chunk
-                if (lastPlatformPosition.x <= (cameraReference.transform.position.x + 5)) // !!This needs to be relative to the camera position
-                {
-                    // Instantiate new object.
-                    // X position should be previous platform + one platform width
-
-                    if (platformsFromFileList[onListItem] == "0")
-                    {
-                        // Create for player 1
-                        GameObject newObject = Instantiate(groundBlockReference, new Vector3((lastPlatformPosition.x + blockWidth), LowBlockYOffset, 7f), Quaternion.identity);
-
-                        // Update object scale;vary block color
-                        newObject.transform.localScale = new Vector3(platformScale, platformScale, 1);
-                        VaryBlockColor(newObject);
-                        // Save reference to object in platform array
-                        PlatformObjects.AddLast(newObject);
-                        // if Player 1, set to player1BocksEmpty
-                        newObject.transform.SetParent(blocksEmpty.transform);
-
-                    }
-                    else if (platformsFromFileList[onListItem] == "1")
-                    {
-                        // Player 1
-                        GameObject newObject = Instantiate(groundBlockReference, new Vector3((lastPlatformPosition.x + blockWidth), MidBlockYOffset, 7f), Quaternion.identity);
-                        // Update object scale; vary block color
-                        newObject.transform.localScale = new Vector3(platformScale, platformScale, 1);
-                        VaryBlockColor(newObject);
-                        // Save reference to object in platform array
-                        PlatformObjects.AddLast(newObject);
-                        // Set player1 object parent
-                        newObject.transform.SetParent(blocksEmpty.transform);
-                    }
-                    else if (platformsFromFileList[onListItem] == "2")
-                    {
-                        // Player 1
-                        // Create bottom platform; update scale; vary block color
-                        GameObject bottomPlatform = Instantiate(groundBlockReference, new Vector3((lastPlatformPosition.x + blockWidth), MidBlockYOffset, 7f), Quaternion.identity);
-                        bottomPlatform.transform.localScale = new Vector3(platformScale, platformScale, 1);
-                        VaryBlockColor(bottomPlatform);
-
-                        // Create top platform; update scale; parent to first platform
-                        // Create bottom platform; update scale; vary block color
-                        GameObject topPlatform = Instantiate(groundBlockReference, new Vector3((lastPlatformPosition.x + blockWidth), HighBlockYOffset, 6.9f), Quaternion.identity);
-                        topPlatform.transform.localScale = new Vector3(platformScale, platformScale, 1);
-                        VaryBlockColor(topPlatform);
-
-                        // Save reference to empty in platform array
-                        PlatformObjects.AddLast(bottomPlatform);
-
-                        // Set player1 object parent
-                        bottomPlatform.transform.SetParent(blocksEmpty.transform);
-                        topPlatform.transform.SetParent(blocksEmpty.transform);
-                        
-                    }
-                    else if (platformsFromFileList[onListItem] == "3")
-                    {
-                        // player 1
-                        GameObject newObject = Instantiate(groundBlockReference, new Vector3((lastPlatformPosition.x + blockWidth), LowBlockYOffset, 7f), Quaternion.identity);
-                        // Update object scale; vary block color
-                        newObject.transform.localScale = new Vector3(platformScale, platformScale, 1);
-                        VaryBlockColor(newObject);
-                        // Add powerup
-                        GameObject powerupObject = Instantiate(powerupReference, new Vector3((lastPlatformPosition.x + blockWidth), newObject.transform.position.y + powerupYOffset, 7f), Quaternion.identity);
-                        // Update powerup scale
-                        powerupObject.transform.localScale = new Vector3(powerupScale, powerupScale, 1);
-                        // Save reference to object in platform array
-                        PlatformObjects.AddLast(newObject);
-
-                        // Set player 1 object parent
-                        newObject.transform.SetParent(blocksEmpty.transform);
-                        powerupObject.transform.SetParent(blocksEmpty.transform);
-                        
-                    }
-                    else if (platformsFromFileList[onListItem] == "4")
-                    {
-
-                        //Player 1
-                        GameObject newObject = Instantiate(groundBlockReference, new Vector3((lastPlatformPosition.x + blockWidth), MidBlockYOffset, 7f), Quaternion.identity);
-                        // Update object scale; vary block color
-                        newObject.transform.localScale = new Vector3(platformScale, platformScale, 1);
-                        VaryBlockColor(newObject);
-                        // Save reference to object in platform array
-                        PlatformObjects.AddLast(newObject);
-                        // Add powerup
-                        GameObject powerupObject = Instantiate(powerupReference, new Vector3((lastPlatformPosition.x + blockWidth), newObject.transform.position.y + powerupYOffset, 7f), Quaternion.identity);
-                        // Update powerup scale
-                        powerupObject.transform.localScale = new Vector3(powerupScale, powerupScale, 1);
-                        // Set player1 object parent
-                        newObject.transform.SetParent(blocksEmpty.transform);
-                        powerupObject.transform.SetParent(blocksEmpty.transform);
-                    }
-                    else if (platformsFromFileList[onListItem] == "5")
-                    {
-                        // Player 1
-                        GameObject newObject = Instantiate(groundBlockReference, new Vector3((lastPlatformPosition.x + blockWidth), MidBlockYOffset, 7f), Quaternion.identity);
-                        // Update object scale; vary block color
-                        newObject.transform.localScale = new Vector3(platformScale, platformScale, 1);
-                        VaryBlockColor(newObject);
-                        // Save reference to object in platform array
-                        PlatformObjects.AddLast(newObject);
-                        // Add powerup
-                        GameObject powerupObject = Instantiate(powerupReference, new Vector3((lastPlatformPosition.x + blockWidth), newObject.transform.position.y + powerupYOffset * 2, 7f), Quaternion.identity);
-                        // Update powerup scale
-                        powerupObject.transform.localScale = new Vector3(powerupScale, powerupScale, 1);
-
-                        // Set player 1 object parent
-                        newObject.transform.SetParent(blocksEmpty.transform);
-                        powerupObject.transform.SetParent(blocksEmpty.transform);
-                        
-                    }
-                    else if (platformsFromFileList[onListItem] == "6")
-                    {
-                        // Player 1
-                        // Create bottom platform; update scale; vary block color
-                        GameObject bottomPlatform = Instantiate(groundBlockReference, new Vector3((lastPlatformPosition.x + blockWidth), MidBlockYOffset, 7f), Quaternion.identity);
-                        bottomPlatform.transform.localScale = new Vector3(platformScale, platformScale, 1);
-                        VaryBlockColor(bottomPlatform);
-
-                        // Create top platform; update scale; parent to first platform
-                        // Create bottom platform; update scale; vary block color
-                        GameObject topPlatform = Instantiate(groundBlockReference, new Vector3((lastPlatformPosition.x + blockWidth), HighBlockYOffset, 6.9f), Quaternion.identity);
-                        topPlatform.transform.localScale = new Vector3(platformScale, platformScale, 1);
-                        VaryBlockColor(topPlatform);
-
-                        // Save reference to empty in platform array
-                        PlatformObjects.AddLast(bottomPlatform);
-
-                        // Add powerup
-                        GameObject powerupObject = Instantiate(powerupReference, new Vector3((lastPlatformPosition.x + blockWidth), topPlatform.transform.position.y + powerupYOffset, 7f), Quaternion.identity);
-                        // Update powerup scale
-                        powerupObject.transform.localScale = new Vector3(powerupScale, powerupScale, 1);
-
-                        // Set player 1 object parent
-                        bottomPlatform.transform.SetParent(blocksEmpty.transform);
-                        topPlatform.transform.SetParent(blocksEmpty.transform);
-                        powerupObject.transform.SetParent(blocksEmpty.transform);
-
-                        
-                    }
-                    onListItem++;
-                    // Next time, load the following platform item from file
-                    //Debug.Log("On List Item: " + onListItem + " Count: " + platformsFromFileList.Count);
-                    if (onListItem >= platformsFromFileList.Count)
-                    {
-                        onListItem = 0;
-                    }
-                }
-            }
-            else
-            {
-                // There is no ground yet
-                // Debug.Log("Spawned one ground");
-                // Instantiate new object.
-
-                // Player 1
-                // X position should be same as character position
-                GameObject newObject = Instantiate(groundBlockReference, new Vector3(transform.position.x, MidBlockYOffset, 7f), Quaternion.identity);
-                // Update object scale
-                newObject.transform.localScale = new Vector3(platformScale, platformScale, 1);
-                // Save reference to object in platform array
-                PlatformObjects.AddLast(newObject);
-                newObject.transform.SetParent(blocksEmpty.transform);
-                onListItem++;
-            }
+            
         }
 
         private void LateUpdate()
@@ -377,38 +158,6 @@ namespace UnityStandardAssets._2D
             Vector3 theScale = transform.localScale;
             theScale.x *= -1;
             transform.localScale = theScale;
-        }
-
-        private void VaryBlockColor(GameObject block)
-        {
-            // Get references to all 3 color layers
-            Transform peachLayer = block.transform.Find("Ground_Block_Peach");
-            Transform pinkLayer = block.transform.Find("Ground_Block_Pink");
-            Transform purpleLayer = block.transform.Find("Ground_Block_Purple");
-            // Hide all 3 color layers
-            peachLayer.GetComponent<Renderer>().enabled = false;
-            pinkLayer.GetComponent<Renderer>().enabled = false;
-            purpleLayer.GetComponent<Renderer>().enabled = false;
-
-            float randomNumber = UnityEngine.Random.Range(0, 3);
-            //Debug.Log("Random number: " + randomNumber.ToString());
-            if ((randomNumber >= 0) && (randomNumber < 1))
-            {
-                // Peach block
-                peachLayer.GetComponent<Renderer>().enabled = true;
-
-            }
-            else if ((randomNumber >= 1) && (randomNumber < 2))
-            {
-                // Pink block
-                pinkLayer.GetComponent<Renderer>().enabled = true;
-
-            }
-            else
-            {
-                // Purple block
-                purpleLayer.GetComponent<Renderer>().enabled = true;
-            }
         }
     }
 }
