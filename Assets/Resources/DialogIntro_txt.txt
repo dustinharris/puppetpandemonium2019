@@ -2,5 +2,3 @@
 Bleep has even more to say.
 [BLUE]also a test but now blue;
 [RED]Bleep
-[REX]Rawr
-[BOSS]bzzt
