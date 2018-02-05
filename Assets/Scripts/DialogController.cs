@@ -26,6 +26,7 @@ public class DialogController : MonoBehaviour {
     private DialogTemplate[] Templates;
 
     private Dictionary<string, DialogTemplate> Dict;
+    private SceneSwitcher Switcher;
 
     private const string RED_BUTTON = "RedPuppet";
     private const string BLUE_BUTTON = "BluePuppet";
@@ -43,26 +44,31 @@ public class DialogController : MonoBehaviour {
             Dict.Add(Templates[i].Identifier, Templates[i]);
         }
 
+        Switcher = GetComponent<SceneSwitcher>();
+
 		StartCoroutine (ReadFile());
 	}
 
-	public IEnumerator ReadFile() {
-		Debug.Log ("Entering read file coroutine");
-		using (StreamReader reader = new StreamReader ("Assets\\Resources\\" + FilePath)) {
-			Debug.Log ("Using stream reader");
+    public IEnumerator ReadFile()
+    {
+        Debug.Log("Entering read file coroutine");
+        using (StreamReader reader = new StreamReader("Assets\\Resources\\" + FilePath))
+        {
+            Debug.Log("Using stream reader");
 
             DialogTemplate template = null;
-			string line = "";
-			while ((line = reader.ReadLine ()) != null) {
+            string line = "";
+            while ((line = reader.ReadLine()) != null)
+            {
                 int index = line.IndexOf("]");
                 if (index != -1)
                 {
-                    string iden = line.Substring(1, index-1);
+                    string iden = line.Substring(1, index - 1);
                     Debug.Log("Identifier: " + iden);
                     Dict.TryGetValue(iden, out template);
                 }
                 string message = line.Substring(index + 1);
-                
+
                 Debug.Log("Message: " + message);
 
                 if (template != null)
@@ -71,8 +77,12 @@ public class DialogController : MonoBehaviour {
                     yield return new WaitForSeconds(.5f);
                     yield return WaitForInput(template.Button);
                 }
-			}
-		}
+            }
+        }
+
+        if (Switcher != null) {
+            Switcher.SwitchScenes();
+        }
 	}
 
     private void FillInfo(DialogTemplate template, string message)
