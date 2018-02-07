@@ -14,9 +14,9 @@ public static class GameState
     }
 
     public const int NUM_GAMES = 3;
-    public static bool[] Played;
-    public static Game LastSkipped;
-    public static Side WhichSide;
+    public static bool[] Played = new bool[] { false, false, false };
+    public static Game LastSkipped = Game.None;
+    public static Side WhichSide = Side.NA;
 
     public static void Initialize()
     {
@@ -24,7 +24,6 @@ public static class GameState
         LastSkipped = Game.None;
         WhichSide = Side.NA;
     }
-
     public static int NumUnplayed()
     {
         int unplayed = 0;

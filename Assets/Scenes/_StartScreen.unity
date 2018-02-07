@@ -711,6 +711,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   NextScene: _Dialog_Intro
+  DelayLoading: 0
   result: 0
 --- !u!1 &1103825826
 GameObject:

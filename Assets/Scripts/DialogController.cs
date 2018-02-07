@@ -4,7 +4,8 @@ using UnityEngine;
 using UnityEngine.UI;
 using System.IO;
 
-public class DialogController : MonoBehaviour {
+public class DialogController : MonoBehaviour
+{
 
 
     [System.Serializable]
@@ -16,7 +17,8 @@ public class DialogController : MonoBehaviour {
         public GameObject SpeakerText;
     }
 
-    public enum Button {
+    public enum Button
+    {
         RedPuppet, BluePuppet, Either
     }
 
@@ -31,11 +33,31 @@ public class DialogController : MonoBehaviour {
     private const string RED_BUTTON = "RedPuppet";
     private const string BLUE_BUTTON = "BluePuppet";
 
-	void Start () {
+    void Start()
+    {
 
-		if (Templates == null || FilePath == null || FilePath == "") {
-			throw new UnityException ("Missing parameter(s)");
-		}
+        if (Templates == null || FilePath == null || FilePath == "")
+        {
+            throw new UnityException("Missing parameter(s)");
+        }
+        // Get scene switcher from previous scene if it wasn't destroyed on load
+        GameObject prevSwitchObj = GameObject.Find("SceneSwitcher");
+        if (prevSwitchObj != null)
+        {
+            SceneSwitcher prevSwitch = prevSwitchObj.GetComponent<SceneSwitcher>();
+            if (prevSwitch != null)
+            {
+                if (prevSwitch.result == SceneSwitcher.Result.Win)
+                {
+                    FilePath = "Win" + FilePath;
+                }
+                else if (prevSwitch.result == SceneSwitcher.Result.Lose)
+                {
+                    FilePath = "Lose" + FilePath;
+                }
+            }
+            Destroy(prevSwitchObj);
+        }
 
         Dict = new Dictionary<string, DialogTemplate>();
 
@@ -46,12 +68,22 @@ public class DialogController : MonoBehaviour {
 
         Switcher = GetComponent<SceneSwitcher>();
 
-		StartCoroutine (ReadFile());
-	}
+        if (GameState.NumUnplayed() == 0 && Switcher.GetNextScene() == "_Voting")
+        {
+            //This was last post game dialog and story needs to be loaded
+            Switcher.SetNextScene("_Dialog_Story1");
+            Switcher.StartLoad();
+        }
+
+        Switcher.StartLoad();
+
+        StartCoroutine(ReadFile());
+    }
 
     public IEnumerator ReadFile()
     {
-        Debug.Log("Entering read file coroutine");
+
+
         using (StreamReader reader = new StreamReader("Assets\\Resources\\" + FilePath))
         {
             Debug.Log("Using stream reader");
@@ -80,10 +112,8 @@ public class DialogController : MonoBehaviour {
             }
         }
 
-        if (Switcher != null) {
-            Switcher.SwitchScenes();
-        }
-	}
+        Switcher.SwitchScenes();
+    }
 
     private void FillInfo(DialogTemplate template, string message)
     {
@@ -106,21 +136,23 @@ public class DialogController : MonoBehaviour {
         }
     }
 
-	private IEnumerator WaitForInput(Button button) {
+    private IEnumerator WaitForInput(Button button)
+    {
         if (button == Button.Either)
         {
             while (!Input.GetButtonDown(RED_BUTTON) && !Input.GetButtonDown(BLUE_BUTTON))
             {
                 yield return null;
             }
-        } else
+        }
+        else
         {
             while (!Input.GetButtonDown(GetButtonString(button)))
             {
                 yield return null;
             }
         }
-	}
+    }
 
     private string GetButtonString(Button button)
     {

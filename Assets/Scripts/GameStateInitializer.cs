@@ -2,14 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameStateInitializer : MonoBehaviour {
+public class GameStateInitializer : MonoBehaviour
+{
 
     /*
      * Attach to game object to initialize static game state
      * 
      */
 
-	void Awake () {
+    void Awake()
+    {
         GameState.Initialize();
-	}
+    }
 }

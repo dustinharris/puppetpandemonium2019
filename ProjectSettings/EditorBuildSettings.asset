@@ -44,3 +44,21 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/_Game_DontShootGrandma.unity
     guid: ad2b7d0a3532472489d1808989fa2645
+  - enabled: 1
+    path: Assets/Scenes/_Dialog_PostGrandma.unity
+    guid: 011c193a79c1de244b044f6f4530082f
+  - enabled: 1
+    path: Assets/Scenes/_Dialog_PostEKO2Y.unity
+    guid: d9db34f0d3d7d654b847aefaf74cc9bf
+  - enabled: 1
+    path: Assets/Scenes/_Dialog_PostRhythmLogging.unity
+    guid: 87578e5313acdde4fbd9b706c1b5ba53
+  - enabled: 1
+    path: Assets/Scenes/_Dialog_Story1.unity
+    guid: 56836d84dd488334ebf7da0d743b436e
+  - enabled: 1
+    path: Assets/Scenes/_Dialog_Story2.unity
+    guid: fd88d8bad82977746ae3170da1d8cd40
+  - enabled: 1
+    path: Assets/Scenes/_Dialog_Final.unity
+    guid: bcd1c5a9ca78275429523baba965ca10

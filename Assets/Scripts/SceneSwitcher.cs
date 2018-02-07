@@ -17,34 +17,54 @@ public class SceneSwitcher : MonoBehaviour
         NA, Win, Lose
     }
 
-    public string NextScene = "";
+    [SerializeField]
+    private string NextScene = "";
+    // Loading should be delayed if scene set in inspector is not necessarily the one that will be loaded
+    [SerializeField]
+    private bool DelayLoading = true;
+
+    
     
     public Result result = Result.NA;
-    public GameState.Game ToPlay;
 
     private AsyncOperation LoadOp = null;
-
-    private void Awake()
-    {
-    }
+    private bool Loading;
 
     // Use this for initialization
     void Start()
+    {
+        if (!DelayLoading) {
+            LoadAsync();
+        }
+    }
+
+    // No turning back after this
+    public void StartLoad()
     {
         LoadAsync();
     }
 
     public void SetNextScene(string scene)
     {
-        NextScene = scene;
-        LoadAsync();
+        if (!Loading)
+        {
+            NextScene = scene;
+            if (!DelayLoading) {
+                LoadAsync();
+            }
+        }
+    }
+
+    public string GetNextScene()
+    {
+        return NextScene;
     }
 
     private void LoadAsync()
     {
-        if (!string.IsNullOrEmpty(NextScene))
+        if (!string.IsNullOrEmpty(NextScene) && !Loading)
         {
-            Debug.Log("LoadingScene: " + NextScene);
+            Loading = true;
             LoadOp = SceneManager.LoadSceneAsync(NextScene);
             LoadOp.allowSceneActivation = false;
         }

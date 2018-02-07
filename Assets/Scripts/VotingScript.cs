@@ -43,7 +43,8 @@ public class VotingScript : MonoBehaviour {
             SetOption(side, leftover);
             Options[(int)GameState.OtherSide(side)] = GameState.Game.None;
 
-            GameChosen(leftover);
+            Audience.DisableVoting();
+            GameChosen(side);
         } else {
             if (unplayed == 2)
             {
@@ -64,14 +65,24 @@ public class VotingScript : MonoBehaviour {
 
             // Wait for voting to come in
             StartCoroutine(Countdown());
+            StartCoroutine(CheckVotes());
         }
 	}
 
-    private void GameChosen(GameState.Game which)
+    private void GameChosen(GameState.Side side)
     {
-        Debug.Log("GameChosen: " + which.ToString());
-        Switcher.SetNextScene(Info.GetSceneName(which));
-        Switcher.SwitchScenes();
+        TimerText.enabled = false;
+        GameState.Game chosen = Options[(int)side];
+        GameState.Game skipped = Options[(int)GameState.OtherSide(side)];
+
+        // Update game state
+        GameState.LastSkipped = skipped;
+        GameState.WhichSide = GameState.OtherSide(side);
+        GameState.SetPlayed(chosen);
+
+        Switcher.SetNextScene(Info.GetSceneName(chosen));
+
+        StartCoroutine(DisplayWinner(chosen));
     }
 
     private void Timeout()
@@ -84,7 +95,7 @@ public class VotingScript : MonoBehaviour {
 
     private IEnumerator Countdown()
     {
-        for (int time = 10; time > 0; time--)
+        for (int time = 30; time > 0; time--)
         {
             TimerText.text = time.ToString();
             yield return new WaitForSeconds(1.0f);
@@ -103,6 +114,7 @@ public class VotingScript : MonoBehaviour {
             {
                 Debug.Log("All votes counted");
                 GameChosen(DetermineWinner(red, blue));
+                yield break;
             } else
             {
                 yield return null;
@@ -111,19 +123,28 @@ public class VotingScript : MonoBehaviour {
         }
     }
 
-    private GameState.Game DetermineWinner(int redVotes, int blueVotes)
+    // Show chosen game for a few seconds, which also gives new scene time to load
+    private IEnumerator DisplayWinner(GameState.Game winner)
+    {
+        // TODO show winner prominently
+        yield return new WaitForSeconds(3.0f);
+
+        Switcher.SwitchScenes();
+    }
+
+    private GameState.Side DetermineWinner(int redVotes, int blueVotes)
     {
         if (redVotes > blueVotes)
         {
-            return Options[(int)GameState.Side.Red];
+            return GameState.Side.Red;
         }
         else if (redVotes < blueVotes)
         {
-            return Options[(int)GameState.Side.Blue];
+            return GameState.Side.Blue;
         }
         else
         {
-            return Options[Random.Range(0, 1)];
+            return (GameState.Side)Random.Range(0, 1);
         }
     }
 

@@ -465,6 +465,7 @@ GameObject:
   m_Component:
   - component: {fileID: 826881313}
   - component: {fileID: 826881312}
+  - component: {fileID: 826881314}
   m_Layer: 0
   m_Name: Controller
   m_TagString: Untagged
@@ -508,6 +509,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &826881314
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 826881311}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cd067e16f8bd2d14c914bacabbcd3ed0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  NextScene: _Voting
+  result: 0
 --- !u!1 &1406233466
 GameObject:
   m_ObjectHideFlags: 0

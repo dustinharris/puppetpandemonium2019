@@ -12,10 +12,15 @@ public class AudienceVotingScript : MonoBehaviour {
     private int VotesRed = 0;
     private int VotesBlue = 0;
 
+    private bool votingDisabled = false;
+
 	// Use this for initialization
 	void Start () {
         AudienceScript = AudienceBar.GetComponent<AudienceBarScript>();
-        AudienceScript.ShowAll(AudienceUIScript.Notice.Glow);
+        if (!votingDisabled)
+        {
+            AudienceScript.ShowAll(AudienceUIScript.Notice.Glow);
+        }
 
         Votes = new GameState.Side[AudienceScript.Size()];
         for (int i = 0; i < AudienceScript.Size(); i++)
@@ -27,34 +32,45 @@ public class AudienceVotingScript : MonoBehaviour {
     // Update is called once per frame
     void Update()
     {
-        // Check if each audience member has pressed buttons
-        int sections = AudienceScript.Size();
-        for (int i = 0; i < sections; i++)
+        if (!votingDisabled)
         {
-            if (Votes[i] == GameState.Side.NA)
+            // Check if each audience member has pressed buttons
+            int sections = AudienceScript.Size();
+            for (int i = 0; i < sections; i++)
             {
-                bool redButton = Input.GetButtonDown("Audience" + i + "Red");
-                bool blueButton = Input.GetButtonDown("Audience" + i + "Blue");
-                if (redButton && blueButton)
+                if (Votes[i] == GameState.Side.NA)
                 {
-                    // Ignore simultaneous button presses
-                    continue;
-                }
-                else if (redButton)
-                {
-                    Votes[i] = GameState.Side.Red;
-                    VotesRed++;
-                    AudienceScript.HideGlow(i);
-                    AudienceScript.Show(i, AudienceUIScript.Notice.Correct, true);
-                }
-                else if (blueButton)
-                {
-                    Votes[i] = GameState.Side.Blue;
-                    VotesBlue++;
-                    AudienceScript.HideGlow(i);
-                    AudienceScript.Show(i, AudienceUIScript.Notice.Correct, false);
+                    bool redButton = Input.GetButtonDown("Audience" + i + "Red");
+                    bool blueButton = Input.GetButtonDown("Audience" + i + "Blue");
+                    if (redButton && blueButton)
+                    {
+                        // Ignore simultaneous button presses
+                        continue;
+                    }
+                    else if (redButton)
+                    {
+                        Votes[i] = GameState.Side.Red;
+                        VotesRed++;
+                        AudienceScript.HideGlow(i);
+                        AudienceScript.Show(i, AudienceUIScript.Notice.Correct, true);
+                    }
+                    else if (blueButton)
+                    {
+                        Votes[i] = GameState.Side.Blue;
+                        VotesBlue++;
+                        AudienceScript.HideGlow(i);
+                        AudienceScript.Show(i, AudienceUIScript.Notice.Correct, false);
+                    }
                 }
             }
+        }
+    }
+
+    public void DisableVoting()
+    {
+        votingDisabled = true;
+        if (AudienceScript != null) {
+            AudienceScript.HideGlow();
         }
     }
 
