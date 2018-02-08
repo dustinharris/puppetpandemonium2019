@@ -39,6 +39,9 @@ GameObject:
   - component: {fileID: 224450914815839222}
   - component: {fileID: 222380234118880784}
   - component: {fileID: 114454931489494708}
+  - component: {fileID: 114567376428553340}
+  - component: {fileID: 114679486715903498}
+  - component: {fileID: 114399995014062620}
   m_Layer: 5
   m_Name: '[BloopImage]'
   m_TagString: Untagged
@@ -119,6 +122,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5fed1d26fd38d44f8c8e06641a91741, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &114399995014062620
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1123671961637382}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fadb74d2722c4624b90d96c5cbfffbd6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Duration: 0.65
+  Delay: 0
 --- !u!114 &114454931489494708
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -138,7 +154,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 817d6e4d6d1593f498ea92ca45edea17, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 111a48a28ab695a409e6399f121370af, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -159,6 +175,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Alert: {fileID: 1882873466726182}
   Correct: {fileID: 1035385355657104}
+--- !u!114 &114567376428553340
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1123671961637382}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0b04885f8cf745c4b93886c7d5d42d56, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bounceSpeed: 8
+  distanceMultiplier: 40
+  randomize: 0
 --- !u!114 &114656968212498612
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -186,6 +216,21 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
+--- !u!114 &114679486715903498
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1123671961637382}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67fe27313b5c28240924a1b75d6d3bd6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  StartPosition: {x: 1344, y: -126, z: 0}
+  EndPosition: {x: 424.5, y: -126, z: 0}
+  Duration: 0.75
+  Delay: 0
 --- !u!114 &114729305019738186
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -263,8 +308,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 428, y: 0}
-  m_SizeDelta: {x: 541.9, y: 596.5}
+  m_AnchoredPosition: {x: 456, y: -126}
+  m_SizeDelta: {x: 1108.5, y: 1220.3}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224656466297668050
 RectTransform:
@@ -281,7 +326,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 4}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 67.9, y: 186.38}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224927889265444978
@@ -301,6 +346,6 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 386.5481}
+  m_AnchoredPosition: {x: 0, y: 525}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
