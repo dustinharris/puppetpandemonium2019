@@ -17,15 +17,18 @@ public class SlideIn : MonoBehaviour {
         transform.localPosition = StartPosition;
 
 
-        StartTime = Time.time;
-	}
+        StartTime = Time.time + Delay;
+    }
 	
 	// Update is called once per frame
 	void Update () {
-        float t = (Time.time - StartTime) / Duration;
-        transform.localPosition = new Vector3(
-            Mathf.SmoothStep(StartPosition.x, EndPosition.x, t),
-            Mathf.SmoothStep(StartPosition.y, EndPosition.y, t),
-            Mathf.SmoothStep(StartPosition.z, EndPosition.z, t));
+        if (Time.time > StartTime)
+        {
+            float t = (Time.time - StartTime) / Duration;
+            transform.localPosition = new Vector3(
+                Mathf.SmoothStep(StartPosition.x, EndPosition.x, t),
+                Mathf.SmoothStep(StartPosition.y, EndPosition.y, t),
+                Mathf.SmoothStep(StartPosition.z, EndPosition.z, t));
+        }
 	}
 }
