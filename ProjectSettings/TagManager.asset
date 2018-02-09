@@ -10,6 +10,7 @@ TagManager:
   - BlockEmpty
   - Block
   - Powerup
+  - Enemies
   layers:
   - Default
   - TransparentFX
