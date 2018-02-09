@@ -1,10 +1,17 @@
 fileFormatVersion: 2
 guid: 301bf31a407cab341b79b2534f81490b
-timeCreated: 1516764735
+timeCreated: 1517622929
 licenseType: Free
 MonoImporter:
+  externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - RedPuppetUI: {fileID: 1051143479054492, guid: df1b2e68339a3f3458db1f8d4bdfbd56,
+      type: 2}
+  - BluePuppetUI: {fileID: 1051143479054492, guid: df1b2e68339a3f3458db1f8d4bdfbd56,
+      type: 2}
+  - AudienceBar: {fileID: 1040055924424706, guid: e2e18fd2d67c9c94d9184674713337df,
+      type: 2}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

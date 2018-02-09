@@ -50,6 +50,20 @@ public class AudienceBarScript : MonoBehaviour {
 		Scripts [section].HideGlow (red);
 	}
 
+    public void HideGlow(int section)
+    {
+        Scripts[section].HideGlow(true);
+        Scripts[section].HideGlow(false);
+    }
+
+    public void HideGlow()
+    {
+        for (int i = 0; i < Scripts.Length; i++)
+        {
+            HideGlow(i);
+        }
+    }
+
 	public void ResetAll() {
 		for (int i = 0; i < Scripts.Length; i++) {
 			Scripts [i].Hide (true);

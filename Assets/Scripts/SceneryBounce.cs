@@ -21,6 +21,6 @@ public class SceneryBounce : MonoBehaviour {
     void Update()
     {
         float bounce = 0 + (individualRandomizer * Mathf.Sin(bounceSpeed * Time.time));
-        transform.localPosition = new Vector3(transform.localPosition.x, bounce*distanceMultiplier, transform.localPosition.z);
+        transform.localPosition = new Vector3(transform.localPosition.x, transform.localPosition.y + bounce*distanceMultiplier, transform.localPosition.z);
     }
 }

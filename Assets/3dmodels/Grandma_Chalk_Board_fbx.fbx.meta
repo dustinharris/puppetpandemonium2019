@@ -1,0 +1,354 @@
+fileFormatVersion: 2
+guid: 7ea23576a21f28449aca05759121b7e7
+timeCreated: 1517729388
+licenseType: Pro
+ModelImporter:
+  serializedVersion: 22
+  fileIDToRecycleName:
+    100000: big window
+    100002: bookshelf
+    100004: bookshelf.seethgouth
+    100006: bottom cabinets
+    100008: cat tree
+    100010: cat_Clock
+    100012: celing fan
+    100014: chair
+    100016: Chalk_Board
+    100018: cookie
+    100020: cookie tray
+    100022: couch
+    100024: Cylinder
+    100026: Door
+    100028: entertainment center
+    100030: entertainment center_Tall
+    100032: //RootNode
+    100034: house
+    100036: LamPshort
+    100038: LampTall
+    100040: microwave
+    100042: Orange
+    100044: Plant short
+    100046: Plant tall
+    100048: plate
+    100050: portait large rec
+    100052: portait rounded
+    100054: portrait large oval
+    100056: Record_Player
+    100058: Refrigerator
+    100060: rocking chair
+    100062: rocking chair.001
+    100064: rocking chair.002
+    100066: rocking chair.003
+    100068: rocking chair.004
+    100070: RUG
+    100072: shelf
+    100074: sink window
+    100076: small kitchen window
+    100078: Small Portrait
+    100080: toaster
+    100082: top cabinet
+    100084: top cabinet solo
+    100086: TV
+    100088: welcome_mat
+    100090: house.003
+    100092: Book
+    100094: Bowl
+    100096: bookshelf_seethgouth
+    100098: coffee table
+    100100: kitchen chair
+    100102: kitchentable
+    100104: side table
+    400000: big window
+    400002: bookshelf
+    400004: bookshelf.seethgouth
+    400006: bottom cabinets
+    400008: cat tree
+    400010: cat_Clock
+    400012: celing fan
+    400014: chair
+    400016: Chalk_Board
+    400018: cookie
+    400020: cookie tray
+    400022: couch
+    400024: Cylinder
+    400026: Door
+    400028: entertainment center
+    400030: entertainment center_Tall
+    400032: //RootNode
+    400034: house
+    400036: LamPshort
+    400038: LampTall
+    400040: microwave
+    400042: Orange
+    400044: Plant short
+    400046: Plant tall
+    400048: plate
+    400050: portait large rec
+    400052: portait rounded
+    400054: portrait large oval
+    400056: Record_Player
+    400058: Refrigerator
+    400060: rocking chair
+    400062: rocking chair.001
+    400064: rocking chair.002
+    400066: rocking chair.003
+    400068: rocking chair.004
+    400070: RUG
+    400072: shelf
+    400074: sink window
+    400076: small kitchen window
+    400078: Small Portrait
+    400080: toaster
+    400082: top cabinet
+    400084: top cabinet solo
+    400086: TV
+    400088: welcome_mat
+    400090: house.003
+    400092: Book
+    400094: Bowl
+    400096: bookshelf_seethgouth
+    400098: coffee table
+    400100: kitchen chair
+    400102: kitchentable
+    400104: side table
+    2100000: No Name
+    2100002: Material
+    2100004: Material.001
+    2300000: big window
+    2300002: bookshelf
+    2300004: bookshelf.seethgouth
+    2300006: bottom cabinets
+    2300008: cat tree
+    2300010: cat_Clock
+    2300012: celing fan
+    2300014: chair
+    2300016: Chalk_Board
+    2300018: cookie
+    2300020: cookie tray
+    2300022: couch
+    2300024: Cylinder
+    2300026: Door
+    2300028: entertainment center
+    2300030: entertainment center_Tall
+    2300032: house
+    2300034: LamPshort
+    2300036: LampTall
+    2300038: microwave
+    2300040: Orange
+    2300042: Plant short
+    2300044: Plant tall
+    2300046: plate
+    2300048: portait large rec
+    2300050: portait rounded
+    2300052: portrait large oval
+    2300054: Record_Player
+    2300056: Refrigerator
+    2300058: rocking chair
+    2300060: rocking chair.001
+    2300062: rocking chair.002
+    2300064: rocking chair.003
+    2300066: rocking chair.004
+    2300068: RUG
+    2300070: shelf
+    2300072: sink window
+    2300074: small kitchen window
+    2300076: Small Portrait
+    2300078: toaster
+    2300080: top cabinet
+    2300082: top cabinet solo
+    2300084: TV
+    2300086: welcome_mat
+    2300088: house.003
+    2300090: Book
+    2300092: Bowl
+    2300094: bookshelf_seethgouth
+    2300096: coffee table
+    2300098: kitchen chair
+    2300100: kitchentable
+    2300102: side table
+    2300104: //RootNode
+    3300000: big window
+    3300002: bookshelf
+    3300004: bookshelf.seethgouth
+    3300006: bottom cabinets
+    3300008: cat tree
+    3300010: cat_Clock
+    3300012: celing fan
+    3300014: chair
+    3300016: Chalk_Board
+    3300018: cookie
+    3300020: cookie tray
+    3300022: couch
+    3300024: Cylinder
+    3300026: Door
+    3300028: entertainment center
+    3300030: entertainment center_Tall
+    3300032: house
+    3300034: LamPshort
+    3300036: LampTall
+    3300038: microwave
+    3300040: Orange
+    3300042: Plant short
+    3300044: Plant tall
+    3300046: plate
+    3300048: portait large rec
+    3300050: portait rounded
+    3300052: portrait large oval
+    3300054: Record_Player
+    3300056: Refrigerator
+    3300058: rocking chair
+    3300060: rocking chair.001
+    3300062: rocking chair.002
+    3300064: rocking chair.003
+    3300066: rocking chair.004
+    3300068: RUG
+    3300070: shelf
+    3300072: sink window
+    3300074: small kitchen window
+    3300076: Small Portrait
+    3300078: toaster
+    3300080: top cabinet
+    3300082: top cabinet solo
+    3300084: TV
+    3300086: welcome_mat
+    3300088: house.003
+    3300090: Book
+    3300092: Bowl
+    3300094: bookshelf_seethgouth
+    3300096: coffee table
+    3300098: kitchen chair
+    3300100: kitchentable
+    3300102: side table
+    3300104: //RootNode
+    4300000: cookie
+    4300002: cookie tray
+    4300004: toaster
+    4300006: Orange
+    4300008: Cylinder
+    4300010: cat tree
+    4300012: cat_Clock
+    4300014: microwave
+    4300016: Chalk_Board
+    4300018: Refrigerator
+    4300020: top cabinet
+    4300022: top cabinet solo
+    4300024: bottom cabinets
+    4300026: shelf
+    4300028: chair
+    4300030: couch
+    4300032: sink window
+    4300034: small kitchen window
+    4300036: rocking chair.004
+    4300038: rocking chair.003
+    4300040: LamPshort
+    4300042: LampTall
+    4300044: rocking chair.002
+    4300046: rocking chair.001
+    4300048: plate
+    4300050: rocking chair
+    4300052: Record_Player
+    4300054: celing fan
+    4300056: Plant short
+    4300058: entertainment center_Tall
+    4300060: Plant tall
+    4300062: bookshelf.seethgouth
+    4300064: portrait large oval
+    4300066: portait rounded
+    4300068: Small Portrait
+    4300070: portait large rec
+    4300072: welcome_mat
+    4300074: RUG
+    4300076: TV
+    4300078: entertainment center
+    4300080: bookshelf
+    4300082: big window
+    4300084: Door
+    4300086: house
+    4300088: house.003
+    4300090: Bowl
+    4300092: Book
+    4300094: bookshelf_seethgouth
+    4300096: side table
+    4300098: coffee table
+    4300100: kitchentable
+    4300102: kitchen chair
+  externalObjects: {}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
