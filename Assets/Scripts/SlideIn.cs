@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SlideIn : MonoBehaviour {
+public class SlideIn : MonoBehaviour
+{
 
 
     [SerializeField]
@@ -12,20 +13,42 @@ public class SlideIn : MonoBehaviour {
     public float Delay = 0;
     private float StartTime;
 
-	// Use this for initialization
-	void Start () {
-        transform.localPosition = StartPosition;
+    private RectTransform rTransform;
+
+    // Use this for initialization
+    void Start()
+    {
+        rTransform = this.GetComponent<RectTransform>();
+        if (rTransform != null)
+        {
+            rTransform.anchoredPosition3D = StartPosition;
+        }
+        else
+        {
+            transform.localPosition = StartPosition;
+        }
 
 
         StartTime = Time.time;
-	}
-	
-	// Update is called once per frame
-	void Update () {
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
         float t = (Time.time - StartTime) / Duration;
-        transform.localPosition = new Vector3(
-            Mathf.SmoothStep(StartPosition.x, EndPosition.x, t),
-            Mathf.SmoothStep(StartPosition.y, EndPosition.y, t),
-            Mathf.SmoothStep(StartPosition.z, EndPosition.z, t));
-	}
+
+        Vector3 pos = new Vector3(
+                Mathf.SmoothStep(StartPosition.x, EndPosition.x, t),
+                Mathf.SmoothStep(StartPosition.y, EndPosition.y, t),
+                Mathf.SmoothStep(StartPosition.z, EndPosition.z, t));
+        if (rTransform != null)
+        {
+            rTransform.anchoredPosition3D = pos;
+        }
+        else
+        {
+
+            transform.localPosition = pos;
+        }
+    }
 }
