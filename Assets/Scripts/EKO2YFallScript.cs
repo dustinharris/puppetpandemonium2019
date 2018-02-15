@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class EKO2YFallScript : MonoBehaviour {
 
@@ -12,6 +13,13 @@ public class EKO2YFallScript : MonoBehaviour {
     private bool keyDown;
 
     public enum OccilationFuntion { Sine, Cosine }
+
+    void Awake()
+    {
+        // Listen for game-triggered events
+        Messenger.AddListener(GameEvent.P1_RELEASE, P1Release);
+        Messenger.AddListener(GameEvent.P2_RELEASE, P2Release);
+    }
 
     void Start()
     {
@@ -35,11 +43,24 @@ public class EKO2YFallScript : MonoBehaviour {
         // Player collides with Bunnies
         if ((tag == "Player1" || tag == "Player2") && other.tag == "Enemies")
         {
+            // Transition from fall state to hold state 
             inFall = false;
             inHolding = true;
 
+            // Move player offscreen
             transform.rotation.Set(0, 0, 0, 0);
             transform.position = new Vector3(-15f, 1.5f, 7f);
+
+            // Begin voting
+            if (tag == "Player1")
+            {
+                Messenger.Broadcast(GameEvent.P1_ALL_BLUE);
+            }
+            if (tag == "Player2")
+            {
+                Messenger.Broadcast(GameEvent.P2_ALL_RED);
+            }
+
         }
     }
 
@@ -126,6 +147,26 @@ public class EKO2YFallScript : MonoBehaviour {
                 inHolding = false;
                 inLaunch = true;
             }
+        }
+    }
+
+    private void P1Release()
+    {
+        if (tag == "Player1")
+        {
+            // player is transitioning from holding to launch
+            inHolding = false;
+            inLaunch = true;
+        }
+    }
+
+    private void P2Release()
+    {
+        if (tag == "Player2")
+        {
+            // player is transitioning from holding to launch
+            inHolding = false;
+            inLaunch = true;
         }
     }
 }
