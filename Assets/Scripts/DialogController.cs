@@ -84,7 +84,7 @@ public class DialogController : MonoBehaviour
     {
 
 
-        using (StreamReader reader = new StreamReader("Assets\\Resources\\" + FilePath))
+        using (StreamReader reader = new StreamReader("Assets/Resources/" + FilePath))
         {
             Debug.Log("Using stream reader");
 
