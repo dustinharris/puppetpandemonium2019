@@ -21,7 +21,7 @@ public class HandleTextFile : MonoBehaviour {
         TextAsset asset = (TextAsset)Resources.Load(fileName);
 
         //Print the text from the file
-        Debug.Log(asset.text);
+        //Debug.Log(asset.text);
     }
     
     public void ReadString()
@@ -47,7 +47,7 @@ public class HandleTextFile : MonoBehaviour {
         do
         {
             ch = (char)reader.Read();
-            Debug.Log(ch.ToString());
+            //Debug.Log(ch.ToString());
             platformStateList.Add(ch.ToString());
             Tchar++;
         } while (!reader.EndOfStream);

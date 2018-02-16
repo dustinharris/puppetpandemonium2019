@@ -10,6 +10,8 @@ TagManager:
   - BlockEmpty
   - Block
   - Powerup
+  - Enemies
+  - SceneryDestroyer
   layers:
   - Default
   - TransparentFX

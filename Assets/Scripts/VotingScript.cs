@@ -11,10 +11,16 @@ public class VotingScript : MonoBehaviour {
     private GameObject BlueImageObject;
     [SerializeField]
     private GameObject TimerTextObject;
+    [SerializeField]
+    private GameObject BlueVoteText;
+    [SerializeField]
+    private GameObject RedVoteText;
 
     private Image RedImage;
     private Image BlueImage;
     private Text TimerText;
+    private Text BlueVotes;
+    private Text RedVotes;
 
     private SceneSwitcher Switcher;
     private GameInfo Info;
@@ -26,6 +32,8 @@ public class VotingScript : MonoBehaviour {
         RedImage = RedImageObject.GetComponent<Image>();
         BlueImage = BlueImageObject.GetComponent<Image>();
         TimerText = TimerTextObject.GetComponent<Text>();
+        BlueVotes = BlueVoteText.GetComponent<Text>();
+        RedVotes = RedVoteText.GetComponent<Text>();
 
         Switcher = GetComponent<SceneSwitcher>();
         Info = GetComponent<GameInfo>();
@@ -110,6 +118,8 @@ public class VotingScript : MonoBehaviour {
         {
             int red; int blue;
             Audience.GetVotes(out red, out blue);
+            RedVotes.text = red.ToString();
+            BlueVotes.text = blue.ToString();
             if (red + blue == 5)
             {
                 Debug.Log("All votes counted");

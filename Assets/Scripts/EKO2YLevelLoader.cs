@@ -52,9 +52,15 @@ public class EKO2YLevelLoader : MonoBehaviour {
         // If there is at least one platform, check current position of last element in list.
         if (PlatformObjects.Count != 0)
         {
+            // Example of button input
+            if (Input.GetButtonDown("Audience0Red"))
+            {
+
+            }
+
             // Get the position of the last element
             lastPlatformObject = PlatformObjects.Last();
-            lastPlatformPosition = new Vector3((lastPlatformObject.transform.position.x + blockWidth), 0, 0);
+            lastPlatformPosition = new Vector3((lastPlatformObject.transform.position.x + blockWidth), 0, 7f);
 
             // If there is about to be a gap on screen, load next Platform chunk
             if (lastPlatformPosition.x <= (cameraReference.transform.position.x + 5)) // !!This needs to be relative to the camera position
@@ -212,7 +218,7 @@ public class EKO2YLevelLoader : MonoBehaviour {
 
             // Player 1
             // X position should be same as character position
-            GameObject newObject = Instantiate(groundBlockReference, new Vector3(player1.transform.position.x-3, MidBlockYOffset, 7f), Quaternion.identity);
+            GameObject newObject = Instantiate(groundBlockReference, new Vector3(player1.transform.position.x-3, MidBlockYOffset, 0f), Quaternion.identity);
             // Update object scale
             newObject.transform.localScale = new Vector3(platformScale, platformScale, 1);
             // Save reference to object in platform array
