@@ -141,8 +141,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd067e16f8bd2d14c914bacabbcd3ed0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  NextScene: _Dialog_Story2
-  DelayLoading: 0
+  NextScene: _Dialog_Final
   result: 0
 --- !u!114 &1848683825
 MonoBehaviour:
