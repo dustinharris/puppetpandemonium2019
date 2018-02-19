@@ -5,49 +5,48 @@ using UnityEngine;
 public class GrandmaAmmo : MonoBehaviour {
 
     private int[] Bullets;
-    private int[] Reloaded;
 
     private const int RED = 0;
     private const int BLUE = 1;
 
     public const int MAG_SIZE = 5;
 
-	// Use this for initialization
-	void Start () {
+	void Awake () {
         Bullets = new int[] { 0, 0 };
-        Reloaded = new int[] { 0, 0 };
-
-        StartCoroutine(InitialReload());
-	}
-
-    private IEnumerator InitialReload()
-    {
-        yield return null;
     }
-	
+
+    private void Start()
+    {
+        SendMessage("OutOfAmmo", true);
+        SendMessage("OutOfAmmo", false);
+    }
+
     public bool CanFire(bool red)
     {
         return Bullets[GetIndex(red)] > 0;
     }
 
-    public void ReloadBullet(bool red)
+    public void Reload(bool red)
     {
         int i = GetIndex(red);
 
-        if (!CanFire(red))
-        {
-            Reloaded[i] += 1;
-            if (Reloaded[i] >= MAG_SIZE)
-            {
-                Reload(i);
-            }
-        }
+        Bullets[i] = MAG_SIZE;
+
+        SendMessage("Reloaded", red);
     }
 
-    private void Reload(int index)
+    public void Fire(bool red)
     {
-        Bullets[index] = MAG_SIZE;
-        Reloaded[index] = 0;
+        if (CanFire(red))
+        {
+            int i = GetIndex(red);
+            Bullets[i] -= 1;
+            SendMessage((red ? "Red" : "Blue") + "Fired", Bullets[i]);
+            if (Bullets[i] == 0)
+            {
+                SendMessage("OutOfAmmo", red);
+            }
+        }
     }
 
     private int GetIndex(bool red)
