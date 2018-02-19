@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 4060013841501838}
   - component: {fileID: 212792912080915550}
   - component: {fileID: 61453815607265502}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Ground_Block_Pink
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -37,7 +37,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4560431309765540}
   - component: {fileID: 61539024821903184}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: '[Ground_Blocks]'
   m_TagString: Block
   m_Icon: {fileID: 0}
@@ -54,7 +54,7 @@ GameObject:
   - component: {fileID: 4565259344312488}
   - component: {fileID: 212685480421554988}
   - component: {fileID: 114293535620749486}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Face_animation_Sprite_sheet_0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -71,7 +71,7 @@ GameObject:
   - component: {fileID: 4436218981779042}
   - component: {fileID: 212982686345675748}
   - component: {fileID: 61023591680870532}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Ground_Block_Peach
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -87,7 +87,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4442516575912002}
   - component: {fileID: 212871129492199714}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: grass_top
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -104,7 +104,7 @@ GameObject:
   - component: {fileID: 4844868725962400}
   - component: {fileID: 212493017225911028}
   - component: {fileID: 61895128578819116}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Ground_Block_Purple
   m_TagString: Untagged
   m_Icon: {fileID: 0}

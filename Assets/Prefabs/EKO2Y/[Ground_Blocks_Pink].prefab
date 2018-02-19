@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 4345245549146356}
   - component: {fileID: 212394820154530318}
   - component: {fileID: 61481536265695488}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: grass_top
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -38,7 +38,7 @@ GameObject:
   - component: {fileID: 4710946565974600}
   - component: {fileID: 212338749045652126}
   - component: {fileID: 114928515690825000}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Face_animation_Sprite_sheet_0 (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -53,7 +53,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4754081762565824}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: '[Ground_Blocks_Pink]'
   m_TagString: Block
   m_Icon: {fileID: 0}
@@ -70,7 +70,7 @@ GameObject:
   - component: {fileID: 4732739774196302}
   - component: {fileID: 212744150239437072}
   - component: {fileID: 61109857656935072}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Ground_Block_Pink
   m_TagString: Untagged
   m_Icon: {fileID: 0}

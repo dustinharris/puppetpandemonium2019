@@ -192,7 +192,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bounceSpeed: 5
-  distanceMultiplier: 0.5
+  distanceMultiplier: 0.1
   randomize: 1
 --- !u!212 &212216151102064828
 SpriteRenderer:

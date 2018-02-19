@@ -57,7 +57,7 @@ namespace UnityStandardAssets._2D
 
             if(m_Grounded)
             {
-                //Debug.Log("Reset double jump");
+                Debug.Log("Reset double jump");
                 doubleJump = false;
             }
         }
@@ -108,12 +108,12 @@ namespace UnityStandardAssets._2D
             }
             // If the player should jump...
             // Commented if statement is double jump only behavior.
-            //if ((m_Grounded || !doubleJump) && jump)
+            if ((m_Grounded || !doubleJump) && jump)
 
             //Unlimited jump condition
-            if ((!m_Grounded || !doubleJump) && jump)
+            //if ((!m_Grounded || !doubleJump) && jump)
             {
-                //Debug.Log("Trying to jump");
+                Debug.Log("Trying to jump");
 
                 //transform.Rotate(0, 0, 30);
 
@@ -128,7 +128,7 @@ namespace UnityStandardAssets._2D
                 if(!m_Grounded)
                 {
                     // Used double jump
-                    //Debug.Log("Used double jump");
+                    Debug.Log("Used double jump");
                     doubleJump = true;
                 }
 
