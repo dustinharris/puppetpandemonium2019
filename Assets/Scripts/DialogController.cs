@@ -68,23 +68,12 @@ public class DialogController : MonoBehaviour
 
         Switcher = GetComponent<SceneSwitcher>();
 
-        if (GameState.NumUnplayed() == 0 && Switcher.GetNextScene() == "_Voting")
-        {
-            //This was last post game dialog and story needs to be loaded
-            Switcher.SetNextScene("_Dialog_Story1");
-            Switcher.StartLoad();
-        }
-
-        Switcher.StartLoad();
-
         StartCoroutine(ReadFile());
     }
 
     public IEnumerator ReadFile()
     {
-
-
-        using (StreamReader reader = new StreamReader("Assets\\Resources\\" + FilePath))
+        using (StreamReader reader = new StreamReader("Assets/Resources/" + FilePath))
         {
             Debug.Log("Using stream reader");
 

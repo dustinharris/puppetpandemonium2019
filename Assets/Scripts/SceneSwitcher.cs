@@ -19,27 +19,13 @@ public class SceneSwitcher : MonoBehaviour
 
     [SerializeField]
     private string NextScene = "";
-    // Loading should be delayed if scene set in inspector is not necessarily the one that will be loaded
-    [SerializeField]
-    private bool DelayLoading = true;
-
-    
     
     public Result result = Result.NA;
 
     private AsyncOperation LoadOp = null;
     private bool Loading;
 
-    // Use this for initialization
     void Start()
-    {
-        if (!DelayLoading) {
-            LoadAsync();
-        }
-    }
-
-    // No turning back after this
-    public void StartLoad()
     {
         LoadAsync();
     }
@@ -49,9 +35,7 @@ public class SceneSwitcher : MonoBehaviour
         if (!Loading)
         {
             NextScene = scene;
-            if (!DelayLoading) {
-                LoadAsync();
-            }
+            LoadAsync();
         }
     }
 

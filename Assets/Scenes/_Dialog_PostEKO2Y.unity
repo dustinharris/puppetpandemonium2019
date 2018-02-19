@@ -520,8 +520,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd067e16f8bd2d14c914bacabbcd3ed0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  NextScene: _Voting
-  DelayLoading: 1
+  NextScene: _Game_DontShootGrandma
   result: 0
 --- !u!1 &1406233466
 GameObject:
@@ -641,7 +640,7 @@ Prefab:
     - target: {fileID: 224781146036155610, guid: e2e18fd2d67c9c94d9184674713337df,
         type: 2}
       propertyPath: m_RootOrder
-      value: 5
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 224781146036155610, guid: e2e18fd2d67c9c94d9184674713337df,
         type: 2}
@@ -651,17 +650,17 @@ Prefab:
     - target: {fileID: 224781146036155610, guid: e2e18fd2d67c9c94d9184674713337df,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: 35
+      value: 74.5
       objectReference: {fileID: 0}
     - target: {fileID: 224781146036155610, guid: e2e18fd2d67c9c94d9184674713337df,
         type: 2}
       propertyPath: m_SizeDelta.x
-      value: 100
+      value: 1920
       objectReference: {fileID: 0}
     - target: {fileID: 224781146036155610, guid: e2e18fd2d67c9c94d9184674713337df,
         type: 2}
       propertyPath: m_SizeDelta.y
-      value: 100
+      value: 148.9
       objectReference: {fileID: 0}
     - target: {fileID: 224781146036155610, guid: e2e18fd2d67c9c94d9184674713337df,
         type: 2}

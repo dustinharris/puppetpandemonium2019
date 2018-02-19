@@ -413,7 +413,6 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 1094584409}
-  - component: {fileID: 1094584411}
   - component: {fileID: 1094584408}
   - component: {fileID: 1094584410}
   m_Layer: 0
@@ -462,20 +461,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   RedPuppetUI: {fileID: 0}
   BluePuppetUI: {fileID: 0}
-  AudienceBar: {fileID: 0}
---- !u!114 &1094584411
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1094584407}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4133d7ea3aa2acc47b9ea4e6a99ca03d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  StartCanvas: {fileID: 0}
-  DialogCanvas: {fileID: 0}
   AudienceBar: {fileID: 0}
 --- !u!1 &1553799996
 GameObject:

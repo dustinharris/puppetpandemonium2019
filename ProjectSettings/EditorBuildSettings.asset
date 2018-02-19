@@ -33,9 +33,6 @@ EditorBuildSettings:
     path: Assets/Scenes/_Game_FinalBoss.unity
     guid: 9796abee40d183e448442e52cce6e3b7
   - enabled: 1
-    path: Assets/Scenes/_Voting.unity
-    guid: c8b5a17f4b866704fbda7af1e7cf4860
-  - enabled: 1
     path: Assets/Scenes/_Game_RhythmLogging.unity
     guid: 735a598f65c2c05408223b1d74b10a68
   - enabled: 1

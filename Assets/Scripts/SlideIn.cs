@@ -28,8 +28,7 @@ public class SlideIn : MonoBehaviour
             transform.localPosition = StartPosition;
         }
 
-
-        StartTime = Time.time;
+        StartTime = Time.time + Delay;
     }
 
     // Update is called once per frame
@@ -47,7 +46,6 @@ public class SlideIn : MonoBehaviour
         }
         else
         {
-
             transform.localPosition = pos;
         }
     }
