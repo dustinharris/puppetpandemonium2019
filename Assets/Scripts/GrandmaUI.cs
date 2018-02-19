@@ -41,8 +41,9 @@ public class GrandmaUI : MonoBehaviour {
     public void ShowAlert(bool red)
     {
         GameObject alert = Object.Instantiate(AlertImage) as GameObject;
-        alert.transform.parent = canvas.transform;
-        alert.transform.SetPositionAndRotation(PlaceAlert(red), RotateAlert());
+        alert.transform.SetParent(canvas.transform);
+        alert.transform.position = PlaceAlert(red);
+        alert.transform.Rotate(RotateAlert());
         GameObject.Destroy(alert, 1.0f);
     }
 
@@ -62,9 +63,9 @@ public class GrandmaUI : MonoBehaviour {
 
         return new Vector3(x, y);
     }
-    private Quaternion RotateAlert()
+    private Vector3 RotateAlert()
     {
-        return new Quaternion(0, 0, Random.Range(-45, 45), 0);
+        return new Vector3(0, 0, Random.Range(-45, 45));
     }
 
     public void Reloading(bool red, int reloaded)
