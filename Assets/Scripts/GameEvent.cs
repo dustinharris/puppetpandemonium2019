@@ -18,4 +18,6 @@
 
     public const string P1_RELEASE = "P1_RELEASE";
     public const string P2_RELEASE = "P2_RELEASE";
+
+    public const string EKO2Y_GAME_OVER = "EKO2Y_GAME_OVER";
 }
