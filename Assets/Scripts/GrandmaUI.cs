@@ -30,12 +30,83 @@ public class GrandmaUI : MonoBehaviour {
     [SerializeField]
     private Sprite BulletReloading;
 
+    [SerializeField]
+    private GameObject TargetRedObject;
+    [SerializeField]
+    private GameObject TargetBlueObject;
+
+    [SerializeField]
+    private Sprite GrandmaTarget;
+    [SerializeField]
+    private Sprite GrandmaBroken;
+    [SerializeField]
+    private Sprite KittyTarget;
+    [SerializeField]
+    private Sprite KittyBroken;
+
+    private TargetState[] Targets;
+    private const int RED = 0;
+    private const int BLUE = 1;
+
+    private enum Target { Grandma, Kitty }
+
+    private class TargetState
+    {
+        public Target which;
+        public bool broken;
+        public Image image;
+    }
+
     private void Awake()
     {
         canvas = CanvasObject.GetComponent<Canvas>();
 
         BulletsRed = BulletsRedObject.GetComponentsInChildren<Image>();
         BulletsBlue = BulletsBlueObject.GetComponentsInChildren<Image>();
+
+        Targets = new TargetState[2];
+        Targets[RED].image = TargetRedObject.GetComponent<Image>();
+        Targets[BLUE].image = TargetBlueObject.GetComponent<Image>();
+    }
+
+    public void ShowTargets()
+    {
+        Targets[RED].which = RandomTarget();
+        Targets[BLUE].which = RandomTarget();
+        Targets[RED].broken = false;
+        Targets[BLUE].broken = false;
+
+        Targets[RED].image.sprite = GetWholeSprite(Targets[RED].which);
+        Targets[BLUE].image.sprite = GetWholeSprite(Targets[BLUE].which);
+
+        TargetRedObject.SetActive(true);
+        TargetBlueObject.SetActive(true);
+    }
+
+    private Target RandomTarget()
+    {
+        return (Target) Random.Range(0, 1);
+    }
+
+    private Sprite GetWholeSprite(Target target)
+    {
+        return (target == Target.Grandma) ? GrandmaTarget : KittyTarget;
+    }
+
+    private Sprite GetBrokenSprite(Target target)
+    {
+        return (target == Target.Grandma) ? GrandmaBroken : KittyBroken;
+    }
+
+    private bool TargetShootable(int index)
+    {
+        return !Targets[index].broken && Targets[index].image.IsActive();
+    }
+
+    private void BreakTarget(int index)
+    {
+        Targets[index].image.sprite = GetBrokenSprite(Targets[index].which);
+        Targets[index].broken = true;
     }
 	
     public void ShowAlert(bool red)
@@ -88,15 +159,33 @@ public class GrandmaUI : MonoBehaviour {
 
     public void RedFired(int remaining)
     {
-        PuppetFired(BulletsRed, remaining);
+        PuppetFired(RED, remaining);
     }
 
     public void BlueFired(int remaining)
     {
-        PuppetFired(BulletsBlue, remaining);
+        PuppetFired(BLUE, remaining);
     }
 
-    private void PuppetFired(Image[] BulletImages, int remaining)
+    private void PuppetFired(int which, int remaining)
+    {
+        Image[] bulletImages;
+        if (which == RED)
+        {
+            bulletImages = BulletsRed;
+        } else
+        {
+            bulletImages = BulletsBlue;
+        }
+        DisplayLoadedBullets(bulletImages, remaining);
+
+        if (TargetShootable(which))
+        {
+            BreakTarget(which);
+        }
+    }
+
+    private void DisplayLoadedBullets(Image[] BulletImages, int remaining)
     {
         int i;
         for (i = 0; i < remaining; i++)
