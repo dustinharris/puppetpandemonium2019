@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class GrandmaUI : MonoBehaviour {
+public class GrandmaUI : MonoBehaviour
+{
 
     [SerializeField]
     private GameObject CanvasObject;
@@ -44,33 +45,107 @@ public class GrandmaUI : MonoBehaviour {
     [SerializeField]
     private Sprite KittyBroken;
 
+    [SerializeField]
+    private GameObject HitRedObject;
+    [SerializeField]
+    private GameObject HitBlueObject;
+
+    [SerializeField]
+    private Sprite Scratch;
+    [SerializeField]
+    private Sprite Smooch;
+
+    public int Lives;
+    [SerializeField]
+    private GameObject LivesObject;
+    private Text LivesText;
+
     private TargetState[] Targets;
     private const int RED = 0;
     private const int BLUE = 1;
+
+    private bool RedReady = false;
+    private bool BlueReady = false;
 
     private enum Target { Grandma, Kitty }
 
     private class TargetState
     {
+        public GameObject TargetObject;
+        public GameObject HitObject;
         public Target which;
         public bool broken;
         public Image image;
+        public Image hit;
     }
 
     private void Awake()
     {
+        Debug.Log("Awake");
         canvas = CanvasObject.GetComponent<Canvas>();
 
         BulletsRed = BulletsRedObject.GetComponentsInChildren<Image>();
         BulletsBlue = BulletsBlueObject.GetComponentsInChildren<Image>();
 
         Targets = new TargetState[2];
+        Targets[RED].TargetObject = TargetRedObject;
+        Targets[BLUE].TargetObject = TargetBlueObject;
+        Targets[RED].HitObject = HitRedObject;
+        Targets[BLUE].HitObject = HitBlueObject;
         Targets[RED].image = TargetRedObject.GetComponent<Image>();
         Targets[BLUE].image = TargetBlueObject.GetComponent<Image>();
+        Targets[RED].hit = HitRedObject.GetComponent<Image>();
+        Targets[BLUE].hit = HitBlueObject.GetComponent<Image>();
+
+        LivesText = LivesObject.GetComponent<Text>();
+
+        LivesText.text = Lives.ToString();
+
+        //StartCoroutine(WaitForReady());
+        ShowTargets();
+    }
+
+    private IEnumerator WaitForReady()
+    {
+        while (!RedReady || !BlueReady)
+        {
+            yield return null;
+        }
+
+        ShowTargets();
+    }
+
+    private IEnumerator WaitToTimeout()
+    {
+        float time = 0f;
+        while (true)
+        {
+            if (BothBroken())
+            {
+                yield return new WaitForSeconds(1f);
+                NextCycle();
+                break;
+            }
+            else if (time > 3f)
+            {
+                Timeout();
+                break;
+            }
+
+            time += Time.deltaTime;
+        }
+    }
+
+    // Temp function that calls ShowTargets until camera is hooked up
+    private IEnumerator WaitToShow()
+    {
+        yield return new WaitForSeconds(3f);
+        ShowTargets();
     }
 
     public void ShowTargets()
     {
+        Debug.Log("ShowTargets");
         Targets[RED].which = RandomTarget();
         Targets[BLUE].which = RandomTarget();
         Targets[RED].broken = false;
@@ -79,13 +154,72 @@ public class GrandmaUI : MonoBehaviour {
         Targets[RED].image.sprite = GetWholeSprite(Targets[RED].which);
         Targets[BLUE].image.sprite = GetWholeSprite(Targets[BLUE].which);
 
-        TargetRedObject.SetActive(true);
-        TargetBlueObject.SetActive(true);
+        Targets[RED].TargetObject.SetActive(true);
+        Targets[BLUE].TargetObject.SetActive(true);
+
+        StartCoroutine(WaitToTimeout());
+    }
+
+    private void SetTargetActive(int which, bool active)
+    {
+        Targets[which].TargetObject.SetActive(active);
+    }
+
+    private void SetHitActive(int which, bool active)
+    {
+        Targets[which].HitObject.SetActive(active);
+    }
+
+    private bool GetTargetActive(int which)
+    {
+        return Targets[which].TargetObject.activeSelf;
+    }
+
+    private void Timeout()
+    {
+        if (!Targets[RED].broken)
+        {
+            Hit(RED);
+        }
+        if (!Targets[BLUE].broken)
+        {
+            Hit(BLUE);
+        }
+    }
+
+    private void Hit(int which)
+    {
+        Target target = Targets[which].which;
+        Targets[which].hit.sprite = GetTargetHit(target);
+        SetHitActive(which, true);
+        if (target == Target.Kitty)
+        {
+            Lives--;
+            LivesText.text = Lives.ToString();
+        }
+    }
+
+    private Sprite GetTargetHit(Target which)
+    {
+        return which == Target.Grandma ? Smooch : Scratch;
+    }
+
+    private void NextCycle()
+    {
+        TargetRedObject.SetActive(false);
+        TargetBlueObject.SetActive(false);
+
+        WaitToShow();
+    }
+
+    private bool BothBroken()
+    {
+        return Targets[RED].broken && Targets[BLUE].broken;
     }
 
     private Target RandomTarget()
     {
-        return (Target) Random.Range(0, 1);
+        return (Target)Random.Range(0, 1);
     }
 
     private Sprite GetWholeSprite(Target target)
@@ -100,7 +234,7 @@ public class GrandmaUI : MonoBehaviour {
 
     private bool TargetShootable(int index)
     {
-        return !Targets[index].broken && Targets[index].image.IsActive();
+        return !Targets[index].broken && GetTargetActive(index);
     }
 
     private void BreakTarget(int index)
@@ -108,7 +242,7 @@ public class GrandmaUI : MonoBehaviour {
         Targets[index].image.sprite = GetBrokenSprite(Targets[index].which);
         Targets[index].broken = true;
     }
-	
+
     public void ShowAlert(bool red)
     {
         GameObject alert = Object.Instantiate(AlertImage) as GameObject;
@@ -121,13 +255,14 @@ public class GrandmaUI : MonoBehaviour {
     private Vector3 PlaceAlert(bool red)
     {
         Rect rect = canvas.pixelRect;
-        
+
         float y = Random.Range(rect.yMin + 150, rect.yMax);
         float x;
         if (red)
         {
             x = Random.Range(rect.xMin, rect.xMax / 2);
-        } else
+        }
+        else
         {
             x = Random.Range(rect.xMax / 2, rect.xMax);
         }
@@ -173,7 +308,8 @@ public class GrandmaUI : MonoBehaviour {
         if (which == RED)
         {
             bulletImages = BulletsRed;
-        } else
+        }
+        else
         {
             bulletImages = BulletsBlue;
         }
@@ -205,7 +341,8 @@ public class GrandmaUI : MonoBehaviour {
         if (red)
         {
             ReloadRed.SetActive(true);
-        } else
+        }
+        else
         {
             ReloadBlue.SetActive(true);
         }
@@ -216,10 +353,12 @@ public class GrandmaUI : MonoBehaviour {
         if (red)
         {
             ReloadRed.SetActive(false);
+            RedReady = true;
         }
         else
         {
             ReloadBlue.SetActive(false);
+            BlueReady = true;
         }
 
         Image[] BulletImages = red ? BulletsRed : BulletsBlue;

@@ -12,11 +12,11 @@ public class GrandmaPuppets : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if (Input.GetButtonDown("PuppetRed"))
+		if (Input.GetButtonDown("RedPuppet"))
         {
             Fire(true);
         }
-        if (Input.GetButtonDown("PuppetBlue"))
+        if (Input.GetButtonDown("BluePuppet"))
         {
             Fire(false);
         }
