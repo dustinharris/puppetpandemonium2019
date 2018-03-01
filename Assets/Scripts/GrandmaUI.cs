@@ -60,6 +60,17 @@ public class GrandmaUI : MonoBehaviour
     private GameObject LivesObject;
     private Text LivesText;
 
+    [SerializeField]
+    private GameObject EndTextObject;
+    private Text EndText;
+
+    public string WinMessage = "You win!";
+    public string LoseMessage = "You lose! :(";
+
+    private SceneSwitcher sceneSwitcher;
+
+    private GrandmaCatLives CatLives; 
+
     private TargetState[] Targets;
     private const int RED = 0;
     private const int BLUE = 1;
@@ -75,19 +86,21 @@ public class GrandmaUI : MonoBehaviour
         public GameObject HitObject;
         public Target which;
         public bool broken;
+        public bool shootable;
         public Image image;
         public Image hit;
     }
 
     private void Awake()
     {
-        Debug.Log("Awake");
         canvas = CanvasObject.GetComponent<Canvas>();
 
         BulletsRed = BulletsRedObject.GetComponentsInChildren<Image>();
         BulletsBlue = BulletsBlueObject.GetComponentsInChildren<Image>();
 
         Targets = new TargetState[2];
+        Targets[RED] = new TargetState();
+        Targets[BLUE] = new TargetState();
         Targets[RED].TargetObject = TargetRedObject;
         Targets[BLUE].TargetObject = TargetBlueObject;
         Targets[RED].HitObject = HitRedObject;
@@ -96,13 +109,21 @@ public class GrandmaUI : MonoBehaviour
         Targets[BLUE].image = TargetBlueObject.GetComponent<Image>();
         Targets[RED].hit = HitRedObject.GetComponent<Image>();
         Targets[BLUE].hit = HitBlueObject.GetComponent<Image>();
+        Targets[RED].shootable = false;
+        Targets[BLUE].shootable = false;
 
         LivesText = LivesObject.GetComponent<Text>();
+        EndText = EndTextObject.GetComponent<Text>();
 
+        CatLives = GetComponent<GrandmaCatLives>();
+        sceneSwitcher = GetComponent<SceneSwitcher>();
+    }
+
+    void Start()
+    {
         LivesText.text = Lives.ToString();
 
-        //StartCoroutine(WaitForReady());
-        ShowTargets();
+        StartCoroutine(WaitForReady());
     }
 
     private IEnumerator WaitForReady()
@@ -117,22 +138,22 @@ public class GrandmaUI : MonoBehaviour
 
     private IEnumerator WaitToTimeout()
     {
-        float time = 0f;
+        float time = Time.time;
         while (true)
         {
             if (BothBroken())
             {
-                yield return new WaitForSeconds(1f);
-                NextCycle();
+                Debug.Log("Both targets broken");
+                StartCoroutine(NextCycle());
                 break;
             }
-            else if (time > 3f)
+            else if (Time.time - time > 3f)
             {
                 Timeout();
                 break;
             }
 
-            time += Time.deltaTime;
+            yield return null;
         }
     }
 
@@ -150,14 +171,27 @@ public class GrandmaUI : MonoBehaviour
         Targets[BLUE].which = RandomTarget();
         Targets[RED].broken = false;
         Targets[BLUE].broken = false;
+        Targets[RED].shootable = true;
+        Targets[BLUE].shootable = true;
 
         Targets[RED].image.sprite = GetWholeSprite(Targets[RED].which);
         Targets[BLUE].image.sprite = GetWholeSprite(Targets[BLUE].which);
 
         Targets[RED].TargetObject.SetActive(true);
         Targets[BLUE].TargetObject.SetActive(true);
+        Targets[RED].HitObject.SetActive(false);
+        Targets[BLUE].HitObject.SetActive(false);
 
         StartCoroutine(WaitToTimeout());
+    }
+
+    private void HideTargets()
+    {
+        Targets[RED].shootable = false;
+        Targets[BLUE].shootable = false;
+
+        SetTargetActive(RED, false);
+        SetTargetActive(BLUE, false);
     }
 
     private void SetTargetActive(int which, bool active)
@@ -177,6 +211,9 @@ public class GrandmaUI : MonoBehaviour
 
     private void Timeout()
     {
+        Targets[RED].shootable = false;
+        Targets[BLUE].shootable = false;
+
         if (!Targets[RED].broken)
         {
             Hit(RED);
@@ -185,6 +222,8 @@ public class GrandmaUI : MonoBehaviour
         {
             Hit(BLUE);
         }
+
+        StartCoroutine(NextCycle());
     }
 
     private void Hit(int which)
@@ -194,7 +233,10 @@ public class GrandmaUI : MonoBehaviour
         SetHitActive(which, true);
         if (target == Target.Kitty)
         {
-            Lives--;
+            if (Lives > 0)
+            {
+                Lives--;
+            }
             LivesText.text = Lives.ToString();
         }
     }
@@ -204,12 +246,41 @@ public class GrandmaUI : MonoBehaviour
         return which == Target.Grandma ? Smooch : Scratch;
     }
 
-    private void NextCycle()
+    private IEnumerator NextCycle()
     {
-        TargetRedObject.SetActive(false);
-        TargetBlueObject.SetActive(false);
+        yield return new WaitForSeconds(1f);
+        HideTargets();
 
-        WaitToShow();
+        if (CatLives.GetCatLives() <= 0)
+        {
+            StartCoroutine(EndGame(SceneSwitcher.Result.Win));
+        } else if (Lives <= 0)
+        {
+            StartCoroutine(EndGame(SceneSwitcher.Result.Lose));
+        } else
+        {
+            StartCoroutine(WaitToShow());
+        }
+    }
+
+    private IEnumerator EndGame(SceneSwitcher.Result result)
+    {
+        string message;
+        if (result == SceneSwitcher.Result.Win)
+        {
+            message = WinMessage;
+        } else
+        {
+            message = LoseMessage;
+        }
+
+        EndText.text = message;
+        EndTextObject.SetActive(true);
+
+        yield return new WaitForSeconds(5f);
+
+        sceneSwitcher.result = result;
+        sceneSwitcher.SwitchScenes();
     }
 
     private bool BothBroken()
@@ -219,7 +290,8 @@ public class GrandmaUI : MonoBehaviour
 
     private Target RandomTarget()
     {
-        return (Target)Random.Range(0, 1);
+        int i = Random.Range(0, 2);
+        return (Target) i;
     }
 
     private Sprite GetWholeSprite(Target target)
@@ -234,13 +306,19 @@ public class GrandmaUI : MonoBehaviour
 
     private bool TargetShootable(int index)
     {
-        return !Targets[index].broken && GetTargetActive(index);
+        return Targets[index].shootable && !Targets[index].broken && GetTargetActive(index);
     }
 
     private void BreakTarget(int index)
     {
+        if (Targets[index].which == Target.Kitty)
+        {
+            CatLives.DecreaseCatLives();
+        }
+
         Targets[index].image.sprite = GetBrokenSprite(Targets[index].which);
         Targets[index].broken = true;
+        Targets[index].shootable = false;
     }
 
     public void ShowAlert(bool red)
