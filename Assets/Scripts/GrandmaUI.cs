@@ -64,10 +64,12 @@ public class GrandmaUI : MonoBehaviour
     private GameObject EndTextObject;
     private Text EndText;
 
+    [SerializeField]
+    private GameObject SceneSwitcherObject;
+    private SceneSwitcher sceneSwitcher;
+
     public string WinMessage = "You win!";
     public string LoseMessage = "You lose! :(";
-
-    private SceneSwitcher sceneSwitcher;
 
     private GrandmaCatLives CatLives; 
 
@@ -77,6 +79,8 @@ public class GrandmaUI : MonoBehaviour
 
     private bool RedReady = false;
     private bool BlueReady = false;
+
+    private bool GameOver = false;
 
     private enum Target { Grandma, Kitty }
 
@@ -116,7 +120,8 @@ public class GrandmaUI : MonoBehaviour
         EndText = EndTextObject.GetComponent<Text>();
 
         CatLives = GetComponent<GrandmaCatLives>();
-        sceneSwitcher = GetComponent<SceneSwitcher>();
+        sceneSwitcher = SceneSwitcherObject.GetComponent<SceneSwitcher>();
+        DontDestroyOnLoad(SceneSwitcherObject);
     }
 
     void Start()
@@ -277,6 +282,11 @@ public class GrandmaUI : MonoBehaviour
         EndText.text = message;
         EndTextObject.SetActive(true);
 
+        // Hide reload messages
+        ReloadRed.SetActive(false);
+        ReloadBlue.SetActive(false);
+        GameOver = true;
+
         yield return new WaitForSeconds(5f);
 
         sceneSwitcher.result = result;
@@ -416,13 +426,16 @@ public class GrandmaUI : MonoBehaviour
 
     public void OutOfAmmo(bool red)
     {
-        if (red)
+        if (!GameOver)
         {
-            ReloadRed.SetActive(true);
-        }
-        else
-        {
-            ReloadBlue.SetActive(true);
+            if (red)
+            {
+                ReloadRed.SetActive(true);
+            }
+            else
+            {
+                ReloadBlue.SetActive(true);
+            }
         }
     }
 
