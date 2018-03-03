@@ -71,7 +71,7 @@ public class GrandmaUI : MonoBehaviour
     public string WinMessage = "You win!";
     public string LoseMessage = "You lose! :(";
 
-    private GrandmaCatLives CatLives; 
+    private GrandmaCatLives CatLives;
 
     private TargetState[] Targets;
     private const int RED = 0;
@@ -138,35 +138,18 @@ public class GrandmaUI : MonoBehaviour
             yield return null;
         }
 
-        ShowTargets();
+        SendMessage("Ready");
     }
 
-    private IEnumerator WaitToTimeout()
+    private IEnumerator WaitUntilComplete()
     {
-        float time = Time.time;
-        while (true)
+        while (!BothBroken())
         {
-            if (BothBroken())
-            {
-                Debug.Log("Both targets broken");
-                StartCoroutine(NextCycle());
-                break;
-            }
-            else if (Time.time - time > 3f)
-            {
-                Timeout();
-                break;
-            }
-
             yield return null;
         }
-    }
 
-    // Temp function that calls ShowTargets until camera is hooked up
-    private IEnumerator WaitToShow()
-    {
-        yield return new WaitForSeconds(3f);
-        ShowTargets();
+        Debug.Log("Both targets broken");
+        StartCoroutine(EndRound());
     }
 
     public void ShowTargets()
@@ -187,7 +170,7 @@ public class GrandmaUI : MonoBehaviour
         Targets[RED].HitObject.SetActive(false);
         Targets[BLUE].HitObject.SetActive(false);
 
-        StartCoroutine(WaitToTimeout());
+        StartCoroutine(WaitUntilComplete());
     }
 
     private void HideTargets()
@@ -214,8 +197,9 @@ public class GrandmaUI : MonoBehaviour
         return Targets[which].TargetObject.activeSelf;
     }
 
-    private void Timeout()
+    public void Timeout()
     {
+        Debug.Log("Timeout");
         Targets[RED].shootable = false;
         Targets[BLUE].shootable = false;
 
@@ -228,7 +212,7 @@ public class GrandmaUI : MonoBehaviour
             Hit(BLUE);
         }
 
-        StartCoroutine(NextCycle());
+        StartCoroutine(EndRound());
     }
 
     private void Hit(int which)
@@ -251,20 +235,24 @@ public class GrandmaUI : MonoBehaviour
         return which == Target.Grandma ? Smooch : Scratch;
     }
 
-    private IEnumerator NextCycle()
+    private IEnumerator EndRound()
     {
+        Debug.Log("EndRound");
+        SendMessage("StopTimer");
         yield return new WaitForSeconds(1f);
         HideTargets();
 
         if (CatLives.GetCatLives() <= 0)
         {
             StartCoroutine(EndGame(SceneSwitcher.Result.Win));
-        } else if (Lives <= 0)
+        }
+        else if (Lives <= 0)
         {
             StartCoroutine(EndGame(SceneSwitcher.Result.Lose));
-        } else
+        }
+        else
         {
-            StartCoroutine(WaitToShow());
+            SendMessage("RoundComplete");
         }
     }
 
@@ -274,7 +262,8 @@ public class GrandmaUI : MonoBehaviour
         if (result == SceneSwitcher.Result.Win)
         {
             message = WinMessage;
-        } else
+        }
+        else
         {
             message = LoseMessage;
         }
@@ -301,7 +290,7 @@ public class GrandmaUI : MonoBehaviour
     private Target RandomTarget()
     {
         int i = Random.Range(0, 2);
-        return (Target) i;
+        return (Target)i;
     }
 
     private Sprite GetWholeSprite(Target target)

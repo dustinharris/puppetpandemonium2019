@@ -3703,6 +3703,7 @@ GameObject:
   - component: {fileID: 1722271644}
   - component: {fileID: 1722271643}
   - component: {fileID: 1722271648}
+  - component: {fileID: 1722271649}
   - component: {fileID: 1722271642}
   - component: {fileID: 1722271647}
   m_Layer: 0
@@ -3823,6 +3824,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   StartingLives: 9
   CatLivesTextObject: {fileID: 478253093}
+--- !u!114 &1722271649
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1722271641}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: be09d12f960093142bf88ca005891836, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  InitialTime: 5
+  MinTime: 1
+  TimeDecrease: 1
 --- !u!1 &1779145764
 GameObject:
   m_ObjectHideFlags: 0
