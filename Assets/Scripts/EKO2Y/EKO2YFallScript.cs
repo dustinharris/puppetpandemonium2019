@@ -17,14 +17,37 @@ public class EKO2YFallScript : MonoBehaviour {
     public enum OccilationFuntion { Sine, Cosine }
 
     private enum State { inFall, inHolding, inLaunch, none }
+    private bool red;
 
     private State state;
+
+    private Collider2D[] colliders;
+    private Rigidbody2D rigidBody;
+
+    private Vector3 StartPosition;
+    public Vector3 HoldingPosition;
+    public float FallTime = 1.0f;
+    private float StartTime;
 
     void Awake()
     {
         // Listen for game-triggered events
         Messenger.AddListener(GameEvent.P1_RELEASE, P1Release);
         Messenger.AddListener(GameEvent.P2_RELEASE, P2Release);
+
+        if (tag == "Player1")
+        {
+            red = false;
+        } else if (tag == "Player2")
+        {
+            red = true;
+        } else
+        {
+            Debug.LogError("Fall script attached to object that is not either player");
+        }
+
+        colliders = GetComponents<Collider2D>();
+        rigidBody = GetComponent<Rigidbody2D>();
     }
 
     void Start()
@@ -38,15 +61,16 @@ public class EKO2YFallScript : MonoBehaviour {
     void OnTriggerEnter2D(Collider2D other)
     {
         // Player collides with block
-        if ((tag == "Player1" || tag == "Player2") && other.tag == "Block")
+        if (other.tag == "Block")
         {
-            // Increase Z to avoid box colliders
-            transform.position = new Vector3(other.transform.position.x, other.transform.position.y, other.transform.position.z - .5f);
-            
             state = State.inFall;
+            EnableColliders(false);
+            rigidBody.bodyType = RigidbodyType2D.Static;
+            StartPosition = transform.localPosition;
+            StartTime = Time.time;
         }
         // Player collides with Bunnies
-        if ((tag == "Player1" || tag == "Player2") && other.tag == "Enemies")
+        if (other.tag == "Enemies")
         {
             // Transition from fall state to hold state 
             state = State.inHolding;
@@ -55,39 +79,46 @@ public class EKO2YFallScript : MonoBehaviour {
             transform.rotation.Set(0, 0, 0, 0);
             transform.position = new Vector3(-15f, 1.5f, 7f);
 
-            // Begin voting
-            if (tag == "Player1")
-            {
-                Messenger.Broadcast(GameEvent.P1_ALL_BLUE);
-            }
-            if (tag == "Player2")
-            {
-                Messenger.Broadcast(GameEvent.P2_ALL_RED);
-            }
 
+        }
+    }
+
+    private void EnableColliders(bool enabled)
+    {
+        for (int i = 0; i < colliders.Length; i++)
+        {
+            colliders[i].enabled = enabled;
         }
     }
 
     void Update()
     {
-        // Runs every frame:
-        // Three phases:
-        // 1. inFall: Player has collided with an object; moving offscreen
-        // 2. inHolding: Player is offscreen, waiting to be revived by audience
-        // 3. inLaunch: Audience has released player; launching back to playfield
+    //    // Runs every frame:
+    //    // Three phases:
+    //    // 1. inFall: Player has collided with an object; moving offscreen
+    //    // 2. inHolding: Player is offscreen, waiting to be revived by audience
+    //    // 3. inLaunch: Audience has released player; launching back to playfield
         if (state == State.inFall)
         {
-            if (transform.position.x < -4.5)
+            if (Time.time < StartTime + FallTime)
+            {
+                transform.localPosition = Vector3.Lerp(StartPosition, HoldingPosition, (Time.time - StartTime) / FallTime);
+            } else
             {
                 state = State.inHolding;
+
+                // Begin voting
+                if (red)
+                {
+                    Messenger.Broadcast(GameEvent.P2_ALL_RED);
+                }
+                else
+                {
+                    Messenger.Broadcast(GameEvent.P1_ALL_BLUE);
+                }
             }
-            else if (transform.position.y < 3)
-            {
-                //Debug.Log("inFall;");
-                // Else, rotate player towards bunnies
-                transform.RotateAround(new Vector3(deathPivot.transform.position.x, deathPivot.transform.position.y + .8f, deathPivot.transform.position.z), Vector3.forward, 300 * Time.deltaTime);
-                //other.transform.position = new Vector3(other.transform.position.x, Mathf.Sin(Time.time), other.transform.position.z);
-            }
+            //    // Else, rotate player towards bunnies
+            //    transform.RotateAround(new Vector3(deathPivot.transform.position.x, deathPivot.transform.position.y + .8f, deathPivot.transform.position.z), Vector3.forward, 300 * Time.deltaTime);
         }
 
         else if (state == State.inLaunch)
@@ -95,20 +126,21 @@ public class EKO2YFallScript : MonoBehaviour {
             //Debug.Log("in launch");
             if (transform.position.x < 0)
             {
-                // Hide player holding image
-                TurnOnChildRenderers(playerHoldingImage, false);
-
+    
                 // Move to starting position
-                if (tag == "Player1")
-                {
-                    transform.position = new Vector3(1.65f, 3f, 7f);
-                } else if (tag == "Player2")
+                if (red)
                 {
                     transform.position = new Vector3(0.04f, 3f, 7f);
+                } else
+                {
+                    transform.position = new Vector3(1.65f, 3f, 7f);
                 }
 
                 // Allow user to double jump
                 platformerChar.SetDoubleJump(true);
+
+            EnableColliders(true);
+            rigidBody.bodyType = RigidbodyType2D.Dynamic;
 
                 // Start blinking animation
                 StartCoroutine(Blink(pauseTimeAfterLaunch));
@@ -134,21 +166,13 @@ public class EKO2YFallScript : MonoBehaviour {
                 }
             }
         }
-
-        else if (state == State.inHolding)
-        {
-            // Show player holding image
-            TurnOnChildRenderers(playerHoldingImage, true);
-        }
     }
 
     private void P1Release()
     {
         if (tag == "Player1")
         {
-            // player is transitioning from holding to launch
-            state = State.inLaunch;
-            startedLaunchTime = Time.time;
+            Release();
         }
     }
 
@@ -156,10 +180,15 @@ public class EKO2YFallScript : MonoBehaviour {
     {
         if (tag == "Player2")
         {
-            // player is transitioning from holding to launch
-            state = State.inLaunch;
-            startedLaunchTime = Time.time;
+            Release();
         }
+    }
+
+    private void Release()
+    {
+        // player is transitioning from holding to launch
+        state = State.inLaunch;
+        startedLaunchTime = Time.time;
     }
 
     private void TurnOnChildRenderers(GameObject obj, bool turnOn)
@@ -181,7 +210,7 @@ public class EKO2YFallScript : MonoBehaviour {
     IEnumerator Blink(float delay)
     {
         int totalBlinkTimes = (int)(blinkTimesPerSecond * pauseTimeAfterLaunch);
-        // Enable double jump
+
         for (int i = 0; i < totalBlinkTimes; i++)
         {
             if (i%2 == 0)
