@@ -34,11 +34,11 @@ RenderSettings:
   m_SpotCookie: {fileID: 10001, guid: 0000000000000000e000000000000000, type: 0}
   m_DefaultReflectionMode: 0
   m_DefaultReflectionResolution: 512
-  m_ReflectionBounces: 1
-  m_ReflectionIntensity: 0.126
+  m_ReflectionBounces: 2
+  m_ReflectionIntensity: 0.516
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.27813938, g: 0.30959573, b: 0.34336555, a: 0.126}
+  m_IndirectSpecularColor: {r: 0.54443467, g: 0.6010357, b: 0.6618009, a: 0.516}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -59,7 +59,7 @@ LightmapSettings:
     m_BakeResolution: 100
     m_TextureWidth: 1024
     m_TextureHeight: 1024
-    m_AO: 0
+    m_AO: 1
     m_AOMaxDistance: 1
     m_CompAOExponent: 1
     m_CompAOExponentDirect: 0
@@ -594,6 +594,87 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 301555601}
+--- !u!1 &329658236
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 329658240}
+  - component: {fileID: 329658239}
+  - component: {fileID: 329658238}
+  - component: {fileID: 329658237}
+  m_Layer: 0
+  m_Name: Camera
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!81 &329658237
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 329658236}
+  m_Enabled: 1
+--- !u!124 &329658238
+Behaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 329658236}
+  m_Enabled: 1
+--- !u!20 &329658239
+Camera:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 329658236}
+  m_Enabled: 1
+  serializedVersion: 2
+  m_ClearFlags: 1
+  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_NormalizedViewPortRect:
+    serializedVersion: 2
+    x: 0
+    y: 0
+    width: 1
+    height: 1
+  near clip plane: 0.3
+  far clip plane: 1000
+  field of view: 60
+  orthographic: 0
+  orthographic size: 5
+  m_Depth: 0
+  m_CullingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_RenderingPath: -1
+  m_TargetTexture: {fileID: 0}
+  m_TargetDisplay: 0
+  m_TargetEye: 3
+  m_HDR: 1
+  m_AllowMSAA: 1
+  m_AllowDynamicResolution: 0
+  m_ForceIntoRT: 0
+  m_OcclusionCulling: 1
+  m_StereoConvergence: 10
+  m_StereoSeparation: 0.022
+--- !u!4 &329658240
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 329658236}
+  m_LocalRotation: {x: -0, y: 0.6087032, z: -0, w: 0.793398}
+  m_LocalPosition: {x: -5.413, y: -3.608, z: 2.548}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 11
+  m_LocalEulerAnglesHint: {x: 0, y: 74.992004, z: 0}
 --- !u!1 &390675144
 GameObject:
   m_ObjectHideFlags: 0
@@ -701,7 +782,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!81 &448077801
 AudioListener:
   m_ObjectHideFlags: 0
@@ -799,7 +880,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   settings:
-    threshold: 0.83
+    threshold: 0.93
     softKnee: 0.55
     radius: 2.88
     intensity: 0.78
@@ -2172,9 +2253,9 @@ MonoBehaviour:
   playOnAwake: 1
   playOnAwakeTime: 10
   points:
-  - position: {x: -8.5, y: -3.4, z: 2}
+  - position: {x: -8.5, y: -3.4, z: 2.4539623}
     rotation: {x: 0, y: 0, z: 0, w: 1}
-    handleprev: {x: 0, y: 0, z: -1}
+    handleprev: {x: 0.061182976, y: 0.06886768, z: -0.29822636}
     handlenext: {x: 0, y: 0, z: 1}
     curveTypeRotation: 0
     rotationCurve:
@@ -2215,10 +2296,10 @@ MonoBehaviour:
       m_PostInfinity: 2
       m_RotationOrder: 4
     chained: 0
-  - position: {x: -8.5, y: -3.4, z: 3.6343656}
+  - position: {x: -8.330562, y: -3.4, z: 3.4649272}
     rotation: {x: 0, y: -0.38268346, z: 0, w: 0.9238795}
     handleprev: {x: 0, y: 0, z: -1}
-    handlenext: {x: 0, y: 0, z: 1}
+    handlenext: {x: 0.5463395, y: 0.014285564, z: 0.6202202}
     curveTypeRotation: 0
     rotationCurve:
       serializedVersion: 2
@@ -2258,10 +2339,10 @@ MonoBehaviour:
       m_PostInfinity: 2
       m_RotationOrder: 4
     chained: 0
-  - position: {x: -7.071843, y: -3.4, z: 3.9199624}
+  - position: {x: -7.3552094, y: -3.4, z: 3.924943}
     rotation: {x: 0, y: 0.6087614, z: 0, w: 0.7933533}
-    handleprev: {x: 0, y: 0, z: -1}
-    handlenext: {x: 0, y: 0, z: 1}
+    handleprev: {x: -0.6051502, y: 0.0019090176, z: -0.35132337}
+    handlenext: {x: 0.5583873, y: -0.0015034676, z: 0.3888297}
     curveTypeRotation: 0
     rotationCurve:
       serializedVersion: 2
@@ -2301,10 +2382,10 @@ MonoBehaviour:
       m_PostInfinity: 2
       m_RotationOrder: 4
     chained: 0
-  - position: {x: -6.075815, y: -3.4, z: 3.9084828}
-    rotation: {x: 0, y: 0.6087614, z: 0, w: 0.7933533}
-    handleprev: {x: 0, y: 0, z: -1}
-    handlenext: {x: 0, y: 0, z: 1}
+  - position: {x: -6.292996, y: -3.4, z: 3.5414033}
+    rotation: {x: 0, y: 0.9165768, z: 0, w: 0.39985865}
+    handleprev: {x: -0.5132308, y: -0.009590149, z: 0.03224182}
+    handlenext: {x: 0.62808084, y: 0.0017082691, z: 0.34663868}
     curveTypeRotation: 0
     rotationCurve:
       serializedVersion: 2
@@ -2344,10 +2425,10 @@ MonoBehaviour:
       m_PostInfinity: 2
       m_RotationOrder: 4
     chained: 0
-  - position: {x: -4.7931547, y: -3.4, z: 3.9084828}
-    rotation: {x: 0, y: 0.6087614, z: 0, w: 0.7933533}
-    handleprev: {x: 0, y: 0, z: -1}
-    handlenext: {x: 0, y: 0, z: 1}
+  - position: {x: -4.736561, y: -3.4, z: 4.2441797}
+    rotation: {x: 0, y: 0.041845825, z: 0, w: 0.99912405}
+    handleprev: {x: -1.2182603, y: 0.0016703606, z: 0.34518433}
+    handlenext: {x: 0.761466, y: -0.03533697, z: 0.09109688}
     curveTypeRotation: 0
     rotationCurve:
       serializedVersion: 2
@@ -2387,9 +2468,9 @@ MonoBehaviour:
       m_PostInfinity: 2
       m_RotationOrder: 4
     chained: 0
-  - position: {x: -3.8298752, y: -3.4, z: 4.278616}
+  - position: {x: -4.363334, y: -3.4, z: 3.787533}
     rotation: {x: 0, y: 0.6087614, z: 0, w: 0.7933533}
-    handleprev: {x: -0.19566321, y: 0.018188953, z: 0.17676806}
+    handleprev: {x: -0.07698655, y: 0.02123952, z: -0.011044741}
     handlenext: {x: 0.19566321, y: -0.018188953, z: -0.17676806}
     curveTypeRotation: 0
     rotationCurve:
@@ -2430,6 +2511,221 @@ MonoBehaviour:
       m_PostInfinity: 2
       m_RotationOrder: 4
     chained: 0
+  - position: {x: -4.176805, y: -3.4, z: 3.0913973}
+    rotation: {x: 0, y: 0.98690695, z: 0, w: 0.1612903}
+    handleprev: {x: 0.09536648, y: 0.0048065186, z: 0.19443083}
+    handlenext: {x: -0.09536648, y: -0.0048065186, z: -0.19443083}
+    curveTypeRotation: 0
+    rotationCurve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 2
+        time: 0
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+      - serializedVersion: 2
+        time: 1
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    curveTypePosition: 1
+    positionCurve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 2
+        time: 0
+        value: 0
+        inSlope: 0
+        outSlope: 1
+        tangentMode: 0
+      - serializedVersion: 2
+        time: 1
+        value: 1
+        inSlope: 1
+        outSlope: 0
+        tangentMode: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    chained: 1
+  - position: {x: -5.2726865, y: -3.4, z: 2.8517747}
+    rotation: {x: 0, y: 0.98690695, z: 0, w: 0.1612903}
+    handleprev: {x: 0.06605196, y: 0.015223026, z: 0.17538786}
+    handlenext: {x: -0.06605196, y: -0.015223026, z: -0.17538786}
+    curveTypeRotation: 0
+    rotationCurve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 2
+        time: 0
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+      - serializedVersion: 2
+        time: 1
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    curveTypePosition: 1
+    positionCurve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 2
+        time: 0
+        value: 0
+        inSlope: 0
+        outSlope: 1
+        tangentMode: 0
+      - serializedVersion: 2
+        time: 1
+        value: 1
+        inSlope: 1
+        outSlope: 0
+        tangentMode: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    chained: 1
+  - position: {x: -5.896847, y: -3.4, z: 2.6421628}
+    rotation: {x: 0, y: 0.27701977, z: 0, w: -0.9608641}
+    handleprev: {x: 0.2984829, y: 0.01924467, z: 0.079751015}
+    handlenext: {x: -0.2984829, y: -0.01924467, z: -0.079751015}
+    curveTypeRotation: 0
+    rotationCurve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 2
+        time: 0
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+      - serializedVersion: 2
+        time: 1
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    curveTypePosition: 1
+    positionCurve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 2
+        time: 0
+        value: 0
+        inSlope: 0
+        outSlope: 1
+        tangentMode: 0
+      - serializedVersion: 2
+        time: 1
+        value: 1
+        inSlope: 1
+        outSlope: 0
+        tangentMode: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    chained: 1
+  - position: {x: -6.474228, y: -3.4, z: 3.1879427}
+    rotation: {x: 0, y: 0.99952364, z: 0, w: -0.030859439}
+    handleprev: {x: 0.30037642, y: 0.00016069412, z: 0.08410764}
+    handlenext: {x: -0.30037642, y: -0.00016069412, z: -0.08410764}
+    curveTypeRotation: 0
+    rotationCurve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 2
+        time: 0
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+      - serializedVersion: 2
+        time: 1
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    curveTypePosition: 1
+    positionCurve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 2
+        time: 0
+        value: 0
+        inSlope: 0
+        outSlope: 1
+        tangentMode: 0
+      - serializedVersion: 2
+        time: 1
+        value: 1
+        inSlope: 1
+        outSlope: 0
+        tangentMode: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    chained: 1
+  - position: {x: -7.155636, y: -3.4, z: 3.1879427}
+    rotation: {x: 0, y: 0.90281624, z: 0, w: -0.43002635}
+    handleprev: {x: 0.30037642, y: 0.00016069412, z: 0.08410764}
+    handlenext: {x: -0.30037642, y: -0.00016069412, z: -0.08410764}
+    curveTypeRotation: 0
+    rotationCurve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 2
+        time: 0
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+      - serializedVersion: 2
+        time: 1
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    curveTypePosition: 1
+    positionCurve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 2
+        time: 0
+        value: 0
+        inSlope: 0
+        outSlope: 1
+        tangentMode: 0
+      - serializedVersion: 2
+        time: 1
+        value: 1
+        inSlope: 1
+        outSlope: 0
+        tangentMode: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    chained: 1
   visual:
     pathColor: {r: 0, g: 1, b: 0, a: 1}
     inactivePathColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
