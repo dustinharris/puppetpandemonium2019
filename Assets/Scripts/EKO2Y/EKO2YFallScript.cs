@@ -5,12 +5,8 @@ using System;
 
 public class EKO2YFallScript : MonoBehaviour {
 
-    private bool inFall;
-    private bool inHolding;
-    private bool inLaunch;
     [SerializeField] private GameObject deathPivot;
     [SerializeField] private GameObject playerHoldingImage;
-    private bool keyDown;
     private float startedLaunchTime;
     [SerializeField] private float pauseTimeAfterLaunch = 5000;
     [SerializeField] private float blinkTimesPerSecond = 4;
@@ -19,6 +15,10 @@ public class EKO2YFallScript : MonoBehaviour {
     private UnityStandardAssets._2D.PlatformerCharacter2D platformerChar;
     
     public enum OccilationFuntion { Sine, Cosine }
+
+    private enum State { inFall, inHolding, inLaunch, none }
+
+    private State state;
 
     void Awake()
     {
@@ -29,10 +29,7 @@ public class EKO2YFallScript : MonoBehaviour {
 
     void Start()
     {
-        inFall = false;
-        inHolding = false;
-        inLaunch = false;
-        keyDown = false;
+        state = State.none;
         TurnOnChildRenderers(playerHoldingImage, false);
         m_Rigidbody2D = GetComponent<Rigidbody2D>();
         platformerChar = GetComponent<UnityStandardAssets._2D.PlatformerCharacter2D>();
@@ -46,14 +43,13 @@ public class EKO2YFallScript : MonoBehaviour {
             // Increase Z to avoid box colliders
             transform.position = new Vector3(other.transform.position.x, other.transform.position.y, other.transform.position.z - .5f);
             
-            inFall = true;
+            state = State.inFall;
         }
         // Player collides with Bunnies
         if ((tag == "Player1" || tag == "Player2") && other.tag == "Enemies")
         {
             // Transition from fall state to hold state 
-            inFall = false;
-            inHolding = true;
+            state = State.inHolding;
 
             // Move player offscreen
             transform.rotation.Set(0, 0, 0, 0);
@@ -79,12 +75,11 @@ public class EKO2YFallScript : MonoBehaviour {
         // 1. inFall: Player has collided with an object; moving offscreen
         // 2. inHolding: Player is offscreen, waiting to be revived by audience
         // 3. inLaunch: Audience has released player; launching back to playfield
-        if (inFall)
+        if (state == State.inFall)
         {
             if (transform.position.x < -4.5)
             {
-                inFall = false;
-                inHolding = true;
+                state = State.inHolding;
             }
             else if (transform.position.y < 3)
             {
@@ -95,7 +90,7 @@ public class EKO2YFallScript : MonoBehaviour {
             }
         }
 
-        else if (inLaunch)
+        else if (state == State.inLaunch)
         {
             //Debug.Log("in launch");
             if (transform.position.x < 0)
@@ -140,7 +135,7 @@ public class EKO2YFallScript : MonoBehaviour {
             }
         }
 
-        else if (inHolding)
+        else if (state == State.inHolding)
         {
             // Show player holding image
             TurnOnChildRenderers(playerHoldingImage, true);
@@ -152,8 +147,7 @@ public class EKO2YFallScript : MonoBehaviour {
         if (tag == "Player1")
         {
             // player is transitioning from holding to launch
-            inHolding = false;
-            inLaunch = true;
+            state = State.inLaunch;
             startedLaunchTime = Time.time;
         }
     }
@@ -163,8 +157,7 @@ public class EKO2YFallScript : MonoBehaviour {
         if (tag == "Player2")
         {
             // player is transitioning from holding to launch
-            inHolding = false;
-            inLaunch = true;
+            state = State.inLaunch;
             startedLaunchTime = Time.time;
         }
     }
@@ -210,6 +203,6 @@ public class EKO2YFallScript : MonoBehaviour {
         TurnOnChildRenderers(this.gameObject, true);
         
         // Launch ends
-        inLaunch = false;
+        state = State.none;
     }
 }

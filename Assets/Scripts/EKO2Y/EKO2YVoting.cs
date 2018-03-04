@@ -130,11 +130,10 @@ public class EKO2YVoting : MonoBehaviour {
 
     private void A1Red()
     {
-        // Set variable to true
-        A1RedState = true;
-
         if (redInVotingState)
         {
+            // Set variable to true
+            A1RedState = true;
             // Replace alert with correct check mark
             audienceBarScript.Show(0, AudienceUIScript.Notice.Correct, true);
         } else
@@ -145,11 +144,11 @@ public class EKO2YVoting : MonoBehaviour {
 
     private void A1Blue()
     {
-        // Set variable to true
-        A1BlueState = true;
-
         if (blueInVotingState)
-        {
+        {        
+            // Set variable to true
+            A1BlueState = true;
+
             // Replace alert with correct check mark
             audienceBarScript.Show(0, AudienceUIScript.Notice.Correct, false);
         }
@@ -161,10 +160,10 @@ public class EKO2YVoting : MonoBehaviour {
 
     private void A2Red()
     {
-        // Set variable to true
-        A2RedState = true;
         if (redInVotingState)
         {
+            // Set variable to true
+            A2RedState = true;
             // Replace alert with correct check mark
             audienceBarScript.Show(1, AudienceUIScript.Notice.Correct, true);
         }
@@ -176,11 +175,11 @@ public class EKO2YVoting : MonoBehaviour {
 
     private void A2Blue()
     {
-        // Set variable to true
-        A2BlueState = true;
-
         if (blueInVotingState)
         {
+            // Set variable to true
+            A2BlueState = true;
+
             // Replace alert with correct check mark
             audienceBarScript.Show(1, AudienceUIScript.Notice.Correct, false);
         }
@@ -192,10 +191,11 @@ public class EKO2YVoting : MonoBehaviour {
     
     private void A3Red()
     {
-        // Set variable to true
-        A3RedState = true;
         if (redInVotingState)
         {
+            // Set variable to true
+            A3RedState = true;
+
             // Replace alert with correct check mark
             audienceBarScript.Show(2, AudienceUIScript.Notice.Correct, true);
         }
@@ -207,11 +207,11 @@ public class EKO2YVoting : MonoBehaviour {
 
     private void A3Blue()
     {
-        // Set variable to true
-        A3BlueState = true;
-
         if (blueInVotingState)
         {
+            // Set variable to true
+            A3BlueState = true;
+
             // Replace alert with correct check mark
             audienceBarScript.Show(2, AudienceUIScript.Notice.Correct, false);
         }
@@ -223,11 +223,11 @@ public class EKO2YVoting : MonoBehaviour {
 
     private void A4Red()
     {
-        // Set variable to true
-        A4RedState = true;
-
         if (redInVotingState)
         {
+            // Set variable to true
+            A4RedState = true;
+
             // Replace alert with correct check mark
             audienceBarScript.Show(3, AudienceUIScript.Notice.Correct, true);
         }
@@ -239,11 +239,11 @@ public class EKO2YVoting : MonoBehaviour {
 
     private void A4Blue()
     {
-        // Set variable to true
-        A4BlueState = true;
-
         if (blueInVotingState)
         {
+            // Set variable to true
+            A4BlueState = true;
+
             // Replace alert with correct check mark
             audienceBarScript.Show(3, AudienceUIScript.Notice.Correct, false);
         }
@@ -255,11 +255,11 @@ public class EKO2YVoting : MonoBehaviour {
 
     private void A5Red()
     {
-        // Set variable to true
-        A5RedState = true;
-
         if (redInVotingState)
         {
+            // Set variable to true
+            A5RedState = true;
+
             // Replace alert with correct check mark
             audienceBarScript.Show(4, AudienceUIScript.Notice.Correct, true);
         }
@@ -271,11 +271,11 @@ public class EKO2YVoting : MonoBehaviour {
 
     private void A5Blue()
     {
-        // Set variable to true
-        A5BlueState = true;
-
         if (blueInVotingState)
         {
+            // Set variable to true
+            A5BlueState = true;
+
             // Replace alert with correct check mark
             audienceBarScript.Show(4, AudienceUIScript.Notice.Correct, false);
         }
