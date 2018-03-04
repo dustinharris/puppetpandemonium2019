@@ -142,37 +142,8 @@ public class EKO2YFallScript : MonoBehaviour {
 
         else if (inHolding)
         {
-            /**{
-                player.transform.position = new Vector3(-15f, 1.5f, 7f);
-                // TODO: Show holidng sprites
-            }**/
-            // Listen for "release" button based on player.
-            // For now this is initiated by player button.
-            // TODO: Convert to audience buttons
-
             // Show player holding image
             TurnOnChildRenderers(playerHoldingImage, true);
-
-            // Reset keydown
-            keyDown = false;
-
-            if (tag == "Player1")
-            {
-                keyDown = Input.GetButtonDown("BluePuppet");
-            }
-            else if (tag == "Player2")
-            {
-                keyDown = Input.GetButtonDown("RedPuppet");
-            }
-
-            // If player can be launched, transition from inHolding to inLaunch
-            if (inHolding && keyDown)
-            {
-                // player is in holding and trying to get out
-                inHolding = false;
-                inLaunch = true;
-                startedLaunchTime = Time.time;
-            }
         }
     }
 
