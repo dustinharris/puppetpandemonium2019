@@ -125,8 +125,11 @@ public class EKO2YVoting : MonoBehaviour {
         // Set variable to true
         A1RedState = true;
 
-        // Replace alert with correct check mark
-        audienceBarScript.Show(0, AudienceUIScript.Notice.Correct, true);
+        if (redInVotingState)
+        {
+            // Replace alert with correct check mark
+            audienceBarScript.Show(0, AudienceUIScript.Notice.Correct, true);
+        }
     }
 
     private void A1Blue()
@@ -134,17 +137,22 @@ public class EKO2YVoting : MonoBehaviour {
         // Set variable to true
         A1BlueState = true;
 
-        // Replace alert with correct check mark
-        audienceBarScript.Show(0, AudienceUIScript.Notice.Correct, false);
+        if (blueInVotingState)
+        {
+            // Replace alert with correct check mark
+            audienceBarScript.Show(0, AudienceUIScript.Notice.Correct, false);
+        }
     }
 
     private void A2Red()
     {
         // Set variable to true
         A2RedState = true;
-
-        // Replace alert with correct check mark
-        audienceBarScript.Show(1, AudienceUIScript.Notice.Correct, true);
+        if (redInVotingState)
+        {
+            // Replace alert with correct check mark
+            audienceBarScript.Show(1, AudienceUIScript.Notice.Correct, true);
+        }
     }
 
     private void A2Blue()
@@ -152,17 +160,22 @@ public class EKO2YVoting : MonoBehaviour {
         // Set variable to true
         A2BlueState = true;
 
-        // Replace alert with correct check mark
-        audienceBarScript.Show(1, AudienceUIScript.Notice.Correct, false);
+        if (blueInVotingState)
+        {
+            // Replace alert with correct check mark
+            audienceBarScript.Show(1, AudienceUIScript.Notice.Correct, false);
+        }
     }
     
     private void A3Red()
     {
         // Set variable to true
         A3RedState = true;
-
-        // Replace alert with correct check mark
-        audienceBarScript.Show(2, AudienceUIScript.Notice.Correct, true);
+        if (redInVotingState)
+        {
+            // Replace alert with correct check mark
+            audienceBarScript.Show(2, AudienceUIScript.Notice.Correct, true);
+        }
     }
 
     private void A3Blue()
@@ -170,8 +183,11 @@ public class EKO2YVoting : MonoBehaviour {
         // Set variable to true
         A3BlueState = true;
 
-        // Replace alert with correct check mark
-        audienceBarScript.Show(2, AudienceUIScript.Notice.Correct, false);
+        if (blueInVotingState)
+        {
+            // Replace alert with correct check mark
+            audienceBarScript.Show(2, AudienceUIScript.Notice.Correct, false);
+        }
     }
 
     private void A4Red()
@@ -179,8 +195,11 @@ public class EKO2YVoting : MonoBehaviour {
         // Set variable to true
         A4RedState = true;
 
-        // Replace alert with correct check mark
-        audienceBarScript.Show(3, AudienceUIScript.Notice.Correct, true);
+        if (redInVotingState)
+        {
+            // Replace alert with correct check mark
+            audienceBarScript.Show(3, AudienceUIScript.Notice.Correct, true);
+        }
     }
 
     private void A4Blue()
@@ -188,8 +207,11 @@ public class EKO2YVoting : MonoBehaviour {
         // Set variable to true
         A4BlueState = true;
 
-        // Replace alert with correct check mark
-        audienceBarScript.Show(3, AudienceUIScript.Notice.Correct, false);
+        if (blueInVotingState)
+        {
+            // Replace alert with correct check mark
+            audienceBarScript.Show(3, AudienceUIScript.Notice.Correct, false);
+        }
     }
 
     private void A5Red()
@@ -197,8 +219,11 @@ public class EKO2YVoting : MonoBehaviour {
         // Set variable to true
         A5RedState = true;
 
-        // Replace alert with correct check mark
-        audienceBarScript.Show(4, AudienceUIScript.Notice.Correct, true);
+        if (redInVotingState)
+        {
+            // Replace alert with correct check mark
+            audienceBarScript.Show(4, AudienceUIScript.Notice.Correct, true);
+        }
     }
 
     private void A5Blue()
@@ -206,8 +231,11 @@ public class EKO2YVoting : MonoBehaviour {
         // Set variable to true
         A5BlueState = true;
 
-        // Replace alert with correct check mark
-        audienceBarScript.Show(4, AudienceUIScript.Notice.Correct, false);
+        if (blueInVotingState)
+        {
+            // Replace alert with correct check mark
+            audienceBarScript.Show(4, AudienceUIScript.Notice.Correct, false);
+        }
     }
 
     private void ResetRedVotingVariables()

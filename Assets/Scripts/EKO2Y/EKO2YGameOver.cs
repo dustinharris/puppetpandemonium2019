@@ -29,7 +29,6 @@ public class EKO2YGameOver : MonoBehaviour {
         // Listen for the Game Over message, then start game over sequence
         Messenger.AddListener(GameEvent.EKO2Y_GAME_OVER, StartGameOver);
         sceneSwitcher = SceneSwitcherObject.GetComponent<SceneSwitcher>();
-        DontDestroyOnLoad(SceneSwitcherObject);
     }
 
     // Use this for initialization
