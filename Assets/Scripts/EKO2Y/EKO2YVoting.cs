@@ -64,6 +64,9 @@ public class EKO2YVoting : MonoBehaviour {
         // Initialize voting state booleans
         redInVotingState = false;
         blueInVotingState = false;
+
+        // Make buttons glow
+        audienceBarScript.ShowAll(AudienceUIScript.Notice.Glow);
     }
 
     private void Update()
@@ -101,6 +104,11 @@ public class EKO2YVoting : MonoBehaviour {
             }
         } 
     }
+
+    public void Honk(bool red)
+    {
+        // Todo
+    }
     
     private void P1AllBlue()
     {
@@ -129,6 +137,9 @@ public class EKO2YVoting : MonoBehaviour {
         {
             // Replace alert with correct check mark
             audienceBarScript.Show(0, AudienceUIScript.Notice.Correct, true);
+        } else
+        {
+            Honk(true);
         }
     }
 
@@ -142,6 +153,10 @@ public class EKO2YVoting : MonoBehaviour {
             // Replace alert with correct check mark
             audienceBarScript.Show(0, AudienceUIScript.Notice.Correct, false);
         }
+        else
+        {
+            Honk(false);
+        }
     }
 
     private void A2Red()
@@ -152,6 +167,10 @@ public class EKO2YVoting : MonoBehaviour {
         {
             // Replace alert with correct check mark
             audienceBarScript.Show(1, AudienceUIScript.Notice.Correct, true);
+        }
+        else
+        {
+            Honk(true);
         }
     }
 
@@ -165,6 +184,10 @@ public class EKO2YVoting : MonoBehaviour {
             // Replace alert with correct check mark
             audienceBarScript.Show(1, AudienceUIScript.Notice.Correct, false);
         }
+        else
+        {
+            Honk(false);
+        }
     }
     
     private void A3Red()
@@ -175,6 +198,10 @@ public class EKO2YVoting : MonoBehaviour {
         {
             // Replace alert with correct check mark
             audienceBarScript.Show(2, AudienceUIScript.Notice.Correct, true);
+        }
+        else
+        {
+            Honk(true);
         }
     }
 
@@ -188,6 +215,10 @@ public class EKO2YVoting : MonoBehaviour {
             // Replace alert with correct check mark
             audienceBarScript.Show(2, AudienceUIScript.Notice.Correct, false);
         }
+        else
+        {
+            Honk(false);
+        }
     }
 
     private void A4Red()
@@ -199,6 +230,10 @@ public class EKO2YVoting : MonoBehaviour {
         {
             // Replace alert with correct check mark
             audienceBarScript.Show(3, AudienceUIScript.Notice.Correct, true);
+        }
+        else
+        {
+            Honk(true);
         }
     }
 
@@ -212,6 +247,10 @@ public class EKO2YVoting : MonoBehaviour {
             // Replace alert with correct check mark
             audienceBarScript.Show(3, AudienceUIScript.Notice.Correct, false);
         }
+        else
+        {
+            Honk(false);
+        }
     }
 
     private void A5Red()
@@ -224,6 +263,10 @@ public class EKO2YVoting : MonoBehaviour {
             // Replace alert with correct check mark
             audienceBarScript.Show(4, AudienceUIScript.Notice.Correct, true);
         }
+        else
+        {
+            Honk(true);
+        }
     }
 
     private void A5Blue()
@@ -235,6 +278,10 @@ public class EKO2YVoting : MonoBehaviour {
         {
             // Replace alert with correct check mark
             audienceBarScript.Show(4, AudienceUIScript.Notice.Correct, false);
+        }
+        else
+        {
+            Honk(false);
         }
     }
 
