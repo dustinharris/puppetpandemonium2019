@@ -21,11 +21,15 @@ public class EKO2YGameOver : MonoBehaviour {
     private Vector3 target;
     [SerializeField] private float timeToReachTarget = 3000f;
     [SerializeField] private GameObject inGameScoreText;
+    [SerializeField] private GameObject SceneSwitcherObject;
+    private SceneSwitcher sceneSwitcher;
 
     private void Awake()
     {
         // Listen for the Game Over message, then start game over sequence
         Messenger.AddListener(GameEvent.EKO2Y_GAME_OVER, StartGameOver);
+        sceneSwitcher = SceneSwitcherObject.GetComponent<SceneSwitcher>();
+        DontDestroyOnLoad(SceneSwitcherObject);
     }
 
     // Use this for initialization
@@ -119,9 +123,8 @@ public class EKO2YGameOver : MonoBehaviour {
     IEnumerator NextScene()
     {
         yield return new WaitForSeconds(8.1f);
-        // Load next level here
-        //SceneManager.LoadScene("OtherSceneName");
-        Debug.Log("Load Next Level Here");
+        sceneSwitcher.result = SceneSwitcher.Result.NA;
+        sceneSwitcher.SwitchScenes();
     }
 
     IEnumerator BlinkTextInChild(GameObject blinkee, float delay)
