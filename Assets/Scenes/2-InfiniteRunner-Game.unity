@@ -4736,30 +4736,7 @@ Prefab:
       propertyPath: m_Name
       value: HoldingBay
       objectReference: {fileID: 0}
-    - target: {fileID: 61539024821903184, guid: 3aaf31ed55111c04a8dab113f0de2065,
-        type: 2}
-      propertyPath: m_Offset.y
-      value: -0.014643669
-      objectReference: {fileID: 0}
-    - target: {fileID: 61539024821903184, guid: 3aaf31ed55111c04a8dab113f0de2065,
-        type: 2}
-      propertyPath: m_Size.y
-      value: 1.9409163
-      objectReference: {fileID: 0}
-    - target: {fileID: 61539024821903184, guid: 3aaf31ed55111c04a8dab113f0de2065,
-        type: 2}
-      propertyPath: m_Offset.x
-      value: 0.051333666
-      objectReference: {fileID: 0}
-    - target: {fileID: 61539024821903184, guid: 3aaf31ed55111c04a8dab113f0de2065,
-        type: 2}
-      propertyPath: m_Size.x
-      value: 3.8079972
-      objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 61023591680870532, guid: 3aaf31ed55111c04a8dab113f0de2065, type: 2}
-    - {fileID: 61453815607265502, guid: 3aaf31ed55111c04a8dab113f0de2065, type: 2}
-    - {fileID: 61895128578819116, guid: 3aaf31ed55111c04a8dab113f0de2065, type: 2}
+    m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 3aaf31ed55111c04a8dab113f0de2065, type: 2}
   m_IsPrefabParent: 0
 --- !u!1 &1450604326

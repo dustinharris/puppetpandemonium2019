@@ -137,10 +137,9 @@ public class EKO2YFallScript : MonoBehaviour {
                 }
 
                 // Allow user to double jump
-                platformerChar.SetDoubleJump(true);
+                //platformerChar.SetDoubleJump(true);
 
-            EnableColliders(true);
-            rigidBody.bodyType = RigidbodyType2D.Dynamic;
+
 
                 // Start blinking animation
                 StartCoroutine(Blink(pauseTimeAfterLaunch));
@@ -230,7 +229,11 @@ public class EKO2YFallScript : MonoBehaviour {
         }
         // Afterwards blinking ends, make sure that the character is rendering again.
         TurnOnChildRenderers(this.gameObject, true);
-        
+
+
+        EnableColliders(true);
+        rigidBody.bodyType = RigidbodyType2D.Dynamic;
+
         // Launch ends
         state = State.none;
     }
