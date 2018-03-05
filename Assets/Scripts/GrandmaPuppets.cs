@@ -5,6 +5,8 @@ using UnityEngine;
 public class GrandmaPuppets : MonoBehaviour {
 
     private GrandmaAmmo ammo;
+    public RandomPitch FireSFX;
+    public RandomPitch LoadClickSFX;
 
 	void Awake () {
 		ammo = GetComponent<GrandmaAmmo>();
@@ -15,10 +17,13 @@ public class GrandmaPuppets : MonoBehaviour {
 		if (Input.GetButtonDown("RedPuppet"))
         {
             Fire(true);
+           
+
         }
         if (Input.GetButtonDown("BluePuppet"))
         {
             Fire(false);
+            
         }
 	}
 
@@ -27,6 +32,13 @@ public class GrandmaPuppets : MonoBehaviour {
         if (ammo.CanFire(red))
         {
             ammo.Fire(red);
+            FireSFX.PlayRandomPitch();
+            
+        }
+
+        else
+        {
+            LoadClickSFX.PlayRandomPitch();
         }
     }
 }
