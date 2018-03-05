@@ -331,6 +331,7 @@ GameObject:
   - component: {fileID: 155532948}
   - component: {fileID: 155532950}
   - component: {fileID: 155532949}
+  - component: {fileID: 155532951}
   m_Layer: 5
   m_Name: TargetRed
   m_TagString: Untagged
@@ -354,7 +355,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -470, y: 6}
+  m_AnchoredPosition: {x: -470, y: -914.08594}
   m_SizeDelta: {x: 602.1, y: 794}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &155532949
@@ -390,6 +391,21 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 155532947}
+--- !u!114 &155532951
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 155532947}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67fe27313b5c28240924a1b75d6d3bd6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  StartPosition: {x: -470, y: -914.0859, z: 0}
+  EndPosition: {x: -470, y: 6, z: 0}
+  Duration: 0.3
+  Delay: 0
 --- !u!1 &288167591
 GameObject:
   m_ObjectHideFlags: 0
@@ -2056,6 +2072,7 @@ GameObject:
   - component: {fileID: 1088240321}
   - component: {fileID: 1088240323}
   - component: {fileID: 1088240322}
+  - component: {fileID: 1088240324}
   m_Layer: 5
   m_Name: TargetBlue
   m_TagString: Untagged
@@ -2079,7 +2096,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 470, y: 9}
+  m_AnchoredPosition: {x: 470, y: -914.08594}
   m_SizeDelta: {x: 602.1, y: 794}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1088240322
@@ -2115,6 +2132,21 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1088240320}
+--- !u!114 &1088240324
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1088240320}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67fe27313b5c28240924a1b75d6d3bd6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  StartPosition: {x: 470, y: -914.0859, z: 0}
+  EndPosition: {x: 470, y: 9, z: 0}
+  Duration: 0.3
+  Delay: 0
 --- !u!1 &1163824455 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 1708272845385938, guid: 0b16f19a79620c64085ccf14987e6355,
@@ -3039,7 +3071,9 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Hold to reload
+  m_Text: 'Hold to reload
+
+    (YOU TOO PUPPETS!)'
 --- !u!222 &1366843307
 CanvasRenderer:
   m_ObjectHideFlags: 0
