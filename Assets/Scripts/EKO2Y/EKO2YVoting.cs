@@ -5,22 +5,17 @@ using UnityEngine;
 public class EKO2YVoting : MonoBehaviour {
 
     [SerializeField] private AudienceBarScript audienceBarScript;
-    private bool A1RedState;
-    private bool A1BlueState;
-    private bool A2RedState;
-    private bool A2BlueState;
-    private bool A3RedState;
-    private bool A3BlueState;
-    private bool A4RedState;
-    private bool A4BlueState;
-    private bool A5RedState;
-    private bool A5BlueState;
+    private bool[] StateRed;
+    private bool[] StateBlue;
+    private int size;
     private bool redInVotingState;
     private bool blueInVotingState;
 
     [SerializeField] private GameObject HonkIconRed;
     [SerializeField] private GameObject HonkIconBlue;
     [SerializeField] private HonkController Honker;
+
+    private AudienceHeartController HeartController;
 
     void Awake()
     {
@@ -40,6 +35,8 @@ public class EKO2YVoting : MonoBehaviour {
         Messenger.AddListener(GameEvent.A4_BLUE, A4Blue);
         Messenger.AddListener(GameEvent.A5_RED, A5Red);
         Messenger.AddListener(GameEvent.A5_BLUE, A5Blue);
+
+        HeartController = GetComponent<AudienceHeartController>();
     }
     
     void OnDestroy()
@@ -50,20 +47,17 @@ public class EKO2YVoting : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-        // Get reference to bar script to set display
-        //AudienceBarScript audienceBarScript = GetComponent<AudienceBarScript>();
-
         // Initialize audience button state booleans
-        A1RedState = false;
-        A1BlueState = false;
-        A2RedState = false;
-        A2BlueState = false;
-        A3RedState = false;
-        A3BlueState = false;
-        A4RedState = false;
-        A4BlueState = false;
-        A5RedState = false;
-        A5BlueState = false;
+        size = audienceBarScript.Size();
+
+        StateRed = new bool[size];
+        StateBlue = new bool[size];
+
+        for (int i = 0; i < size; i++)
+        {
+            StateRed[i] = false;
+            StateBlue[i] = false;
+        }
 
         // Initialize voting state booleans
         redInVotingState = false;
@@ -79,13 +73,13 @@ public class EKO2YVoting : MonoBehaviour {
         if (blueInVotingState)
         {
             // If all audience members have voted for blue, release holding state
-            if (A1BlueState && A2BlueState && A3BlueState && A4BlueState && A5BlueState)
+            if (AllPressed(false))
             {
                 // Broadcast Message to release P2
                 Messenger.Broadcast(GameEvent.P1_RELEASE);
 
                 // Set all audience variables to false
-                ResetBlueVotingVariables();
+                ResetVotingVariables(false);
 
                 // Take blue out of voting state
                 blueInVotingState = false;
@@ -95,18 +89,38 @@ public class EKO2YVoting : MonoBehaviour {
         if (redInVotingState)
         {
             // If all audience members have voted for red, release holding state
-            if (A1RedState && A2RedState && A3RedState && A4RedState && A5RedState)
+            if (AllPressed(true))
             {
                 // Broadcast Message to release P1
                 Messenger.Broadcast(GameEvent.P2_RELEASE);
 
                 // Set all audience variables to false
-                ResetRedVotingVariables();
+                ResetVotingVariables(true);
 
                 // Take red out of voting state
                 redInVotingState = false;
             }
         } 
+    }
+
+    private bool AllPressed(bool red)
+    {
+        bool[] state = GetStates(red);
+
+        for (int i = 0; i < size; i++)
+        {
+            if (!state[i])
+            {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    private bool[] GetStates(bool red)
+    {
+        return red ? StateRed : StateBlue;
     }
 
     public void Honk(bool red)
@@ -142,193 +156,97 @@ public class EKO2YVoting : MonoBehaviour {
         audienceBarScript.ShowAll(AudienceUIScript.Notice.Alert, true);
     }
 
-    private void A1Red()
+    private void AudienceInput(bool red, int index)
     {
-        if (redInVotingState)
+        if (InVotingState(red))
         {
-            // Set variable to true
-            A1RedState = true;
-            // Replace alert with correct check mark
-            audienceBarScript.Show(0, AudienceUIScript.Notice.Correct, true);
-        } else
-        {
-            Honk(true);
-        }
-    }
+            bool[] states = GetStates(red);
 
-    private void A1Blue()
-    {
-        if (blueInVotingState)
-        {        
-            // Set variable to true
-            A1BlueState = true;
+            if (!states[index])
+            {
+                states[index] = true;
 
-            // Replace alert with correct check mark
-            audienceBarScript.Show(0, AudienceUIScript.Notice.Correct, false);
+                // Replace alert with correct check mark
+                audienceBarScript.Show(index, AudienceUIScript.Notice.Correct, red);
+                HeartController.ShowHeart(red, index);
+            }
         }
         else
         {
-            Honk(false);
+            Honk(red);
         }
     }
 
-    private void A2Red()
+    private bool InVotingState(bool red)
     {
-        if (redInVotingState)
-        {
-            // Set variable to true
-            A2RedState = true;
-            // Replace alert with correct check mark
-            audienceBarScript.Show(1, AudienceUIScript.Notice.Correct, true);
-        }
-        else
-        {
-            Honk(true);
-        }
+        return red ? redInVotingState : blueInVotingState;
     }
 
-    private void A2Blue()
+    private void ResetVotingVariables(bool red)
     {
-        if (blueInVotingState)
+        bool[] states = GetStates(red);
+
+        for (int i = 0; i < size; i++)
         {
-            // Set variable to true
-            A2BlueState = true;
+            states[i] = false;
 
-            // Replace alert with correct check mark
-            audienceBarScript.Show(1, AudienceUIScript.Notice.Correct, false);
-        }
-        else
-        {
-            Honk(false);
-        }
-    }
-    
-    private void A3Red()
-    {
-        if (redInVotingState)
-        {
-            // Set variable to true
-            A3RedState = true;
-
-            // Replace alert with correct check mark
-            audienceBarScript.Show(2, AudienceUIScript.Notice.Correct, true);
-        }
-        else
-        {
-            Honk(true);
-        }
-    }
-
-    private void A3Blue()
-    {
-        if (blueInVotingState)
-        {
-            // Set variable to true
-            A3BlueState = true;
-
-            // Replace alert with correct check mark
-            audienceBarScript.Show(2, AudienceUIScript.Notice.Correct, false);
-        }
-        else
-        {
-            Honk(false);
-        }
-    }
-
-    private void A4Red()
-    {
-        if (redInVotingState)
-        {
-            // Set variable to true
-            A4RedState = true;
-
-            // Replace alert with correct check mark
-            audienceBarScript.Show(3, AudienceUIScript.Notice.Correct, true);
-        }
-        else
-        {
-            Honk(true);
-        }
-    }
-
-    private void A4Blue()
-    {
-        if (blueInVotingState)
-        {
-            // Set variable to true
-            A4BlueState = true;
-
-            // Replace alert with correct check mark
-            audienceBarScript.Show(3, AudienceUIScript.Notice.Correct, false);
-        }
-        else
-        {
-            Honk(false);
-        }
-    }
-
-    private void A5Red()
-    {
-        if (redInVotingState)
-        {
-            // Set variable to true
-            A5RedState = true;
-
-            // Replace alert with correct check mark
-            audienceBarScript.Show(4, AudienceUIScript.Notice.Correct, true);
-        }
-        else
-        {
-            Honk(true);
-        }
-    }
-
-    private void A5Blue()
-    {
-        if (blueInVotingState)
-        {
-            // Set variable to true
-            A5BlueState = true;
-
-            // Replace alert with correct check mark
-            audienceBarScript.Show(4, AudienceUIScript.Notice.Correct, false);
-        }
-        else
-        {
-            Honk(false);
-        }
-    }
-
-    private void ResetRedVotingVariables()
-    {
-        A1RedState = false;
-        A2RedState = false;
-        A3RedState = false;
-        A4RedState = false;
-        A5RedState = false;
-
-        for (int i = 0; i < audienceBarScript.Size(); i++) {
-           audienceBarScript.Hide(i, true);
-        }
-    }
-
-    private void ResetBlueVotingVariables()
-    {
-        A1BlueState = false;
-        A2BlueState = false;
-        A3BlueState = false;
-        A4BlueState = false;
-        A5BlueState = false;
-
-        for (int i = 0; i < audienceBarScript.Size(); i++)
-        {
-            audienceBarScript.Hide(i, false);
+            audienceBarScript.Hide(i, red);
         }
     }
 
     private void ResetVotingVariables()
     {
-        ResetRedVotingVariables();
-        ResetBlueVotingVariables();
+        ResetVotingVariables(true);
+        ResetVotingVariables(false);
+    }
+
+    private void A1Red()
+    {
+        AudienceInput(true, 0);
+    }
+
+    private void A1Blue()
+    {
+        AudienceInput(false, 0);
+    }
+
+    private void A2Red()
+    {
+        AudienceInput(true, 1);
+    }
+
+    private void A2Blue()
+    {
+        AudienceInput(false, 1);
+    }
+
+    private void A3Red()
+    {
+        AudienceInput(true, 2);
+    }
+
+    private void A3Blue()
+    {
+        AudienceInput(false, 2);
+    }
+
+    private void A4Red()
+    {
+        AudienceInput(true, 3);
+    }
+
+    private void A4Blue()
+    {
+        AudienceInput(false, 3);
+    }
+
+    private void A5Red()
+    {
+        AudienceInput(true, 4);
+    }
+
+    private void A5Blue()
+    {
+        AudienceInput(false, 4);
     }
 }
