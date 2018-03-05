@@ -13,8 +13,6 @@ public class EKO2YFallScript : MonoBehaviour {
     [SerializeField] private GameObject spriteRenderer;
     private Rigidbody2D m_Rigidbody2D;
     private UnityStandardAssets._2D.PlatformerCharacter2D platformerChar;
-    
-    public enum OccilationFuntion { Sine, Cosine }
 
     private enum State { inFall, inHolding, inLaunch, none }
     private bool red;
@@ -28,6 +26,8 @@ public class EKO2YFallScript : MonoBehaviour {
     public Vector3 HoldingPosition;
     public float FallTime = 1.0f;
     private float StartTime;
+
+    private Rotate rotator; 
 
     void Awake()
     {
@@ -48,6 +48,7 @@ public class EKO2YFallScript : MonoBehaviour {
 
         colliders = GetComponents<Collider2D>();
         rigidBody = GetComponent<Rigidbody2D>();
+        rotator = spriteRenderer.GetComponent<Rotate>();
     }
 
     void Start()
@@ -68,6 +69,8 @@ public class EKO2YFallScript : MonoBehaviour {
             rigidBody.bodyType = RigidbodyType2D.Static;
             StartPosition = transform.localPosition;
             StartTime = Time.time;
+
+            rotator.enabled = true;
         }
         // Player collides with Bunnies
         if (other.tag == "Enemies")
@@ -151,15 +154,12 @@ public class EKO2YFallScript : MonoBehaviour {
             else 
             {
                 // Reset Rotation
-                transform.rotation = Quaternion.identity;
+                rotator.enabled = false;
+                spriteRenderer.transform.rotation = Quaternion.identity;
 
                 // Hold y position for X seconds
                 if ((Time.time - pauseTimeAfterLaunch) < startedLaunchTime)
                 {
-                    // Reset y velocity
-                    m_Rigidbody2D.velocity = new Vector2(m_Rigidbody2D.velocity.x, -1f);
-
-                    //Debug.Log("Time: " + (Time.time - pauseTimeAfterLaunch) + "Started: " + startedLaunchTime);
                     // Hijack character position
                     this.gameObject.transform.position = new Vector3(transform.position.x, 2, transform.position.z);
                 }
@@ -233,6 +233,9 @@ public class EKO2YFallScript : MonoBehaviour {
 
         EnableColliders(true);
         rigidBody.bodyType = RigidbodyType2D.Dynamic;
+
+        // Reset y velocity
+        m_Rigidbody2D.velocity = new Vector2(m_Rigidbody2D.velocity.x, -1f);
 
         // Launch ends
         state = State.none;
