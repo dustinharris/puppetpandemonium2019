@@ -13,7 +13,6 @@ public class EKO2YLevelLoader : MonoBehaviour {
     public float powerupYOffset;
     public float platformScale = 0f;
     private GameObject lastPlatformObject;
-    private float lastPlatformX = 0f;
 
     [SerializeField] private float m_MaxSpeed = 10f;
 
@@ -34,14 +33,11 @@ public class EKO2YLevelLoader : MonoBehaviour {
 
     private Rigidbody2D block_Rigidbody2D;
     private Rigidbody2D scenery_Rigidbody2D;
-    private Rigidbody2D player_Rigidbody2D;
 
     // Use this for initialization
     void Start () {
         PlatformObjects = new LinkedList<GameObject>();
         platformsFromFileList = levelFileHandle.ConvertLevelLayoutToList();
-
-        player_Rigidbody2D = player1.GetComponent<Rigidbody2D>();
 
         block_Rigidbody2D = blocksEmpty.GetComponent<Rigidbody2D>();
         scenery_Rigidbody2D = sceneryEmpty.GetComponent<Rigidbody2D>();
@@ -52,12 +48,6 @@ public class EKO2YLevelLoader : MonoBehaviour {
         // If there is at least one platform, check current position of last element in list.
         if (PlatformObjects.Count != 0)
         {
-            // Example of button input
-            if (Input.GetButtonDown("Audience0Red"))
-            {
-
-            }
-
             // Get the position of the last element
             lastPlatformObject = PlatformObjects.Last();
             lastPlatformPosition = new Vector3((lastPlatformObject.transform.position.x + blockWidth), 0, 7f);
@@ -230,7 +220,6 @@ public class EKO2YLevelLoader : MonoBehaviour {
 
     private void FixedUpdate()
     {
-        //movementSpeed = player_Rigidbody2D.velocity;
         // Move the blocks
         Move(1);
     }

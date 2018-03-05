@@ -18,10 +18,6 @@ public class HandleTextFile : MonoBehaviour {
 
         //Re-import the file to update the reference in the editor
         AssetDatabase.ImportAsset(path);
-        TextAsset asset = (TextAsset)Resources.Load(fileName);
-
-        //Print the text from the file
-        //Debug.Log(asset.text);
     }
     
     public void ReadString()

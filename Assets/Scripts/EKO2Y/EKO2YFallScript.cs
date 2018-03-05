@@ -12,7 +12,6 @@ public class EKO2YFallScript : MonoBehaviour {
     [SerializeField] private float blinkTimesPerSecond = 4;
     [SerializeField] private GameObject spriteRenderer;
     private Rigidbody2D m_Rigidbody2D;
-    private UnityStandardAssets._2D.PlatformerCharacter2D platformerChar;
 
     private enum State { inFall, inHolding, inLaunch, none }
     private bool red;
@@ -56,7 +55,6 @@ public class EKO2YFallScript : MonoBehaviour {
         state = State.none;
         TurnOnChildRenderers(playerHoldingImage, false);
         m_Rigidbody2D = GetComponent<Rigidbody2D>();
-        platformerChar = GetComponent<UnityStandardAssets._2D.PlatformerCharacter2D>();
     }
 
     void OnTriggerEnter2D(Collider2D other)
@@ -138,11 +136,6 @@ public class EKO2YFallScript : MonoBehaviour {
                 {
                     transform.position = new Vector3(1.65f, 3f, 7f);
                 }
-
-                // Allow user to double jump
-                //platformerChar.SetDoubleJump(true);
-
-
 
                 // Start blinking animation
                 StartCoroutine(Blink(pauseTimeAfterLaunch));

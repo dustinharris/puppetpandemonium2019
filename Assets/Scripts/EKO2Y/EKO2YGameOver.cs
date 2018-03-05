@@ -14,10 +14,6 @@ public class EKO2YGameOver : MonoBehaviour {
     [SerializeField] private GameObject enemiesEmpty;
     private Vector3 blueCharacterEndGamePosition;
     private Vector3 redCharacterEndGamePosition;
-    [SerializeField] private float endingCharacterScale = 208f;
-    private bool inGameOverSequence;
-    private float gameOverStartTime;
-    private float screenAnimationTime;
     private Vector3 target;
     [SerializeField] private float timeToReachTarget = 3000f;
     [SerializeField] private GameObject inGameScoreText;
@@ -33,7 +29,6 @@ public class EKO2YGameOver : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-        inGameOverSequence = false;
         target = new Vector3(0, 0, gameOverBackground.transform.position.z);
         blueCharacterEndGamePosition = new Vector3(3.7f, 0, 0);
         redCharacterEndGamePosition = new Vector3(2.4f, 0, 0);
@@ -45,9 +40,6 @@ public class EKO2YGameOver : MonoBehaviour {
 
     private void StartGameOver()
     {
-        inGameOverSequence = true;
-        gameOverStartTime = Time.time;
-
         // Hide Blue score text
         inGameScoreText.GetComponent<Text>().enabled = false;
 
