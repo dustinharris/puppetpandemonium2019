@@ -19,16 +19,30 @@ public class SlideIn : MonoBehaviour
     void Start()
     {
         rTransform = this.GetComponent<RectTransform>();
+        Reset();
+    }
+
+    private void OnEnable()
+    {
+        Reset();
+    }
+
+    private void Reset()
+    {
+        SetPosition(StartPosition);
+        StartTime = Time.time + Delay;
+    }
+
+    private void SetPosition(Vector3 position)
+    {
         if (rTransform != null)
         {
-            rTransform.anchoredPosition3D = StartPosition;
+            rTransform.anchoredPosition3D = position;
         }
         else
         {
-            transform.localPosition = StartPosition;
+            transform.localPosition = position;
         }
-
-        StartTime = Time.time + Delay;
     }
 
     // Update is called once per frame
@@ -40,13 +54,7 @@ public class SlideIn : MonoBehaviour
                 Mathf.SmoothStep(StartPosition.x, EndPosition.x, t),
                 Mathf.SmoothStep(StartPosition.y, EndPosition.y, t),
                 Mathf.SmoothStep(StartPosition.z, EndPosition.z, t));
-        if (rTransform != null)
-        {
-            rTransform.anchoredPosition3D = pos;
-        }
-        else
-        {
-            transform.localPosition = pos;
-        }
+
+        SetPosition(pos);
     }
 }
