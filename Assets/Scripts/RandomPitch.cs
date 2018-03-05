@@ -15,26 +15,17 @@ public class RandomPitch : MonoBehaviour
     }
 
     void OnEnable()
-
     {
+        if (audioSource == null)
+        {
+            audioSource = GetComponent<AudioSource>();
+        }
         PlayRandomPitch();
-
-
-
-
-
     }
 
     public void PlayRandomPitch()
-
     {
-
-       
         audioSource.pitch = (Random.Range(MinPitch, MaxPitch));
         audioSource.Play();
-
-
-
     }
-
 }
