@@ -12,7 +12,7 @@ public class AudioAttachment : MonoBehaviour
     {
 
         AudioSource = GetComponent<AudioSource>();
-        Reset();
+        
 
     }
 
