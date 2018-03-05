@@ -18,6 +18,10 @@ public class EKO2YVoting : MonoBehaviour {
     private bool redInVotingState;
     private bool blueInVotingState;
 
+    [SerializeField] private GameObject HonkIconRed;
+    [SerializeField] private GameObject HonkIconBlue;
+    [SerializeField] private HonkController Honker;
+
     void Awake()
     {
         // Listen for game-triggered events
@@ -107,7 +111,17 @@ public class EKO2YVoting : MonoBehaviour {
 
     public void Honk(bool red)
     {
-        // Todo
+        StartCoroutine(ShowHonk(red));
+        Honker.Honk();
+    }
+
+    private IEnumerator ShowHonk(bool red)
+    {
+        GameObject honk = red ? HonkIconRed : HonkIconBlue;
+
+        honk.SetActive(true);
+        yield return new WaitForSeconds(.1f);
+        honk.SetActive(false);
     }
     
     private void P1AllBlue()
