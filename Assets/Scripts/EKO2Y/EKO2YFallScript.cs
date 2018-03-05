@@ -26,7 +26,8 @@ public class EKO2YFallScript : MonoBehaviour {
     public float FallTime = 1.0f;
     private float StartTime;
 
-    private Rotate rotator; 
+    private Rotate rotator;
+    private CrashScript crasher;
 
     void Awake()
     {
@@ -48,6 +49,7 @@ public class EKO2YFallScript : MonoBehaviour {
         colliders = GetComponents<Collider2D>();
         rigidBody = GetComponent<Rigidbody2D>();
         rotator = spriteRenderer.GetComponent<Rotate>();
+        crasher = spriteRenderer.GetComponent<CrashScript>();
     }
 
     void Start()
@@ -69,18 +71,7 @@ public class EKO2YFallScript : MonoBehaviour {
             StartTime = Time.time;
 
             rotator.enabled = true;
-        }
-        // Player collides with Bunnies
-        if (other.tag == "Enemies")
-        {
-            // Transition from fall state to hold state 
-            state = State.inHolding;
-
-            // Move player offscreen
-            transform.rotation.Set(0, 0, 0, 0);
-            transform.position = new Vector3(-15f, 1.5f, 7f);
-
-
+            crasher.Crash(transform.position);
         }
     }
 
