@@ -215,6 +215,15 @@ public class GrandmaUI : MonoBehaviour
         StartCoroutine(EndRound());
     }
 
+    private void DecreasePlayerLives()
+    {
+        if (Lives > 0)
+        {
+            Lives--;
+        }
+        LivesText.text = Lives.ToString();
+    }
+
     private void Hit(int which)
     {
         Target target = Targets[which].which;
@@ -222,11 +231,7 @@ public class GrandmaUI : MonoBehaviour
         SetHitActive(which, true);
         if (target == Target.Kitty)
         {
-            if (Lives > 0)
-            {
-                Lives--;
-            }
-            LivesText.text = Lives.ToString();
+            DecreasePlayerLives();
         }
     }
 
@@ -313,6 +318,9 @@ public class GrandmaUI : MonoBehaviour
         if (Targets[index].which == Target.Kitty)
         {
             CatLives.DecreaseCatLives();
+        } else if (Targets[index].which == Target.Grandma)
+        {
+            DecreasePlayerLives();
         }
 
         Targets[index].image.sprite = GetBrokenSprite(Targets[index].which);
