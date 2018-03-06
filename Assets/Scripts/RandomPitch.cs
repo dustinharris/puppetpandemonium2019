@@ -2,12 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(AudioSource))]
 public class RandomPitch : MonoBehaviour
 {
-    public AudioSource audioSource;
     public float MinPitch = .1f;
     public float MaxPitch = .4f;
 
+    public bool PlayOnEnable = true;
+
+    private AudioSource audioSource;
 
     private void Start()
     {
@@ -20,7 +23,11 @@ public class RandomPitch : MonoBehaviour
         {
             audioSource = GetComponent<AudioSource>();
         }
-        PlayRandomPitch();
+
+        if (PlayOnEnable)
+        {
+            PlayRandomPitch();
+        }
     }
 
     public void PlayRandomPitch()

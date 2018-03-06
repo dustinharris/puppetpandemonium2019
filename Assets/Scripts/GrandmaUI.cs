@@ -326,6 +326,7 @@ public class GrandmaUI : MonoBehaviour
         alert.transform.SetParent(canvas.transform);
         alert.transform.position = PlaceAlert(red);
         alert.transform.Rotate(RotateAlert());
+        alert.SetActive(true);
         GameObject.Destroy(alert, 1.0f);
     }
 
