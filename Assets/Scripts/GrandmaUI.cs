@@ -51,21 +51,23 @@ public class GrandmaUI : MonoBehaviour
     private GameObject HitBlueObject;
 
     [SerializeField]
-    private Sprite Scratch;
+    private Sprite ScratchSprite;
     [SerializeField]
-    private Sprite Smooch;
+    private Sprite SmoochSprite;
+
+    [SerializeField]
+    private RandomPitch ScratchSound;
+    [SerializeField]
+    private RandomPitch SmoochSound;
 
     public int Lives;
     [SerializeField]
-    private GameObject LivesObject;
     private Text LivesText;
 
     [SerializeField]
-    private GameObject EndTextObject;
     private Text EndText;
 
     [SerializeField]
-    private GameObject SceneSwitcherObject;
     private SceneSwitcher sceneSwitcher;
 
     public string WinMessage = "You win!";
@@ -116,12 +118,9 @@ public class GrandmaUI : MonoBehaviour
         Targets[RED].shootable = false;
         Targets[BLUE].shootable = false;
 
-        LivesText = LivesObject.GetComponent<Text>();
-        EndText = EndTextObject.GetComponent<Text>();
-
         CatLives = GetComponent<GrandmaCatLives>();
-        sceneSwitcher = SceneSwitcherObject.GetComponent<SceneSwitcher>();
-        DontDestroyOnLoad(SceneSwitcherObject);
+
+        DontDestroyOnLoad(sceneSwitcher);
     }
 
     void Start()
@@ -229,6 +228,7 @@ public class GrandmaUI : MonoBehaviour
         Target target = Targets[which].which;
         Targets[which].hit.sprite = GetTargetHit(target);
         SetHitActive(which, true);
+        PlayHitSound(target);
         if (target == Target.Kitty)
         {
             DecreasePlayerLives();
@@ -237,7 +237,13 @@ public class GrandmaUI : MonoBehaviour
 
     private Sprite GetTargetHit(Target which)
     {
-        return which == Target.Grandma ? Smooch : Scratch;
+        return which == Target.Grandma ? SmoochSprite : ScratchSprite;
+    }
+
+    private void PlayHitSound(Target which)
+    {
+        RandomPitch sound = which == Target.Grandma ? SmoochSound : ScratchSound;
+        sound.PlayRandomPitch();
     }
 
     private IEnumerator EndRound()
@@ -274,7 +280,7 @@ public class GrandmaUI : MonoBehaviour
         }
 
         EndText.text = message;
-        EndTextObject.SetActive(true);
+        EndText.enabled = true;
 
         // Hide reload messages
         ReloadRed.SetActive(false);
