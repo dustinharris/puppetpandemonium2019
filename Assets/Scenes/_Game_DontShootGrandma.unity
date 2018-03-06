@@ -2551,7 +2551,7 @@ MonoBehaviour:
   selectedCamera: {fileID: 534140655}
   lookAtTarget: 0
   target: {fileID: 0}
-  playOnAwake: 1
+  playOnAwake: 0
   playOnAwakeTime: 10
   points:
   - position: {x: -8.5, y: -3.4, z: 2.4539623}
@@ -4608,6 +4608,8 @@ MonoBehaviour:
   InitialTime: 5
   MinTime: 1
   TimeDecrease: 1
+  TimePerPath: 2
+  CameraPath: {fileID: 1279928729}
 --- !u!1 &1779145764
 GameObject:
   m_ObjectHideFlags: 0
