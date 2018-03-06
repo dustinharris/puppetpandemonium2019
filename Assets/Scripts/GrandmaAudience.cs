@@ -6,8 +6,10 @@ public class GrandmaAudience : MonoBehaviour
 {
 
     [SerializeField]
-    private GameObject AudienceBar;
     private AudienceBarScript AudienceScript;
+    [SerializeField]
+    RandomPitch reloadSFX;
+
     private GrandmaAmmo AmmoScript;
     private GrandmaUI UIScript;
 
@@ -16,7 +18,6 @@ public class GrandmaAudience : MonoBehaviour
 
     private void Awake()
     {
-        AudienceScript = AudienceBar.GetComponent<AudienceBarScript>();
         AmmoScript = GetComponent<GrandmaAmmo>();
         UIScript = GetComponent<GrandmaUI>();
     }
@@ -44,8 +45,7 @@ public class GrandmaAudience : MonoBehaviour
             {
                 if (RedNeedsReload)
                 {
-                    ReloadingRed[i] = true;
-                    AudienceScript.Show(i, AudienceUIScript.Notice.Correct, true);
+                    HoldReload(true, i);
                 }
                 else
                 {
@@ -64,8 +64,7 @@ public class GrandmaAudience : MonoBehaviour
             {
                 if (BlueNeedsReload)
                 {
-                    ReloadingBlue[i] = true;
-                    AudienceScript.Show(i, AudienceUIScript.Notice.Correct, false);
+                    HoldReload(false, i);
                 }
                 else
                 {
@@ -107,6 +106,14 @@ public class GrandmaAudience : MonoBehaviour
             }
         }
 
+    }
+
+    private void HoldReload(bool red, int index)
+    {
+        bool[] reloading = red ? ReloadingRed : ReloadingBlue;
+        reloading[index] = true;
+        reloadSFX.PlayRandomPitch();
+        AudienceScript.Show(index, AudienceUIScript.Notice.Correct, red);
     }
 
     // Called from ammo script

@@ -243,16 +243,17 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 106523593}
---- !u!1 &137493102 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 1040055924424706, guid: e2e18fd2d67c9c94d9184674713337df,
-    type: 2}
-  m_PrefabInternal: {fileID: 1449230937}
 --- !u!224 &137493103 stripped
 RectTransform:
   m_PrefabParentObject: {fileID: 224781146036155610, guid: e2e18fd2d67c9c94d9184674713337df,
     type: 2}
   m_PrefabInternal: {fileID: 1449230937}
+--- !u!114 &137493106 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114652007009213322, guid: e2e18fd2d67c9c94d9184674713337df,
+    type: 2}
+  m_PrefabInternal: {fileID: 1449230937}
+  m_Script: {fileID: 11500000, guid: 9dde8b7443895c440b4a191575e39c70, type: 3}
 --- !u!1 &151394748
 GameObject:
   m_ObjectHideFlags: 0
@@ -4539,7 +4540,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca7eac54b1dd39446911b9dd51961163, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  AudienceBar: {fileID: 137493102}
+  AudienceScript: {fileID: 137493106}
+  reloadSFX: {fileID: 925557053}
 --- !u!114 &1722271645
 MonoBehaviour:
   m_ObjectHideFlags: 0
