@@ -45,7 +45,7 @@ public class GameStartScript : MonoBehaviour {
     {
         CountdownText.enabled = true;
         float now;
-        for (int i = 3; i > 0; i--)
+        for (int i = countdown; i > 0; i--)
         {
             CountdownText.text = i.ToString();
             now = Time.realtimeSinceStartup;
@@ -55,10 +55,11 @@ public class GameStartScript : MonoBehaviour {
         CountdownText.text = "GO!";
         Time.timeScale = 1;
 
+        CountdownFinished();
+
         yield return new WaitForSeconds(1);
 
         CountdownText.enabled = false;
-        CountdownFinished();
     }
 
     private void CountdownFinished()
