@@ -16,6 +16,8 @@ public class GrandmaAudience : MonoBehaviour
     private bool[] ReloadingRed;
     private bool[] ReloadingBlue;
 
+    bool started = false;
+
     private void Awake()
     {
         AmmoScript = GetComponent<GrandmaAmmo>();
@@ -34,6 +36,11 @@ public class GrandmaAudience : MonoBehaviour
 
     void Update()
     {
+        if (!started)
+        {
+            return;
+        }
+
         bool RedNeedsReload = NeedsReload(true);
         bool BlueNeedsReload = NeedsReload(false);
 
@@ -119,6 +126,7 @@ public class GrandmaAudience : MonoBehaviour
     // Called from ammo script
     public void OutOfAmmo(bool red)
     {
+        started = true;
         AudienceScript.ShowAll(AudienceUIScript.Notice.Alert, red);
     }
 

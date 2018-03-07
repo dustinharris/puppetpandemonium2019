@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GrandmaAmmo : MonoBehaviour {
+public class GrandmaAmmo : MonoBehaviour, GameStartScript.ISubscribe
+{
 
     private int[] Bullets;
 
@@ -15,7 +16,7 @@ public class GrandmaAmmo : MonoBehaviour {
         Bullets = new int[] { 0, 0 };
     }
 
-    private void Start()
+    public void CountdownFinished()
     {
         SendMessage("OutOfAmmo", true);
         SendMessage("OutOfAmmo", false);

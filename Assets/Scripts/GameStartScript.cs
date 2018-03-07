@@ -5,6 +5,12 @@ using UnityEngine.UI;
 
 public class GameStartScript : MonoBehaviour {
 
+    
+    public interface ISubscribe
+    {
+        void CountdownFinished();
+    }
+
     public int LogoLength = 3;
 
     [SerializeField]
@@ -12,17 +18,14 @@ public class GameStartScript : MonoBehaviour {
     [SerializeField]
     private Text CountdownText;
 
-    // Array of objects that need to be disabled while logo is showing
     [SerializeField]
-    private GameObject[] Disable;
+    MonoBehaviour[] Subscribers;
 
     private int countdown = 3;
 
 	// Use this for initialization
-	void Start () {
+	void Awake () {
         Time.timeScale = 0;
-
-        SetObjectsActive(false);
 
         StartCoroutine(Logo());
 	}
@@ -35,8 +38,6 @@ public class GameStartScript : MonoBehaviour {
         yield return new WaitWhile(() => Time.realtimeSinceStartup < now + LogoLength);
 
         Background.SetActive(false);
-        SetObjectsActive(true);
-
         StartCoroutine(Countdown());
     }
 
@@ -57,13 +58,17 @@ public class GameStartScript : MonoBehaviour {
         yield return new WaitForSeconds(1);
 
         CountdownText.enabled = false;
+        CountdownFinished();
     }
 
-    private void SetObjectsActive(bool active)
+    private void CountdownFinished()
     {
-        for (int i = 0; i < Disable.Length; i++)
+        for (int i = 0; i < Subscribers.Length; i++)
         {
-            Disable[i].SetActive(active);
+            if (Subscribers[i] is ISubscribe)
+            {
+                ((ISubscribe)Subscribers[i]).CountdownFinished();
+            }
         }
     }
 }
