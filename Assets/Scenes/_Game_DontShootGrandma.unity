@@ -5140,7 +5140,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 86cacff5bb419d545bf66475282d13ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  StartingLives: 9
+  StartingLives: 15
   CatLivesTextObject: {fileID: 478253093}
 --- !u!114 &1722271649
 MonoBehaviour:
@@ -5153,10 +5153,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be09d12f960093142bf88ca005891836, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  InitialTime: 5
-  MinTime: 1
+  InitialTime: 3.5
+  MinTime: 1.5
   TimeDecrease: 1
-  TimePerPath: 2
+  RoundsPerTime: 4
+  TimePerPath: 1.5
   CameraPath: {fileID: 1279928729}
 --- !u!1 &1779145764
 GameObject:

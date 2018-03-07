@@ -2,18 +2,21 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GrandmaTimingController : MonoBehaviour {
+public class GrandmaTimingController : MonoBehaviour
+{
 
-    public float InitialTime = 5f;
-    public float MinTime = 1f;
+    public float InitialTime = 3.5f;
+    public float MinTime = 1.5f;
     public float TimeDecrease = 1f;
+    public int RoundsPerTime = 3;
 
-    public float TimePerPath = 2f;
+    public float TimePerPath = 1.5f;
 
     [SerializeField]
     CPC_CameraPath CameraPath;
 
     private float CurrentTime;
+    private int CurrentRound = 0;
 
     private GrandmaUI UiScript;
 
@@ -21,8 +24,6 @@ public class GrandmaTimingController : MonoBehaviour {
 
     // Signal to show cutouts
     // Wait for timeout or to receive signal back that both have been shot
-    // Signal to move locations
-    // Wait for signal that moving is finished
     // speed up
     // repeat
 
@@ -65,6 +66,7 @@ public class GrandmaTimingController : MonoBehaviour {
 
     private IEnumerator ShowTargets()
     {
+        Debug.Log("Current round length: " + CurrentTime.ToString());
         UiScript.ShowTargets();
         yield return new WaitForSeconds(CurrentTime);
         RunningCoroutine = null;
@@ -73,13 +75,29 @@ public class GrandmaTimingController : MonoBehaviour {
 
     private IEnumerator MoveCamera()
     {
-        // TODO Tell camera to move
-
-        // Remove this when hooked up to camera
         yield return new WaitForSeconds(CurrentTime);
 
-        CurrentTime = Mathf.Max(CurrentTime - TimeDecrease, MinTime);
+        DecreaseTime();
+
+        if (RunningCoroutine != null)
+        {
+            StopTimer();
+        }
 
         RunningCoroutine = StartCoroutine(ShowTargets());
+    }
+
+    private void DecreaseTime()
+    {
+        if (CurrentTime > MinTime)
+        {
+            CurrentRound++;
+
+            if (CurrentRound == RoundsPerTime)
+            {
+                CurrentTime = Mathf.Max(CurrentTime - TimeDecrease, MinTime);
+                CurrentRound = 0;
+            }
+        }
     }
 }
