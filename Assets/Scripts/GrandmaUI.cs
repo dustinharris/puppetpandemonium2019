@@ -436,16 +436,18 @@ public class GrandmaUI : MonoBehaviour
 
     private void DisplayLoadedBullets(Image[] BulletImages, int remaining)
     {
+        int gone = GrandmaAmmo.MAG_SIZE - remaining;
+
         int i;
-        for (i = 0; i < remaining; i++)
+        for (i = 0; i < gone; i++)
         {
             Image bullet = BulletImages[i];
-            bullet.sprite = BulletLoaded;
+            bullet.sprite = BulletGone;
         }
         for (; i < GrandmaAmmo.MAG_SIZE; i++)
         {
             Image bullet = BulletImages[i];
-            bullet.sprite = BulletGone;
+            bullet.sprite = BulletLoaded;
         }
     }
 
