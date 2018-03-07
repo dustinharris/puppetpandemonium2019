@@ -59,6 +59,10 @@ public class GrandmaUI : MonoBehaviour
     private RandomPitch ScratchSound;
     [SerializeField]
     private RandomPitch SmoochSound;
+    [SerializeField]
+    private RandomPitch CatShotSound;
+    [SerializeField]
+    private RandomPitch ReloadSound;
 
     public int Lives;
     [SerializeField]
@@ -319,6 +323,14 @@ public class GrandmaUI : MonoBehaviour
         return Targets[index].shootable && !Targets[index].broken && GetTargetActive(index);
     }
 
+    private void PlayBrokenSound(Target which)
+    {
+        if (which == Target.Kitty)
+        {
+            CatShotSound.PlayRandomPitch();
+        }
+    }
+
     private void BreakTarget(int index)
     {
         if (Targets[index].which == Target.Kitty)
@@ -329,6 +341,7 @@ public class GrandmaUI : MonoBehaviour
             DecreasePlayerLives();
         }
 
+        PlayBrokenSound(Targets[index].which);
         Targets[index].image.sprite = GetBrokenSprite(Targets[index].which);
         Targets[index].broken = true;
         Targets[index].shootable = false;
@@ -445,6 +458,8 @@ public class GrandmaUI : MonoBehaviour
 
     public void Reloaded(bool red)
     {
+        ReloadSound.PlayRandomPitch();
+
         if (red)
         {
             ReloadRed.SetActive(false);
