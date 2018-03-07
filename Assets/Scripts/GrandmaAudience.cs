@@ -7,8 +7,6 @@ public class GrandmaAudience : MonoBehaviour
 
     [SerializeField]
     private AudienceBarScript AudienceScript;
-    [SerializeField]
-    RandomPitch reloadSFX;
 
     private GrandmaAmmo AmmoScript;
     private GrandmaUI UIScript;
@@ -61,11 +59,7 @@ public class GrandmaAudience : MonoBehaviour
             }
             if (Input.GetButtonUp("Audience" + i + "Red"))
             {
-                ReloadingRed[i] = false;
-                if (RedNeedsReload)
-                {
-                    AudienceScript.Show(i, AudienceUIScript.Notice.Alert, true);
-                }
+                ReleaseReload(true, i);
             }
             if (Input.GetButtonDown("Audience" + i + "Blue"))
             {
@@ -80,47 +74,41 @@ public class GrandmaAudience : MonoBehaviour
             }
             if (Input.GetButtonUp("Audience" + i + "Blue"))
             {
-                ReloadingBlue[i] = false;
-                if (BlueNeedsReload)
-                {
-                    AudienceScript.Show(i, AudienceUIScript.Notice.Alert, false);
-                }
+                ReleaseReload(false, i);
             }
         }
-
-        if (RedNeedsReload)
-        {
-            int reloading = NumberReloading(true);
-            if (reloading == GrandmaAmmo.MAG_SIZE)
-            {
-                AmmoScript.Reload(true);
-            }
-            else
-            {
-                UIScript.Reloading(true, reloading);
-            }
-        }
-        if (BlueNeedsReload)
-        {
-            int reloading = NumberReloading(false);
-            if (reloading == GrandmaAmmo.MAG_SIZE)
-            {
-                AmmoScript.Reload(false);
-            }
-            else
-            {
-                UIScript.Reloading(false, reloading);
-            }
-        }
-
     }
 
     private void HoldReload(bool red, int index)
     {
         bool[] reloading = red ? ReloadingRed : ReloadingBlue;
-        reloading[index] = true;
-        reloadSFX.PlayRandomPitch();
         AudienceScript.Show(index, AudienceUIScript.Notice.Correct, red);
+
+        if (!reloading[index])
+        {
+            reloading[index] = true;
+            AmmoScript.AddBullet(red);
+        }
+    }
+
+    private void ReleaseReload(bool red, int index)
+    {
+        bool[] reloading = red ? ReloadingRed : ReloadingBlue;
+        if (NeedsReload(red))
+        {
+            AudienceScript.Show(index, AudienceUIScript.Notice.Alert, red);
+        }
+
+        if (reloading[index])
+        {
+            reloading[index] = false;
+            AmmoScript.RemoveBullet(red);
+        }
+    }
+
+    public void Reloaded(bool red)
+    {
+        ResetAudience(red);
     }
 
     // Called from ammo script
@@ -128,11 +116,6 @@ public class GrandmaAudience : MonoBehaviour
     {
         started = true;
         AudienceScript.ShowAll(AudienceUIScript.Notice.Alert, red);
-    }
-
-    public void Reloaded(bool red)
-    {
-        ResetAudience(red);
     }
 
     private void ResetAudience()

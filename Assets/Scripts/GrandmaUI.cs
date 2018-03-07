@@ -61,8 +61,6 @@ public class GrandmaUI : MonoBehaviour
     private RandomPitch SmoochSound;
     [SerializeField]
     private RandomPitch CatShotSound;
-    [SerializeField]
-    private RandomPitch ReloadSound;
 
     public int Lives;
     [SerializeField]
@@ -379,7 +377,17 @@ public class GrandmaUI : MonoBehaviour
         return new Vector3(0, 0, Random.Range(-45, 45));
     }
 
-    public void Reloading(bool red, int reloaded)
+    public void RedReloading(int reloaded)
+    {
+        Reloading(true, reloaded);
+    }
+
+    public void BlueReloading(int reloaded)
+    {
+        Reloading(false, reloaded);
+    }
+
+    private void Reloading(bool red, int reloaded)
     {
         Image[] BulletImages = red ? BulletsRed : BulletsBlue;
         int remaining = GrandmaAmmo.MAG_SIZE - reloaded;
@@ -458,8 +466,6 @@ public class GrandmaUI : MonoBehaviour
 
     public void Reloaded(bool red)
     {
-        ReloadSound.PlayRandomPitch();
-
         if (red)
         {
             ReloadRed.SetActive(false);

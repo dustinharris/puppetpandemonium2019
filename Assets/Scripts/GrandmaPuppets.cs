@@ -4,39 +4,72 @@ using UnityEngine;
 
 public class GrandmaPuppets : MonoBehaviour
 {
-
     private GrandmaAmmo ammo;
-    public RandomPitch FireSFX;
-    public RandomPitch LoadClickSFX;
+    private bool RedReloading = false;
+    private bool BlueReloading = false;
+
+    private bool started = false;
 
     void Awake()
     {
         ammo = GetComponent<GrandmaAmmo>();
     }
 
-    // Update is called once per frame
+    // Sent from ammo script on game start
+    public void OutOfAmmo(bool red)
+    {
+        started = true;
+    }
+
     void Update()
     {
+        if (!started)
+        {
+            return;
+        }
         if (Input.GetButtonDown("RedPuppet"))
         {
-            Fire(true);
+            if (ammo.CanFire(true))
+            {
+                ammo.Fire(true);
+            } else
+            {
+                if (!RedReloading)
+                {
+                    RedReloading = true;
+                    ammo.AddBullet(true);
+                }
+            }  
+        }
+        if (Input.GetButtonUp("RedPuppet"))
+        {
+            if (!ammo.CanFire(true) && RedReloading)
+            {
+                RedReloading = false;
+                ammo.RemoveBullet(true);
+            }
         }
         if (Input.GetButtonDown("BluePuppet"))
         {
-            Fire(false);
+            if (ammo.CanFire(false))
+            {
+                ammo.Fire(false);
+            } else
+            {
+                if (!BlueReloading)
+                {
+                    BlueReloading = true;
+                    ammo.AddBullet(false);
+                }
+            }
         }
-    }
-
-    private void Fire(bool red)
-    {
-        if (ammo.CanFire(red))
+        if (Input.GetButtonUp("BluePuppet"))
         {
-            ammo.Fire(red);
-            FireSFX.PlayRandomPitch();
-        }
-        else
-        {
-            LoadClickSFX.PlayRandomPitch();
+            if (!ammo.CanFire(false) && BlueReloading)
+            {
+                BlueReloading = false;
+                ammo.RemoveBullet(false);
+            }
         }
     }
 }
