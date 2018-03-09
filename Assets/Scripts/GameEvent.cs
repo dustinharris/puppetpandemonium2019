@@ -25,6 +25,8 @@
     public const string P2_REX_STARTING_POS = "P2_REX_STARTING_POS";
     public const string P1_CUBE_HIT = "P1_CUBE_HIT";
     public const string P2_CUBE_HIT = "P2_CUBE_HIT";
+    public const string P1_CUBE_NEW_COIN = "P1_CUBE_NEW_COIN";
+    public const string P2_CUBE_NEW_COIN = "P2_CUBE_NEW_COIN";
 
     public const string EKO2Y_GAME_OVER = "EKO2Y_GAME_OVER";
 

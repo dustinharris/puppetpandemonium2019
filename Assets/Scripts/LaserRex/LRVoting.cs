@@ -82,7 +82,16 @@ public class LRVoting : MonoBehaviour {
 
         // For targeted player's laser cube:
         // If laser cube health > 0, subtract 1
-        // Show coin animation
+
+        // Trigger coin animation
+        if (playerNumber == 0)
+        {
+            Messenger.Broadcast(GameEvent.P1_CUBE_HIT);
+        } else
+        {
+            Messenger.Broadcast(GameEvent.P2_CUBE_HIT);
+        }
+
         if (healthArray[playerNumber] > 0)
         {
             // Subtract 1

@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class LRCubeBehavior : MonoBehaviour {
 
-    [SerializeField] private GameObject coinReference;
     [SerializeField] private int playerNumber;
 
     void Awake()
@@ -14,26 +13,22 @@ public class LRCubeBehavior : MonoBehaviour {
         Messenger.AddListener(GameEvent.P2_CUBE_HIT, P2CubeHit);
     }
 
-    // Use this for initialization
-    void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
-
-    private void CubeHit()
+    private void CubeHitByLaser()
     {
 
+    }
+   
+    public int GetPlayerNumber()
+    {
+        return playerNumber;
     }
 
     private void P1CubeHit()
     {
         if (playerNumber == 0)
         {
-            CubeHit();
+            Messenger.Broadcast(GameEvent.P1_CUBE_NEW_COIN);
+            CubeHitByLaser();
         }
     }
 
@@ -41,7 +36,8 @@ public class LRCubeBehavior : MonoBehaviour {
     {
         if (playerNumber == 1)
         {
-            CubeHit();
+            Messenger.Broadcast(GameEvent.P2_CUBE_NEW_COIN);
+            CubeHitByLaser();
         }
     }
 }

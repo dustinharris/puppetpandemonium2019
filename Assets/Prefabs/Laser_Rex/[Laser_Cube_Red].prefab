@@ -147,6 +147,22 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &1663794863661582
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4457719436098676}
+  - component: {fileID: 114862931211714052}
+  m_Layer: 0
+  m_Name: Coin_Projection_Angle
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &1856576217726710
 GameObject:
   m_ObjectHideFlags: 0
@@ -155,6 +171,10 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4990318806047214}
+  - component: {fileID: 82555696720863924}
+  - component: {fileID: 114287717754357970}
+  - component: {fileID: 114101958007554156}
+  - component: {fileID: 114666139499152876}
   m_Layer: 0
   m_Name: '[Laser_Cube_Red]'
   m_TagString: Untagged
@@ -207,7 +227,7 @@ Transform:
   m_LocalScale: {x: 69.757355, y: 69.757355, z: 69.757355}
   m_Children: []
   m_Father: {fileID: 4990318806047214}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: -1.682, y: 0, z: 0}
 --- !u!4 &4121997340776874
 Transform:
@@ -248,6 +268,19 @@ Transform:
   m_Father: {fileID: 4729284267497432}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: -190.837, y: 78.491, z: -92.194}
+--- !u!4 &4457719436098676
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1663794863661582}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 1.4, z: 0}
+  m_LocalScale: {x: 0, y: 0, z: 0}
+  m_Children: []
+  m_Father: {fileID: 4990318806047214}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4598143980877070
 Transform:
   m_ObjectHideFlags: 1
@@ -304,7 +337,7 @@ Transform:
   - {fileID: 4298469331637980}
   - {fileID: 4598143980877070}
   m_Father: {fileID: 4990318806047214}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4854031378266442
 Transform:
@@ -340,10 +373,11 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1856576217726710}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.4015663, y: 4.1528196, z: -0.6486864}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 7.533429, y: 14.644238, z: -12.500571}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
+  - {fileID: 4457719436098676}
   - {fileID: 4042173464373210}
   - {fileID: 4729284267497432}
   m_Father: {fileID: 0}
@@ -431,6 +465,142 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1151080038543166}
   m_Mesh: {fileID: 4300000, guid: 9aa53c60588b01f4b804606e46aa3564, type: 3}
+--- !u!82 &82555696720863924
+AudioSource:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1856576217726710}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
+--- !u!114 &114101958007554156
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1856576217726710}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a109a2ca62743b044b4d1603e8682ef7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerNumber: 0
+--- !u!114 &114287717754357970
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1856576217726710}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ab8d2cf3fe78a5f4f85f5c97f525d7dd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hoverSpeed: 6
+--- !u!114 &114666139499152876
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1856576217726710}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9fca5159a2745d249837bbb91b4a0942, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MinPitch: 0.1
+  MaxPitch: 0.4
+  PlayOnEnable: 1
+--- !u!114 &114862931211714052
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1663794863661582}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 34177d0e49327274fb46c9f4e2ed67cf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  coinReference: {fileID: 0}
+  coinMinUpwardForce: 2
+  coinMaxUpwardForce: 5
+  coinMinDirectionAngle: 0
+  coinMaxDirectionAngle: 360
+  coinMinHeightAngle: -50
+  coinMaxHeightAngle: -80
 --- !u!198 &198087743663901964
 ParticleSystem:
   m_ObjectHideFlags: 1
