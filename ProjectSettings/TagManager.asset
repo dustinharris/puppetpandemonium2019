@@ -13,6 +13,7 @@ TagManager:
   - Enemies
   - SceneryDestroyer
   - Fire
+  - Road
   layers:
   - Default
   - TransparentFX

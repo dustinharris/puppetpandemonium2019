@@ -28,6 +28,21 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &1201918700480176
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4148311701046608}
+  m_Layer: 0
+  m_Name: Blue_Laser_Target
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &1235058771346710
 GameObject:
   m_ObjectHideFlags: 0
@@ -242,6 +257,19 @@ Transform:
   m_Father: {fileID: 4267180862368142}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4148311701046608
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1201918700480176}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.25, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4267180862368142}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4229152755368618
 Transform:
   m_ObjectHideFlags: 1
@@ -266,6 +294,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4117385078335302}
+  - {fileID: 4148311701046608}
   - {fileID: 4375772000320944}
   - {fileID: 4976326584524634}
   m_Father: {fileID: 0}
@@ -297,7 +326,7 @@ Transform:
   m_LocalScale: {x: 69.757355, y: 69.757355, z: 69.757355}
   m_Children: []
   m_Father: {fileID: 4267180862368142}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: -1.682, y: 0, z: 0}
 --- !u!4 &4592337825615342
 Transform:
@@ -366,7 +395,7 @@ Transform:
   - {fileID: 4906437558089114}
   - {fileID: 4936008960402264}
   m_Father: {fileID: 4267180862368142}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4981786369922968
 Transform:
@@ -568,7 +597,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 34177d0e49327274fb46c9f4e2ed67cf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  coinReference: {fileID: 0}
+  coinReference: {fileID: 54554391215246062, guid: 16bea34130436314baa135acd4b5582c,
+    type: 2}
   coinMinUpwardForce: 2
   coinMaxUpwardForce: 5
   coinMinDirectionAngle: 0

@@ -6,6 +6,8 @@ public class LRVoting : MonoBehaviour {
 
     [SerializeField] private GameObject laserCubeRed;
     [SerializeField] private GameObject laserCubeBlue;
+    [SerializeField] private GameObject[] laserAimsRed;
+    [SerializeField] private GameObject[] laserAimsBlue;
     public int laserCubeRedHealth = 100;
     public int laserCubeBlueHealth = 100;
     private int[] healthArray;
@@ -80,6 +82,10 @@ public class LRVoting : MonoBehaviour {
     {
         // Check if in pause state -- TODO
 
+
+        // Create Laser
+        CreateLaser(audienceMemberNumber, playerNumber);
+
         // For targeted player's laser cube:
         // If laser cube health > 0, subtract 1
 
@@ -105,6 +111,32 @@ public class LRVoting : MonoBehaviour {
             // Trigger distraction state
             // Todo
         }
+
+    }
+
+    private void CreateLaser(int audienceMemberNumber, int playerNumber)
+    {
+
+        // Get a reference to the correct laser aim
+        // Based on audience button press and player number
+
+        LRLaserAimBehavior laserAimBehavior = new LRLaserAimBehavior();
+
+        // Subtract one from audience member to access correct place in the array
+        int arrayCorrectedAudienceMemberNumber = audienceMemberNumber - 1;
+
+        if (playerNumber == 0)
+        {
+            laserAimBehavior = laserAimsRed[arrayCorrectedAudienceMemberNumber].GetComponent<LRLaserAimBehavior>();
+        }
+        else
+        {
+            laserAimBehavior = laserAimsBlue[arrayCorrectedAudienceMemberNumber].GetComponent<LRLaserAimBehavior>();
+        }
+
+        // Call the laser aim's method to instantiate a new laser
+        // Rotation/Position determined by each LaserAim
+        laserAimBehavior.CreateNewLaser();
 
     }
 
