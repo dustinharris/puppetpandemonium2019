@@ -83,12 +83,18 @@ public class LRCarMovement : MonoBehaviour {
 
     void P1MoveToStartingPos()
     {
-        MoveToStartingPos(0);
+        if (playerNumber == 0)
+        {
+            MoveToStartingPos(0);
+        }
     }
 
     void P2MoveToStartingPos()
     {
-        MoveToStartingPos(1);
+        if (playerNumber == 1)
+        {
+            MoveToStartingPos(1);
+        }
     }
 
     void MoveToStartingPos(int playerNumber)
