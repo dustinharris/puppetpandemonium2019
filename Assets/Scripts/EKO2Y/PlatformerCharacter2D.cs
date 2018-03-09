@@ -22,7 +22,6 @@ namespace UnityStandardAssets._2D
         private Rigidbody2D m_Rigidbody2D;
         private bool m_FacingRight = true;  // For determining which way the player is currently facing.
 
-        private bool inFall = false;
         bool doubleJump = false;
 
         private void Awake()
@@ -146,11 +145,6 @@ namespace UnityStandardAssets._2D
         private void Update()
         {
             
-        }
-
-        public void setFall(bool fall)
-        {
-            inFall = fall;
         }
 
         private void LateUpdate()

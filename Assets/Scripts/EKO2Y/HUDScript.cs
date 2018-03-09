@@ -7,20 +7,17 @@ public class HUDScript : MonoBehaviour {
 
     float score = 0;
     public GameObject scoreText;
+    private Text text;
 
-    // Update is called once per frame
-    void Update () {
-
-        // Increment player score
-        //playerScore += Time.deltaTime;
-
-        // Display player score on screen
-        scoreText.GetComponent<Text>().text = (((int)score)*10).ToString();
-
+    private void Start()
+    {
+        text = scoreText.GetComponent<Text>();
+        text.text = "0";
     }
 
     public void increaseScore(int amount)
     {
         score += amount;
+        text.text = (((int)score) * 10).ToString();
     }
 }

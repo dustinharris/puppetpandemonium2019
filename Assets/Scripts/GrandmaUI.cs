@@ -51,21 +51,25 @@ public class GrandmaUI : MonoBehaviour
     private GameObject HitBlueObject;
 
     [SerializeField]
-    private Sprite Scratch;
+    private Sprite ScratchSprite;
     [SerializeField]
-    private Sprite Smooch;
+    private Sprite SmoochSprite;
+
+    [SerializeField]
+    private RandomPitch ScratchSound;
+    [SerializeField]
+    private RandomPitch SmoochSound;
+    [SerializeField]
+    private RandomPitch CatShotSound;
 
     public int Lives;
     [SerializeField]
-    private GameObject LivesObject;
     private Text LivesText;
 
     [SerializeField]
-    private GameObject EndTextObject;
     private Text EndText;
 
     [SerializeField]
-    private GameObject SceneSwitcherObject;
     private SceneSwitcher sceneSwitcher;
 
     public string WinMessage = "You win!";
@@ -116,12 +120,9 @@ public class GrandmaUI : MonoBehaviour
         Targets[RED].shootable = false;
         Targets[BLUE].shootable = false;
 
-        LivesText = LivesObject.GetComponent<Text>();
-        EndText = EndTextObject.GetComponent<Text>();
-
         CatLives = GetComponent<GrandmaCatLives>();
-        sceneSwitcher = SceneSwitcherObject.GetComponent<SceneSwitcher>();
-        DontDestroyOnLoad(SceneSwitcherObject);
+
+        DontDestroyOnLoad(sceneSwitcher);
     }
 
     void Start()
@@ -215,24 +216,36 @@ public class GrandmaUI : MonoBehaviour
         StartCoroutine(EndRound());
     }
 
+    private void DecreasePlayerLives()
+    {
+        if (Lives > 0)
+        {
+            Lives--;
+        }
+        LivesText.text = Lives.ToString();
+    }
+
     private void Hit(int which)
     {
         Target target = Targets[which].which;
         Targets[which].hit.sprite = GetTargetHit(target);
         SetHitActive(which, true);
+        PlayHitSound(target);
         if (target == Target.Kitty)
         {
-            if (Lives > 0)
-            {
-                Lives--;
-            }
-            LivesText.text = Lives.ToString();
+            DecreasePlayerLives();
         }
     }
 
     private Sprite GetTargetHit(Target which)
     {
-        return which == Target.Grandma ? Smooch : Scratch;
+        return which == Target.Grandma ? SmoochSprite : ScratchSprite;
+    }
+
+    private void PlayHitSound(Target which)
+    {
+        RandomPitch sound = which == Target.Grandma ? SmoochSound : ScratchSound;
+        sound.PlayRandomPitch();
     }
 
     private IEnumerator EndRound()
@@ -269,7 +282,7 @@ public class GrandmaUI : MonoBehaviour
         }
 
         EndText.text = message;
-        EndTextObject.SetActive(true);
+        EndText.enabled = true;
 
         // Hide reload messages
         ReloadRed.SetActive(false);
@@ -308,13 +321,25 @@ public class GrandmaUI : MonoBehaviour
         return Targets[index].shootable && !Targets[index].broken && GetTargetActive(index);
     }
 
+    private void PlayBrokenSound(Target which)
+    {
+        if (which == Target.Kitty)
+        {
+            CatShotSound.PlayRandomPitch();
+        }
+    }
+
     private void BreakTarget(int index)
     {
         if (Targets[index].which == Target.Kitty)
         {
             CatLives.DecreaseCatLives();
+        } else if (Targets[index].which == Target.Grandma)
+        {
+            DecreasePlayerLives();
         }
 
+        PlayBrokenSound(Targets[index].which);
         Targets[index].image.sprite = GetBrokenSprite(Targets[index].which);
         Targets[index].broken = true;
         Targets[index].shootable = false;
@@ -326,6 +351,7 @@ public class GrandmaUI : MonoBehaviour
         alert.transform.SetParent(canvas.transform);
         alert.transform.position = PlaceAlert(red);
         alert.transform.Rotate(RotateAlert());
+        alert.SetActive(true);
         GameObject.Destroy(alert, 1.0f);
     }
 
@@ -351,7 +377,17 @@ public class GrandmaUI : MonoBehaviour
         return new Vector3(0, 0, Random.Range(-45, 45));
     }
 
-    public void Reloading(bool red, int reloaded)
+    public void RedReloading(int reloaded)
+    {
+        Reloading(true, reloaded);
+    }
+
+    public void BlueReloading(int reloaded)
+    {
+        Reloading(false, reloaded);
+    }
+
+    private void Reloading(bool red, int reloaded)
     {
         Image[] BulletImages = red ? BulletsRed : BulletsBlue;
         int remaining = GrandmaAmmo.MAG_SIZE - reloaded;
@@ -400,16 +436,18 @@ public class GrandmaUI : MonoBehaviour
 
     private void DisplayLoadedBullets(Image[] BulletImages, int remaining)
     {
+        int gone = GrandmaAmmo.MAG_SIZE - remaining;
+
         int i;
-        for (i = 0; i < remaining; i++)
+        for (i = 0; i < gone; i++)
         {
             Image bullet = BulletImages[i];
-            bullet.sprite = BulletLoaded;
+            bullet.sprite = BulletGone;
         }
         for (; i < GrandmaAmmo.MAG_SIZE; i++)
         {
             Image bullet = BulletImages[i];
-            bullet.sprite = BulletGone;
+            bullet.sprite = BulletLoaded;
         }
     }
 

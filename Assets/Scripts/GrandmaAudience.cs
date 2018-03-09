@@ -6,17 +6,18 @@ public class GrandmaAudience : MonoBehaviour
 {
 
     [SerializeField]
-    private GameObject AudienceBar;
     private AudienceBarScript AudienceScript;
+
     private GrandmaAmmo AmmoScript;
     private GrandmaUI UIScript;
 
     private bool[] ReloadingRed;
     private bool[] ReloadingBlue;
 
+    bool started = false;
+
     private void Awake()
     {
-        AudienceScript = AudienceBar.GetComponent<AudienceBarScript>();
         AmmoScript = GetComponent<GrandmaAmmo>();
         UIScript = GetComponent<GrandmaUI>();
     }
@@ -33,6 +34,11 @@ public class GrandmaAudience : MonoBehaviour
 
     void Update()
     {
+        if (!started)
+        {
+            return;
+        }
+
         bool RedNeedsReload = NeedsReload(true);
         bool BlueNeedsReload = NeedsReload(false);
 
@@ -44,8 +50,7 @@ public class GrandmaAudience : MonoBehaviour
             {
                 if (RedNeedsReload)
                 {
-                    ReloadingRed[i] = true;
-                    AudienceScript.Show(i, AudienceUIScript.Notice.Correct, true);
+                    HoldReload(true, i);
                 }
                 else
                 {
@@ -54,18 +59,13 @@ public class GrandmaAudience : MonoBehaviour
             }
             if (Input.GetButtonUp("Audience" + i + "Red"))
             {
-                ReloadingRed[i] = false;
-                if (RedNeedsReload)
-                {
-                    AudienceScript.Show(i, AudienceUIScript.Notice.Alert, true);
-                }
+                ReleaseReload(true, i);
             }
             if (Input.GetButtonDown("Audience" + i + "Blue"))
             {
                 if (BlueNeedsReload)
                 {
-                    ReloadingBlue[i] = true;
-                    AudienceScript.Show(i, AudienceUIScript.Notice.Correct, false);
+                    HoldReload(false, i);
                 }
                 else
                 {
@@ -74,50 +74,48 @@ public class GrandmaAudience : MonoBehaviour
             }
             if (Input.GetButtonUp("Audience" + i + "Blue"))
             {
-                ReloadingBlue[i] = false;
-                if (BlueNeedsReload)
-                {
-                    AudienceScript.Show(i, AudienceUIScript.Notice.Alert, false);
-                }
+                ReleaseReload(false, i);
             }
         }
-
-        if (RedNeedsReload)
-        {
-            int reloading = NumberReloading(true);
-            if (reloading == GrandmaAmmo.MAG_SIZE)
-            {
-                AmmoScript.Reload(true);
-            }
-            else
-            {
-                UIScript.Reloading(true, reloading);
-            }
-        }
-        if (BlueNeedsReload)
-        {
-            int reloading = NumberReloading(false);
-            if (reloading == GrandmaAmmo.MAG_SIZE)
-            {
-                AmmoScript.Reload(false);
-            }
-            else
-            {
-                UIScript.Reloading(false, reloading);
-            }
-        }
-
     }
 
-    // Called from ammo script
-    public void OutOfAmmo(bool red)
+    private void HoldReload(bool red, int index)
     {
-        AudienceScript.ShowAll(AudienceUIScript.Notice.Alert, red);
+        bool[] reloading = red ? ReloadingRed : ReloadingBlue;
+        AudienceScript.Show(index, AudienceUIScript.Notice.Correct, red);
+
+        if (!reloading[index])
+        {
+            reloading[index] = true;
+            AmmoScript.AddBullet(red);
+        }
+    }
+
+    private void ReleaseReload(bool red, int index)
+    {
+        bool[] reloading = red ? ReloadingRed : ReloadingBlue;
+        if (NeedsReload(red))
+        {
+            AudienceScript.Show(index, AudienceUIScript.Notice.Alert, red);
+        }
+
+        if (reloading[index])
+        {
+            reloading[index] = false;
+            AmmoScript.RemoveBullet(red);
+        }
     }
 
     public void Reloaded(bool red)
     {
         ResetAudience(red);
+    }
+
+    // Called from ammo script
+    public void OutOfAmmo(bool red)
+    {
+        started = true;
+        AudienceScript.ShowAll(AudienceUIScript.Notice.Alert, red);
     }
 
     private void ResetAudience()
