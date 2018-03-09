@@ -5,12 +5,12 @@ using UnityEngine;
 public class LRLaserAimBehavior : MonoBehaviour {
 
     [SerializeField] private GameObject laserReference;
-    [SerializeField] private GameObject laserCubeReference;
+    [SerializeField] private GameObject laserTargetReference;
 
     void Start()
     {
         // Change object rotation to look at the corresponding laser cube
-        transform.LookAt(laserCubeReference.transform);
+        transform.LookAt(laserTargetReference.transform);
     }
 
     public void CreateNewLaser()
