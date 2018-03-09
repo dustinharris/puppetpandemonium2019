@@ -11,12 +11,46 @@ ModelImporter:
     100006: eyebrows
     100008: eyes
     100010: Helmet
+    100012: Arm_Left
+    100014: Arm_Left_end
+    100016: Arm_Left_Mesh
+    100018: Arm_Right
+    100020: Arm_Right_end
+    100022: Arm_Right_Mesh
+    100024: Body
+    100026: Bone
+    100028: Head 1
+    100030: Jaw 1
+    100032: Jaw_end
+    100034: Arm_right
+    100036: eyebrows.001
+    100038: eyes.001
+    100040: Head.001
+    100042: Helmet.001
+    100044: Jaw.001
     400000: Head
     400002: Jaw
     400004: //RootNode
     400006: eyebrows
     400008: eyes
     400010: Helmet
+    400012: Arm_Left
+    400014: Arm_Left_end
+    400016: Arm_Left_Mesh
+    400018: Arm_Right
+    400020: Arm_Right_end
+    400022: Arm_Right_Mesh
+    400024: Body
+    400026: Bone
+    400028: Head 1
+    400030: Jaw 1
+    400032: Jaw_end
+    400034: Arm_right
+    400036: eyebrows.001
+    400038: eyes.001
+    400040: Head.001
+    400042: Helmet.001
+    400044: Jaw.001
     2100000: No Name
     2100002: Material
     2300000: Head
@@ -25,18 +59,52 @@ ModelImporter:
     2300006: eyebrows
     2300008: eyes
     2300010: Helmet
+    2300012: Arm_Left_Mesh
+    2300014: Arm_Right_Mesh
+    2300016: Body
+    2300018: Head 1
+    2300020: Jaw 1
+    2300022: Arm_Left
+    2300024: Arm_right
+    2300026: eyebrows.001
+    2300028: eyes.001
+    2300030: Head.001
+    2300032: Helmet.001
+    2300034: Jaw.001
     3300000: Head
     3300002: Jaw
     3300004: //RootNode
     3300006: eyebrows
     3300008: eyes
     3300010: Helmet
+    3300012: Arm_Left_Mesh
+    3300014: Arm_Right_Mesh
+    3300016: Body
+    3300018: Head 1
+    3300020: Jaw 1
+    3300022: Arm_Left
+    3300024: Arm_right
+    3300026: eyebrows.001
+    3300028: eyes.001
+    3300030: Head.001
+    3300032: Helmet.001
+    3300034: Jaw.001
     4300000: Body
     4300002: Head
     4300004: Jaw
     4300006: eyebrows
     4300008: eyes
     4300010: Helmet
+    4300012: Arm_Left_Mesh
+    4300014: Arm_Right_Mesh
+    4300016: Arm_Left
+    4300018: Arm_right
+    4300020: Head.001
+    4300022: Jaw.001
+    4300024: eyes.001
+    4300026: eyebrows.001
+    4300028: Helmet.001
+    9500000: //RootNode
   externalObjects: {}
   materials:
     importMaterials: 1
@@ -56,7 +124,7 @@ ModelImporter:
     animationRetargetingWarnings: 
     animationDoRetargetingWarnings: 0
     importAnimatedCustomProperties: 0
-    animationCompression: 1
+    animationCompression: 3
     animationRotationError: 0.5
     animationPositionError: 0.5
     animationScaleError: 0.5
@@ -105,13 +173,13 @@ ModelImporter:
     armStretch: 0.05
     legStretch: 0.05
     feetSpacing: 0
-    rootMotionBoneName: 
+    rootMotionBoneName: Body
     rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
     hasTranslationDoF: 0
     hasExtraRoot: 0
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
-  animationType: 0
+  animationType: 2
   humanoidOversampling: 1
   additionalBone: 0
   userData: 
