@@ -19,5 +19,14 @@
     public const string P1_RELEASE = "P1_RELEASE";
     public const string P2_RELEASE = "P2_RELEASE";
 
+    public const string P1_HIT_REX = "P1_HIT_REX";
+    public const string P2_HIT_REX = "P2_HIT_REX";
+    public const string P1_REX_STARTING_POS = "P1_REX_STARTING_POS";
+    public const string P2_REX_STARTING_POS = "P2_REX_STARTING_POS";
+    public const string P1_CUBE_HIT = "P1_CUBE_HIT";
+    public const string P2_CUBE_HIT = "P2_CUBE_HIT";
+
     public const string EKO2Y_GAME_OVER = "EKO2Y_GAME_OVER";
+
+    public const string REX_SUBTRACT_LIFE = "REX_SUBTRACT_LIFE";
 }

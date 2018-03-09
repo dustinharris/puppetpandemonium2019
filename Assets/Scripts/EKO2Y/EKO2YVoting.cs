@@ -25,7 +25,6 @@ public class EKO2YVoting : MonoBehaviour {
         Messenger.AddListener(GameEvent.P2_ALL_RED, P2AllRed);
 
         // Listen for audience-triggered events
-
         Messenger.AddListener(GameEvent.A1_RED, A1Red);
         Messenger.AddListener(GameEvent.A1_BLUE, A1Blue);
         Messenger.AddListener(GameEvent.A2_RED, A2Red);
@@ -40,8 +39,19 @@ public class EKO2YVoting : MonoBehaviour {
     
     void OnDestroy()
     {
+        // Destroy broadcast listeners created by this object
         Messenger.RemoveListener(GameEvent.P1_ALL_BLUE, P1AllBlue);
         Messenger.RemoveListener(GameEvent.P2_ALL_RED, P2AllRed);
+        Messenger.RemoveListener(GameEvent.A1_RED, A1Red);
+        Messenger.RemoveListener(GameEvent.A1_BLUE, A1Blue);
+        Messenger.RemoveListener(GameEvent.A2_RED, A2Red);
+        Messenger.RemoveListener(GameEvent.A2_BLUE, A2Blue);
+        Messenger.RemoveListener(GameEvent.A3_RED, A3Red);
+        Messenger.RemoveListener(GameEvent.A3_BLUE, A3Blue);
+        Messenger.RemoveListener(GameEvent.A4_RED, A4Red);
+        Messenger.RemoveListener(GameEvent.A4_BLUE, A4Blue);
+        Messenger.RemoveListener(GameEvent.A5_RED, A5Red);
+        Messenger.RemoveListener(GameEvent.A5_BLUE, A5Blue);
     }
 
     // Use this for initialization
