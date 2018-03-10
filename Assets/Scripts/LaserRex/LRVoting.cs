@@ -84,7 +84,7 @@ public class LRVoting : MonoBehaviour {
 
 
         // Create Laser
-        CreateLaser(audienceMemberNumber, playerNumber);
+        CreateAudienceLaser(audienceMemberNumber, playerNumber);
 
         // For targeted player's laser cube:
         // If laser cube health > 0, subtract 1
@@ -114,7 +114,7 @@ public class LRVoting : MonoBehaviour {
 
     }
 
-    private void CreateLaser(int audienceMemberNumber, int playerNumber)
+    private void CreateAudienceLaser(int audienceMemberNumber, int playerNumber)
     {
 
         // Get a reference to the correct laser aim
