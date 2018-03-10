@@ -15,6 +15,7 @@ public class LRLaserAimBehavior : MonoBehaviour {
 
     public void CreateNewLaser()
     {
+        transform.LookAt(laserTargetReference.transform);
         // Instatiate new laser object
         GameObject newLaser = Instantiate(laserReference, this.transform.position, this.transform.rotation);
     }
