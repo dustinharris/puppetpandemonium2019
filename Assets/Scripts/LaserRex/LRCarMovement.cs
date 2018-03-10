@@ -12,6 +12,7 @@ public class LRCarMovement : MonoBehaviour
     [SerializeField] private float driftDistance = 1f;
     [SerializeField] private float hoverSpeed = 6f;
     [SerializeField] private GameObject carExhaust;
+    [SerializeField] private GameObject carStoppedIcon;
 
     private LRDrift drift;
     private bool playerKeyDown;
@@ -92,12 +93,18 @@ public class LRCarMovement : MonoBehaviour
             // Car exhaust on
             carExhaust.SetActive(false);
             drift.Stop();
+
+            // Show car stopped icon
+            carStoppedIcon.SetActive(true);
         }
         if (buttonReleased)
         {
             // Car exhaust off
             carExhaust.SetActive(true);
             drift.Resume();
+
+            // Don't show car stopped icon
+            carStoppedIcon.SetActive(false);
         }
 
 
