@@ -38,7 +38,7 @@ public class LRDrift : MonoBehaviour {
             float YDrift = YRandomizer * YDistance * Mathf.Sin(YSpeed * (driftTime));
             float newY = StartPosition.y + (YDrift * YSpeed);
 
-            transform.localPosition = new Vector3(newX, newY, StartPosition.z);
+            transform.localPosition = new Vector3(newX, newY, this.transform.localPosition.z);
         }
 	}
 

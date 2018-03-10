@@ -13,6 +13,7 @@ public class LRCarMovement : MonoBehaviour
     [SerializeField] private float hoverSpeed = 6f;
     [SerializeField] private GameObject carExhaust;
     [SerializeField] private GameObject carStoppedIcon;
+    private bool carStopped;
 
     private LRDrift drift;
     private bool playerKeyDown;
@@ -44,6 +45,7 @@ public class LRCarMovement : MonoBehaviour
         startingPosition = this.transform.localPosition;
         playerKeyDown = false;
         drift = GetComponent<LRDrift>();
+        carStopped = false;
     }
 
     // Update is called once per frame
@@ -54,7 +56,7 @@ public class LRCarMovement : MonoBehaviour
         bool buttonReleased = false;
         // If button was pressed this frame
         bool buttonPressed = false;
-
+        
         // Check to see if the player has traveled far enough to hit Mama Rex
         if (this.transform.localPosition.z > (startingPosition.z + carMaxDistanceZ))
         {
@@ -96,6 +98,16 @@ public class LRCarMovement : MonoBehaviour
 
             // Show car stopped icon
             carStoppedIcon.SetActive(true);
+            carStopped = true;
+
+            // Broadcast player stopped moving event
+            if (playerNumber == 0)
+            {
+                Messenger.Broadcast(GameEvent.REX_P1_STOP_MOVING);
+            } else
+            {
+                Messenger.Broadcast(GameEvent.REX_P2_STOP_MOVING);
+            }
         }
         if (buttonReleased)
         {
@@ -105,8 +117,18 @@ public class LRCarMovement : MonoBehaviour
 
             // Don't show car stopped icon
             carStoppedIcon.SetActive(false);
-        }
+            carStopped = false;
 
+            // Broadcast player started moving event
+            if (playerNumber == 0)
+            {
+                Messenger.Broadcast(GameEvent.REX_P1_START_MOVING);
+            }
+            else
+            {
+                Messenger.Broadcast(GameEvent.REX_P2_START_MOVING);
+            }
+        }
 
         // If the player's key isn't down, move laser car
         if (!playerKeyDown)

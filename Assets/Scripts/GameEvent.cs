@@ -1,10 +1,10 @@
 ﻿public static class GameEvent
 {
+    // Audience Member Game Events
     public const string P1_ALL_RED = "P1_ALL_RED";
     public const string P1_ALL_BLUE = "P1_ALL_BLUE";
     public const string P2_ALL_RED = "P2_ALL_RED";
     public const string P2_ALL_BLUE = "P2_ALL_BLUE";
-
     public const string A1_RED = "A1_RED";
     public const string A1_BLUE = "A1_BLUE";
     public const string A2_RED = "A2_RED";
@@ -16,9 +16,7 @@
     public const string A5_RED = "A5_RED";
     public const string A5_BLUE = "A5_BLUE";
 
-    public const string P1_RELEASE = "P1_RELEASE";
-    public const string P2_RELEASE = "P2_RELEASE";
-
+    // Laser Rex Game Events
     public const string P1_HIT_REX = "P1_HIT_REX";
     public const string P2_HIT_REX = "P2_HIT_REX";
     public const string P1_REX_STARTING_POS = "P1_REX_STARTING_POS";
@@ -31,11 +29,18 @@
     public const string P2_CUBE_NEW_CANDY = "P2_CUBE_NEW_CANDY";
     public const string P1_REX_DONE_MUNCHING = "P1_REX_DONE_MUNCHING";
     public const string P2_REX_DONE_MUNCHING = "P2_REX_DONE_MUNCHING";
-
-
-    public const string EKO2Y_GAME_OVER = "EKO2Y_GAME_OVER";
-
     public const string REX_SUBTRACT_LIFE = "REX_SUBTRACT_LIFE";
     public const string REX_START_WATCH_WARNING = "REX_START_WATCH_WARNING";
     public const string REX_START_WATCH = "REX_START_WATCH";
+    public const string REX_P1_START_MOVING = "REX_P1_START_MOVING";
+    public const string REX_P2_START_MOVING = "REX_P2_START_MOVING";
+    public const string REX_P1_STOP_MOVING = "REX_P1_STOP_MOVING";
+    public const string REX_P2_STOP_MOVING = "REX_P2_STOP_MOVING";
+
+    // EKO2Y Game Events
+    public const string EKO2Y_GAME_OVER = "EKO2Y_GAME_OVER";
+    public const string P1_RELEASE = "P1_RELEASE";
+    public const string P2_RELEASE = "P2_RELEASE";
+
+
 }
