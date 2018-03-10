@@ -6,7 +6,7 @@ public class LRLaserAimBehavior : MonoBehaviour {
 
     [SerializeField] private GameObject laserReference;
     [SerializeField] private GameObject laserTargetReference;
-
+    
     void Start()
     {
         // Change object rotation to look at the corresponding laser cube

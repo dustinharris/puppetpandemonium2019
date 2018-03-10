@@ -40,6 +40,11 @@
     public const string REX_P2_START_INVINCIBILITY = "REX_P2_START_INVINCIBILITY";
     public const string REX_P1_STOP_INVINCIBILITY = "REX_P1_STOP_INVINCIBILITY";
     public const string REX_P2_STOP_INVINCIBILITY = "REX_P2_STOP_INVINCIBILITY";
+    public const string REX_INITIATE_END_SEQUENCE = "REX_INITIATE_END_SEQUENCE";
+    public const string REX_DISABLE_AUDIENCE_LASERS = "REX_DISABLE_AUDIENCE_LASERS";
+    public const string REX_ENABLE_AUDIENCE_LASERS = "REX_ENABLE_AUDIENCE_LASERS";
+    public const string REX_STOP_SCENERY = "REX_STOP_SCENERY";
+    public const string REX_DEFEATED = "REX_DEFEATED";
 
     // EKO2Y Game Events
     public const string EKO2Y_GAME_OVER = "EKO2Y_GAME_OVER";

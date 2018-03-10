@@ -7,8 +7,14 @@ public class LRMoveBackgroundObjects : MonoBehaviour {
     [SerializeField] private GameObject sceneryEmpty;
     [SerializeField] private float scenerySpeed=1;
 
-	// Use this for initialization
-	void Start () {
+    void Awake()
+    {
+        // Listen for game-triggered events
+        Messenger.AddListener(GameEvent.REX_STOP_SCENERY, RexStopScenery);
+    }
+
+    // Use this for initialization
+    void Start () {
 		
 	}
 	
@@ -20,4 +26,9 @@ public class LRMoveBackgroundObjects : MonoBehaviour {
         // Change scenery position each frame
         sceneryEmpty.transform.position = new Vector3(sceneryEmpty.transform.position.x, sceneryEmpty.transform.position.y, newZ);
 	}
+
+    private void RexStopScenery()
+    {
+        scenerySpeed = 0;
+    }
 }

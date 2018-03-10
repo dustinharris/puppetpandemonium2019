@@ -46,6 +46,7 @@ public class LRLevelProgress : MonoBehaviour {
         {
             // Rex is defeated. End level.
             Debug.Log("Rex is defeated");
+            this.GetComponent<LREndSequence>().RexInitiateEndSequence();
         }
     }
 }

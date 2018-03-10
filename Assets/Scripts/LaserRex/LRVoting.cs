@@ -21,6 +21,7 @@ public class LRVoting : MonoBehaviour {
     private bool A4BlueState;
     private bool A5RedState;
     private bool A5BlueState;
+    private bool lasersEnabled = true;
 
     private void Awake()
     {
@@ -35,6 +36,11 @@ public class LRVoting : MonoBehaviour {
         Messenger.AddListener(GameEvent.A4_BLUE, A4Blue);
         Messenger.AddListener(GameEvent.A5_RED, A5Red);
         Messenger.AddListener(GameEvent.A5_BLUE, A5Blue);
+
+
+        // Listen for game-triggered events
+        Messenger.AddListener(GameEvent.REX_DISABLE_AUDIENCE_LASERS, RexDisableAudienceLasers);
+        Messenger.AddListener(GameEvent.REX_ENABLE_AUDIENCE_LASERS, RexEnableAudienceLasers);
     }
 
     private void OnDestroy()
@@ -81,37 +87,39 @@ public class LRVoting : MonoBehaviour {
     private void LRAudienceAction(int audienceMemberNumber, int playerNumber)
     {
         // Check if in pause state -- TODO
-
-
-        // Create Laser
-        CreateAudienceLaser(audienceMemberNumber, playerNumber);
-
-        // For targeted player's laser cube:
-        // If laser cube health > 0, subtract 1
-
-        // Trigger coin animation
-        if (playerNumber == 0)
+        if(lasersEnabled)
         {
-            Messenger.Broadcast(GameEvent.P1_CUBE_HIT);
-        } else
-        {
-            Messenger.Broadcast(GameEvent.P2_CUBE_HIT);
+            // Create Laser
+            CreateAudienceLaser(audienceMemberNumber, playerNumber);
+
+            // For targeted player's laser cube:
+            // If laser cube health > 0, subtract 1
+
+            // Trigger coin animation
+            if (playerNumber == 0)
+            {
+                Messenger.Broadcast(GameEvent.P1_CUBE_HIT);
+            }
+            else
+            {
+                Messenger.Broadcast(GameEvent.P2_CUBE_HIT);
+            }
+
+            if (healthArray[playerNumber] > 0)
+            {
+                // Subtract 1
+                healthArray[playerNumber] -= 1;
+                Debug.Log("Player " + playerNumber + ": " + healthArray[playerNumber]);
+
+                // Show coin animation
+                // Todo
+            }
+            else
+            {
+                // Trigger distraction state
+                // Todo
+            }
         }
-
-        if (healthArray[playerNumber] > 0)
-        {
-            // Subtract 1
-            healthArray[playerNumber] -= 1;
-            Debug.Log("Player " + playerNumber + ": " + healthArray[playerNumber]);
-
-            // Show coin animation
-            // Todo
-        } else
-        {
-            // Trigger distraction state
-            // Todo
-        }
-
     }
 
     private void CreateAudienceLaser(int audienceMemberNumber, int playerNumber)
@@ -138,6 +146,17 @@ public class LRVoting : MonoBehaviour {
         // Rotation/Position determined by each LaserAim
         laserAimBehavior.CreateNewLaser();
 
+    }
+
+    private void RexDisableAudienceLasers()
+    {
+        Debug.Log("Trying to disable lasers");
+        lasersEnabled = false;
+    }
+
+    private void RexEnableAudienceLasers()
+    {
+        lasersEnabled = true;
     }
 
     private void A1Red()

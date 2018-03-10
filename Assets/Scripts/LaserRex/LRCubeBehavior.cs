@@ -57,6 +57,13 @@ public class LRCubeBehavior : MonoBehaviour {
         }
     }
 
+    public void EndGameDropCube()
+    {
+        // Drop cube
+        drift.Stop();
+        rigidBody.useGravity = true;
+    }
+
     private IEnumerator StopFalling()
     {
         while (transform.position.y > 0)

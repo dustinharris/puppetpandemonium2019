@@ -24,6 +24,7 @@ public class LRCarMovement : MonoBehaviour
     private Vector3 hitRexPosition;
     private bool carInvinvincible;
     private Renderer carRenderer;
+    private bool rexDefeated;
 
     private string ButtonName;
 
@@ -36,6 +37,7 @@ public class LRCarMovement : MonoBehaviour
         Messenger.AddListener(GameEvent.REX_P2_START_INVINCIBILITY, RexP2StartInvincibility);
         Messenger.AddListener(GameEvent.REX_P1_STOP_INVINCIBILITY, RexP1StopInvincibility);
         Messenger.AddListener(GameEvent.REX_P2_STOP_INVINCIBILITY, RexP2StopInvincibility);
+        Messenger.AddListener(GameEvent.REX_DEFEATED, RexDefeated);
 
         if (playerNumber == 0)
         {
@@ -59,6 +61,7 @@ public class LRCarMovement : MonoBehaviour
         drift = GetComponent<LRDrift>();
         carStopped = false;
         carRenderer = this.GetComponent<MeshRenderer>();
+        rexDefeated = false;
         
         if (playerNumber == 0)
         {
@@ -153,8 +156,8 @@ public class LRCarMovement : MonoBehaviour
             }
         }
 
-        // If the player's key isn't down && not invincible, move forward
-        if (!playerKeyDown && !carInvinvincible)
+        // If the player's key isn't down && not invincible && not in end sequence, move forward
+        if (!playerKeyDown && !carInvinvincible && !rexDefeated)
         {
             // Update player's z value each second if not stopped
             newZ = this.transform.localPosition.z + (carSpeed * .1f * Time.deltaTime);
@@ -174,6 +177,11 @@ public class LRCarMovement : MonoBehaviour
         {
             StartCoroutine(CarBlink(invincibilityDuration));
         }
+    }
+
+    private void RexDefeated()
+    {
+        rexDefeated = true;
     }
 
     private void RexP1StartInvincibility()

@@ -14,7 +14,8 @@ public class LRRexBehavior : MonoBehaviour {
     private bool p2Moving = true;
     private bool p1Invincible = false;
     private bool p2Invincible = false;
-    private bool rexInWatchState = false;
+    private bool rexInWatchState = true;
+    private bool rexDefeated = true;
     [SerializeField] private bool testFunctions = false;
 
     private void Awake()
@@ -22,6 +23,7 @@ public class LRRexBehavior : MonoBehaviour {
         // Rex state listeners
         Messenger.AddListener(GameEvent.REX_START_WATCH_WARNING, RexStartWatchWarning);
         Messenger.AddListener(GameEvent.REX_START_WATCH, RexStartWatch);
+        Messenger.AddListener(GameEvent.REX_DEFEATED, RexDefeated);
 
         // Car state listeners
         Messenger.AddListener(GameEvent.REX_P1_START_MOVING, RexP1StartMoving);
@@ -73,6 +75,12 @@ public class LRRexBehavior : MonoBehaviour {
                 Messenger.Broadcast(GameEvent.P2_REX_STARTING_POS);
             }
         }
+    }
+
+    private void RexDefeated()
+    {
+        rexInWatchState = false;
+        rexDefeated = true;
     }
 
     private void RexStartWatch()
