@@ -187,8 +187,8 @@ GameObject:
   m_Component:
   - component: {fileID: 4990318806047214}
   - component: {fileID: 82555696720863924}
-  - component: {fileID: 114287717754357970}
   - component: {fileID: 114101958007554156}
+  - component: {fileID: 114387851443909368}
   - component: {fileID: 114666139499152876}
   m_Layer: 0
   m_Name: '[Laser_Cube_Red]'
@@ -290,8 +290,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1634865242171660}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.25, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: -0.44846, y: 0.35999924, z: 0.009999752}
+  m_LocalScale: {x: 0.9120561, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4990318806047214}
   m_RootOrder: 1
@@ -402,8 +402,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1856576217726710}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 7.533429, y: 14.644238, z: -12.500571}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 8.4152, y: 12.809, z: -14.16}
+  m_LocalScale: {x: 0.631743, y: 0.6317429, z: 0.6317429}
   m_Children:
   - {fileID: 4457719436098676}
   - {fileID: 4382105190387978}
@@ -586,7 +586,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerNumber: 0
---- !u!114 &114287717754357970
+--- !u!114 &114387851443909368
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -594,10 +594,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 1856576217726710}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ab8d2cf3fe78a5f4f85f5c97f525d7dd, type: 3}
+  m_Script: {fileID: 11500000, guid: 7447669669dba144e9726e523d0e53ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hoverSpeed: 6
+  XDistance: 1
+  XSpeed: 5
+  YDistance: 5
+  YSpeed: 2
+  RandomMin: 0.03
+  RandomMax: 0.07
 --- !u!114 &114666139499152876
 MonoBehaviour:
   m_ObjectHideFlags: 1
