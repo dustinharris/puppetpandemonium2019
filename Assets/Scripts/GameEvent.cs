@@ -36,4 +36,6 @@
     public const string EKO2Y_GAME_OVER = "EKO2Y_GAME_OVER";
 
     public const string REX_SUBTRACT_LIFE = "REX_SUBTRACT_LIFE";
+    public const string REX_START_WATCH_WARNING = "REX_START_WATCH_WARNING";
+    public const string REX_START_WATCH = "REX_START_WATCH";
 }
