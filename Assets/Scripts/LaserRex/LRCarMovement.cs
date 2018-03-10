@@ -19,6 +19,7 @@ public class LRCarMovement : MonoBehaviour
     private bool playerKeyDown;
     private float newZ;
     private Vector3 startingPosition;
+    private Vector3 hitRexPosition;
 
     private string ButtonName;
 
@@ -36,13 +37,16 @@ public class LRCarMovement : MonoBehaviour
         {
             ButtonName = "BluePuppet";
         }
+
+        // Need to happen early so they can be called in Timeline script's Start function
+        startingPosition = this.transform.localPosition;
+        hitRexPosition = new Vector3(this.transform.localPosition.x, this.transform.localPosition.y, (float)(this.transform.localPosition.z + carMaxDistanceZ));
     }
 
     // Use this for initialization
     void Start()
     {
         // Initialize values
-        startingPosition = this.transform.localPosition;
         playerKeyDown = false;
         drift = GetComponent<LRDrift>();
         carStopped = false;
@@ -139,6 +143,16 @@ public class LRCarMovement : MonoBehaviour
             // Set new position for car
             this.transform.localPosition = new Vector3(transform.localPosition.x, transform.localPosition.y, newZ);
         }
+    }
+
+    public Vector3 getCarStartingPosition()
+    {
+        return startingPosition;
+    }
+
+    public Vector3 getCarEndPosition()
+    {
+        return hitRexPosition;
     }
 
     void P1MoveToStartingPos()
