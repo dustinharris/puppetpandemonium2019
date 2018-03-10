@@ -36,6 +36,10 @@
     public const string REX_P2_START_MOVING = "REX_P2_START_MOVING";
     public const string REX_P1_STOP_MOVING = "REX_P1_STOP_MOVING";
     public const string REX_P2_STOP_MOVING = "REX_P2_STOP_MOVING";
+    public const string REX_P1_START_INVINCIBILITY = "REX_P1_START_INVINCIBILITY";
+    public const string REX_P2_START_INVINCIBILITY = "REX_P2_START_INVINCIBILITY";
+    public const string REX_P1_STOP_INVINCIBILITY = "REX_P1_STOP_INVINCIBILITY";
+    public const string REX_P2_STOP_INVINCIBILITY = "REX_P2_STOP_INVINCIBILITY";
 
     // EKO2Y Game Events
     public const string EKO2Y_GAME_OVER = "EKO2Y_GAME_OVER";

@@ -13,6 +13,7 @@ public class LRCarMovement : MonoBehaviour
     [SerializeField] private float hoverSpeed = 6f;
     [SerializeField] private GameObject carExhaust;
     [SerializeField] private GameObject carStoppedIcon;
+    [SerializeField] private float invincibilityDuration = 1f;
     private bool carStopped;
 
     private LRDrift drift;
@@ -28,6 +29,10 @@ public class LRCarMovement : MonoBehaviour
         // Listen for game-triggered events
         Messenger.AddListener(GameEvent.P1_REX_STARTING_POS, P1MoveToStartingPos);
         Messenger.AddListener(GameEvent.P2_REX_STARTING_POS, P2MoveToStartingPos);
+        Messenger.AddListener(GameEvent.REX_P1_START_INVINCIBILITY, RexP1StartInvincibility);
+        Messenger.AddListener(GameEvent.REX_P2_START_INVINCIBILITY, RexP2StartInvincibility);
+        Messenger.AddListener(GameEvent.REX_P1_STOP_INVINCIBILITY, RexP1StoptInvincibility);
+        Messenger.AddListener(GameEvent.REX_P2_STOP_INVINCIBILITY, RexP2StoptInvincibility);
 
         if (playerNumber == 0)
         {
@@ -143,6 +148,26 @@ public class LRCarMovement : MonoBehaviour
             // Set new position for car
             this.transform.localPosition = new Vector3(transform.localPosition.x, transform.localPosition.y, newZ);
         }
+    }
+
+    private void RexP1StartInvincibility()
+    {
+
+    }
+
+    private void RexP2StartInvincibility()
+    {
+
+    }
+
+    private void RexP1StoptInvincibility()
+    {
+
+    }
+
+    private void RexP2StoptInvincibility()
+    {
+
     }
 
     public Vector3 getCarStartingPosition()
