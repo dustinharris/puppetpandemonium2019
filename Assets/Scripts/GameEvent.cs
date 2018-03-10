@@ -27,6 +27,11 @@
     public const string P2_CUBE_HIT = "P2_CUBE_HIT";
     public const string P1_CUBE_NEW_COIN = "P1_CUBE_NEW_COIN";
     public const string P2_CUBE_NEW_COIN = "P2_CUBE_NEW_COIN";
+    public const string P1_CUBE_NEW_CANDY = "P1_CUBE_NEW_CANDY";
+    public const string P2_CUBE_NEW_CANDY = "P2_CUBE_NEW_CANDY";
+    public const string P1_REX_DONE_MUNCHING = "P1_REX_DONE_MUNCHING";
+    public const string P2_REX_DONE_MUNCHING = "P2_REX_DONE_MUNCHING";
+
 
     public const string EKO2Y_GAME_OVER = "EKO2Y_GAME_OVER";
 
