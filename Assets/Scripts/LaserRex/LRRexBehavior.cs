@@ -10,8 +10,10 @@ public class LRRexBehavior : MonoBehaviour {
     [SerializeField] private float watchWarningTime = 1f;
     private LRLaserAimBehavior laserAimRed;
     private LRLaserAimBehavior laserAimBlue;
-    private bool p1Moving = false;
-    private bool p2Moving = false;
+    private bool p1Moving = true;
+    private bool p2Moving = true;
+    private bool p1Invincible = false;
+    private bool p2Invincible = false;
     private bool rexInWatchState = false;
     [SerializeField] private bool testFunctions = false;
 
@@ -26,6 +28,10 @@ public class LRRexBehavior : MonoBehaviour {
         Messenger.AddListener(GameEvent.REX_P2_START_MOVING, RexP2StartMoving);
         Messenger.AddListener(GameEvent.REX_P1_STOP_MOVING, RexP1StopMoving);
         Messenger.AddListener(GameEvent.REX_P2_STOP_MOVING, RexP2StopMoving);
+        Messenger.AddListener(GameEvent.REX_P1_START_INVINCIBILITY, RexP1StartInvincibility);
+        Messenger.AddListener(GameEvent.REX_P2_START_INVINCIBILITY, RexP2StartInvincibility);
+        Messenger.AddListener(GameEvent.REX_P1_STOP_INVINCIBILITY, RexP1StopInvincibility);
+        Messenger.AddListener(GameEvent.REX_P2_STOP_INVINCIBILITY, RexP2StopInvincibility);
     }
 
     void Start () {
@@ -50,17 +56,19 @@ public class LRRexBehavior : MonoBehaviour {
         // If rex is in watch state and either player is moving, shoot that player
         if (rexInWatchState)
         {
-            if (p1Moving)
+            if (p1Moving && !p1Invincible)
             {
                 // Rex caught P1:
                 // Shoot laser and send back to start
+                //Debug.Log("shoot player");
                 laserAimRed.CreateNewLaser();
                 Messenger.Broadcast(GameEvent.P1_REX_STARTING_POS);
             }
-            if (p2Moving)
+            if (p2Moving && !p2Invincible)
             {
                 // Rex caught P2:
                 // Shoot laser and send back to start
+                //Debug.Log("shoot player");
                 laserAimBlue.CreateNewLaser();
                 Messenger.Broadcast(GameEvent.P2_REX_STARTING_POS);
             }
@@ -90,6 +98,28 @@ public class LRRexBehavior : MonoBehaviour {
     private void RexP2StopMoving()
     {
         p2Moving = false;
+    }
+
+    private void RexP1StartInvincibility()
+    {
+        p1Invincible = true;
+    }
+
+    private void RexP2StartInvincibility()
+    {
+        p2Invincible = true;
+    }
+
+    private void RexP1StopInvincibility()
+    {
+        //Debug.Log("rex received stop invincibility");
+        p1Invincible = false;
+    }
+
+    private void RexP2StopInvincibility()
+    {
+        //Debug.Log("rex received stop invincibility");
+        p2Invincible = false;
     }
 
     private IEnumerator RexStartWatchWarning()

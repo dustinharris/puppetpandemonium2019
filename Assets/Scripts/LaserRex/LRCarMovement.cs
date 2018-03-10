@@ -14,6 +14,7 @@ public class LRCarMovement : MonoBehaviour
     [SerializeField] private GameObject carExhaust;
     [SerializeField] private GameObject carStoppedIcon;
     [SerializeField] private float invincibilityDuration = 1f;
+    [SerializeField] private float invincibilityBlinkInterval = .2f;
     private bool carStopped;
 
     private LRDrift drift;
@@ -21,6 +22,8 @@ public class LRCarMovement : MonoBehaviour
     private float newZ;
     private Vector3 startingPosition;
     private Vector3 hitRexPosition;
+    private bool carInvinvincible;
+    private Renderer carRenderer;
 
     private string ButtonName;
 
@@ -31,8 +34,8 @@ public class LRCarMovement : MonoBehaviour
         Messenger.AddListener(GameEvent.P2_REX_STARTING_POS, P2MoveToStartingPos);
         Messenger.AddListener(GameEvent.REX_P1_START_INVINCIBILITY, RexP1StartInvincibility);
         Messenger.AddListener(GameEvent.REX_P2_START_INVINCIBILITY, RexP2StartInvincibility);
-        Messenger.AddListener(GameEvent.REX_P1_STOP_INVINCIBILITY, RexP1StoptInvincibility);
-        Messenger.AddListener(GameEvent.REX_P2_STOP_INVINCIBILITY, RexP2StoptInvincibility);
+        Messenger.AddListener(GameEvent.REX_P1_STOP_INVINCIBILITY, RexP1StopInvincibility);
+        Messenger.AddListener(GameEvent.REX_P2_STOP_INVINCIBILITY, RexP2StopInvincibility);
 
         if (playerNumber == 0)
         {
@@ -55,6 +58,17 @@ public class LRCarMovement : MonoBehaviour
         playerKeyDown = false;
         drift = GetComponent<LRDrift>();
         carStopped = false;
+        carRenderer = this.GetComponent<MeshRenderer>();
+        
+        if (playerNumber == 0)
+        {
+            Debug.Log(this.name);
+            Messenger.Broadcast(GameEvent.REX_P1_START_INVINCIBILITY);
+        } else
+        {
+            Debug.Log(this.name);
+            Messenger.Broadcast(GameEvent.REX_P2_START_INVINCIBILITY);
+        }
     }
 
     // Update is called once per frame
@@ -139,8 +153,8 @@ public class LRCarMovement : MonoBehaviour
             }
         }
 
-        // If the player's key isn't down, move laser car
-        if (!playerKeyDown)
+        // If the player's key isn't down && not invincible, move forward
+        if (!playerKeyDown && !carInvinvincible)
         {
             // Update player's z value each second if not stopped
             newZ = this.transform.localPosition.z + (carSpeed * .1f * Time.deltaTime);
@@ -150,24 +164,48 @@ public class LRCarMovement : MonoBehaviour
         }
     }
 
+    private void setInvincibility(int playerNum, bool startInvincibility)
+    {
+        // Set car invincible state
+        carInvinvincible = startInvincibility;
+
+        // If car is now invincible, start start blinking coroutine.
+        if (carInvinvincible)
+        {
+            StartCoroutine(CarBlink(invincibilityDuration));
+        }
+    }
+
     private void RexP1StartInvincibility()
     {
-
+        if (playerNumber == 0)
+        {
+            setInvincibility(playerNumber, true);
+        }
     }
 
     private void RexP2StartInvincibility()
     {
-
+        if (playerNumber == 1)
+        {
+            setInvincibility(playerNumber, true);
+        }
     }
 
-    private void RexP1StoptInvincibility()
+    private void RexP1StopInvincibility()
     {
-
+        if (playerNumber == 0)
+        {
+            setInvincibility(playerNumber, false);
+        }
     }
 
-    private void RexP2StoptInvincibility()
+    private void RexP2StopInvincibility()
     {
-
+        if (playerNumber == 1)
+        {
+            setInvincibility(playerNumber, false);
+        }
     }
 
     public Vector3 getCarStartingPosition()
@@ -184,7 +222,10 @@ public class LRCarMovement : MonoBehaviour
     {
         if (playerNumber == 0)
         {
+            // Move player to starting position
             MoveToStartingPos(0);
+            // Make player temporarily invincible
+            Messenger.Broadcast(GameEvent.REX_P1_START_INVINCIBILITY);
         }
     }
 
@@ -192,12 +233,52 @@ public class LRCarMovement : MonoBehaviour
     {
         if (playerNumber == 1)
         {
+            // Move player to starting position
             MoveToStartingPos(1);
+            // Make player temporarily invincible
+            Messenger.Broadcast(GameEvent.REX_P2_START_INVINCIBILITY);
         }
     }
 
     void MoveToStartingPos(int playerNumber)
     {
         this.transform.localPosition = startingPosition;
+    }
+
+    private IEnumerator CarBlink(float waitTime)
+    {
+        float blinkStartTime = Time.time;
+        float blinkStopTime = blinkStartTime + waitTime;
+
+        Debug.Log("Start invincibility " + playerNumber);
+
+        while (Time.time < blinkStopTime)
+        {
+            // Hide car
+            this.GetComponent<Renderer>().enabled = false;
+
+            // Wait for blink interval
+            yield return new WaitForSeconds(invincibilityBlinkInterval);
+
+            // Show car
+            this.GetComponent<Renderer>().enabled = true;
+
+            // Wait for blink interval
+            yield return new WaitForSeconds(invincibilityBlinkInterval);
+        }
+
+        // Afterwards, make sure car is visible
+        this.GetComponent<Renderer>().enabled = true;
+
+        Debug.Log("Turn off invincibility " + playerNumber);
+
+        // Turn off invincibility
+        if (playerNumber == 0)
+        {
+            Messenger.Broadcast(GameEvent.REX_P1_STOP_INVINCIBILITY);
+        } else
+        {
+            Messenger.Broadcast(GameEvent.REX_P2_STOP_INVINCIBILITY);
+        }
     }
 }
