@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LRCarMovement : MonoBehaviour {
+public class LRCarMovement : MonoBehaviour
+{
 
     public int playerNumber;
     [SerializeField] private float carMaxDistanceZ;
@@ -11,29 +12,48 @@ public class LRCarMovement : MonoBehaviour {
     [SerializeField] private float driftDistance = 1f;
     [SerializeField] private float hoverSpeed = 6f;
     [SerializeField] private GameObject carExhaust;
+
+    private LRDrift drift;
     private bool playerKeyDown;
-    private float newX;
-    private float newY;
     private float newZ;
     private Vector3 startingPosition;
+
+    private string ButtonName;
 
     private void Awake()
     {
         // Listen for game-triggered events
         Messenger.AddListener(GameEvent.P1_REX_STARTING_POS, P1MoveToStartingPos);
         Messenger.AddListener(GameEvent.P2_REX_STARTING_POS, P2MoveToStartingPos);
+
+        if (playerNumber == 0)
+        {
+            ButtonName = "RedPuppet";
+        }
+        else
+        {
+            ButtonName = "BluePuppet";
+        }
     }
 
     // Use this for initialization
-    void Start () {
+    void Start()
+    {
         // Initialize values
         startingPosition = this.transform.localPosition;
         playerKeyDown = false;
-	}
-	
-	// Update is called once per frame
-	void Update () {
-        
+        drift = GetComponent<LRDrift>();
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+
+        // If button was released this frame
+        bool buttonReleased = false;
+        // If button was pressed this frame
+        bool buttonPressed = false;
+
         // Check to see if the player has traveled far enough to hit Mama Rex
         if (this.transform.localPosition.z > (startingPosition.z + carMaxDistanceZ))
         {
@@ -47,37 +67,48 @@ public class LRCarMovement : MonoBehaviour {
                 Messenger.Broadcast(GameEvent.P2_HIT_REX);
             }
         }
-        
+
         // Check to see if the player's key is down
-        if ((playerNumber == 0 && Input.GetButton("RedPuppet")) || (playerNumber == 1 && Input.GetButton("BluePuppet"))) {
+
+        if (Input.GetButton(ButtonName))
+        {
             playerKeyDown = true;
-        } else
+            if (Input.GetButtonDown(ButtonName))
+            {
+                buttonPressed = true;
+            }
+        }
+        else
         {
             playerKeyDown = false;
+            if (Input.GetButtonUp(ButtonName))
+            {
+                buttonReleased = true;
+            }
         }
 
-        // If the player's key isn't down, move laser car
-        if (!playerKeyDown) {
+        if (buttonPressed)
+        {
             // Car exhaust on
+            carExhaust.SetActive(false);
+            drift.Stop();
+        }
+        if (buttonReleased)
+        {
+            // Car exhaust off
             carExhaust.SetActive(true);
+            drift.Resume();
+        }
 
-            // Update player's x value based on sin function
-            float drift = (0.05f * driftDistance) * Mathf.Sin(driftSpeed * Time.time);
-            newX = startingPosition.x + (drift * driftSpeed);
 
-            // Update player's y value based on hover speed
-            float hover = 0 + (0.1f * Mathf.Sin(hoverSpeed * Time.time));
-
+        // If the player's key isn't down, move laser car
+        if (!playerKeyDown)
+        {
             // Update player's z value each second if not stopped
             newZ = this.transform.localPosition.z + (carSpeed * .1f * Time.deltaTime);
 
             // Set new position for car
-            this.transform.localPosition = new Vector3(newX, newY, newZ);
-        } else
-        {
-            // Car exhaust off
-            carExhaust.SetActive(false);
-
+            this.transform.localPosition = new Vector3(transform.localPosition.x, transform.localPosition.y, newZ);
         }
     }
 

@@ -15,29 +15,27 @@ public class LRDrift : MonoBehaviour {
     private float XRandomizer;
     private float YRandomizer;
 
-
-
     private bool stopped = false;
 
     private Vector3 StartPosition;
+    private float driftTime;
 
-    private Vector3 ResumedPosition;
-    private float ResumedTime;
-
-	void Start () {
-
+	void Start ()
+    {
         XRandomizer = Random.Range(RandomMin, RandomMax);
         YRandomizer = Random.Range(RandomMin, RandomMax);
         StartPosition = transform.localPosition;
+        driftTime = Time.time;
     }
 
     void Update () {
 		if (!stopped)
         {
-            float XDrift = XRandomizer * XDistance * Mathf.Sin(XSpeed * Time.time);
+            driftTime += Time.deltaTime;
+            float XDrift = XRandomizer * XDistance * Mathf.Sin(XSpeed * (driftTime));
             float newX = StartPosition.x + (XDrift * XSpeed);
 
-            float YDrift = YRandomizer * YDistance * Mathf.Sin(YSpeed * Time.time);
+            float YDrift = YRandomizer * YDistance * Mathf.Sin(YSpeed * (driftTime));
             float newY = StartPosition.y + (YDrift * YSpeed);
 
             transform.localPosition = new Vector3(newX, newY, StartPosition.z);
@@ -51,21 +49,6 @@ public class LRDrift : MonoBehaviour {
 
     public void Resume()
     {
-        ResumedPosition = transform.localPosition;
-        ResumedTime = Time.time;
-        StartCoroutine(GoToStart());
-    }
-
-    private IEnumerator GoToStart()
-    {
-        while (transform.localPosition != StartPosition)
-        {
-            float xt = (Time.time - ResumedTime) / XSpeed;
-            float yt = (Time.time - ResumedTime) / YSpeed;
-            transform.position = new Vector3(Mathf.SmoothStep(ResumedPosition.x, StartPosition.x, xt), Mathf.SmoothStep(ResumedPosition.y, StartPosition.y, yt), StartPosition.z);
-            yield return null;
-        }
-
         stopped = false;
     }
 }
