@@ -128,7 +128,7 @@ public class LRVoting : MonoBehaviour {
         // Get a reference to the correct laser aim
         // Based on audience button press and player number
 
-        LRLaserAimBehavior laserAimBehavior = new LRLaserAimBehavior();
+        LRLaserAimBehavior laserAimBehavior;
 
         // Subtract one from audience member to access correct place in the array
         int arrayCorrectedAudienceMemberNumber = audienceMemberNumber - 1;
