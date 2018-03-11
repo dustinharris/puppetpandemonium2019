@@ -24,7 +24,7 @@ AnimationClip:
         tangentMode: 0
       - serializedVersion: 2
         time: 0.083333336
-        value: {x: -5.7650003, y: 7.7530003, z: 45.010002}
+        value: {x: -9.469001, y: 3.9840002, z: 45.510002}
         inSlope: {x: 0, y: 0, z: 0}
         outSlope: {x: 0, y: 0, z: 0}
         tangentMode: 0
@@ -121,7 +121,7 @@ AnimationClip:
         tangentMode: 136
       - serializedVersion: 2
         time: 0.083333336
-        value: -5.7650003
+        value: -9.469001
         inSlope: 0
         outSlope: 0
         tangentMode: 136
@@ -149,7 +149,7 @@ AnimationClip:
         tangentMode: 136
       - serializedVersion: 2
         time: 0.083333336
-        value: 7.7530003
+        value: 3.9840002
         inSlope: 0
         outSlope: 0
         tangentMode: 136
@@ -177,7 +177,7 @@ AnimationClip:
         tangentMode: 136
       - serializedVersion: 2
         time: 0.083333336
-        value: 45.010002
+        value: 45.510002
         inSlope: 0
         outSlope: 0
         tangentMode: 136
@@ -286,7 +286,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.z
-    path: Laser_Rex_DESK_Fbx/Laser_Rex_Fbx/Body/Head.001
+    path: Laser_Rex_DESK_Fbx/Laser_Rex_Fbx/Body/Head.001/Jaw.001
     classID: 4
     script: {fileID: 0}
   - curve:
@@ -296,17 +296,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.y
-    path: Laser_Rex_DESK_Fbx/Laser_Rex_Fbx/Body/Head.001
-    classID: 4
-    script: {fileID: 0}
-  - curve:
-      serializedVersion: 2
-      m_Curve: []
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    attribute: m_LocalEulerAngles.x
-    path: Laser_Rex_DESK_Fbx/Laser_Rex_Fbx/Body/Head.001
+    path: Laser_Rex_DESK_Fbx/Laser_Rex_Fbx/Body/Head.001/Jaw.001
     classID: 4
     script: {fileID: 0}
   - curve:
@@ -325,8 +315,18 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
+    attribute: m_LocalEulerAngles.x
+    path: Laser_Rex_DESK_Fbx/Laser_Rex_Fbx/Body/Head.001
+    classID: 4
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
     attribute: m_LocalEulerAngles.y
-    path: Laser_Rex_DESK_Fbx/Laser_Rex_Fbx/Body/Head.001/Jaw.001
+    path: Laser_Rex_DESK_Fbx/Laser_Rex_Fbx/Body/Head.001
     classID: 4
     script: {fileID: 0}
   - curve:
@@ -336,7 +336,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.z
-    path: Laser_Rex_DESK_Fbx/Laser_Rex_Fbx/Body/Head.001/Jaw.001
+    path: Laser_Rex_DESK_Fbx/Laser_Rex_Fbx/Body/Head.001
     classID: 4
     script: {fileID: 0}
   m_HasGenericRootTransform: 0
