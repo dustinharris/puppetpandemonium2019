@@ -506,6 +506,7 @@ GameObject:
   - component: {fileID: 114319898393866300}
   - component: {fileID: 54260701093365276}
   - component: {fileID: 95991146275958606}
+  - component: {fileID: 65513794414838566}
   m_Layer: 0
   m_Name: '[Laser_Rex]'
   m_TagString: Untagged
@@ -760,13 +761,14 @@ GameObject:
   m_Component:
   - component: {fileID: 4434194911798062}
   - component: {fileID: 114952918603074078}
+  - component: {fileID: 114590151023119072}
   m_Layer: 0
   m_Name: Dazed_Star_Crown
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &1843985092934500
 GameObject:
   m_ObjectHideFlags: 0
@@ -2181,6 +2183,18 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!65 &65513794414838566
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1546929797058258}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 0
+  serializedVersion: 2
+  m_Size: {x: 3.9496255, y: 1.1904936, z: 2.0035977}
+  m_Center: {x: 0.6187024, y: -0.81430244, z: -7.2082014}
 --- !u!82 &82092975982911258
 AudioSource:
   m_ObjectHideFlags: 1
@@ -2200,7 +2214,7 @@ AudioSource:
   SpatializePostEffects: 0
   Priority: 128
   DopplerLevel: 1
-  MinDistance: 1
+  MinDistance: 0.7727413
   MaxDistance: 500
   Pan2D: 0
   rolloffMode: 0
@@ -2296,6 +2310,13 @@ MonoBehaviour:
   minEatingTime: 3
   maxEatingTime: 6
   eatingIndicator: {fileID: 1843985092934500}
+  jets:
+  - {fileID: 1372205507308426}
+  - {fileID: 1448866052700776}
+  sparks:
+  - {fileID: 1359504232714244}
+  - {fileID: 1920511626339610}
+  starCrown: {fileID: 114590151023119072}
   testFunctions: 0
 --- !u!114 &114230364521846926
 MonoBehaviour:
@@ -2343,6 +2364,34 @@ MonoBehaviour:
   YSpeed: 11
   RandomMin: 0.01
   RandomMax: 0.1
+--- !u!114 &114590151023119072
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1823408897645088}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9fdc6ed825616d44e8939f1cad19c920, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  children:
+  - {fileID: 212446191450484970}
+  - {fileID: 212794324029652298}
+  - {fileID: 212209915631000162}
+  - {fileID: 212446196873441010}
+  - {fileID: 212803528065039020}
+  - {fileID: 212594020296553976}
+  - {fileID: 212280450739768138}
+  - {fileID: 212830769026876422}
+  - {fileID: 212162195994139944}
+  - {fileID: 212098712838160768}
+  - {fileID: 212212183015551394}
+  - {fileID: 212222995743910116}
+  - {fileID: 212447757957081792}
+  - {fileID: 212709840070870680}
+  - {fileID: 212844863397298944}
+  - {fileID: 212955895996555840}
 --- !u!114 &114690536493928900
 MonoBehaviour:
   m_ObjectHideFlags: 1

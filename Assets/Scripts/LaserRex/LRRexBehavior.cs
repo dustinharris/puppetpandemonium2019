@@ -12,6 +12,8 @@ public class LRRexBehavior : MonoBehaviour {
     [SerializeField] private float maxEatingTime = 6f;
     [SerializeField] private GameObject eatingIndicator;
     [SerializeField] private GameObject[] jets;
+    [SerializeField] private GameObject[] sparks;
+    [SerializeField] private RenderEnabler starCrown;
     private LRLaserAimBehavior laserAimRed;
     private LRLaserAimBehavior laserAimBlue;
     private bool p1Moving = true;
@@ -52,6 +54,8 @@ public class LRRexBehavior : MonoBehaviour {
 
         // At the beginning rex is in watch state
         rexInWatchState = true;
+
+        starCrown.SetEnabled(false);
 
         // Test flag to test various functions
         if (testFunctions == true)
@@ -150,6 +154,12 @@ public class LRRexBehavior : MonoBehaviour {
         foreach (GameObject go in jets)
         {
             Destroy(go);
+        }
+
+        starCrown.SetEnabled(true);
+        foreach (GameObject go in sparks)
+        {
+            go.SetActive(true);
         }
 
         GetComponent<LRDrift>().Stop();
