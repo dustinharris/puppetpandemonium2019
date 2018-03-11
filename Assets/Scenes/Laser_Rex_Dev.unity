@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.31027177, g: 0.342013, b: 0.40056828, a: 1}
+  m_IndirectSpecularColor: {r: 0.30439758, g: 0.3028597, b: 0.30201262, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -13539,7 +13539,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PlayerNumber: 1
   Candy: {fileID: 1704660166231444, guid: ffad9a2ed80d86045bf2ac23b961b8ca, type: 2}
-  ParentObject: {fileID: 751365043}
+  candyParent: {fileID: 0}
 --- !u!1 &1200838548
 GameObject:
   m_ObjectHideFlags: 0
@@ -14966,7 +14966,6 @@ GameObject:
   - component: {fileID: 1534413606}
   - component: {fileID: 1534413605}
   - component: {fileID: 1534413608}
-  - component: {fileID: 1534413607}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -15087,20 +15086,6 @@ MonoBehaviour:
     debug: 0
   _aoShader: {fileID: 4800000, guid: 65e203e5acda447acbf9dc1ef78c4a39, type: 3}
   _quadMesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
---- !u!114 &1534413607
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1534413599}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9fca5159a2745d249837bbb91b4a0942, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  MinPitch: 0.1
-  MaxPitch: 0.4
-  PlayOnEnable: 1
 --- !u!82 &1534413608
 AudioSource:
   m_ObjectHideFlags: 0
@@ -15110,7 +15095,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: c532416389f2af346b3efbd39176a986, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
@@ -19720,7 +19705,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PlayerNumber: 0
   Candy: {fileID: 1764895241424692, guid: 6e6caa95f6b3a6b4894cc00cadceb2f3, type: 2}
-  ParentObject: {fileID: 751365043}
+  candyParent: {fileID: 0}
 --- !u!4 &1734385842 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4149801919637876, guid: b2c28e0f3c8dc5f41bfde3605870f568,
