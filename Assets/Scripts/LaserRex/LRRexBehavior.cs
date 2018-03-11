@@ -11,6 +11,7 @@ public class LRRexBehavior : MonoBehaviour {
     [SerializeField] private float minEatingTime = 3f;
     [SerializeField] private float maxEatingTime = 6f;
     [SerializeField] private GameObject eatingIndicator;
+    [SerializeField] private GameObject[] jets;
     private LRLaserAimBehavior laserAimRed;
     private LRLaserAimBehavior laserAimBlue;
     private bool p1Moving = true;
@@ -21,7 +22,7 @@ public class LRRexBehavior : MonoBehaviour {
     private bool rexInP1EatingState = false;
     private bool rexInP2EatingState = false;
     private bool rexDefeated = true;
-        [SerializeField] private bool testFunctions = false;
+    [SerializeField] private bool testFunctions = false;
 
     private void Awake()
     {
@@ -144,6 +145,19 @@ public class LRRexBehavior : MonoBehaviour {
     {
         rexInWatchState = false;
         rexDefeated = true;
+
+        // Destroy all mama rex jets
+        foreach (GameObject go in jets)
+        {
+            Destroy(go);
+        }
+
+        GetComponent<LRDrift>().Stop();
+
+        // Move mama rex to ground
+        GetComponent<Rigidbody>().useGravity = true;
+        GetComponent<Rigidbody>().mass = 1f;
+        GetComponent<BoxCollider>().enabled = true;
     }
 
     private void RexStartWatch()
