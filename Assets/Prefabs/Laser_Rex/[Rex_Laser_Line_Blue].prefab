@@ -177,8 +177,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9fca5159a2745d249837bbb91b4a0942, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MinPitch: 0.1
-  MaxPitch: 0.4
+  MinPitch: 0.3
+  MaxPitch: 0.6
   PlayOnEnable: 1
 --- !u!114 &114567343589235782
 MonoBehaviour:
