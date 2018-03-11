@@ -15,29 +15,11 @@ public class LRCandyBehavior : MonoBehaviour {
         Messenger.AddListener(GameEvent.P2_CUBE_NEW_CANDY, P2Candy);
     }
 
-    // Use this for initialization
-    void Start () {
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
-
     private void GenerateCandy(int candyPlayerNumber)
     {
-        if(PlayerNumber == 0)
-        {
-            candyParent = GameObject.Find("Candy_Red_Spawn_Position");
-        } else
-        {
-            candyParent = GameObject.Find("Candy_Blue_Spawn_Position");
-
-        }
         // Instatiate new laser object
         GameObject candy = Instantiate(Candy, this.transform.position, this.transform.rotation, candyParent.transform);
     }
-
 
     private void P1Candy()
     {
