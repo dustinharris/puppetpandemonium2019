@@ -17,7 +17,6 @@ public class LRCandyBehavior : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-		
 	}
 	
 	// Update is called once per frame
@@ -25,8 +24,16 @@ public class LRCandyBehavior : MonoBehaviour {
 		
 	}
 
-    private void GenerateCandy()
+    private void GenerateCandy(int candyPlayerNumber)
     {
+        if(PlayerNumber == 0)
+        {
+            candyParent = GameObject.Find("Candy_Red_Spawn_Position");
+        } else
+        {
+            candyParent = GameObject.Find("Candy_Blue_Spawn_Position");
+
+        }
         // Instatiate new laser object
         GameObject candy = Instantiate(Candy, this.transform.position, this.transform.rotation, candyParent.transform);
     }
@@ -36,7 +43,7 @@ public class LRCandyBehavior : MonoBehaviour {
     {
         if (PlayerNumber == 0)
         {
-            GenerateCandy();
+            GenerateCandy(0);
         }
     }
 
@@ -44,7 +51,7 @@ public class LRCandyBehavior : MonoBehaviour {
     {
         if (PlayerNumber == 1)
         {
-            GenerateCandy();
+            GenerateCandy(1);
         }
     }
 }
