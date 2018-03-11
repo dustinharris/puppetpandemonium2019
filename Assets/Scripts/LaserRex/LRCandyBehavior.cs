@@ -4,10 +4,9 @@ using UnityEngine;
 
 public class LRCandyBehavior : MonoBehaviour {
 
-    [SerializeField]
-    private int PlayerNumber;
-    [SerializeField]
-    private GameObject Candy;
+    [SerializeField] private int PlayerNumber;
+    [SerializeField] private GameObject Candy;
+    [SerializeField] private GameObject candyParent;
 
     private void Awake()
     {
@@ -26,8 +25,10 @@ public class LRCandyBehavior : MonoBehaviour {
 		
 	}
 
-    private void GenerateCandy() {
-        Instantiate(Candy, transform);
+    private void GenerateCandy()
+    {
+        // Instatiate new laser object
+        GameObject candy = Instantiate(Candy, this.transform.position, this.transform.rotation, candyParent.transform);
     }
 
 
