@@ -95,7 +95,6 @@ public class LRRexBehavior : MonoBehaviour {
             float candyEatTime = Random.Range(minEatingTime, maxEatingTime);
 
             // Show heart over Rex head
-            eatingIndicator = GameObject.Find("MamaRex_Eating_Icon");
             eatingIndicator.GetComponent<SpriteRenderer>().enabled = true;
 
             // Play nodding anim

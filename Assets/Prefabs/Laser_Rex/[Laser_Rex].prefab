@@ -619,12 +619,12 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4114087837092432}
+  - component: {fileID: 114069965667484654}
   - component: {fileID: 82092975982911258}
   - component: {fileID: 114723489824601200}
   - component: {fileID: 114319898393866300}
   - component: {fileID: 54260701093365276}
   - component: {fileID: 95991146275958606}
-  - component: {fileID: 114069965667484654}
   m_Layer: 0
   m_Name: '[Laser_Rex]'
   m_TagString: Untagged
@@ -2667,7 +2667,7 @@ MonoBehaviour:
   watchWarningTime: 1
   minEatingTime: 3
   maxEatingTime: 6
-  eatingIndicator: {fileID: 0}
+  eatingIndicator: {fileID: 1843985092934500}
   testFunctions: 0
 --- !u!114 &114230364521846926
 MonoBehaviour:
