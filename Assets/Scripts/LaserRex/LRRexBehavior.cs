@@ -148,10 +148,13 @@ public class LRRexBehavior : MonoBehaviour {
 
     private void RexStartWatch()
     {
-        // Start watching animation
-        this.GetComponent<Animator>().Play("Laser_Rex_Idle");
+        if (!rexDefeated)
+        {
+            // Start watching animation
+            this.GetComponent<Animator>().Play("Laser_Rex_Idle");
 
-        rexInWatchState = true;
+            rexInWatchState = true;
+        }
     }
 
     private void RexP1StartMoving()
@@ -203,23 +206,26 @@ public class LRRexBehavior : MonoBehaviour {
 
     private IEnumerator RexStartWatchWarningTiming()
     {
-        Debug.Log("Starting Watch Warning");
+        if (!rexDefeated)
+        {
+            Debug.Log("Starting Watch Warning");
 
-        // Show watch warning indicator
-        watchWarningIndicator = GameObject.Find("MamaRex_Pre_Watch_Warning");
-        watchWarningIndicator.GetComponent<SpriteRenderer>().enabled = true;
+            // Show watch warning indicator
+            watchWarningIndicator = GameObject.Find("MamaRex_Pre_Watch_Warning");
+            watchWarningIndicator.GetComponent<SpriteRenderer>().enabled = true;
 
-        // Wait for X seconds, per watchWarningTime
-        yield return new WaitForSeconds(watchWarningTime);
+            // Wait for X seconds, per watchWarningTime
+            yield return new WaitForSeconds(watchWarningTime);
 
-        // Hide watch warning indicator
-        watchWarningIndicator.GetComponent<SpriteRenderer>().enabled = false;
+            // Hide watch warning indicator
+            watchWarningIndicator.GetComponent<SpriteRenderer>().enabled = false;
 
-        // Wait for X seconds, per watchWarningTime
-        yield return new WaitForSeconds(watchWarningTime);
+            // Wait for X seconds, per watchWarningTime
+            yield return new WaitForSeconds(watchWarningTime);
 
-        // Broadcast message to start mamarex watch cycle
-        Messenger.Broadcast(GameEvent.REX_START_WATCH);
+            // Broadcast message to start mamarex watch cycle
+            Messenger.Broadcast(GameEvent.REX_START_WATCH);
+        }
     }
 
     private IEnumerator TestLaser(float waitTime)
