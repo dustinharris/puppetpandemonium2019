@@ -2776,7 +2776,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   redLaserAim: {fileID: 1423725932015178}
   blueLaserAim: {fileID: 1728136829223960}
-  watchWarningIndicator: {fileID: 1042294278301842}
+  watchWarningIndicator: {fileID: 0}
   watchWarningTime: 1
   testFunctions: 0
 --- !u!114 &114661527270283626
