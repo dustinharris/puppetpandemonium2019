@@ -7,6 +7,7 @@ public class LRCubeBehavior : MonoBehaviour {
     [SerializeField] private int playerNumber;
     [SerializeField] private int health = 100;
     [SerializeField] private GameObject[] sparks;
+    [SerializeField] private GameObject[] jets;
 
     private int currentHealth;
     private bool hitable = true;
@@ -62,6 +63,11 @@ public class LRCubeBehavior : MonoBehaviour {
         drift.Stop();
         rigidBody.useGravity = true;
 
+        foreach (GameObject jet in jets)
+        {
+            jet.SetActive(false);
+        }
+
         foreach (GameObject spark in sparks)
         {
             spark.SetActive(true);
@@ -94,6 +100,11 @@ public class LRCubeBehavior : MonoBehaviour {
         foreach (GameObject spark in sparks)
         {
             spark.SetActive(false);
+        }
+
+        foreach (GameObject jet in jets)
+        {
+            jet.SetActive(true);
         }
 
         // Float back to original position

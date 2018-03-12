@@ -171,7 +171,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4457719436098676}
   - component: {fileID: 114862931211714052}
-  - component: {fileID: 114385461951145818}
   m_Layer: 0
   m_Name: Coin_Projection_Angle
   m_TagString: Untagged
@@ -211,6 +210,22 @@ GameObject:
   - component: {fileID: 199601466339539706}
   m_Layer: 0
   m_Name: Star_Particle_Red (7)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &1981485109185120
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4370807773990314}
+  - component: {fileID: 114742075762600014}
+  m_Layer: 0
+  m_Name: Candy_Red_Spawn_Position
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -285,6 +300,19 @@ Transform:
   m_Father: {fileID: 4729284267497432}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: -190.837, y: 78.491, z: -92.194}
+--- !u!4 &4370807773990314
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1981485109185120}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1.5829222, y: 1.5829223, z: 1.5829223}
+  m_Children: []
+  m_Father: {fileID: 4990318806047214}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4382105190387978
 Transform:
   m_ObjectHideFlags: 1
@@ -411,6 +439,7 @@ Transform:
   - {fileID: 4382105190387978}
   - {fileID: 4042173464373210}
   - {fileID: 4729284267497432}
+  - {fileID: 4370807773990314}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -603,20 +632,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerNumber: 0
-  health: 5
---- !u!114 &114385461951145818
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1663794863661582}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4d5158b0d8c8cfd49875867adce871f7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  PlayerNumber: 0
-  Candy: {fileID: 1738713552577700, guid: 19d7e95fa9d98bc4da4dce1f815996c4, type: 2}
+  health: 20
+  sparks:
+  - {fileID: 1227954415388716}
+  - {fileID: 1123039272810190}
+  jets:
+  - {fileID: 1926541586777804}
+  - {fileID: 1984632698653834}
 --- !u!114 &114387851443909368
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -648,6 +670,20 @@ MonoBehaviour:
   MinPitch: 0.1
   MaxPitch: 0.4
   PlayOnEnable: 1
+--- !u!114 &114742075762600014
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1981485109185120}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4d5158b0d8c8cfd49875867adce871f7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PlayerNumber: 0
+  Candy: {fileID: 1764895241424692, guid: 6e6caa95f6b3a6b4894cc00cadceb2f3, type: 2}
+  candyParent: {fileID: 0}
 --- !u!114 &114862931211714052
 MonoBehaviour:
   m_ObjectHideFlags: 1
