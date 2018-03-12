@@ -7,10 +7,7 @@ public class ArduinoManager : MonoBehaviour {
 
     //public ArduinoConnector ardCon;
     public ArduinoThread ardThread;
-
-    private bool p1jump = false;
-    private bool p2jump = false;
-   
+    
     // Use this for initialization
     void Start () {
         //ardCon = new ArduinoConnector();
@@ -30,37 +27,46 @@ public class ArduinoManager : MonoBehaviour {
         }
         string fromArduino = ardThread.ReadFromArduino();
         //Debug.Log(ardThread.ReadFromArduino());
-        if (fromArduino == "p1")
+        if (fromArduino == "a1b")
         {
-            // Make p1 jump
-            p1jump = true;
+            Messenger.Broadcast(GameEvent.A1_BLUE);
         }
-        if (fromArduino == "p2")
+        if (fromArduino == "a1r")
         {
-            // Make p2 jump
-            Debug.Log("P2 JUMP TRUE");
-            p2jump = true;
+            Messenger.Broadcast(GameEvent.A1_RED);
         }
-    }
-
-    public bool readP1Jump()
-    {
-        return p1jump;
-    }
-
-    public void endP1Jump()
-    {
-        p1jump = false;
-    }
-
-    public bool readP2Jump()
-    {
-        return p2jump;
-    }
-
-    public void endP2Jump()
-    {
-        p2jump = false;
+        if (fromArduino == "a2b")
+        {
+            Messenger.Broadcast(GameEvent.A2_BLUE);
+        }
+        if (fromArduino == "a2r")
+        {
+            Messenger.Broadcast(GameEvent.A2_RED);
+        }
+        if (fromArduino == "a3b")
+        {
+            Messenger.Broadcast(GameEvent.A3_BLUE);
+        }
+        if (fromArduino == "a3r")
+        {
+            Messenger.Broadcast(GameEvent.A3_RED);
+        }
+        if (fromArduino == "a4b")
+        {
+            Messenger.Broadcast(GameEvent.A4_BLUE);
+        }
+        if (fromArduino == "a4r")
+        {
+            Messenger.Broadcast(GameEvent.A4_RED);
+        }
+        if (fromArduino == "a5b")
+        {
+            Messenger.Broadcast(GameEvent.A5_BLUE);
+        }
+        if (fromArduino == "a5r")
+        {
+            Messenger.Broadcast(GameEvent.A5_RED);
+        }
     }
 
     void OnApplicationQuit()
