@@ -6,6 +6,7 @@ public class LRCubeBehavior : MonoBehaviour {
 
     [SerializeField] private int playerNumber;
     [SerializeField] private int health = 100;
+    [SerializeField] private GameObject[] sparks;
 
     private int currentHealth;
     private bool hitable = true;
@@ -50,18 +51,21 @@ public class LRCubeBehavior : MonoBehaviour {
 
             startPosition = transform.position;
 
-            // Drop cube
-            drift.Stop();
-            rigidBody.useGravity = true;
+            DropCube();
             StartCoroutine(StopFalling());
         }
     }
 
-    public void EndGameDropCube()
+    public void DropCube()
     {
         // Drop cube
         drift.Stop();
         rigidBody.useGravity = true;
+
+        foreach (GameObject spark in sparks)
+        {
+            spark.SetActive(true);
+        }
     }
 
     private IEnumerator StopFalling()
@@ -86,6 +90,11 @@ public class LRCubeBehavior : MonoBehaviour {
         Vector3 disabledPosition = transform.position;
         float startTime = Time.time;
         float duration = 2.0f;
+
+        foreach (GameObject spark in sparks)
+        {
+            spark.SetActive(false);
+        }
 
         // Float back to original position
         while (transform.position.y != startPosition.y)

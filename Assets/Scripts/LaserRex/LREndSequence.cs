@@ -31,8 +31,8 @@ public class LREndSequence : MonoBehaviour {
         Messenger.Broadcast(GameEvent.REX_DISABLE_AUDIENCE_LASERS);
         
         // Boxes fall away
-        redCube.GetComponent<LRCubeBehavior>().EndGameDropCube();
-        blueCube.GetComponent<LRCubeBehavior>().EndGameDropCube();
+        redCube.GetComponent<LRCubeBehavior>().DropCube();
+        blueCube.GetComponent<LRCubeBehavior>().DropCube();
 
         // Boss enters defeated state; can no longer shoot
         // This also stops player movement forward
