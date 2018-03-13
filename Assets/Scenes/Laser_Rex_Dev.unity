@@ -8207,7 +8207,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerNumber: 1
   carMaxDistanceZ: 2
-  carSpeed: 10
+  carSpeed: 3
   driftSpeed: 6
   driftDistance: 1
   hoverSpeed: 6
@@ -10065,7 +10065,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerNumber: 0
   carMaxDistanceZ: 2
-  carSpeed: 10
+  carSpeed: 3
   driftSpeed: 6
   driftDistance: 1
   hoverSpeed: 6
@@ -20147,7 +20147,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sceneryEmpty: {fileID: 1761755073}
-  scenerySpeed: 1
+  scenerySpeed: 4
 --- !u!4 &2025169371
 Transform:
   m_ObjectHideFlags: 0
