@@ -23,7 +23,7 @@ public class LRRexBehavior : MonoBehaviour {
     private bool rexInWatchState = true;
     private bool rexInP1EatingState = false;
     private bool rexInP2EatingState = false;
-    private bool rexDefeated = true;
+    private bool rexDefeated = false;
     [SerializeField] private bool testFunctions = false;
 
     private void Awake()
