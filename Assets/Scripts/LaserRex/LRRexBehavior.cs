@@ -198,7 +198,10 @@ public class LRRexBehavior : MonoBehaviour {
     {
         rexInWatchState = false;
 
-        StartCoroutine(ReactToHit());
+        if (!rexDefeated)
+        {
+            StartCoroutine(ReactToHit());
+        }
     }
 
     private IEnumerator ReactToHit()
@@ -209,7 +212,10 @@ public class LRRexBehavior : MonoBehaviour {
 
         yield return new WaitForSeconds(dazedTime);
 
-        starCrown.SetEnabled(false);
+        if (!rexDefeated)
+        {
+            starCrown.SetEnabled(false);
+        }
         dazed = false;
 
         Messenger.Broadcast(GameEvent.REX_START_WATCH);
