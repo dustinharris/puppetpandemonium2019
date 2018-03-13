@@ -20,6 +20,7 @@ public class LRRexBehavior : MonoBehaviour {
     private LRLaserAimBehavior laserAimRed;
     private LRLaserAimBehavior laserAimBlue;
     private Animator animator;
+    private string[] CandyAnimations;
 
     private bool p1Moving = true;
     private bool p2Moving = true;
@@ -53,6 +54,10 @@ public class LRRexBehavior : MonoBehaviour {
         Messenger.AddListener(GameEvent.REX_P2_START_INVINCIBILITY, RexP2StartInvincibility);
         Messenger.AddListener(GameEvent.REX_P1_STOP_INVINCIBILITY, RexP1StopInvincibility);
         Messenger.AddListener(GameEvent.REX_P2_STOP_INVINCIBILITY, RexP2StopInvincibility);
+
+        CandyAnimations = new string[2];
+        CandyAnimations[0] = "Laser_Rex_Eating Candy";
+        CandyAnimations[1] = "Laser_Rex_Eating_Candy_Right_side";
     }
 
     void Start () {
@@ -125,7 +130,7 @@ public class LRRexBehavior : MonoBehaviour {
     private IEnumerator RexEat(float eatTime, int candyPlayerNumber)
     {
         // Play eating anim
-        animator.Play("Laser_Rex_Eating_Candy_Loop");
+        animator.Play(CandyAnimations[candyPlayerNumber]);
 
         // Wait for eatTime
         yield return new WaitForSeconds(eatTime);
