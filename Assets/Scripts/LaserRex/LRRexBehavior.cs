@@ -149,6 +149,8 @@ public class LRRexBehavior : MonoBehaviour {
             Messenger.Broadcast(GameEvent.P2_REX_DONE_MUNCHING);
         }
 
+        animator.Play("LAser_REx_Idle no look");
+
         // Start watch warning
         Messenger.Broadcast(GameEvent.REX_START_WATCH_WARNING);
     }
