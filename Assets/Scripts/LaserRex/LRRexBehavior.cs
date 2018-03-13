@@ -10,12 +10,16 @@ public class LRRexBehavior : MonoBehaviour {
     [SerializeField] private float watchWarningTime = 1f;
     [SerializeField] private float minEatingTime = 3f;
     [SerializeField] private float maxEatingTime = 6f;
+    [SerializeField] private float dazedTime = 2f;
     [SerializeField] private GameObject eatingIndicator;
     [SerializeField] private GameObject[] jets;
     [SerializeField] private GameObject[] sparks;
     [SerializeField] private RenderEnabler starCrown;
+
     private LRLaserAimBehavior laserAimRed;
     private LRLaserAimBehavior laserAimBlue;
+    private Animator animator;
+
     private bool p1Moving = true;
     private bool p2Moving = true;
     private bool p1Invincible = false;
@@ -24,6 +28,7 @@ public class LRRexBehavior : MonoBehaviour {
     private bool rexInP1EatingState = false;
     private bool rexInP2EatingState = false;
     private bool rexDefeated = false;
+    private bool dazed = false;
     [SerializeField] private bool testFunctions = false;
 
     private void Awake()
@@ -34,6 +39,9 @@ public class LRRexBehavior : MonoBehaviour {
         Messenger.AddListener(GameEvent.REX_DEFEATED, RexDefeated);
         Messenger.AddListener(GameEvent.P1_CUBE_NEW_CANDY, P1CubeNewCandy);
         Messenger.AddListener(GameEvent.P2_CUBE_NEW_CANDY, P2CubeNewCandy);
+
+        Messenger.AddListener(GameEvent.P1_HIT_REX, HitRex);
+        Messenger.AddListener(GameEvent.P2_HIT_REX, HitRex);
 
         // Car state listeners
         Messenger.AddListener(GameEvent.REX_P1_START_MOVING, RexP1StartMoving);
@@ -52,6 +60,8 @@ public class LRRexBehavior : MonoBehaviour {
         laserAimRed = redLaserAim.GetComponent<LRLaserAimBehavior>();
         laserAimBlue = blueLaserAim.GetComponent<LRLaserAimBehavior>();
 
+        animator = GetComponent<Animator>();
+        
         // At the beginning rex is in watch state
         rexInWatchState = true;
 
@@ -114,7 +124,7 @@ public class LRRexBehavior : MonoBehaviour {
     private IEnumerator RexEat(float eatTime, int candyPlayerNumber)
     {
         // Play eating anim
-        this.GetComponent<Animator>().Play("Laser_Rex_Eating_Candy_Loop");
+        animator.Play("Laser_Rex_Eating_Candy_Loop");
 
         // Wait for eatTime
         yield return new WaitForSeconds(eatTime);
@@ -157,6 +167,7 @@ public class LRRexBehavior : MonoBehaviour {
         }
 
         starCrown.SetEnabled(true);
+        animator.Play("Death animation");
         foreach (GameObject go in sparks)
         {
             go.SetActive(true);
@@ -165,8 +176,10 @@ public class LRRexBehavior : MonoBehaviour {
         GetComponent<LRDrift>().Stop();
 
         // Move mama rex to ground
-        GetComponent<Rigidbody>().useGravity = true;
-        GetComponent<Rigidbody>().mass = 1f;
+        Rigidbody rigidbody = GetComponent<Rigidbody>();
+
+        rigidbody.useGravity = true;
+        rigidbody.mass = 1f;
         GetComponent<BoxCollider>().enabled = true;
     }
 
@@ -175,10 +188,31 @@ public class LRRexBehavior : MonoBehaviour {
         if (!rexDefeated)
         {
             // Start watching animation
-            this.GetComponent<Animator>().Play("Laser_Rex_Idle");
+            animator.Play("Laser_Rex_Idle");
 
             rexInWatchState = true;
         }
+    }
+
+    private void HitRex()
+    {
+        rexInWatchState = false;
+
+        StartCoroutine(ReactToHit());
+    }
+
+    private IEnumerator ReactToHit()
+    {
+        dazed = true;
+        animator.Play("dazed");
+        starCrown.SetEnabled(true);
+
+        yield return new WaitForSeconds(dazedTime);
+
+        starCrown.SetEnabled(false);
+        dazed = false;
+
+        Messenger.Broadcast(GameEvent.REX_START_WATCH);
     }
 
     private void RexP1StartMoving()
@@ -240,6 +274,12 @@ public class LRRexBehavior : MonoBehaviour {
 
             // Wait for X seconds, per watchWarningTime
             yield return new WaitForSeconds(watchWarningTime);
+
+            // Wait to not be dazed
+            while (dazed)
+            {
+                yield return null;
+            }
 
             // Hide watch warning indicator
             watchWarningIndicator.GetComponent<SpriteRenderer>().enabled = false;

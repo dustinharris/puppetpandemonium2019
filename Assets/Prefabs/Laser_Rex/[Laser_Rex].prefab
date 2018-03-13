@@ -2309,6 +2309,7 @@ MonoBehaviour:
   watchWarningTime: 1
   minEatingTime: 3
   maxEatingTime: 6
+  dazedTime: 3
   eatingIndicator: {fileID: 1843985092934500}
   jets:
   - {fileID: 1372205507308426}
