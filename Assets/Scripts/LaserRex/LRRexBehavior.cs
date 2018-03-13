@@ -14,6 +14,7 @@ public class LRRexBehavior : MonoBehaviour {
     [SerializeField] private GameObject eatingIndicator;
     [SerializeField] private GameObject[] jets;
     [SerializeField] private GameObject[] sparks;
+    [SerializeField] private GameObject explosion;
     [SerializeField] private RenderEnabler starCrown;
 
     private LRLaserAimBehavior laserAimRed;
@@ -166,6 +167,7 @@ public class LRRexBehavior : MonoBehaviour {
             Destroy(go);
         }
 
+        explosion.SetActive(true);
         starCrown.SetEnabled(true);
         animator.Play("Death animation");
         foreach (GameObject go in sparks)
