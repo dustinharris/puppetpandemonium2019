@@ -51,14 +51,14 @@ public class InputBroadcaster : MonoBehaviour {
             Messenger.Broadcast(GameEvent.A4_BLUE);
         }
 
-        if (Input.GetButtonDown("Audience4Red"))
+        if (Input.GetButtonDown("RedPuppet"))
         {
-            Messenger.Broadcast(GameEvent.A5_RED);
+            //Messenger.Broadcast(GameEvent.P1_BTN);
         }
 
-        if (Input.GetButtonDown("Audience4Blue"))
+        if (Input.GetButtonDown("BluePuppet"))
         {
-            Messenger.Broadcast(GameEvent.A5_BLUE);
+            //Messenger.Broadcast(GameEvent.P2_BTN);
         }
     }
 }

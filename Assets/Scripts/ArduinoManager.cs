@@ -27,6 +27,7 @@ public class ArduinoManager : MonoBehaviour {
         }
         string fromArduino = ardThread.ReadFromArduino();
         //Debug.Log(ardThread.ReadFromArduino());
+        Debug.Log("From arduino: " + fromArduino);
         if (fromArduino == "a1b")
         {
             Messenger.Broadcast(GameEvent.A1_BLUE);
@@ -66,6 +67,26 @@ public class ArduinoManager : MonoBehaviour {
         if (fromArduino == "a5r")
         {
             Messenger.Broadcast(GameEvent.A5_RED);
+        }
+        if (fromArduino == "p1d")
+        {
+            Debug.Log("Arduino P1 Triggered");
+            Messenger.Broadcast(GameEvent.P1_BTN_DOWN);
+        }
+        if (fromArduino == "p1u")
+        {
+            Debug.Log("Arduino P1 Triggered");
+            Messenger.Broadcast(GameEvent.P1_BTN_UP);
+        }
+        if (fromArduino == "p2d")
+        {
+            Debug.Log("Arduino P2 Triggered");
+            Messenger.Broadcast(GameEvent.P2_BTN_DOWN);
+        }
+        if (fromArduino == "p2u")
+        {
+            Debug.Log("Arduino P2 Triggered");
+            Messenger.Broadcast(GameEvent.P2_BTN_UP);
         }
     }
 
