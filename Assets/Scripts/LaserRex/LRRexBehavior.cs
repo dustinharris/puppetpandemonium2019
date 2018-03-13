@@ -142,9 +142,11 @@ public class LRRexBehavior : MonoBehaviour {
         if (candyPlayerNumber == 0)
         {
             Destroy(GameObject.Find("[Candy_Red_Cube](Clone)"));
+            Messenger.Broadcast(GameEvent.P1_REX_DONE_MUNCHING);
         } else
         {
             Destroy(GameObject.Find("[Candy_Blue_Cube](Clone)"));
+            Messenger.Broadcast(GameEvent.P2_REX_DONE_MUNCHING);
         }
 
         // Start watch warning

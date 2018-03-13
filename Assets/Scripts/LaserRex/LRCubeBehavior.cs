@@ -85,10 +85,6 @@ public class LRCubeBehavior : MonoBehaviour {
         rigidBody.useGravity = false;
         rigidBody.velocity = new Vector3();
         transform.rotation = new Quaternion();
-
-        // TODO remove this when rex broadcasts done munching
-        yield return new WaitForSeconds(5f);
-        Messenger.Broadcast(playerNumber == 0 ? GameEvent.P1_REX_DONE_MUNCHING : GameEvent.P2_REX_DONE_MUNCHING);
     }
 
     private IEnumerator Reenable()
