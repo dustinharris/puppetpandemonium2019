@@ -7,10 +7,7 @@ public class ArduinoManager : MonoBehaviour {
 
     //public ArduinoConnector ardCon;
     public ArduinoThread ardThread;
-
-    private bool p1jump = false;
-    private bool p2jump = false;
-   
+    
     // Use this for initialization
     void Start () {
         //ardCon = new ArduinoConnector();
@@ -30,37 +27,67 @@ public class ArduinoManager : MonoBehaviour {
         }
         string fromArduino = ardThread.ReadFromArduino();
         //Debug.Log(ardThread.ReadFromArduino());
-        if (fromArduino == "p1")
+        Debug.Log("From arduino: " + fromArduino);
+        if (fromArduino == "a1b")
         {
-            // Make p1 jump
-            p1jump = true;
+            Messenger.Broadcast(GameEvent.A1_BLUE);
         }
-        if (fromArduino == "p2")
+        if (fromArduino == "a1r")
         {
-            // Make p2 jump
-            Debug.Log("P2 JUMP TRUE");
-            p2jump = true;
+            Messenger.Broadcast(GameEvent.A1_RED);
         }
-    }
-
-    public bool readP1Jump()
-    {
-        return p1jump;
-    }
-
-    public void endP1Jump()
-    {
-        p1jump = false;
-    }
-
-    public bool readP2Jump()
-    {
-        return p2jump;
-    }
-
-    public void endP2Jump()
-    {
-        p2jump = false;
+        if (fromArduino == "a2b")
+        {
+            Messenger.Broadcast(GameEvent.A2_BLUE);
+        }
+        if (fromArduino == "a2r")
+        {
+            Messenger.Broadcast(GameEvent.A2_RED);
+        }
+        if (fromArduino == "a3b")
+        {
+            Messenger.Broadcast(GameEvent.A3_BLUE);
+        }
+        if (fromArduino == "a3r")
+        {
+            Messenger.Broadcast(GameEvent.A3_RED);
+        }
+        if (fromArduino == "a4b")
+        {
+            Messenger.Broadcast(GameEvent.A4_BLUE);
+        }
+        if (fromArduino == "a4r")
+        {
+            Messenger.Broadcast(GameEvent.A4_RED);
+        }
+        if (fromArduino == "a5b")
+        {
+            Messenger.Broadcast(GameEvent.A5_BLUE);
+        }
+        if (fromArduino == "a5r")
+        {
+            Messenger.Broadcast(GameEvent.A5_RED);
+        }
+        if (fromArduino == "p1d")
+        {
+            Debug.Log("Arduino P1 Triggered");
+            Messenger.Broadcast(GameEvent.P1_BTN_DOWN);
+        }
+        if (fromArduino == "p1u")
+        {
+            Debug.Log("Arduino P1 Triggered");
+            Messenger.Broadcast(GameEvent.P1_BTN_UP);
+        }
+        if (fromArduino == "p2d")
+        {
+            Debug.Log("Arduino P2 Triggered");
+            Messenger.Broadcast(GameEvent.P2_BTN_DOWN);
+        }
+        if (fromArduino == "p2u")
+        {
+            Debug.Log("Arduino P2 Triggered");
+            Messenger.Broadcast(GameEvent.P2_BTN_UP);
+        }
     }
 
     void OnApplicationQuit()
