@@ -11,7 +11,7 @@ public class LRRexBehavior : MonoBehaviour {
     [SerializeField] private float minEatingTime = 3f;
     [SerializeField] private float maxEatingTime = 6f;
     [SerializeField] private float dazedTime = 2f;
-    [SerializeField] private GameObject eatingIndicator;
+    [SerializeField] private SpriteRenderer eatingIndicator;
     [SerializeField] private GameObject[] jets;
     [SerializeField] private GameObject[] sparks;
     [SerializeField] private GameObject explosion;
@@ -116,7 +116,7 @@ public class LRRexBehavior : MonoBehaviour {
             float candyEatTime = Random.Range(minEatingTime, maxEatingTime);
 
             // Show heart over Rex head
-            eatingIndicator.GetComponent<SpriteRenderer>().enabled = true;
+            eatingIndicator.enabled = true;
 
             // Play nodding anim
             // TODO
@@ -136,7 +136,7 @@ public class LRRexBehavior : MonoBehaviour {
         yield return new WaitForSeconds(eatTime);
 
         // Remove heart over Rex head
-        eatingIndicator.GetComponent<SpriteRenderer>().enabled = false;
+        eatingIndicator.enabled = false;
 
         // Destroy candy
         if (candyPlayerNumber == 0)
@@ -220,6 +220,7 @@ public class LRRexBehavior : MonoBehaviour {
         dazed = true;
         animator.Play("dazed");
         starCrown.SetEnabled(true);
+        eatingIndicator.enabled = false;
 
         yield return new WaitForSeconds(dazedTime);
 

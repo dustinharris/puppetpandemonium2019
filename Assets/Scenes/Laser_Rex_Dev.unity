@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.3043976, g: 0.3028597, b: 0.30201268, a: 1}
+  m_IndirectSpecularColor: {r: 0.3043976, g: 0.3028597, b: 0.30201265, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -162,6 +162,11 @@ Prefab:
       propertyPath: laserTargetReference
       value: 
       objectReference: {fileID: 1250773310}
+    - target: {fileID: 114069965667484654, guid: 1bc24309cfbcc6d40a46c292df2edca9,
+        type: 2}
+      propertyPath: eatingIndicator
+      value: 
+      objectReference: {fileID: 2048827843}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 1bc24309cfbcc6d40a46c292df2edca9, type: 2}
   m_IsPrefabParent: 0
@@ -20263,6 +20268,11 @@ Transform:
   m_PrefabParentObject: {fileID: 4149801919637876, guid: b2c28e0f3c8dc5f41bfde3605870f568,
     type: 2}
   m_PrefabInternal: {fileID: 1992689092}
+--- !u!212 &2048827843 stripped
+SpriteRenderer:
+  m_PrefabParentObject: {fileID: 212662344758850616, guid: 1bc24309cfbcc6d40a46c292df2edca9,
+    type: 2}
+  m_PrefabInternal: {fileID: 19687210}
 --- !u!1 &2060636147
 GameObject:
   m_ObjectHideFlags: 0
