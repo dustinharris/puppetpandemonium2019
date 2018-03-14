@@ -26,6 +26,13 @@ public class LRCarMovement : MonoBehaviour
     private Renderer carRenderer;
     private bool rexDefeated;
 
+    private bool p1BtnDown;
+    private bool p1BtnUp;
+    private bool p2BtnDown;
+    private bool p2BtnUp;
+    private bool pBtnDown;
+    private bool pBtnUp;
+
     private string ButtonName;
 
     private void Awake()
@@ -38,6 +45,12 @@ public class LRCarMovement : MonoBehaviour
         Messenger.AddListener(GameEvent.REX_P1_STOP_INVINCIBILITY, RexP1StopInvincibility);
         Messenger.AddListener(GameEvent.REX_P2_STOP_INVINCIBILITY, RexP2StopInvincibility);
         Messenger.AddListener(GameEvent.REX_DEFEATED, RexDefeated);
+
+        // Listen for player triggered events
+        Messenger.AddListener(GameEvent.P1_BTN_DOWN, P1ButtonDown);
+        Messenger.AddListener(GameEvent.P1_BTN_UP, P1ButtonUp);
+        Messenger.AddListener(GameEvent.P2_BTN_DOWN, P2ButtonUp);
+        Messenger.AddListener(GameEvent.P2_BTN_UP, P2ButtonUp);
 
         if (playerNumber == 0)
         {
@@ -98,11 +111,20 @@ public class LRCarMovement : MonoBehaviour
                 }
             }
 
+            if ((playerNumber == 0 && p1BtnDown) || (playerNumber == 1 && p2BtnDown))
+            {
+                pBtnDown = true;
+            } else
+            {
+                pBtnDown = false;
+            }
+
+
             // Check to see if the player's key is down
-            if (Input.GetButton(ButtonName))
+            if (Input.GetButton(ButtonName) || pBtnDown)
             {
                 playerKeyDown = true;
-                if (Input.GetButtonDown(ButtonName))
+                if (Input.GetButtonDown(ButtonName) || pBtnDown)
                 {
                     buttonPressed = true;
                 }
@@ -110,7 +132,7 @@ public class LRCarMovement : MonoBehaviour
             else
             {
                 playerKeyDown = false;
-                if (Input.GetButtonUp(ButtonName))
+                if (Input.GetButtonUp(ButtonName) || (pBtnUp))
                 {
                     buttonReleased = true;
                 }
@@ -164,6 +186,42 @@ public class LRCarMovement : MonoBehaviour
                 this.transform.localPosition = new Vector3(transform.localPosition.x, transform.localPosition.y, newZ);
             }
         }
+    }
+
+    private void P1ButtonDown()
+    {
+        if (playerNumber == 0)
+        {
+            playerKeyDown = true;
+        }
+        p1BtnDown = true;
+    }
+
+    private void P1ButtonUp()
+    {
+        if (playerNumber == 0)
+        {
+            pBtnUp = true;
+            pBtnDown = false;
+        } 
+    }
+
+    private void P2ButtonDown()
+    {
+        if(playerNumber == 1)
+        {
+            playerKeyDown = true;
+        }
+        p2BtnDown = true;
+    }
+
+    private void P2ButtonUp()
+    {
+        if(playerNumber == 1)
+        {
+            playerKeyDown = false;
+        }
+        p2BtnUp = true;
     }
 
     private void StopCar()
