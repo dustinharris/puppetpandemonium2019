@@ -6,7 +6,7 @@ public class LRRexBehavior : MonoBehaviour {
 
     [SerializeField] private GameObject redLaserAim;
     [SerializeField] private GameObject blueLaserAim;
-    [SerializeField] private GameObject watchWarningIndicator;
+    [SerializeField] private SpriteRenderer watchWarningIndicator;
     [SerializeField] private float watchWarningTime = 1f;
     [SerializeField] private float minEatingTime = 3f;
     [SerializeField] private float maxEatingTime = 6f;
@@ -27,10 +27,9 @@ public class LRRexBehavior : MonoBehaviour {
     private bool p1Invincible = false;
     private bool p2Invincible = false;
     private bool rexInWatchState = true;
-    private bool rexInP1EatingState = false;
-    private bool rexInP2EatingState = false;
     private bool rexDefeated = false;
     private bool dazed = false;
+    private bool[] eating;
     [SerializeField] private bool testFunctions = false;
 
     private void Awake()
@@ -54,6 +53,10 @@ public class LRRexBehavior : MonoBehaviour {
         Messenger.AddListener(GameEvent.REX_P2_START_INVINCIBILITY, RexP2StartInvincibility);
         Messenger.AddListener(GameEvent.REX_P1_STOP_INVINCIBILITY, RexP1StopInvincibility);
         Messenger.AddListener(GameEvent.REX_P2_STOP_INVINCIBILITY, RexP2StopInvincibility);
+
+        eating = new bool[2];
+        eating[0] = false;
+        eating[1] = false;
 
         CandyAnimations = new string[2];
         CandyAnimations[0] = "Laser_Rex_Eating Candy";
@@ -86,7 +89,7 @@ public class LRRexBehavior : MonoBehaviour {
         // If rex is in watch state and either player is moving, shoot that player
         if (rexInWatchState)
         {
-            if (p1Moving && !p1Invincible && rexInWatchState)
+            if (p1Moving && !p1Invincible)
             {
                 // Rex caught P1:
                 // Shoot laser and send back to start
@@ -94,7 +97,7 @@ public class LRRexBehavior : MonoBehaviour {
                 laserAimRed.CreateNewLaser();
                 Messenger.Broadcast(GameEvent.P1_REX_STARTING_POS);
             }
-            if (p2Moving && !p2Invincible && rexInWatchState)
+            if (p2Moving && !p2Invincible)
             {
                 // Rex caught P2:
                 // Shoot laser and send back to start
@@ -107,24 +110,26 @@ public class LRRexBehavior : MonoBehaviour {
 
     private void RexEatCandy(int candyPlayerNumber)
     {
-        if (!rexInP1EatingState && !rexInP2EatingState)
-        {
-            // Not currently eating. Safe to eat candy.
-            rexInWatchState = false;
+        eating[candyPlayerNumber] = true;
+        rexInWatchState = false;
 
-            // Choose a random eating time
-            float candyEatTime = Random.Range(minEatingTime, maxEatingTime);
+        // Candy snaps rex out of a daze
+        dazed = false;
+        starCrown.SetEnabled(false);
 
-            // Show heart over Rex head
-            eatingIndicator.enabled = true;
+        // Choose a random eating time
+        float candyEatTime = Random.Range(minEatingTime, maxEatingTime);
 
-            // Play nodding anim
-            // TODO
+        // Show heart over Rex head
+        eatingIndicator.enabled = true;
+        watchWarningIndicator.enabled = false;
 
-            // Start eating
-            StartCoroutine(RexEat(candyEatTime, candyPlayerNumber));
-            
-        }
+        // Play nodding anim
+        // TODO
+
+        // Start eating
+        StartCoroutine(RexEat(candyEatTime, candyPlayerNumber));
+
     }
 
     private IEnumerator RexEat(float eatTime, int candyPlayerNumber)
@@ -135,8 +140,7 @@ public class LRRexBehavior : MonoBehaviour {
         // Wait for eatTime
         yield return new WaitForSeconds(eatTime);
 
-        // Remove heart over Rex head
-        eatingIndicator.enabled = false;
+        eating[candyPlayerNumber] = false;
 
         // Destroy candy
         if (candyPlayerNumber == 0)
@@ -149,10 +153,22 @@ public class LRRexBehavior : MonoBehaviour {
             Messenger.Broadcast(GameEvent.P2_REX_DONE_MUNCHING);
         }
 
-        animator.Play("LAser_REx_Idle no look");
+        int otherPlayer = candyPlayerNumber == 0 ? 1 : 0;
 
-        // Start watch warning
-        Messenger.Broadcast(GameEvent.REX_START_WATCH_WARNING);
+        // If not still eating other side
+        if (!eating[otherPlayer])
+        {
+            // Remove heart over Rex head
+            eatingIndicator.enabled = false;
+
+            if (!dazed)
+            {
+                animator.Play("LAser_REx_Idle no look");
+
+                // Start watch warning
+                Messenger.Broadcast(GameEvent.REX_START_WATCH_WARNING);
+            }
+        }
     }
 
     private void P1CubeNewCandy()
@@ -219,8 +235,13 @@ public class LRRexBehavior : MonoBehaviour {
     {
         dazed = true;
         animator.Play("dazed");
+
+        // Hide other state indicators
         starCrown.SetEnabled(true);
         eatingIndicator.enabled = false;
+        watchWarningIndicator.enabled = false;
+        eating[0] = false;
+        eating[1] = false;
 
         yield return new WaitForSeconds(dazedTime);
 
@@ -230,7 +251,43 @@ public class LRRexBehavior : MonoBehaviour {
         }
         dazed = false;
 
-        Messenger.Broadcast(GameEvent.REX_START_WATCH);
+        Messenger.Broadcast(GameEvent.REX_START_WATCH_WARNING);
+    }
+
+    private void RexStartWatchWarning()
+    {
+        StartCoroutine(RexStartWatchWarningTiming());
+    }
+
+    private IEnumerator RexStartWatchWarningTiming()
+    {
+        // If not still in another state
+        if (!RexPreoccupied())
+        {
+            Debug.Log("Starting Watch Warning");
+
+            // Show watch warning indicator
+            watchWarningIndicator.enabled = true;
+
+            // Wait for X seconds, per watchWarningTime
+            yield return new WaitForSeconds(watchWarningTime);
+
+            // Hide watch warning indicator
+            watchWarningIndicator.enabled = false;
+
+            // If not hit or started eating during warning time start watching
+            if (!RexPreoccupied())
+            {
+                // Broadcast message to start mamarex watch cycle
+                Messenger.Broadcast(GameEvent.REX_START_WATCH);
+            }
+        }
+    }
+
+    // Rex in a state that would prevent her from watching
+    private bool RexPreoccupied()
+    {
+        return rexDefeated || eating[0] || eating[1] || dazed;
     }
 
     private void RexP1StartMoving()
@@ -275,41 +332,6 @@ public class LRRexBehavior : MonoBehaviour {
         p2Invincible = false;
     }
 
-    private void RexStartWatchWarning()
-    {
-        StartCoroutine(RexStartWatchWarningTiming());
-    }
-
-    private IEnumerator RexStartWatchWarningTiming()
-    {
-        if (!rexDefeated)
-        {
-            Debug.Log("Starting Watch Warning");
-
-            // Show watch warning indicator
-            watchWarningIndicator = GameObject.Find("MamaRex_Pre_Watch_Warning");
-            watchWarningIndicator.GetComponent<SpriteRenderer>().enabled = true;
-
-            // Wait for X seconds, per watchWarningTime
-            yield return new WaitForSeconds(watchWarningTime);
-
-            // Wait to not be dazed
-            while (dazed)
-            {
-                yield return null;
-            }
-
-            // Hide watch warning indicator
-            watchWarningIndicator.GetComponent<SpriteRenderer>().enabled = false;
-
-            // Wait for X seconds, per watchWarningTime
-            yield return new WaitForSeconds(watchWarningTime);
-
-            // Broadcast message to start mamarex watch cycle
-            Messenger.Broadcast(GameEvent.REX_START_WATCH);
-        }
-    }
-
     private IEnumerator TestLaser(float waitTime)
     {
         while(true)
@@ -325,13 +347,13 @@ public class LRRexBehavior : MonoBehaviour {
         while (true)
         {
             // Show watch warning indicator
-            watchWarningIndicator.SetActive(true);
+            watchWarningIndicator.enabled = true;
 
             // Wait for X seconds, per watchWarningTime
             yield return new WaitForSeconds(watchWarningTime);
 
             // Hide watch warning indicator
-            watchWarningIndicator.SetActive(false);
+            watchWarningIndicator.enabled = false;
 
             // Wait for X seconds, per watchWarningTime
             yield return new WaitForSeconds(watchWarningTime);
