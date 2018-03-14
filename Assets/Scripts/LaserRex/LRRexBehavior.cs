@@ -101,7 +101,6 @@ public class LRRexBehavior : MonoBehaviour {
             {
                 // Rex caught P2:
                 // Shoot laser and send back to start
-                //Debug.Log("shoot player");
                 laserAimBlue.CreateNewLaser();
                 Messenger.Broadcast(GameEvent.P2_REX_STARTING_POS);
             }
@@ -264,8 +263,6 @@ public class LRRexBehavior : MonoBehaviour {
         // If not still in another state
         if (!RexPreoccupied())
         {
-            Debug.Log("Starting Watch Warning");
-
             // Show watch warning indicator
             watchWarningIndicator.enabled = true;
 
@@ -322,13 +319,11 @@ public class LRRexBehavior : MonoBehaviour {
 
     private void RexP1StopInvincibility()
     {
-        //Debug.Log("rex received stop invincibility");
         p1Invincible = false;
     }
 
     private void RexP2StopInvincibility()
     {
-        //Debug.Log("rex received stop invincibility");
         p2Invincible = false;
     }
 

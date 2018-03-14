@@ -1,16 +1,19 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using WindowsInput;
+using System;
 
 public class InputBroadcaster : MonoBehaviour {
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
+    InputSimulator inputSim;
+
+    void Start()
+    {
+        inputSim = new InputSimulator();
+    }
+
+    void Update () {
         if (Input.GetButtonDown("Audience0Red"))
         {
             Messenger.Broadcast(GameEvent.A1_RED);

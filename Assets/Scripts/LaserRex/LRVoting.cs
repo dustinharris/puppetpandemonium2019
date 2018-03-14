@@ -109,7 +109,6 @@ public class LRVoting : MonoBehaviour {
             {
                 // Subtract 1
                 healthArray[playerNumber] -= 1;
-                Debug.Log("Player " + playerNumber + ": " + healthArray[playerNumber]);
 
                 // Show coin animation
                 // Todo

@@ -78,11 +78,9 @@ public class LRCarMovement : MonoBehaviour
         
         if (playerNumber == 0)
         {
-            //Debug.Log(this.name);
             Messenger.Broadcast(GameEvent.REX_P1_START_INVINCIBILITY);
         } else
         {
-            //Debug.Log(this.name);
             Messenger.Broadcast(GameEvent.REX_P2_START_INVINCIBILITY);
         }
     }
@@ -344,8 +342,6 @@ public class LRCarMovement : MonoBehaviour
 
         // Afterwards, make sure car is visible
         this.GetComponent<Renderer>().enabled = true;
-
-        //Debug.Log("Turn off invincibility " + playerNumber);
 
         // Turn off invincibility
         if (playerNumber == 0)
