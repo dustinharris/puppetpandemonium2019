@@ -61,6 +61,8 @@ public class GrandmaUI : MonoBehaviour
     private RandomPitch SmoochSound;
     [SerializeField]
     private RandomPitch CatShotSound;
+    [SerializeField]
+    private RandomPitch GrandmaShotSound;
 
     public int Lives;
     [SerializeField]
@@ -326,6 +328,9 @@ public class GrandmaUI : MonoBehaviour
         if (which == Target.Kitty)
         {
             CatShotSound.PlayRandomPitch();
+        } else
+        {
+            GrandmaShotSound.PlayRandomPitch();
         }
     }
 
