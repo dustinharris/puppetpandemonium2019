@@ -1,5 +1,5 @@
 ﻿using UnityEngine;
-using UnityEditor;
+//using UnityEditor;
 using System.IO;
 using System.Collections.Generic;
 
@@ -17,7 +17,7 @@ public class HandleTextFile : MonoBehaviour {
         writer.Close();
 
         //Re-import the file to update the reference in the editor
-        AssetDatabase.ImportAsset(path);
+        //AssetDatabase.ImportAsset(path);
     }
     
     public void ReadString()
