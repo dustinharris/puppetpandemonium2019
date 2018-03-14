@@ -78,7 +78,7 @@ public class LRCubeBehavior : MonoBehaviour {
 
     private IEnumerator StopFalling()
     {
-        while (transform.position.y > 0)
+        while (transform.position.y > -1)
         {
             yield return null;
         }
@@ -114,6 +114,12 @@ public class LRCubeBehavior : MonoBehaviour {
                 transform.position = new Vector3(Mathf.SmoothStep(disabledPosition.x, startPosition.x, t),
                     Mathf.SmoothStep(disabledPosition.y, startPosition.y, t), startPosition.z);
                 yield return null;
+
+                // If rex defeated while floating back up don't keep floating
+                if (defeated)
+                {
+                    yield break;
+                }
             }
 
             drift.Resume();
