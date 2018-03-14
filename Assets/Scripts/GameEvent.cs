@@ -15,10 +15,6 @@
     public const string A4_BLUE = "A4_BLUE";
     public const string A5_RED = "A5_RED";
     public const string A5_BLUE = "A5_BLUE";
-    public const string P1_BTN_DOWN = "P1_BTN_DOWN";
-    public const string P1_BTN_UP = "P1_BTN_UP";
-    public const string P2_BTN_DOWN = "P2_BTN_DOWN";
-    public const string P2_BTN_UP = "P2_BTN_UP";
 
     // Laser Rex Game Events
     public const string P1_HIT_REX = "P1_HIT_REX";

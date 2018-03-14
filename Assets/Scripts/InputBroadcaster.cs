@@ -2,11 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 using WindowsInput;
-using System;
 
 public class InputBroadcaster : MonoBehaviour {
 
-    InputSimulator inputSim;
+    private InputSimulator inputSim;
 
     void Start()
     {
@@ -62,6 +61,40 @@ public class InputBroadcaster : MonoBehaviour {
         if (Input.GetButtonDown("BluePuppet"))
         {
             //Messenger.Broadcast(GameEvent.P2_BTN);
+        }
+
+        //
+        // The following two are used to test arduino code
+        //
+        if (Input.GetKeyDown(KeyCode.A))
+        {
+            Debug.Log("ADown");
+            inputSim.Keyboard.KeyDown(WindowsInput.Native.VirtualKeyCode.LSHIFT);
+        }
+
+        if (Input.GetKeyUp(KeyCode.A))
+        {
+            Debug.Log("AUp");
+            inputSim.Keyboard.KeyUp(WindowsInput.Native.VirtualKeyCode.LSHIFT);
+        }
+
+        if (Input.GetKeyDown(KeyCode.S))
+        {
+            Debug.Log("SDown");
+            inputSim.Keyboard.KeyDown(WindowsInput.Native.VirtualKeyCode.RETURN);
+        }
+
+        if (Input.GetKeyUp(KeyCode.S))
+        {
+            Debug.Log("SUp");
+            inputSim.Keyboard.KeyUp(WindowsInput.Native.VirtualKeyCode.RETURN);
+        }
+
+        if (Input.GetKeyDown(KeyCode.D))
+        {
+            Debug.Log("D");
+            inputSim.Keyboard.KeyDown(WindowsInput.Native.VirtualKeyCode.VK_1);
+            inputSim.Keyboard.KeyUp(WindowsInput.Native.VirtualKeyCode.VK_1);
         }
     }
 }
