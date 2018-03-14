@@ -13,6 +13,7 @@ public class LRCubeBehavior : MonoBehaviour {
     private bool hitable = true;
     private Rigidbody rigidBody;
     private LRDrift drift;
+    private bool defeated = false;
 
     private Vector3 startPosition;
     
@@ -23,6 +24,7 @@ public class LRCubeBehavior : MonoBehaviour {
         Messenger.AddListener(GameEvent.P2_CUBE_HIT, P2CubeHit);
         Messenger.AddListener(GameEvent.P1_REX_DONE_MUNCHING, P1Reenable);
         Messenger.AddListener(GameEvent.P2_REX_DONE_MUNCHING, P2Reenable);
+        Messenger.AddListener(GameEvent.REX_DEFEATED, RexDefeated);
 
         rigidBody = GetComponent<Rigidbody>();
         drift = GetComponent<LRDrift>();
@@ -89,32 +91,40 @@ public class LRCubeBehavior : MonoBehaviour {
 
     private IEnumerator Reenable()
     {
-        Vector3 disabledPosition = transform.position;
-        float startTime = Time.time;
-        float duration = 2.0f;
-
-        foreach (GameObject spark in sparks)
+        if (!defeated)
         {
-            spark.SetActive(false);
-        }
+            Vector3 disabledPosition = transform.position;
+            float startTime = Time.time;
+            float duration = 2.0f;
 
-        foreach (GameObject jet in jets)
-        {
-            jet.SetActive(true);
-        }
+            foreach (GameObject spark in sparks)
+            {
+                spark.SetActive(false);
+            }
 
-        // Float back to original position
-        while (transform.position.y != startPosition.y)
-        {
-            float t = (Time.time - startTime) / duration;
-            transform.position = new Vector3(Mathf.SmoothStep(disabledPosition.x, startPosition.x, t),
-                Mathf.SmoothStep(disabledPosition.y, startPosition.y, t), startPosition.z);
-            yield return null;
-        }
+            foreach (GameObject jet in jets)
+            {
+                jet.SetActive(true);
+            }
 
-        drift.Resume();
-        currentHealth = health;
-        hitable = true;
+            // Float back to original position
+            while (transform.position.y != startPosition.y)
+            {
+                float t = (Time.time - startTime) / duration;
+                transform.position = new Vector3(Mathf.SmoothStep(disabledPosition.x, startPosition.x, t),
+                    Mathf.SmoothStep(disabledPosition.y, startPosition.y, t), startPosition.z);
+                yield return null;
+            }
+
+            drift.Resume();
+            currentHealth = health;
+            hitable = true;
+        }
+    }
+
+    private void RexDefeated()
+    {
+        defeated = true;
     }
 
     private void P1CubeHit()
