@@ -4681,12 +4681,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9212e72352a40284f9ef89a1db62a6e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  redTimelineCar: {fileID: 0}
-  blueTimelineCar: {fileID: 0}
+  timelineCar: {fileID: 1611347172}
   timelineCarMinY: {fileID: 1649926060}
   timelineCarMaxY: {fileID: 37155968}
-  redGameCar: {fileID: 0}
-  blueGameCar: {fileID: 0}
+  gameCar: {fileID: 623935193}
 --- !u!114 &564594206
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9781,12 +9779,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9212e72352a40284f9ef89a1db62a6e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  redTimelineCar: {fileID: 0}
-  blueTimelineCar: {fileID: 0}
+  timelineCar: {fileID: 1969416109}
   timelineCarMinY: {fileID: 1160539562}
   timelineCarMaxY: {fileID: 1572316864}
-  redGameCar: {fileID: 0}
-  blueGameCar: {fileID: 0}
+  gameCar: {fileID: 1250773310}
 --- !u!114 &1144040384
 MonoBehaviour:
   m_ObjectHideFlags: 0
