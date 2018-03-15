@@ -188,6 +188,7 @@ GameObject:
   - component: {fileID: 4990318806047214}
   - component: {fileID: 114101958007554156}
   - component: {fileID: 114387851443909368}
+  - component: {fileID: 114709600199520908}
   - component: {fileID: 82555696720863924}
   - component: {fileID: 114666139499152876}
   - component: {fileID: 54616435032605048}
@@ -670,6 +671,23 @@ MonoBehaviour:
   MinPitch: 0.1
   MaxPitch: 0.4
   PlayOnEnable: 1
+--- !u!114 &114709600199520908
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1856576217726710}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7447669669dba144e9726e523d0e53ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  XDistance: 0.06
+  XSpeed: 40
+  YDistance: 0.08
+  YSpeed: 38
+  RandomMin: 0.02
+  RandomMax: 0.1
 --- !u!114 &114742075762600014
 MonoBehaviour:
   m_ObjectHideFlags: 1

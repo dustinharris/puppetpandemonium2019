@@ -13,6 +13,7 @@ public class LRCubeBehavior : MonoBehaviour {
     private bool hitable = true;
     private Rigidbody rigidBody;
     private LRDrift drift;
+    private LRDrift shake;
     private bool defeated = false;
 
     private Vector3 startPosition;
@@ -27,7 +28,11 @@ public class LRCubeBehavior : MonoBehaviour {
         Messenger.AddListener(GameEvent.REX_DEFEATED, RexDefeated);
 
         rigidBody = GetComponent<Rigidbody>();
-        drift = GetComponent<LRDrift>();
+
+        LRDrift[] drifts = GetComponents<LRDrift>();
+        drift = drifts[0];
+        shake = drifts[1];
+        shake.Stop();
 
         currentHealth = health;
         startPosition = transform.position;
@@ -41,7 +46,11 @@ public class LRCubeBehavior : MonoBehaviour {
     private void CubeHitByLaser()
     {
         currentHealth -= 1;
-        if (currentHealth == 0)
+        if (currentHealth > 0)
+        {
+            StartCoroutine(Shake());
+        }
+        else
         {
             hitable = false;
             if (playerNumber == 0)
@@ -59,10 +68,27 @@ public class LRCubeBehavior : MonoBehaviour {
         }
     }
 
+    private IEnumerator Shake()
+    {
+        shake.SetPosition(transform.localPosition);
+
+        drift.Stop();
+        shake.Resume();
+        yield return new WaitForSeconds(.1f);
+        shake.Stop();
+
+        // If not hitable then in drop state
+        if (hitable)
+        {
+            drift.Resume();
+        }
+    }
+
     public void DropCube()
     {
         // Drop cube
         drift.Stop();
+        shake.Stop();
         rigidBody.useGravity = true;
 
         foreach (GameObject jet in jets)
