@@ -49,6 +49,7 @@ public class LRCubeBehavior : MonoBehaviour {
         if (currentHealth > 0)
         {
             StartCoroutine(Shake());
+            StartCoroutine(Spark());
         }
         else
         {
@@ -65,6 +66,25 @@ public class LRCubeBehavior : MonoBehaviour {
 
             DropCube();
             StartCoroutine(StopFalling());
+        }
+    }
+
+    private IEnumerator Spark()
+    {
+        foreach (GameObject spark in sparks)
+        {
+            spark.SetActive(true);
+        }
+
+        yield return new WaitForSeconds(.2f);
+
+        if (hitable)
+        {
+
+            foreach (GameObject spark in sparks)
+            {
+                spark.SetActive(false);
+            }
         }
     }
 
