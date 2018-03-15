@@ -21,6 +21,7 @@ public class LRRexBehavior : MonoBehaviour {
     private LRLaserAimBehavior laserAimBlue;
     private Animator animator;
     private string[] CandyAnimations;
+    private string[] NoddingAnimations;
 
     private bool p1Moving = true;
     private bool p2Moving = true;
@@ -62,6 +63,9 @@ public class LRRexBehavior : MonoBehaviour {
         CandyAnimations = new string[2];
         CandyAnimations[0] = "Laser_Rex_Eating Candy";
         CandyAnimations[1] = "Laser_Rex_Eating_Candy_Right_side";
+        NoddingAnimations = new string[2];
+        NoddingAnimations[0] = "Laser_Rex_Candy_Time";
+        NoddingAnimations[1] = "Laser_Rex_Nodding_Right_Side";
     }
 
     void Start () {
@@ -131,7 +135,7 @@ public class LRRexBehavior : MonoBehaviour {
         watchWarningIndicator.enabled = false;
 
         // Play nodding anim
-        // TODO
+        animator.Play(NoddingAnimations[candyPlayerNumber]);
 
         // Start eating
         StartCoroutine(RexEat(candyEatTime, candyPlayerNumber));
@@ -140,11 +144,14 @@ public class LRRexBehavior : MonoBehaviour {
 
     private IEnumerator RexEat(float eatTime, int candyPlayerNumber)
     {
+        // Keep nodding for a second
+        yield return new WaitForSeconds(1);
+
         // Play eating anim
         animator.Play(CandyAnimations[candyPlayerNumber]);
 
         // Wait for eatTime
-        yield return new WaitForSeconds(eatTime);
+        yield return new WaitForSeconds(eatTime-1);
 
         eating[candyPlayerNumber] = false;
 
