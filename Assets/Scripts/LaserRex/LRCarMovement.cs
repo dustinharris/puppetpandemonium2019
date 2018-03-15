@@ -272,9 +272,7 @@ public class LRCarMovement : MonoBehaviour
     private IEnumerator CarBlink(float waitTime)
     {
         float blinkStartTime = Time.time;
-        float blinkStopTime = blinkStartTime + waitTime;
-
-        //Debug.Log("Start invincibility " + playerNumber);
+        float blinkStopTime = blinkStartTime + waitTime/2;
 
         while (Time.time < blinkStopTime)
         {
@@ -293,6 +291,8 @@ public class LRCarMovement : MonoBehaviour
 
         // Afterwards, make sure car is visible
         this.GetComponent<Renderer>().enabled = true;
+
+        yield return new WaitForSeconds(waitTime / 2);
 
         // Turn off invincibility
         if (playerNumber == 0)
