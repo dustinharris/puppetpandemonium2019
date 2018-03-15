@@ -40,7 +40,8 @@ public class LRVoting : MonoBehaviour {
 
         // Listen for game-triggered events
         Messenger.AddListener(GameEvent.REX_DISABLE_AUDIENCE_LASERS, RexDisableAudienceLasers);
-        Messenger.AddListener(GameEvent.REX_ENABLE_AUDIENCE_LASERS, RexEnableAudienceLasers);
+
+        Messenger.AddListener(GameEvent.GAME_START, RexEnableAudienceLasers);
     }
 
     private void OnDestroy()
@@ -76,6 +77,8 @@ public class LRVoting : MonoBehaviour {
         healthArray = new int[2];
         healthArray[0] = laserCubeRedHealth;
         healthArray[1] = laserCubeBlueHealth;
+
+        RexDisableAudienceLasers();
     }
 	
 	// Update is called once per frame

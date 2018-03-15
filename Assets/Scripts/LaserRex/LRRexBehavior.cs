@@ -40,7 +40,6 @@ public class LRRexBehavior : MonoBehaviour {
         Messenger.AddListener(GameEvent.REX_DEFEATED, RexDefeated);
         Messenger.AddListener(GameEvent.P1_CUBE_NEW_CANDY, P1CubeNewCandy);
         Messenger.AddListener(GameEvent.P2_CUBE_NEW_CANDY, P2CubeNewCandy);
-
         Messenger.AddListener(GameEvent.P1_HIT_REX, HitRex);
         Messenger.AddListener(GameEvent.P2_HIT_REX, HitRex);
 
@@ -53,6 +52,8 @@ public class LRRexBehavior : MonoBehaviour {
         Messenger.AddListener(GameEvent.REX_P2_START_INVINCIBILITY, RexP2StartInvincibility);
         Messenger.AddListener(GameEvent.REX_P1_STOP_INVINCIBILITY, RexP1StopInvincibility);
         Messenger.AddListener(GameEvent.REX_P2_STOP_INVINCIBILITY, RexP2StopInvincibility);
+
+        Messenger.AddListener(GameEvent.GAME_START, GameStart);
 
         eating = new bool[2];
         eating[0] = false;
@@ -70,9 +71,10 @@ public class LRRexBehavior : MonoBehaviour {
         laserAimBlue = blueLaserAim.GetComponent<LRLaserAimBehavior>();
 
         animator = GetComponent<Animator>();
+        animator.Play("LAser_REx_Idle no look");
         
         // At the beginning rex is in watch state
-        rexInWatchState = true;
+        rexInWatchState = false;
 
         starCrown.SetEnabled(false);
 
@@ -82,6 +84,11 @@ public class LRRexBehavior : MonoBehaviour {
             StartCoroutine(TestLaser(1f));
             StartCoroutine(TestWarningIndicator(1f));
         }
+    }
+
+    private void GameStart()
+    {
+        RexStartWatchWarning();   
     }
 
     void Update()
