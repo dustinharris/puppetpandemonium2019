@@ -25,6 +25,7 @@ public class LRCarMovement : MonoBehaviour
     private bool carInvinvincible;
     private Renderer carRenderer;
     private bool rexDefeated;
+    private bool gameStarted = false;
 
     private string ButtonName;
 
@@ -38,6 +39,7 @@ public class LRCarMovement : MonoBehaviour
         Messenger.AddListener(GameEvent.REX_P1_STOP_INVINCIBILITY, RexP1StopInvincibility);
         Messenger.AddListener(GameEvent.REX_P2_STOP_INVINCIBILITY, RexP2StopInvincibility);
         Messenger.AddListener(GameEvent.REX_DEFEATED, RexDefeated);
+        Messenger.AddListener(GameEvent.GAME_START, GameStarted);
 
         if (playerNumber == 0)
         {
@@ -62,6 +64,7 @@ public class LRCarMovement : MonoBehaviour
         carStopped = false;
         carRenderer = this.GetComponent<MeshRenderer>();
         rexDefeated = false;
+        carExhaust.SetActive(false);
         
         if (playerNumber == 0)
         {
@@ -72,10 +75,16 @@ public class LRCarMovement : MonoBehaviour
         }
     }
 
+    private void GameStarted()
+    {
+        gameStarted = true;
+        carExhaust.SetActive(true);
+    }
+
     // Update is called once per frame
     void Update()
     {
-        if (!rexDefeated)
+        if (gameStarted && !rexDefeated)
         {
             // If button was released this frame
             bool buttonReleased = false;

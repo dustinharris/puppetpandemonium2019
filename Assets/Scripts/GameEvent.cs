@@ -16,6 +16,8 @@
     public const string A5_RED = "A5_RED";
     public const string A5_BLUE = "A5_BLUE";
 
+    public const string GAME_START = "GAME_START";
+
     // Laser Rex Game Events
     public const string P1_HIT_REX = "P1_HIT_REX";
     public const string P2_HIT_REX = "P2_HIT_REX";
@@ -42,7 +44,6 @@
     public const string REX_P2_STOP_INVINCIBILITY = "REX_P2_STOP_INVINCIBILITY";
     public const string REX_INITIATE_END_SEQUENCE = "REX_INITIATE_END_SEQUENCE";
     public const string REX_DISABLE_AUDIENCE_LASERS = "REX_DISABLE_AUDIENCE_LASERS";
-    public const string REX_ENABLE_AUDIENCE_LASERS = "REX_ENABLE_AUDIENCE_LASERS";
     public const string REX_STOP_SCENERY = "REX_STOP_SCENERY";
     public const string REX_DEFEATED = "REX_DEFEATED";
 

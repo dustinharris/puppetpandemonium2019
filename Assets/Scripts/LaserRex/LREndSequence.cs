@@ -10,6 +10,7 @@ public class LREndSequence : MonoBehaviour {
     [SerializeField] private GameObject[] scenerySpawnObjects;
     [SerializeField] private GameObject[] mamaRexJets;
     [SerializeField] private bool testEndGame = false;
+    [SerializeField] private float SceneSwitchTime = 5f;
 
     void Awake()
     {
@@ -46,6 +47,15 @@ public class LREndSequence : MonoBehaviour {
 
         // Stop scenery moving
         Messenger.Broadcast(GameEvent.REX_STOP_SCENERY);
+
+        StartCoroutine(SwitchScenes());
+    }
+
+    private IEnumerator SwitchScenes()
+    {
+        yield return new WaitForSeconds(SceneSwitchTime);
+
+        GetComponent<SceneSwitcher>().SwitchScenes();
     }
 
     private IEnumerator TestEndSequence()
