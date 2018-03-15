@@ -97,8 +97,7 @@ public class ArduinoThread : MonoBehaviour
     public string ReadFromArduino()
     {
         if (inputQueue.Count != 0)
-            //Debug.Log("Input NOT 0");
-            Debug.Log((string)inputQueue.Peek());
+            Debug.Log("Input NOT 0");
         if (inputQueue.Count == 0)
             return null;
 
