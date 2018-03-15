@@ -8,9 +8,6 @@ public class LRCarMovement : MonoBehaviour
     public int playerNumber;
     [SerializeField] private float carMaxDistanceZ;
     [SerializeField] private float carSpeed = 1f;
-    [SerializeField] private float driftSpeed = 1f;
-    [SerializeField] private float driftDistance = 1f;
-    [SerializeField] private float hoverSpeed = 6f;
     [SerializeField] private GameObject carExhaust;
     [SerializeField] private GameObject carStoppedIcon;
     [SerializeField] private float invincibilityDuration = 1f;
@@ -62,7 +59,7 @@ public class LRCarMovement : MonoBehaviour
         playerKeyDown = false;
         drift = GetComponent<LRDrift>();
         carStopped = false;
-        carRenderer = this.GetComponent<MeshRenderer>();
+        carRenderer = this.GetComponent<Renderer>();
         rexDefeated = false;
         carExhaust.SetActive(false);
         
@@ -277,20 +274,20 @@ public class LRCarMovement : MonoBehaviour
         while (Time.time < blinkStopTime)
         {
             // Hide car
-            this.GetComponent<Renderer>().enabled = false;
+            carRenderer.enabled = false;
 
             // Wait for blink interval
             yield return new WaitForSeconds(invincibilityBlinkInterval);
 
             // Show car
-            this.GetComponent<Renderer>().enabled = true;
+            carRenderer.enabled = true;
 
             // Wait for blink interval
             yield return new WaitForSeconds(invincibilityBlinkInterval);
         }
 
         // Afterwards, make sure car is visible
-        this.GetComponent<Renderer>().enabled = true;
+        carRenderer.enabled = true;
 
         yield return new WaitForSeconds(waitTime / 2);
 
