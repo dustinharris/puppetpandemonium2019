@@ -20285,6 +20285,7 @@ GameObject:
   - component: {fileID: 2025169375}
   - component: {fileID: 2025169374}
   - component: {fileID: 2025169376}
+  - component: {fileID: 2025169377}
   m_Layer: 0
   m_Name: GameController
   m_TagString: Untagged
@@ -20408,6 +20409,19 @@ MonoBehaviour:
   - {fileID: 1331394958}
   - {fileID: 2018304331}
   testEndGame: 0
+--- !u!114 &2025169377
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2025169369}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cd067e16f8bd2d14c914bacabbcd3ed0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  NextScene: _Dialog_PostLaserRex
+  result: 0
 --- !u!1 &2045453422 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 1856576217726710, guid: 7c84df5b2be09cd41bcfa7a07e164dd9,
