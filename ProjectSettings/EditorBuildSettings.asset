@@ -59,3 +59,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/_Dialog_Final.unity
     guid: bcd1c5a9ca78275429523baba965ca10
+  - enabled: 1
+    path: Assets/Scenes/_Dialog_PostLaserRex.unity
+    guid: 5eb2e8d546fa47e42a90db1fe33e06a0
+  - enabled: 1
+    path: Assets/Scenes/_Game_Final.unity
+    guid: b057db7e84c4c494293476af6b2a4bfd
