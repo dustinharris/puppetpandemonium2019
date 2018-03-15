@@ -9,8 +9,8 @@ public class LREndSequence : MonoBehaviour {
     [SerializeField] private GameObject mamaRex;
     [SerializeField] private GameObject[] scenerySpawnObjects;
     [SerializeField] private GameObject[] mamaRexJets;
-    [SerializeField] private GameObject[] playerJets;
     [SerializeField] private bool testEndGame = false;
+    [SerializeField] private float SceneSwitchTime = 5f;
 
     void Awake()
     {
@@ -32,22 +32,12 @@ public class LREndSequence : MonoBehaviour {
         Messenger.Broadcast(GameEvent.REX_DISABLE_AUDIENCE_LASERS);
         
         // Boxes fall away
-        redCube.GetComponent<LRCubeBehavior>().EndGameDropCube();
-        blueCube.GetComponent<LRCubeBehavior>().EndGameDropCube();
+        redCube.GetComponent<LRCubeBehavior>().DropCube();
+        blueCube.GetComponent<LRCubeBehavior>().DropCube();
 
         // Boss enters defeated state; can no longer shoot
         // This also stops player movement forward
         Messenger.Broadcast(GameEvent.REX_DEFEATED);
-
-        // Destroy all mama rex jets
-        foreach (GameObject go in mamaRexJets)
-        {
-            Destroy(go);
-        }
-
-        // Move mama rex to ground
-        mamaRex.GetComponent<Rigidbody>().useGravity = true;
-        mamaRex.GetComponent<Rigidbody>().mass = 1f;
 
         // Destroy scenery spawn game objects
         foreach (GameObject go in scenerySpawnObjects)
@@ -57,12 +47,15 @@ public class LREndSequence : MonoBehaviour {
 
         // Stop scenery moving
         Messenger.Broadcast(GameEvent.REX_STOP_SCENERY);
-        
-        // Destroy all player jets
-        foreach (GameObject go in playerJets)
-        {
-            Destroy(go);
-        }
+
+        StartCoroutine(SwitchScenes());
+    }
+
+    private IEnumerator SwitchScenes()
+    {
+        yield return new WaitForSeconds(SceneSwitchTime);
+
+        GetComponent<SceneSwitcher>().SwitchScenes();
     }
 
     private IEnumerator TestEndSequence()

@@ -6,11 +6,15 @@ public class LRCubeBehavior : MonoBehaviour {
 
     [SerializeField] private int playerNumber;
     [SerializeField] private int health = 100;
+    [SerializeField] private GameObject[] sparks;
+    [SerializeField] private GameObject[] jets;
 
     private int currentHealth;
     private bool hitable = true;
     private Rigidbody rigidBody;
     private LRDrift drift;
+    private LRDrift shake;
+    private bool defeated = false;
 
     private Vector3 startPosition;
     
@@ -21,9 +25,14 @@ public class LRCubeBehavior : MonoBehaviour {
         Messenger.AddListener(GameEvent.P2_CUBE_HIT, P2CubeHit);
         Messenger.AddListener(GameEvent.P1_REX_DONE_MUNCHING, P1Reenable);
         Messenger.AddListener(GameEvent.P2_REX_DONE_MUNCHING, P2Reenable);
+        Messenger.AddListener(GameEvent.REX_DEFEATED, RexDefeated);
 
         rigidBody = GetComponent<Rigidbody>();
-        drift = GetComponent<LRDrift>();
+
+        LRDrift[] drifts = GetComponents<LRDrift>();
+        drift = drifts[0];
+        shake = drifts[1];
+        shake.Stop();
 
         currentHealth = health;
         startPosition = transform.position;
@@ -37,7 +46,12 @@ public class LRCubeBehavior : MonoBehaviour {
     private void CubeHitByLaser()
     {
         currentHealth -= 1;
-        if (currentHealth == 0)
+        if (currentHealth > 0)
+        {
+            StartCoroutine(Shake());
+            StartCoroutine(Spark());
+        }
+        else
         {
             hitable = false;
             if (playerNumber == 0)
@@ -50,23 +64,67 @@ public class LRCubeBehavior : MonoBehaviour {
 
             startPosition = transform.position;
 
-            // Drop cube
-            drift.Stop();
-            rigidBody.useGravity = true;
+            DropCube();
             StartCoroutine(StopFalling());
         }
     }
 
-    public void EndGameDropCube()
+    private IEnumerator Spark()
+    {
+        foreach (GameObject spark in sparks)
+        {
+            spark.SetActive(true);
+        }
+
+        yield return new WaitForSeconds(.2f);
+
+        if (hitable)
+        {
+
+            foreach (GameObject spark in sparks)
+            {
+                spark.SetActive(false);
+            }
+        }
+    }
+
+    private IEnumerator Shake()
+    {
+        shake.SetPosition(transform.localPosition);
+
+        drift.Stop();
+        shake.Resume();
+        yield return new WaitForSeconds(.1f);
+        shake.Stop();
+
+        // If not hitable then in drop state
+        if (hitable)
+        {
+            drift.Resume();
+        }
+    }
+
+    public void DropCube()
     {
         // Drop cube
         drift.Stop();
+        shake.Stop();
         rigidBody.useGravity = true;
+
+        foreach (GameObject jet in jets)
+        {
+            jet.SetActive(false);
+        }
+
+        foreach (GameObject spark in sparks)
+        {
+            spark.SetActive(true);
+        }
     }
 
     private IEnumerator StopFalling()
     {
-        while (transform.position.y > 0)
+        while (transform.position.y > -1)
         {
             yield return null;
         }
@@ -75,30 +133,50 @@ public class LRCubeBehavior : MonoBehaviour {
         rigidBody.useGravity = false;
         rigidBody.velocity = new Vector3();
         transform.rotation = new Quaternion();
-
-        // TODO remove this when rex broadcasts done munching
-        yield return new WaitForSeconds(5f);
-        Messenger.Broadcast(playerNumber == 0 ? GameEvent.P1_REX_DONE_MUNCHING : GameEvent.P2_REX_DONE_MUNCHING);
     }
 
     private IEnumerator Reenable()
     {
-        Vector3 disabledPosition = transform.position;
-        float startTime = Time.time;
-        float duration = 2.0f;
-
-        // Float back to original position
-        while (transform.position.y != startPosition.y)
+        if (!defeated)
         {
-            float t = (Time.time - startTime) / duration;
-            transform.position = new Vector3(Mathf.SmoothStep(disabledPosition.x, startPosition.x, t),
-                Mathf.SmoothStep(disabledPosition.y, startPosition.y, t), startPosition.z);
-            yield return null;
-        }
+            Vector3 disabledPosition = transform.position;
+            float startTime = Time.time;
+            float duration = 2.0f;
 
-        drift.Resume();
-        currentHealth = health;
-        hitable = true;
+            foreach (GameObject spark in sparks)
+            {
+                spark.SetActive(false);
+            }
+
+            foreach (GameObject jet in jets)
+            {
+                jet.SetActive(true);
+            }
+
+            // Float back to original position
+            while (transform.position.y != startPosition.y)
+            {
+                float t = (Time.time - startTime) / duration;
+                transform.position = new Vector3(Mathf.SmoothStep(disabledPosition.x, startPosition.x, t),
+                    Mathf.SmoothStep(disabledPosition.y, startPosition.y, t), startPosition.z);
+                yield return null;
+
+                // If rex defeated while floating back up don't keep floating
+                if (defeated)
+                {
+                    yield break;
+                }
+            }
+
+            drift.Resume();
+            currentHealth = health;
+            hitable = true;
+        }
+    }
+
+    private void RexDefeated()
+    {
+        defeated = true;
     }
 
     private void P1CubeHit()

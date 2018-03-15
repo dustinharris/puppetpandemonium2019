@@ -42,6 +42,11 @@ public class LRDrift : MonoBehaviour {
         }
 	}
 
+    public void SetPosition(Vector3 pos)
+    {
+        StartPosition = pos;
+    }
+
     public void Stop()
     {
         stopped = true;

@@ -25,6 +25,7 @@ public class LRCarMovement : MonoBehaviour
     private bool carInvinvincible;
     private Renderer carRenderer;
     private bool rexDefeated;
+    private bool gameStarted = false;
 
     private string ButtonName;
 
@@ -38,6 +39,7 @@ public class LRCarMovement : MonoBehaviour
         Messenger.AddListener(GameEvent.REX_P1_STOP_INVINCIBILITY, RexP1StopInvincibility);
         Messenger.AddListener(GameEvent.REX_P2_STOP_INVINCIBILITY, RexP2StopInvincibility);
         Messenger.AddListener(GameEvent.REX_DEFEATED, RexDefeated);
+        Messenger.AddListener(GameEvent.GAME_START, GameStarted);
 
         if (playerNumber == 0)
         {
@@ -62,109 +64,122 @@ public class LRCarMovement : MonoBehaviour
         carStopped = false;
         carRenderer = this.GetComponent<MeshRenderer>();
         rexDefeated = false;
+        carExhaust.SetActive(false);
         
         if (playerNumber == 0)
         {
-            Debug.Log(this.name);
             Messenger.Broadcast(GameEvent.REX_P1_START_INVINCIBILITY);
         } else
         {
-            Debug.Log(this.name);
             Messenger.Broadcast(GameEvent.REX_P2_START_INVINCIBILITY);
         }
+    }
+
+    private void GameStarted()
+    {
+        gameStarted = true;
+        carExhaust.SetActive(true);
     }
 
     // Update is called once per frame
     void Update()
     {
-
-        // If button was released this frame
-        bool buttonReleased = false;
-        // If button was pressed this frame
-        bool buttonPressed = false;
-        
-        // Check to see if the player has traveled far enough to hit Mama Rex
-        if (this.transform.localPosition.z > (startingPosition.z + carMaxDistanceZ))
+        if (gameStarted && !rexDefeated)
         {
-            // Trigger hit rex event
-            if (playerNumber == 0)
+            // If button was released this frame
+            bool buttonReleased = false;
+            // If button was pressed this frame
+            bool buttonPressed = false;
+
+            // Check to see if the player has traveled far enough to hit Mama Rex
+            if (this.transform.localPosition.z > (startingPosition.z + carMaxDistanceZ))
             {
-                Messenger.Broadcast(GameEvent.P1_HIT_REX);
+                // Trigger hit rex event
+                if (playerNumber == 0)
+                {
+                    Messenger.Broadcast(GameEvent.P1_HIT_REX);
+                }
+                else
+                {
+                    Messenger.Broadcast(GameEvent.P2_HIT_REX);
+                }
+            }
+            
+            // Check to see if the player's key is down
+            if (Input.GetButton(ButtonName))
+            {
+                playerKeyDown = true;
+                if (Input.GetButtonDown(ButtonName))
+                {
+                    buttonPressed = true;
+                }
             }
             else
             {
-                Messenger.Broadcast(GameEvent.P2_HIT_REX);
+                playerKeyDown = false;
+                if (Input.GetButtonUp(ButtonName))
+                {
+                    buttonReleased = true;
+                }
+            }
+
+            if (buttonPressed)
+            {
+                StopCar();
+
+                // Show car stopped icon
+                carStoppedIcon.SetActive(true);
+
+                // Broadcast player stopped moving event
+                if (playerNumber == 0)
+                {
+                    Messenger.Broadcast(GameEvent.REX_P1_STOP_MOVING);
+                }
+                else
+                {
+                    Messenger.Broadcast(GameEvent.REX_P2_STOP_MOVING);
+                }
+            }
+            if (buttonReleased)
+            {
+                // Car exhaust off
+                carExhaust.SetActive(true);
+                drift.Resume();
+
+                // Don't show car stopped icon
+                carStoppedIcon.SetActive(false);
+                carStopped = false;
+
+                // Broadcast player started moving event
+                if (playerNumber == 0)
+                {
+                    Messenger.Broadcast(GameEvent.REX_P1_START_MOVING);
+                }
+                else
+                {
+                    Messenger.Broadcast(GameEvent.REX_P2_START_MOVING);
+                }
+            }
+
+            // If the player's key isn't down && not invincible && not in end sequence, move forward
+            if (!playerKeyDown && !carInvinvincible && !rexDefeated)
+            {
+                // Update player's z value each second if not stopped
+                newZ = this.transform.localPosition.z + (carSpeed * .1f * Time.deltaTime);
+
+                // Set new position for car
+                this.transform.localPosition = new Vector3(transform.localPosition.x, transform.localPosition.y, newZ);
             }
         }
+    }
 
-        // Check to see if the player's key is down
+    private void StopCar()
+    {
+        // Car exhaust off
+        carExhaust.SetActive(false);
+        drift.Stop();
 
-        if (Input.GetButton(ButtonName))
-        {
-            playerKeyDown = true;
-            if (Input.GetButtonDown(ButtonName))
-            {
-                buttonPressed = true;
-            }
-        }
-        else
-        {
-            playerKeyDown = false;
-            if (Input.GetButtonUp(ButtonName))
-            {
-                buttonReleased = true;
-            }
-        }
-
-        if (buttonPressed)
-        {
-            // Car exhaust on
-            carExhaust.SetActive(false);
-            drift.Stop();
-
-            // Show car stopped icon
-            carStoppedIcon.SetActive(true);
-            carStopped = true;
-
-            // Broadcast player stopped moving event
-            if (playerNumber == 0)
-            {
-                Messenger.Broadcast(GameEvent.REX_P1_STOP_MOVING);
-            } else
-            {
-                Messenger.Broadcast(GameEvent.REX_P2_STOP_MOVING);
-            }
-        }
-        if (buttonReleased)
-        {
-            // Car exhaust off
-            carExhaust.SetActive(true);
-            drift.Resume();
-
-            // Don't show car stopped icon
-            carStoppedIcon.SetActive(false);
-            carStopped = false;
-
-            // Broadcast player started moving event
-            if (playerNumber == 0)
-            {
-                Messenger.Broadcast(GameEvent.REX_P1_START_MOVING);
-            }
-            else
-            {
-                Messenger.Broadcast(GameEvent.REX_P2_START_MOVING);
-            }
-        }
-
-        // If the player's key isn't down && not invincible && not in end sequence, move forward
-        if (!playerKeyDown && !carInvinvincible && !rexDefeated)
-        {
-            // Update player's z value each second if not stopped
-            newZ = this.transform.localPosition.z + (carSpeed * .1f * Time.deltaTime);
-
-            // Set new position for car
-            this.transform.localPosition = new Vector3(transform.localPosition.x, transform.localPosition.y, newZ);
-        }
+        carStopped = true;
     }
 
     private void setInvincibility(int playerNum, bool startInvincibility)
@@ -182,6 +197,7 @@ public class LRCarMovement : MonoBehaviour
     private void RexDefeated()
     {
         rexDefeated = true;
+        StopCar();
     }
 
     private void RexP1StartInvincibility()
@@ -258,7 +274,7 @@ public class LRCarMovement : MonoBehaviour
         float blinkStartTime = Time.time;
         float blinkStopTime = blinkStartTime + waitTime;
 
-        Debug.Log("Start invincibility " + playerNumber);
+        //Debug.Log("Start invincibility " + playerNumber);
 
         while (Time.time < blinkStopTime)
         {
@@ -277,8 +293,6 @@ public class LRCarMovement : MonoBehaviour
 
         // Afterwards, make sure car is visible
         this.GetComponent<Renderer>().enabled = true;
-
-        Debug.Log("Turn off invincibility " + playerNumber);
 
         // Turn off invincibility
         if (playerNumber == 0)

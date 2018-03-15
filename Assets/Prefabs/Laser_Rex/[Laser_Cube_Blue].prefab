@@ -77,6 +77,22 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &1336611804620516
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4399639335686384}
+  - component: {fileID: 114305204597903824}
+  m_Layer: 0
+  m_Name: Candy_Blue_Spawn_Position
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &1439310910157944
 GameObject:
   m_ObjectHideFlags: 0
@@ -171,7 +187,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4117385078335302}
   - component: {fileID: 114124467372595676}
-  - component: {fileID: 114031212239122488}
   m_Layer: 0
   m_Name: Coin_Projection_Angle
   m_TagString: Untagged
@@ -223,6 +238,7 @@ GameObject:
   - component: {fileID: 4267180862368142}
   - component: {fileID: 114037325055446006}
   - component: {fileID: 114509424717705764}
+  - component: {fileID: 114904532241819228}
   - component: {fileID: 82334456460017232}
   - component: {fileID: 114384652489579586}
   - component: {fileID: 54805827291493502}
@@ -299,6 +315,7 @@ Transform:
   - {fileID: 4148311701046608}
   - {fileID: 4375772000320944}
   - {fileID: 4976326584524634}
+  - {fileID: 4399639335686384}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -330,6 +347,19 @@ Transform:
   m_Father: {fileID: 4267180862368142}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: -1.682, y: 0, z: 0}
+--- !u!4 &4399639335686384
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1336611804620516}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1.5829222, y: 1.5829222, z: 1.5829222}
+  m_Children: []
+  m_Father: {fileID: 4267180862368142}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4592337825615342
 Transform:
   m_ObjectHideFlags: 1
@@ -591,19 +621,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 0
---- !u!114 &114031212239122488
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1712756891302288}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4d5158b0d8c8cfd49875867adce871f7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  PlayerNumber: 1
-  Candy: {fileID: 1024984961554240, guid: 19098f60458461b4da49de6d37e0c587, type: 2}
 --- !u!114 &114037325055446006
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -616,7 +633,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerNumber: 1
-  health: 5
+  health: 20
+  sparks:
+  - {fileID: 1846674187980020}
+  - {fileID: 1972071925884920}
+  jets:
+  - {fileID: 1647648728422528}
+  - {fileID: 1640988967260130}
 --- !u!114 &114124467372595676
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -636,6 +659,20 @@ MonoBehaviour:
   coinMaxDirectionAngle: 360
   coinMinHeightAngle: -50
   coinMaxHeightAngle: -80
+--- !u!114 &114305204597903824
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1336611804620516}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4d5158b0d8c8cfd49875867adce871f7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PlayerNumber: 1
+  Candy: {fileID: 1704660166231444, guid: ffad9a2ed80d86045bf2ac23b961b8ca, type: 2}
+  candyParent: {fileID: 0}
 --- !u!114 &114384652489579586
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -667,6 +704,23 @@ MonoBehaviour:
   YSpeed: 2
   RandomMin: 0.03
   RandomMax: 0.07
+--- !u!114 &114904532241819228
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1980147623351780}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7447669669dba144e9726e523d0e53ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  XDistance: 0.06
+  XSpeed: 40
+  YDistance: 0.08
+  YSpeed: 38
+  RandomMin: 0.02
+  RandomMax: 0.1
 --- !u!198 &198085110894026634
 ParticleSystem:
   m_ObjectHideFlags: 1

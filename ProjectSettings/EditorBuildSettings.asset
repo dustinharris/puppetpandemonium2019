@@ -12,7 +12,7 @@ EditorBuildSettings:
     path: Assets/Scenes/1-InfiniteRunner-Logo.unity
     guid: fbd4adf0eb0988747ad3d7dc5bf94de8
   - enabled: 1
-    path: Assets/Scenes/2-InfiniteRunner-Game.unity
+    path: Assets/Scenes/_Game_EKO2Y.unity
     guid: fe967666349fa614db54093306afeff8
   - enabled: 0
     path: Assets/Scenes/Dustin-GameOver.unity
@@ -20,9 +20,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/_Dialog_Intro.unity
     guid: c0ee5eae3a6418146a2748c0d8e8943e
-  - enabled: 1
-    path: Assets/Scenes/_Game_EKO2Y.unity
-    guid: 62aae938b4db4a4439397ab1c8e5f3a6
+  - enabled: 0
+    path: 
+    guid: 00000000000000000000000000000000
   - enabled: 1
     path: Assets/Scenes/_IntroVideo.unity
     guid: db8b33138ed322442903affcdf08faf7
@@ -59,3 +59,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/_Dialog_Final.unity
     guid: bcd1c5a9ca78275429523baba965ca10
+  - enabled: 1
+    path: Assets/Scenes/_Dialog_PostLaserRex.unity
+    guid: 5eb2e8d546fa47e42a90db1fe33e06a0
+  - enabled: 1
+    path: Assets/Scenes/_Game_Final.unity
+    guid: b057db7e84c4c494293476af6b2a4bfd
