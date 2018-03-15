@@ -4542,7 +4542,6 @@ GameObject:
   - component: {fileID: 529146017}
   - component: {fileID: 529146016}
   - component: {fileID: 529146015}
-  - component: {fileID: 529146014}
   m_Layer: 0
   m_Name: ArduinoController
   m_TagString: Untagged
@@ -4550,19 +4549,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &529146014
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 529146013}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bd355fbc279e21c49860ce6c5edea2c3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  port: COM6
-  baudrate: 9600
 --- !u!114 &529146015
 MonoBehaviour:
   m_ObjectHideFlags: 0
