@@ -31,6 +31,7 @@ public class LRRexBehavior : MonoBehaviour {
     private bool rexDefeated = false;
     private bool dazed = false;
     private bool[] eating;
+    private bool[] nodding;
     [SerializeField] private bool testFunctions = false;
 
     private void Awake()
@@ -59,6 +60,9 @@ public class LRRexBehavior : MonoBehaviour {
         eating = new bool[2];
         eating[0] = false;
         eating[1] = false;
+        nodding = new bool[2];
+        nodding[0] = false;
+        nodding[1] = false;
 
         CandyAnimations = new string[2];
         CandyAnimations[0] = "Laser_Rex_Eating Candy";
@@ -120,56 +124,81 @@ public class LRRexBehavior : MonoBehaviour {
 
     private void RexEatCandy(int candyPlayerNumber)
     {
-        eating[candyPlayerNumber] = true;
         rexInWatchState = false;
 
         // Candy snaps rex out of a daze
         dazed = false;
         starCrown.SetEnabled(false);
 
-        // Choose a random eating time
-        float candyEatTime = Random.Range(minEatingTime, maxEatingTime);
-
         // Show heart over Rex head
         eatingIndicator.enabled = true;
         watchWarningIndicator.enabled = false;
 
+        StartCoroutine(Nodding(candyPlayerNumber));
+    }
+
+    private IEnumerator Nodding(int candyPlayerNumber)
+    {
+        nodding[candyPlayerNumber] = true;
+
+        int otherPlayer = GetOtherPlayer(candyPlayerNumber);
+
         // Play nodding anim
         animator.Play(NoddingAnimations[candyPlayerNumber]);
 
-        // Start eating
-        StartCoroutine(RexEat(candyEatTime, candyPlayerNumber));
+        // Destroy other players candy if switching side
+        if (eating[otherPlayer])
+        {
+            DestroyCandy(otherPlayer);
+        }
 
+        // Choose a random eating time
+        float candyEatTime = Random.Range(minEatingTime, maxEatingTime) - 1;
+
+        // Keep nodding for a second
+        yield return new WaitForSeconds(1);
+
+        nodding[candyPlayerNumber] = false;
+
+        if (!nodding[otherPlayer] && !dazed)
+        {
+            // Start eating
+            StartCoroutine(RexEat(candyEatTime, candyPlayerNumber));
+        } else
+        {
+            DestroyCandy(candyPlayerNumber);
+            yield return new WaitForSeconds(candyEatTime);
+            BroadcastDoneMunching(candyPlayerNumber);
+        }
     }
 
     private IEnumerator RexEat(float eatTime, int candyPlayerNumber)
     {
-        // Keep nodding for a second
-        yield return new WaitForSeconds(1);
-
+        int otherPlayer = GetOtherPlayer(candyPlayerNumber);
+    
+        eating[candyPlayerNumber] = true;
+        
         // Play eating anim
         animator.Play(CandyAnimations[candyPlayerNumber]);
 
-        // Wait for eatTime
-        yield return new WaitForSeconds(eatTime-1);
+        // Destroy other players candy if switching eating side
+        if (eating[otherPlayer])
+        {
+            DestroyCandy(otherPlayer);
+        }
 
+        // Wait for eatTime
+        yield return new WaitForSeconds(eatTime);
+        
         eating[candyPlayerNumber] = false;
 
         // Destroy candy
-        if (candyPlayerNumber == 0)
-        {
-            Destroy(GameObject.Find("[Candy_Red_Cube](Clone)"));
-            Messenger.Broadcast(GameEvent.P1_REX_DONE_MUNCHING);
-        } else
-        {
-            Destroy(GameObject.Find("[Candy_Blue_Cube](Clone)"));
-            Messenger.Broadcast(GameEvent.P2_REX_DONE_MUNCHING);
-        }
-
-        int otherPlayer = candyPlayerNumber == 0 ? 1 : 0;
+        DestroyCandy(candyPlayerNumber);
+        BroadcastDoneMunching(candyPlayerNumber);
+        
 
         // If not still eating other side
-        if (!eating[otherPlayer])
+        if (!eating[GetOtherPlayer(candyPlayerNumber)])
         {
             // Remove heart over Rex head
             eatingIndicator.enabled = false;
@@ -182,6 +211,40 @@ public class LRRexBehavior : MonoBehaviour {
                 Messenger.Broadcast(GameEvent.REX_START_WATCH_WARNING);
             }
         }
+    }
+
+    private void BroadcastDoneMunching(int player)
+    {
+        if (player == 0)
+        {
+            Messenger.Broadcast(GameEvent.P1_REX_DONE_MUNCHING);
+        }
+        else
+        {
+
+            Messenger.Broadcast(GameEvent.P2_REX_DONE_MUNCHING);
+        }
+    }
+
+    private void DestroyCandy(int player)
+    {
+        GameObject candy;
+        if (player == 0)
+        {
+            candy = GameObject.Find("[Candy_Red_Cube](Clone)");
+        }
+        else
+        {
+            candy = GameObject.Find("[Candy_Blue_Cube](Clone)");
+        }
+        if (candy != null) { 
+            Destroy(candy);
+        }
+    }
+
+    private int GetOtherPlayer(int player)
+    {
+        return player == 0 ? 1 : 0;
     }
 
     private void P1CubeNewCandy()
@@ -255,6 +318,8 @@ public class LRRexBehavior : MonoBehaviour {
         watchWarningIndicator.enabled = false;
         eating[0] = false;
         eating[1] = false;
+        nodding[0] = false;
+        nodding[1] = false;
 
         yield return new WaitForSeconds(dazedTime);
 
@@ -298,7 +363,7 @@ public class LRRexBehavior : MonoBehaviour {
     // Rex in a state that would prevent her from watching
     private bool RexPreoccupied()
     {
-        return rexDefeated || eating[0] || eating[1] || dazed;
+        return rexDefeated || eating[0] || eating[1] || dazed || nodding[0] || nodding[1];
     }
 
     private void RexP1StartMoving()

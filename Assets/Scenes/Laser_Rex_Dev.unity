@@ -20409,6 +20409,7 @@ MonoBehaviour:
   - {fileID: 1331394958}
   - {fileID: 2018304331}
   testEndGame: 0
+  SceneSwitchTime: 5
 --- !u!114 &2025169377
 MonoBehaviour:
   m_ObjectHideFlags: 0
