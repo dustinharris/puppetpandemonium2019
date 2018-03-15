@@ -8,9 +8,6 @@ public class LRVoting : MonoBehaviour {
     [SerializeField] private GameObject laserCubeBlue;
     [SerializeField] private GameObject[] laserAimsRed;
     [SerializeField] private GameObject[] laserAimsBlue;
-    public int laserCubeRedHealth = 100;
-    public int laserCubeBlueHealth = 100;
-    private int[] healthArray;
     private bool A1RedState;
     private bool A1BlueState;
     private bool A2RedState;
@@ -73,18 +70,9 @@ public class LRVoting : MonoBehaviour {
         A5RedState = false;
         A5BlueState = false;
 
-        // Create array of integers for current health
-        healthArray = new int[2];
-        healthArray[0] = laserCubeRedHealth;
-        healthArray[1] = laserCubeBlueHealth;
-
         RexDisableAudienceLasers();
     }
 	
-	// Update is called once per frame
-	void Update () {
-		
-	}
 
     // Main response logic to audience input
     private void LRAudienceAction(int audienceMemberNumber, int playerNumber)
@@ -106,20 +94,6 @@ public class LRVoting : MonoBehaviour {
             else
             {
                 Messenger.Broadcast(GameEvent.P2_CUBE_HIT);
-            }
-
-            if (healthArray[playerNumber] > 0)
-            {
-                // Subtract 1
-                healthArray[playerNumber] -= 1;
-
-                // Show coin animation
-                // Todo
-            }
-            else
-            {
-                // Trigger distraction state
-                // Todo
             }
         }
     }
