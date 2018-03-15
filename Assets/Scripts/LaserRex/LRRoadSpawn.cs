@@ -22,9 +22,9 @@ public class LRRoadSpawn : MonoBehaviour {
     void createNewRoad()
     {
         // Create new Red Road at Red Road Spawn// Instantiate new object with rotation
-        GameObject newObject = Instantiate(obj[Random.Range(0, obj.Length)], new Vector3(transform.position.x, (transform.position.y + spawnFinalYHeight), transform.position.z), Quaternion.Euler(0, 0, spawnFinalRotation));
-        newObject.transform.localScale = new Vector3(spawnFinalScale, spawnFinalScale, 1);
-        newObject.transform.SetParent(sceneryEmpty.transform);
+        //GameObject newObject = Instantiate(obj[Random.Range(0, obj.Length)], new Vector3(transform.position.x, (transform.position.y + spawnFinalYHeight), transform.position.z), Quaternion.Euler(0, 0, spawnFinalRotation));
+       // newObject.transform.localScale = new Vector3(spawnFinalScale, spawnFinalScale, 1);
+        //newObject.transform.SetParent(sceneryEmpty.transform);
     }
 
     void OnTriggerEnter(Collider collider)
