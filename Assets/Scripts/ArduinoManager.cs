@@ -153,7 +153,12 @@ public class ArduinoManager : MonoBehaviour {
 
     void OnApplicationQuit()
     {
-        ardThread.StopThread();
+        //ardThread.StopThread();
         //ardThread.CloseThread();
+    }
+
+    private void OnDestroy()
+    {
+        //ardThread.StopThread();
     }
 }
