@@ -7,7 +7,7 @@ using WindowsInput;
 public class ArduinoManager : MonoBehaviour {
 
     //public ArduinoConnector ardCon;
-    public ArduinoThread ardThread;
+    private ArduinoThread ardThread;
     private InputSimulator inputSim;
 
     // Use this for initialization
