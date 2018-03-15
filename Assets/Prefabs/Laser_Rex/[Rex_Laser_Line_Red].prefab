@@ -177,7 +177,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84854d20c405a9f49a73c33670f80b02, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  laserDuration: 0.5
+  laserDuration: 0.1
 --- !u!114 &114730884234736122
 MonoBehaviour:
   m_ObjectHideFlags: 1

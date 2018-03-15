@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class LRRexBehavior : MonoBehaviour {
 
-    [SerializeField] private GameObject redLaserAim;
-    [SerializeField] private GameObject blueLaserAim;
+    [SerializeField] private LRLaserAimBehavior laserAimRed;
+    [SerializeField] private LRLaserAimBehavior laserAimBlue;
     [SerializeField] private SpriteRenderer watchWarningIndicator;
     [SerializeField] private float watchWarningTime = 1f;
     [SerializeField] private float minEatingTime = 3f;
@@ -17,8 +17,6 @@ public class LRRexBehavior : MonoBehaviour {
     [SerializeField] private GameObject explosion;
     [SerializeField] private RenderEnabler starCrown;
 
-    private LRLaserAimBehavior laserAimRed;
-    private LRLaserAimBehavior laserAimBlue;
     private Animator animator;
     private string[] CandyAnimations;
     private string[] NoddingAnimations;
@@ -72,12 +70,8 @@ public class LRRexBehavior : MonoBehaviour {
         NoddingAnimations[1] = "Laser_Rex_Nodding_Right_Side";
     }
 
-    void Start () {
-
-        // Get laser behavior scripts attached to laser aims
-        laserAimRed = redLaserAim.GetComponent<LRLaserAimBehavior>();
-        laserAimBlue = blueLaserAim.GetComponent<LRLaserAimBehavior>();
-
+    void Start ()
+    {
         animator = GetComponent<Animator>();
         animator.Play("LAser_REx_Idle no look");
         
