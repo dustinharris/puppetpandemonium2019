@@ -51,6 +51,9 @@
     public const string REX_START_SCENERY = "REX_START_SCENERY";
     public const string REX_DEFEATED = "REX_DEFEATED";
 
+    // Final Boss Game Events
+    public const string BOSS_DECREASE_HP = "BOSS_DECREASE_HP";
+
     // EKO2Y Game Events
     public const string EKO2Y_GAME_OVER = "EKO2Y_GAME_OVER";
     public const string P1_RELEASE = "P1_RELEASE";
