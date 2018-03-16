@@ -491,10 +491,12 @@ MonoBehaviour:
     Button: 0
     SpeakerPortrait: {fileID: 1406233466}
     SpeakerText: {fileID: 734544593}
+    Background: {fileID: 0}
   - Identifier: BLUE
     Button: 1
     SpeakerPortrait: {fileID: 1513490318}
     SpeakerText: {fileID: 129584117}
+    Background: {fileID: 0}
 --- !u!4 &826881313
 Transform:
   m_ObjectHideFlags: 0
@@ -520,7 +522,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd067e16f8bd2d14c914bacabbcd3ed0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  NextScene: _Game_DontShootGrandma
+  NextScene: 05_Game_DontShootGrandma
   result: 0
 --- !u!1 &1406233466
 GameObject:

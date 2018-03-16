@@ -696,10 +696,12 @@ MonoBehaviour:
     Button: 0
     SpeakerPortrait: {fileID: 1270725929}
     SpeakerText: {fileID: 1057653916}
+    Background: {fileID: 0}
   - Identifier: BLUE
     Button: 1
     SpeakerPortrait: {fileID: 1246998451}
     SpeakerText: {fileID: 237528464}
+    Background: {fileID: 0}
 --- !u!4 &560637243
 Transform:
   m_ObjectHideFlags: 0
@@ -725,7 +727,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd067e16f8bd2d14c914bacabbcd3ed0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  NextScene: _IntroVideo
+  NextScene: 01_StartScreen
   result: 0
 --- !u!1 &977800376
 GameObject:
