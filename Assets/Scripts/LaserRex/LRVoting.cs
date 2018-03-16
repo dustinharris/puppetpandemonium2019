@@ -29,6 +29,8 @@ public class LRVoting : MonoBehaviour {
         Messenger.AddListener(GameEvent.REX_DISABLE_AUDIENCE_LASERS, RexDisableAudienceLasers);
 
         Messenger.AddListener(GameEvent.GAME_START, RexEnableAudienceLasers);
+        Messenger.AddListener(GameEvent.REX_STOP_SCENERY, RexDisableAudienceLasers);
+        Messenger.AddListener(GameEvent.REX_START_SCENERY, RexEnableAudienceLasers);
     }
 
     private void OnDestroy()
