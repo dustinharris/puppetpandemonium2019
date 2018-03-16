@@ -399,6 +399,22 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &1260131299764942
+GameObject:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4984732123182292}
+  - component: {fileID: 82872552607745398}
+  m_Layer: 0
+  m_Name: RexAudio
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &1270294359798136
 GameObject:
   m_ObjectHideFlags: 1
@@ -1772,6 +1788,19 @@ Transform:
   m_Father: {fileID: 224015522538041482}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4984732123182292
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1260131299764942}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 122.96534, y: -18.560375, z: 21.07588}
+  m_LocalScale: {x: 3.0379646, y: 3.0379646, z: 3.0379646}
+  m_Children: []
+  m_Father: {fileID: 224015522538041482}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!82 &82667084112773274
 AudioSource:
   m_ObjectHideFlags: 1
@@ -1781,9 +1810,89 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: b08b0cc0df0a6c34bb66f8fb7a5222ff, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 530ac42703049f74f9083936f672861b, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 0.558
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
+--- !u!82 &82872552607745398
+AudioSource:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1260131299764942}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 67dea055b428c96409d1794e1bccf239, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 1
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -4067,7 +4176,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a4f48cff9784b32419726f8d497c69b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  FilePath: 02_DialogIntro_txt.txt
+  FilePath: 06_DialogPostGrandma_txt.txt
+  BGMusic: {fileID: 82667084112773274}
   Templates:
   - Identifier: BLEEP
     Button: 0
@@ -4075,24 +4185,28 @@ MonoBehaviour:
     SpeakerText: {fileID: 1508933240505518}
     Background: {fileID: 1655068106563546}
     SpeechBubble: {fileID: 1747050314117344}
+    Audio: {fileID: 0}
   - Identifier: BLOOP
     Button: 1
     SpeakerPortrait: {fileID: 1198283927629694}
     SpeakerText: {fileID: 1509451208734026}
     Background: {fileID: 1519003480131538}
     SpeechBubble: {fileID: 1047575881347202}
+    Audio: {fileID: 0}
   - Identifier: REX
     Button: 0
     SpeakerPortrait: {fileID: 1596709886325472}
     SpeakerText: {fileID: 1109052334120386}
     Background: {fileID: 1255081825834368}
     SpeechBubble: {fileID: 1046697698744860}
+    Audio: {fileID: 82872552607745398}
   - Identifier: AJIT
     Button: 1
     SpeakerPortrait: {fileID: 1770151541835652}
     SpeakerText: {fileID: 1770809760798810}
     Background: {fileID: 1341799929440654}
     SpeechBubble: {fileID: 1558179866870232}
+    Audio: {fileID: 0}
 --- !u!114 &114648000861997286
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4211,7 +4325,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd067e16f8bd2d14c914bacabbcd3ed0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  NextScene: 03_Game_EKO2Y
+  NextScene: 07_Vortex
   result: 0
 --- !u!114 &114695034466836890
 MonoBehaviour:
@@ -6091,6 +6205,7 @@ RectTransform:
   - {fileID: 4848468906085808}
   - {fileID: 224437559689411616}
   - {fileID: 224987511636447852}
+  - {fileID: 4984732123182292}
   m_Father: {fileID: 224915417167790252}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

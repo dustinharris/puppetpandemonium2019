@@ -17,6 +17,18 @@ public class DialogController : MonoBehaviour
         public GameObject SpeakerText;
         public GameObject Background;
         public GameObject SpeechBubble;
+        public AudioSource Audio;
+        private bool AudioPlayed = false;
+
+        public bool AudioHasPlayed()
+        {
+            return AudioPlayed;
+        }
+
+        public void SetAudioPlayed(bool played)
+        {
+            AudioPlayed = played;
+        }
     }
 
     public enum Button
@@ -26,6 +38,8 @@ public class DialogController : MonoBehaviour
 
     [SerializeField]
     private string FilePath;
+    [SerializeField]
+    private AudioSource BGMusic;
     [SerializeField]
     private DialogTemplate[] Templates;
 
@@ -112,6 +126,22 @@ public class DialogController : MonoBehaviour
         template.SpeakerText.SetActive(true);
         template.Background.SetActive(true);
         template.SpeechBubble.SetActive(true);
+        if (template.Audio != null && !template.AudioHasPlayed())
+        {
+            template.Audio.Play();
+            template.SetAudioPlayed(true);
+
+            if (BGMusic != null && BGMusic.isPlaying)
+            {
+                BGMusic.Pause();
+            }
+        } else if (BGMusic != null)
+        {
+            if (!BGMusic.isPlaying)
+            {
+                BGMusic.UnPause();
+            }
+        }
 
         // Hide other templates
         foreach (DialogTemplate t in Dict.Values)
@@ -122,6 +152,10 @@ public class DialogController : MonoBehaviour
                 t.SpeakerText.SetActive(false);
                 t.Background.SetActive(false);
                 t.SpeechBubble.SetActive(false);
+                if (t.Audio != null)
+                {
+                    t.Audio.Stop();
+                }
             }
         }
         Text text = template.SpeakerText.GetComponent<Text>();
