@@ -61,21 +61,23 @@ public class LRCarMovement : MonoBehaviour
         carStopped = false;
         carRenderer = this.GetComponent<Renderer>();
         rexDefeated = false;
-        carExhaust.SetActive(false);
-        
-        if (playerNumber == 0)
-        {
-            Messenger.Broadcast(GameEvent.REX_P1_START_INVINCIBILITY);
-        } else
-        {
-            Messenger.Broadcast(GameEvent.REX_P2_START_INVINCIBILITY);
-        }
+        carExhaust.SetActive(true);
     }
 
     private void GameStarted()
     {
         gameStarted = true;
-        carExhaust.SetActive(true);
+
+        ButtonPressed();
+
+        if (playerNumber == 0)
+        {
+            Messenger.Broadcast(GameEvent.REX_P1_START_INVINCIBILITY);
+        }
+        else
+        {
+            Messenger.Broadcast(GameEvent.REX_P2_START_INVINCIBILITY);
+        }
     }
 
     // Update is called once per frame
@@ -122,20 +124,7 @@ public class LRCarMovement : MonoBehaviour
 
             if (buttonPressed)
             {
-                StopCar();
-
-                // Show car stopped icon
-                carStoppedIcon.SetActive(true);
-
-                // Broadcast player stopped moving event
-                if (playerNumber == 0)
-                {
-                    Messenger.Broadcast(GameEvent.REX_P1_STOP_MOVING);
-                }
-                else
-                {
-                    Messenger.Broadcast(GameEvent.REX_P2_STOP_MOVING);
-                }
+                ButtonPressed();
             }
             if (buttonReleased)
             {
@@ -177,6 +166,24 @@ public class LRCarMovement : MonoBehaviour
         drift.Stop();
 
         carStopped = true;
+    }
+
+    private void ButtonPressed()
+    {
+        StopCar();
+
+        // Show car stopped icon
+        carStoppedIcon.SetActive(true);
+
+        // Broadcast player stopped moving event
+        if (playerNumber == 0)
+        {
+            Messenger.Broadcast(GameEvent.REX_P1_STOP_MOVING);
+        }
+        else
+        {
+            Messenger.Broadcast(GameEvent.REX_P2_STOP_MOVING);
+        }
     }
 
     private void setInvincibility(int playerNum, bool startInvincibility)

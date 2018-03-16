@@ -12,17 +12,12 @@ public class LRMoveBackgroundObjects : MonoBehaviour {
     {
         // Listen for game-triggered events
         Messenger.AddListener(GameEvent.REX_STOP_SCENERY, RexStopScenery);
-        Messenger.AddListener(GameEvent.GAME_START, GameStart);
+        Messenger.AddListener(GameEvent.REX_START_SCENERY, RexStartScenery);
     }
 
     // Use this for initialization
     void Start () {
-        RexStopScenery();
-	}
-
-    private void GameStart()
-    {
-        currentSpeed = scenerySpeed;
+        RexStartScenery();
     }
 	
 	// Update is called once per frame
@@ -33,6 +28,11 @@ public class LRMoveBackgroundObjects : MonoBehaviour {
         // Change scenery position each frame
         sceneryEmpty.transform.position = new Vector3(sceneryEmpty.transform.position.x, sceneryEmpty.transform.position.y, newZ);
 	}
+
+    private void RexStartScenery()
+    {
+        currentSpeed = scenerySpeed;
+    }
 
     private void RexStopScenery()
     {
