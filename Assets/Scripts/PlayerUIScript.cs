@@ -12,7 +12,7 @@ public class PlayerUIScript : MonoBehaviour {
 	private UINoticeScript AlertScript;
 	private UINoticeScript CorrectScript;
 
-	void Start () {
+	void Awake () {
 		this.AlertScript = Alert.GetComponent<UINoticeScript> ();
 		this.CorrectScript = Correct.GetComponent<UINoticeScript> ();
 	}

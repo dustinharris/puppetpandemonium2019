@@ -35,7 +35,7 @@ public class AudienceUIScript : MonoBehaviour {
 		Alert, Correct, Incorrect, Glow
 	}
 
-	void Start () {
+	void Awake () {
 		AlertRedScript = AlertRed.GetComponent<UINoticeScript> ();
 		CorrectRedScript = CorrectRed.GetComponent<UINoticeScript> ();
 		IncorrectRedScript = IncorrectRed.GetComponent<UINoticeScript> ();

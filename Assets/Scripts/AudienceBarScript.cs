@@ -12,7 +12,7 @@ public class AudienceBarScript : MonoBehaviour {
 	private GameObject[] AudienceSections;
 	private AudienceUIScript[] Scripts;
 
-	void Start () {
+	void Awake () {
 		// Array should be length 5
 		Scripts = new AudienceUIScript[AudienceSections.Length];
 
