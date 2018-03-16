@@ -159,6 +159,6 @@ public class ArduinoManager : MonoBehaviour {
 
     private void OnDestroy()
     {
-        //ardThread.StopThread();
+        ardThread.StopThread();
     }
 }
