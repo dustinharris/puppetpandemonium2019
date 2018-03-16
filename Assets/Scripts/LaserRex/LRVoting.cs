@@ -8,17 +8,7 @@ public class LRVoting : MonoBehaviour {
     [SerializeField] private GameObject laserCubeBlue;
     [SerializeField] private GameObject[] laserAimsRed;
     [SerializeField] private GameObject[] laserAimsBlue;
-    private bool A1RedState;
-    private bool A1BlueState;
-    private bool A2RedState;
-    private bool A2BlueState;
-    private bool A3RedState;
-    private bool A3BlueState;
-    private bool A4RedState;
-    private bool A4BlueState;
-    private bool A5RedState;
-    private bool A5BlueState;
-    private bool lasersEnabled = true;
+    private bool lasersEnabled = false;
 
     private void Awake()
     {
@@ -55,24 +45,6 @@ public class LRVoting : MonoBehaviour {
         Messenger.RemoveListener(GameEvent.A5_RED, A5Red);
         Messenger.RemoveListener(GameEvent.A5_BLUE, A5Blue);
     }
-
-    // Use this for initialization
-    void Start () {
-        // Initialize audience button state booleans
-        A1RedState = false;
-        A1BlueState = false;
-        A2RedState = false;
-        A2BlueState = false;
-        A3RedState = false;
-        A3BlueState = false;
-        A4RedState = false;
-        A4BlueState = false;
-        A5RedState = false;
-        A5BlueState = false;
-
-        RexDisableAudienceLasers();
-    }
-	
 
     // Main response logic to audience input
     private void LRAudienceAction(int audienceMemberNumber, int playerNumber)
@@ -126,7 +98,6 @@ public class LRVoting : MonoBehaviour {
 
     private void RexDisableAudienceLasers()
     {
-        Debug.Log("Trying to disable lasers");
         lasersEnabled = false;
     }
 

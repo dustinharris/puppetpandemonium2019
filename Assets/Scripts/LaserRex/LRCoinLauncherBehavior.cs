@@ -17,6 +17,9 @@ public class LRCoinLauncherBehavior : MonoBehaviour {
     private float finalCoinDirectionAngle;
     private float finalCoinHeightAngle;
 
+    private Animator animator;
+    private string idleAnimation;
+
     private void Awake()
     {
         // Listen for game-triggered events
@@ -29,6 +32,7 @@ public class LRCoinLauncherBehavior : MonoBehaviour {
         // Get player number from parent object
         LRCubeBehavior cubeBehavior = this.gameObject.GetComponentInParent<LRCubeBehavior>();
         playerNumber = cubeBehavior.GetPlayerNumber();
+        idleAnimation = "";
     }
 
     private void LaunchNewCoin()

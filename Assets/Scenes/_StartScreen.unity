@@ -1429,24 +1429,37 @@ GameObject:
   m_PrefabParentObject: {fileID: 1874071165874554, guid: 3d0ffd401fe7c70468bc313b4dfb241b,
     type: 2}
   m_PrefabInternal: {fileID: 179221233}
+<<<<<<< HEAD
 --- !u!1 &1673676631
+=======
+--- !u!1 &1839299279
+>>>>>>> d5864a004c051932e42937af320f92e93388fe16
 GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   serializedVersion: 5
   m_Component:
+<<<<<<< HEAD
   - component: {fileID: 1673676632}
   - component: {fileID: 1673676633}
   - component: {fileID: 1673676635}
   - component: {fileID: 1673676634}
   m_Layer: 0
   m_Name: Speech bub
+=======
+  - component: {fileID: 1839299282}
+  - component: {fileID: 1839299281}
+  - component: {fileID: 1839299280}
+  m_Layer: 0
+  m_Name: ArduinoController
+>>>>>>> d5864a004c051932e42937af320f92e93388fe16
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+<<<<<<< HEAD
 --- !u!4 &1673676632
 Transform:
   m_ObjectHideFlags: 0
@@ -1464,10 +1477,14 @@ Transform:
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1673676633
+=======
+--- !u!114 &1839299280
+>>>>>>> d5864a004c051932e42937af320f92e93388fe16
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
+<<<<<<< HEAD
   m_GameObject: {fileID: 1673676631}
   m_Enabled: 1
   m_EditorHideFlags: 0
@@ -1479,10 +1496,21 @@ MonoBehaviour:
   Duration: 0.75
   Delay: 0
 --- !u!114 &1673676634
+=======
+  m_GameObject: {fileID: 1839299279}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f5b9aa9ef19775641b6d7f0bd64a4d8a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ardThread: {fileID: 0}
+--- !u!114 &1839299281
+>>>>>>> d5864a004c051932e42937af320f92e93388fe16
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
+<<<<<<< HEAD
   m_GameObject: {fileID: 1673676631}
   m_Enabled: 1
   m_EditorHideFlags: 0
@@ -1505,6 +1533,29 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Duration: 0.65
   Delay: 0
+=======
+  m_GameObject: {fileID: 1839299279}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bd355fbc279e21c49860ce6c5edea2c3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  port: COM5
+  baudrate: 9600
+--- !u!4 &1839299282
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1839299279}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+>>>>>>> d5864a004c051932e42937af320f92e93388fe16
 --- !u!1 &1923048340
 GameObject:
   m_ObjectHideFlags: 0

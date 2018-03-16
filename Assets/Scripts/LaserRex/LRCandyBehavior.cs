@@ -18,7 +18,7 @@ public class LRCandyBehavior : MonoBehaviour {
     private void GenerateCandy(int candyPlayerNumber)
     {
         // Instatiate new laser object
-        GameObject candy = Instantiate(Candy, this.transform.position, this.transform.rotation, candyParent.transform);
+        Instantiate(Candy, this.transform.position, this.transform.rotation, candyParent.transform);
     }
 
     private void P1Candy()

@@ -27,9 +27,8 @@ public class LRTimelineBehavior : MonoBehaviour {
         timelineYTravelDistance = timelineCarMaxY.transform.position.y - timelineCarMinY.transform.position.y;
 
         // Get starting and ending positions for red and blue GAME cars
-        LRCarMovement carMovement = gameCar.GetComponent<LRCarMovement>();
-        gameCarStartingPosition = carMovement.getCarStartingPosition();
-        gameCarEndPosition = carMovement.getCarEndPosition();
+        gameCarStartingPosition = gameCar.GetComponent<LRCarMovement>().getCarStartingPosition();
+        gameCarEndPosition = gameCar.GetComponent<LRCarMovement>().getCarEndPosition();
 
         // Get travel distance between MinZ and MaxZ GAME cars
         gameZTravelDistance = Mathf.Abs(gameCarEndPosition.z - gameCarStartingPosition.z);

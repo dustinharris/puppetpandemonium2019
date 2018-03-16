@@ -24,7 +24,7 @@ GameObject:
   - component: {fileID: 65700517460635124}
   m_Layer: 0
   m_Name: '[Laser_Rex_Game_Box_Red]'
-  m_TagString: Untagged
+  m_TagString: LRScenery
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
