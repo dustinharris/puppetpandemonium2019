@@ -15,6 +15,7 @@ TagManager:
   - Fire
   - Road
   - LRScenery
+  - LRHitCar
   layers:
   - Default
   - TransparentFX
