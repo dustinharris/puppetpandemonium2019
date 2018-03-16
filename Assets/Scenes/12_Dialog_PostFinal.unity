@@ -113,29 +113,29 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1 &668335913
+--- !u!1 &1250444
 GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   serializedVersion: 5
   m_Component:
-  - component: {fileID: 668335916}
-  - component: {fileID: 668335915}
-  - component: {fileID: 668335914}
+  - component: {fileID: 1250446}
+  - component: {fileID: 1250445}
+  - component: {fileID: 1250447}
   m_Layer: 0
-  m_Name: TempController
+  m_Name: SceneSwitcher
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &668335914
+--- !u!114 &1250445
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 668335913}
+  m_GameObject: {fileID: 1250444}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cd067e16f8bd2d14c914bacabbcd3ed0, type: 3}
@@ -143,41 +143,41 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   NextScene: _StartScreen
   result: 0
---- !u!114 &668335915
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 668335913}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c35a50e5bbb03564dbc1c701c9fa83cc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!4 &668335916
+--- !u!4 &1250446
 Transform:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 668335913}
+  m_GameObject: {fileID: 1250444}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -7.300176, y: -3.6695209, z: 3.6481721}
+  m_LocalPosition: {x: 564.8308, y: 82.64306, z: 4.0446076}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &2061430884
+--- !u!114 &1250447
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1250444}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c35a50e5bbb03564dbc1c701c9fa83cc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1 &87810191
 GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   serializedVersion: 5
   m_Component:
-  - component: {fileID: 2061430888}
-  - component: {fileID: 2061430887}
-  - component: {fileID: 2061430886}
-  - component: {fileID: 2061430885}
+  - component: {fileID: 87810195}
+  - component: {fileID: 87810194}
+  - component: {fileID: 87810193}
+  - component: {fileID: 87810192}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -185,26 +185,26 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!81 &2061430885
+--- !u!81 &87810192
 AudioListener:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 2061430884}
+  m_GameObject: {fileID: 87810191}
   m_Enabled: 1
---- !u!124 &2061430886
+--- !u!124 &87810193
 Behaviour:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 2061430884}
+  m_GameObject: {fileID: 87810191}
   m_Enabled: 1
---- !u!20 &2061430887
+--- !u!20 &87810194
 Camera:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 2061430884}
+  m_GameObject: {fileID: 87810191}
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 1
@@ -235,12 +235,12 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
---- !u!4 &2061430888
+--- !u!4 &87810195
 Transform:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 2061430884}
+  m_GameObject: {fileID: 87810191}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
