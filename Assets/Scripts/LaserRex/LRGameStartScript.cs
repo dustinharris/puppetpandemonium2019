@@ -22,7 +22,6 @@ public class LRGameStartScript : MonoBehaviour {
     {
         float now = Time.realtimeSinceStartup;
 
-        // Can't use WaitForSeconds while timescale is 0
         yield return new WaitForSeconds(LogoLength);
 
         Background.SetActive(false);
@@ -40,15 +39,15 @@ public class LRGameStartScript : MonoBehaviour {
 
         CountdownText.text = "GO!";
 
-        CountdownFinished();
-
         yield return new WaitForSeconds(1);
 
         CountdownText.enabled = false;
+        CountdownFinished();
     }
 
     private void CountdownFinished()
     {
-        Messenger.Broadcast(GameEvent.GAME_START);
+        
+        Messenger.Broadcast(GameEvent.COUNTDOWN_FINISHED);
     }
 }
