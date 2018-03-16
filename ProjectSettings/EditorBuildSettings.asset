@@ -9,7 +9,7 @@ EditorBuildSettings:
     path: Assets/Scenes/01_StartScreen.unity
     guid: 66ab227ed569ca04fad5951f8f0fc7bb
   - enabled: 1
-    path: Assets/Scenes/_Dialog_Intro.unity
+    path: Assets/Scenes/02_Dialog_Intro.unity
     guid: c0ee5eae3a6418146a2748c0d8e8943e
   - enabled: 1
     path: Assets/Scenes/03_Game_EKO2Y.unity
@@ -36,7 +36,7 @@ EditorBuildSettings:
     path: Assets/Scenes/10_Dialog_PostLaserRex.unity
     guid: 5eb2e8d546fa47e42a90db1fe33e06a0
   - enabled: 1
-    path: Assets/Scenes/_Game_Final.unity
+    path: Assets/Scenes/11_Game_Final.unity
     guid: b057db7e84c4c494293476af6b2a4bfd
   - enabled: 1
     path: Assets/Scenes/12_Dialog_PostFinal.unity
