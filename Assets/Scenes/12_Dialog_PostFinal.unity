@@ -141,7 +141,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd067e16f8bd2d14c914bacabbcd3ed0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  NextScene: _StartScreen
+  NextScene: 13_Game_FinalFinal
   result: 0
 --- !u!4 &1250446
 Transform:

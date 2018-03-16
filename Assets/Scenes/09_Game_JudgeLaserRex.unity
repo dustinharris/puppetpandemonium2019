@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.30439758, g: 0.3028597, b: 0.30201262, a: 1}
+  m_IndirectSpecularColor: {r: 0.3043976, g: 0.3028597, b: 0.30201268, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -21032,7 +21032,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd067e16f8bd2d14c914bacabbcd3ed0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  NextScene: _Dialog_PostLaserRex
+  NextScene: 10_Dialog_PostLaserRex
   result: 0
 --- !u!1 &2045453422 stripped
 GameObject:

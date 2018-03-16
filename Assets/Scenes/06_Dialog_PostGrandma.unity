@@ -816,10 +816,12 @@ MonoBehaviour:
     Button: 0
     SpeakerPortrait: {fileID: 1760275266}
     SpeakerText: {fileID: 1513177811}
+    Background: {fileID: 0}
   - Identifier: BLUE
     Button: 1
     SpeakerPortrait: {fileID: 1934027500}
     SpeakerText: {fileID: 196263334}
+    Background: {fileID: 0}
 --- !u!4 &1174332127
 Transform:
   m_ObjectHideFlags: 0
@@ -845,7 +847,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd067e16f8bd2d14c914bacabbcd3ed0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  NextScene: _Game_JudgeLaserRex
+  NextScene: 07_Vortex
   result: 0
 --- !u!1 &1513177811
 GameObject:

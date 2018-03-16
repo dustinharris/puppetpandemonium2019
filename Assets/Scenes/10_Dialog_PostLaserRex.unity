@@ -959,7 +959,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd067e16f8bd2d14c914bacabbcd3ed0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  NextScene: _Game_Final
+  NextScene: 11_Game_Final
   result: 0
 --- !u!114 &1648435484
 MonoBehaviour:
@@ -979,10 +979,12 @@ MonoBehaviour:
     Button: 0
     SpeakerPortrait: {fileID: 1673360728}
     SpeakerText: {fileID: 1710036396}
+    Background: {fileID: 0}
   - Identifier: BLUE
     Button: 1
     SpeakerPortrait: {fileID: 328712292}
     SpeakerText: {fileID: 685061376}
+    Background: {fileID: 0}
 --- !u!4 &1648435485
 Transform:
   m_ObjectHideFlags: 0
