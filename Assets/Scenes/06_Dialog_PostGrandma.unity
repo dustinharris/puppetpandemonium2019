@@ -594,7 +594,7 @@ Prefab:
     - target: {fileID: 114644839885972626, guid: dfe1fc135e2b32844b469109fe61598a,
         type: 2}
       propertyPath: FilePath
-      value: 06DialogPostGrandma_txt.txt
+      value: 06_DialogPostGrandma_txt.txt
       objectReference: {fileID: 0}
     - target: {fileID: 114691201893110816, guid: dfe1fc135e2b32844b469109fe61598a,
         type: 2}
