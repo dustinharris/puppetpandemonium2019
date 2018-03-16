@@ -15,6 +15,7 @@ public class DialogController : MonoBehaviour
         public Button Button;
         public GameObject SpeakerPortrait;
         public GameObject SpeakerText;
+        public GameObject Background;
     }
 
     public enum Button
@@ -108,6 +109,7 @@ public class DialogController : MonoBehaviour
     {
         template.SpeakerPortrait.SetActive(true);
         template.SpeakerText.SetActive(true);
+        template.Background.SetActive(true);
 
         // Hide other templates
         foreach (DialogTemplate t in Dict.Values)
@@ -116,6 +118,7 @@ public class DialogController : MonoBehaviour
             {
                 t.SpeakerPortrait.SetActive(false);
                 t.SpeakerText.SetActive(false);
+                t.Background.SetActive(false);
             }
         }
         Text text = template.SpeakerText.GetComponent<Text>();
