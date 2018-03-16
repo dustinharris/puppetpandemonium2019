@@ -26,6 +26,7 @@ public class HealthBarController : MonoBehaviour {
     public void DecreaseHealth()
     {
         width -= perHit;
+        HealthBar.rectTransform.localScale = new Vector3(width, HealthBar.rectTransform.localScale.y);
         if (width <= 0)
         {
             ZeroHealth();
