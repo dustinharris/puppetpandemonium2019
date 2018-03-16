@@ -19,6 +19,7 @@
     public const string P2_BTN = "P2_BTN";
 
     public const string GAME_START = "GAME_START";
+    public const string COUNTDOWN_FINISHED = "COUNTDOWN_FINISHED";
 
     // Laser Rex Game Events
     public const string P1_HIT_REX = "P1_HIT_REX";
@@ -47,6 +48,7 @@
     public const string REX_INITIATE_END_SEQUENCE = "REX_INITIATE_END_SEQUENCE";
     public const string REX_DISABLE_AUDIENCE_LASERS = "REX_DISABLE_AUDIENCE_LASERS";
     public const string REX_STOP_SCENERY = "REX_STOP_SCENERY";
+    public const string REX_START_SCENERY = "REX_START_SCENERY";
     public const string REX_DEFEATED = "REX_DEFEATED";
 
     // Final Boss Game Events
