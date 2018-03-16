@@ -89,10 +89,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e03e2b6d23ffe44184bb43e961a9f29, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  LogoLength: 3
+  LogoLength: 6
   Background: {fileID: 1825217057450440}
   CountdownText: {fileID: 114823025705097754}
-  Disable: []
+  Subscribers: []
 --- !u!114 &114744593016151802
 MonoBehaviour:
   m_ObjectHideFlags: 1
