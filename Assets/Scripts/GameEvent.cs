@@ -15,6 +15,8 @@
     public const string A4_BLUE = "A4_BLUE";
     public const string A5_RED = "A5_RED";
     public const string A5_BLUE = "A5_BLUE";
+    public const string P1_BTN = "P1_BTN";
+    public const string P2_BTN = "P2_BTN";
 
     public const string GAME_START = "GAME_START";
 

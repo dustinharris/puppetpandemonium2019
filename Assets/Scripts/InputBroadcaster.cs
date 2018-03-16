@@ -65,12 +65,12 @@ public class InputBroadcaster : MonoBehaviour {
 
         if (Input.GetButtonDown("RedPuppet"))
         {
-            //Messenger.Broadcast(GameEvent.P1_BTN);
+            Messenger.Broadcast(GameEvent.P1_BTN);
         }
 
         if (Input.GetButtonDown("BluePuppet"))
         {
-            //Messenger.Broadcast(GameEvent.P2_BTN);
+            Messenger.Broadcast(GameEvent.P2_BTN);
         }
 
         //
