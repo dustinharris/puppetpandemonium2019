@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.37311947, g: 0.38074005, b: 0.35872722, a: 1}
+  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -798,6 +798,12 @@ MonoBehaviour:
   bounceSpeed: 10
   distanceMultiplier: 0.1
   randomize: 1
+--- !u!114 &34847135 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114823025705097754, guid: 1bd8a252fceb2c045928fbd036b497a4,
+    type: 2}
+  m_PrefabInternal: {fileID: 922002966}
+  m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
 --- !u!1001 &45720847
 Prefab:
   m_ObjectHideFlags: 0
@@ -3920,6 +3926,11 @@ MonoBehaviour:
   spriteRenderer: {fileID: 1687842831}
   HoldingPosition: {x: -2.4, y: 1, z: 6}
   FallTime: 1
+--- !u!1 &815337553 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1825217057450440, guid: 1bd8a252fceb2c045928fbd036b497a4,
+    type: 2}
+  m_PrefabInternal: {fileID: 922002966}
 --- !u!1 &824838119 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 1347290596775342, guid: 20ed5e064ae41f04a9c00503b757de40,
@@ -4561,7 +4572,9 @@ Prefab:
       propertyPath: m_PreserveAspect
       value: 1
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 114458571183980556, guid: 1bd8a252fceb2c045928fbd036b497a4, type: 2}
+    - {fileID: 114277262072914674, guid: 1bd8a252fceb2c045928fbd036b497a4, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 1bd8a252fceb2c045928fbd036b497a4, type: 2}
   m_IsPrefabParent: 0
 --- !u!224 &922002967 stripped
@@ -4894,6 +4907,26 @@ MonoBehaviour:
   bounceSpeed: 10
   distanceMultiplier: 0.1
   randomize: 1
+--- !u!1 &1007620883 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1483302574445878, guid: 1bd8a252fceb2c045928fbd036b497a4,
+    type: 2}
+  m_PrefabInternal: {fileID: 922002966}
+--- !u!114 &1007620884
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1007620883}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e03e2b6d23ffe44184bb43e961a9f29, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  LogoLength: 6
+  Background: {fileID: 815337553}
+  CountdownText: {fileID: 34847135}
+  Subscribers: []
 --- !u!1001 &1013525632
 Prefab:
   m_ObjectHideFlags: 0
