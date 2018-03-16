@@ -48,6 +48,9 @@ public class FinalInput : MonoBehaviour {
 
         // Subtract from health
         healthBar.DecreaseHealth();
+
+        // Decrease Health, includes cool text
+        Messenger.Broadcast(GameEvent.BOSS_DECREASE_HP);
     }
 
     private void CreateAudienceLaser(int audienceMemberOrPlayerNumber, bool redInput)

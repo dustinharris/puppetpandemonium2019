@@ -5,15 +5,11 @@ using UnityEngine.UI;
 
 public class HealthBarController : MonoBehaviour {
 
-    public interface IHealthSubscriber {
-        void ZeroHealth();
-    }
-
     [SerializeField]
     private Image HealthBar;
     [SerializeField]
-    private IHealthSubscriber[] Subscribers;
     public int HitsToDead;
+    [SerializeField] private GameObject controller;
 
     private float width;
     private float perHit;
@@ -35,9 +31,7 @@ public class HealthBarController : MonoBehaviour {
 
     private void ZeroHealth()
     {
-        for (int i = 0; i < Subscribers.Length; i++)
-        {
-            Subscribers[i].ZeroHealth();
-        }
+        string nextSceneName = controller.GetComponent<SceneSwitcher>().GetNextScene();
+        controller.GetComponent<SceneSwitcher>().SwitchScenes();
     }
 }
