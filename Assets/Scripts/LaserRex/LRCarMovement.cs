@@ -23,6 +23,7 @@ public class LRCarMovement : MonoBehaviour
     private Renderer carRenderer;
     private bool rexDefeated;
     private bool gameStarted = false;
+    private bool paused = false;
 
     private string ButtonName;
 
@@ -37,6 +38,8 @@ public class LRCarMovement : MonoBehaviour
         Messenger.AddListener(GameEvent.REX_P2_STOP_INVINCIBILITY, RexP2StopInvincibility);
         Messenger.AddListener(GameEvent.REX_DEFEATED, RexDefeated);
         Messenger.AddListener(GameEvent.GAME_START, GameStarted);
+        Messenger.AddListener(GameEvent.REX_STOP_SCENERY, Pause);
+        Messenger.AddListener(GameEvent.REX_START_SCENERY, Unpause);
 
         if (playerNumber == 0)
         {
@@ -80,6 +83,24 @@ public class LRCarMovement : MonoBehaviour
         }
     }
 
+    private void Pause()
+    {
+        paused = true;
+    }
+
+    private void Unpause()
+    {
+        paused = false;
+        if (Input.GetButton(ButtonName))
+        {
+            ButtonPressed();
+        }
+        else
+        {
+            ButtonReleased();
+        }
+    }
+
     // Update is called once per frame
     void Update()
     {
@@ -103,7 +124,7 @@ public class LRCarMovement : MonoBehaviour
                     Messenger.Broadcast(GameEvent.P2_HIT_REX);
                 }
             }
-            
+
             // Check to see if the player's key is down
             if (Input.GetButton(ButtonName))
             {
@@ -128,23 +149,7 @@ public class LRCarMovement : MonoBehaviour
             }
             if (buttonReleased)
             {
-                // Car exhaust off
-                carExhaust.SetActive(true);
-                drift.Resume();
-
-                // Don't show car stopped icon
-                carStoppedIcon.SetActive(false);
-                carStopped = false;
-
-                // Broadcast player started moving event
-                if (playerNumber == 0)
-                {
-                    Messenger.Broadcast(GameEvent.REX_P1_START_MOVING);
-                }
-                else
-                {
-                    Messenger.Broadcast(GameEvent.REX_P2_START_MOVING);
-                }
+                ButtonReleased();
             }
 
             // If the player's key isn't down && not invincible && not in end sequence, move forward
@@ -173,7 +178,10 @@ public class LRCarMovement : MonoBehaviour
         StopCar();
 
         // Show car stopped icon
-        carStoppedIcon.SetActive(true);
+        if (!paused)
+        {
+            carStoppedIcon.SetActive(true);
+        }
 
         // Broadcast player stopped moving event
         if (playerNumber == 0)
@@ -183,6 +191,30 @@ public class LRCarMovement : MonoBehaviour
         else
         {
             Messenger.Broadcast(GameEvent.REX_P2_STOP_MOVING);
+        }
+    }
+
+    private void ButtonReleased()
+    {
+        // Car exhaust off
+        carExhaust.SetActive(true);
+        drift.Resume();
+
+        // Don't show car stopped icon
+        if (!paused)
+        {
+            carStoppedIcon.SetActive(false);
+        }
+        carStopped = false;
+
+        // Broadcast player started moving event
+        if (playerNumber == 0)
+        {
+            Messenger.Broadcast(GameEvent.REX_P1_START_MOVING);
+        }
+        else
+        {
+            Messenger.Broadcast(GameEvent.REX_P2_START_MOVING);
         }
     }
 
@@ -276,7 +308,7 @@ public class LRCarMovement : MonoBehaviour
     private IEnumerator CarBlink(float waitTime)
     {
         float blinkStartTime = Time.time;
-        float blinkStopTime = blinkStartTime + waitTime/2;
+        float blinkStopTime = blinkStartTime + waitTime / 2;
 
         while (Time.time < blinkStopTime)
         {
@@ -302,7 +334,8 @@ public class LRCarMovement : MonoBehaviour
         if (playerNumber == 0)
         {
             Messenger.Broadcast(GameEvent.REX_P1_STOP_INVINCIBILITY);
-        } else
+        }
+        else
         {
             Messenger.Broadcast(GameEvent.REX_P2_STOP_INVINCIBILITY);
         }
