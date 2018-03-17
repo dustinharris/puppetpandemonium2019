@@ -8,13 +8,14 @@ public class FFAudience : MonoBehaviour
     [SerializeField] private AudienceBarScript AudienceScript;
     [SerializeField] private GameObject blueCarAlert;
     [SerializeField] private GameObject redCarAlert;
-    [SerializeField] private GameObject sceneSwitcher;
     private bool p1ButtonDown;
     private bool p2ButtonDown;
     private bool[] chargingRed;
     private bool[] chargingBlue;
-    [SerializeField] private GameObject[] allLaserAims;
+    [SerializeField] private FBLaserAimBehavior[] allLaserAims;
     private bool allCharged;
+
+    public bool testing;
 
     // Use this for initialization
     void Start()
@@ -26,11 +27,22 @@ public class FFAudience : MonoBehaviour
         int arraySize = AudienceScript.Size() + 1;
         chargingRed = new bool[arraySize];
         chargingBlue = new bool[arraySize];
+        if (testing)
+        {
+            StartCoroutine(Testing());
+        }
+    }
+
+    private IEnumerator Testing()
+    {
+        yield return new WaitForSeconds(3f);
+        StartCoroutine(FireLasers());
+        Messenger.Broadcast(GameEvent.ALL_GO);
     }
 
     void Update()
     {
-        if(!allCharged)
+        if (!allCharged)
         {
             // Check if each audience member is pressing a button
             int sections = AudienceScript.Size();
@@ -87,15 +99,22 @@ public class FFAudience : MonoBehaviour
             Debug.Log("ALLLLLL GOOO");
             allCharged = true;
 
-            foreach (GameObject laserAim in allLaserAims)
-            {
-                laserAim.GetComponent<FBLaserAimBehavior>().CreateNewLaser();
-            }
+            StartCoroutine(FireLasers());
 
-            // Go to next scene
-            sceneSwitcher.GetComponent<SceneSwitcher>().SwitchScenes();
+            Messenger.Broadcast(GameEvent.ALL_GO);
         }
+    }
 
+    private IEnumerator FireLasers()
+    {
+        while (true)
+        {
+            foreach (FBLaserAimBehavior laserAim in allLaserAims)
+            {
+                laserAim.CreateNewLaser();
+            }
+            yield return new WaitForSeconds(.4f);
+        }
     }
 
     private void HoldCharge(bool red, int index)

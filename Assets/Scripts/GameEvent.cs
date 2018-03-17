@@ -54,6 +54,9 @@
     // Final Boss Game Events
     public const string BOSS_DECREASE_HP = "BOSS_DECREASE_HP";
 
+    // Final Final Events
+    public const string ALL_GO = "ALL_GO";
+
     // EKO2Y Game Events
     public const string EKO2Y_GAME_OVER = "EKO2Y_GAME_OVER";
     public const string P1_RELEASE = "P1_RELEASE";
