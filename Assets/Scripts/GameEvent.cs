@@ -53,6 +53,7 @@
 
     // Final Boss Game Events
     public const string BOSS_DECREASE_HP = "BOSS_DECREASE_HP";
+    public const string BOSS_GAME_OVER = "BOSS_GAME_OVER";
 
     // Final Final Events
     public const string ALL_GO = "ALL_GO";

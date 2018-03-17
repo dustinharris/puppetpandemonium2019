@@ -31,7 +31,6 @@ public class HealthBarController : MonoBehaviour {
 
     private void ZeroHealth()
     {
-        string nextSceneName = controller.GetComponent<SceneSwitcher>().GetNextScene();
-        controller.GetComponent<SceneSwitcher>().SwitchScenes();
+        Messenger.Broadcast(GameEvent.BOSS_GAME_OVER);
     }
 }
