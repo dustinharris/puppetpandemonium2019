@@ -21,7 +21,7 @@ public class LRRoadSpawn : MonoBehaviour {
 
     void OnTriggerEnter(Collider collider)
     {
-        existingRoadScale = collider.transform.lossyScale;
+        existingRoadScale = collider.transform.localScale;
         existingRoadRotation = collider.transform.rotation;
         createNewRoad();
     }
