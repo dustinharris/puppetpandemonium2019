@@ -42,8 +42,26 @@ public class GrandmaAudience : MonoBehaviour
         bool RedNeedsReload = NeedsReload(true);
         bool BlueNeedsReload = NeedsReload(false);
 
-        // Check if each audience member is pressing a button
         int sections = AudienceScript.Size();
+
+        // For testing
+        if (Input.GetKeyDown("z"))
+        {
+            for (int i = 0; i < sections; i++)
+            {
+                HoldReload(true, i);
+            }
+        }
+        if (Input.GetKey("x"))
+        {
+            for (int i = 0; i < sections; i++)
+            {
+                HoldReload(false, i);
+            }
+        }
+
+        // Check if each audience member is pressing a button
+
         for (int i = 0; i < sections; i++)
         {
             if (Input.GetButtonDown("Audience" + i + "Red"))

@@ -114,7 +114,7 @@ static internal class MessengerInternal
     {
         if (mode == MessengerMode.REQUIRE_LISTENER && !eventTable.ContainsKey(eventType))
         {
-            throw new MessengerInternal.BroadcastException(string.Format("Broadcasting message {0} but no listener found.", eventType));
+            //throw new MessengerInternal.BroadcastException(string.Format("Broadcasting message {0} but no listener found.", eventType));
         }
     }
 
@@ -178,7 +178,8 @@ static public class Messenger
         MessengerInternal.OnBroadcasting(eventType, mode);
         var invocationList = MessengerInternal.GetInvocationList<Action>(eventType);
 
-        foreach (var callback in invocationList)
+        if (invocationList != null)
+            foreach (var callback in invocationList)
             callback.Invoke();
     }
 

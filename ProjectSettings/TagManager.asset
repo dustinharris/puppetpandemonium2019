@@ -16,6 +16,7 @@ TagManager:
   - Road
   - LRScenery
   - LRHitCar
+  - BGMusic
   layers:
   - Default
   - TransparentFX
