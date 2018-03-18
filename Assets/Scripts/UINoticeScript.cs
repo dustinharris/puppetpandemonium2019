@@ -1,18 +1,26 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class UINoticeScript : MonoBehaviour {
 
-	public void Show() {
-		this.gameObject.SetActive (true);
+    Image img;
+
+    private void Awake()
+    {
+        img = GetComponent<Image>();
+    }
+
+    public void Show() {
+        img.enabled = true;
 	}
 
 	public void Hide() {
-		this.gameObject.SetActive (false);
+        img.enabled = false;
 	}
 
 	public bool IsVisible() {
-		return this.gameObject.activeSelf;
+        return img.isActiveAndEnabled;
 	}
 }
