@@ -18,6 +18,7 @@ public class LRCharacterHitLauncher : MonoBehaviour {
     private Vector3 hitCarScale;
     private Quaternion hitCarRotation;
     private Rigidbody hitObject;
+    private GameObject hitObjectCar;
 
     private Animator animator;
 
@@ -46,10 +47,6 @@ public class LRCharacterHitLauncher : MonoBehaviour {
         hitCamera.enabled = true;
         mainCamera.enabled = false;
 
-        // Set rex to idle animation
-        animator = mamaRex.GetComponent<Animator>();
-        animator.Play("LAser_REx_Idle no look");
-
         // Get scale and rotation from gamecar
         // Get position from hit car launcher
         hitCarPosition = this.transform.position;
@@ -72,6 +69,7 @@ public class LRCharacterHitLauncher : MonoBehaviour {
 
         // Set game object tag
         hitObject.gameObject.tag = "LRHitCar";
+        hitObjectCar = hitObject.gameObject;
 
         launchHitCar(playerNumber);
     }
@@ -100,7 +98,8 @@ public class LRCharacterHitLauncher : MonoBehaviour {
         hitCamera.enabled = false;
 
         // Destroy hit car
-        Destroy(hitObject.gameObject);
+        Destroy(hitObjectCar);
+
 
         yield return new WaitForSeconds(waitTime);
     }

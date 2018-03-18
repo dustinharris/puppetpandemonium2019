@@ -195,10 +195,10 @@ public class LRRexBehavior : MonoBehaviour {
         // Destroy candy
         DestroyCandy(candyPlayerNumber);
         BroadcastDoneMunching(candyPlayerNumber);
-        
 
-        // If not still eating other side
-        if (!eating[GetOtherPlayer(candyPlayerNumber)])
+
+        // If not still eating or nodding other side
+        if (!eating[otherPlayer] && !nodding[otherPlayer])
         {
             // Remove heart over Rex head
             eatingIndicator.enabled = false;
