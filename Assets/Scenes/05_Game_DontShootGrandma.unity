@@ -5292,11 +5292,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be09d12f960093142bf88ca005891836, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  InitialTime: 3.5
+  InitialTime: 2
   MinTime: 1.5
   TimeDecrease: 1
-  RoundsPerTime: 4
-  TimePerPath: 1.5
+  RoundsPerTime: 3
+  TimePerPath: 1
   CameraPath: {fileID: 1279928729}
 --- !u!1 &1779145764
 GameObject:
