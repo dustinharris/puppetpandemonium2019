@@ -577,16 +577,6 @@ Prefab:
       propertyPath: m_SizeDelta.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 114691201893110816, guid: dfe1fc135e2b32844b469109fe61598a,
-        type: 2}
-      propertyPath: NextScene
-      value: 03_Game_EKO2Y
-      objectReference: {fileID: 0}
-    - target: {fileID: 114644839885972626, guid: dfe1fc135e2b32844b469109fe61598a,
-        type: 2}
-      propertyPath: FilePath
-      value: 02_DialogIntro_txt.txt
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: dfe1fc135e2b32844b469109fe61598a, type: 2}
   m_IsPrefabParent: 0
