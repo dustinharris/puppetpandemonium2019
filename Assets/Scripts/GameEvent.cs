@@ -50,6 +50,7 @@
     public const string REX_STOP_SCENERY = "REX_STOP_SCENERY";
     public const string REX_START_SCENERY = "REX_START_SCENERY";
     public const string REX_DEFEATED = "REX_DEFEATED";
+    public const string REX_SHOW_DAZED = "REX_SHOW_DAZED";
 
     // Final Boss Game Events
     public const string BOSS_DECREASE_HP = "BOSS_DECREASE_HP";

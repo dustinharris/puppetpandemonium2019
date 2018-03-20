@@ -30,6 +30,7 @@ public class LRRexBehavior : MonoBehaviour {
     private bool rexInWatchState = true;
     private bool rexDefeated = false;
     private bool dazed = false;
+    private bool rexInHitState = false;
     private bool[] eating;
     private bool[] nodding;
     [SerializeField] private bool testFunctions = false;
@@ -44,6 +45,7 @@ public class LRRexBehavior : MonoBehaviour {
         Messenger.AddListener(GameEvent.P2_CUBE_NEW_CANDY, P2CubeNewCandy);
         Messenger.AddListener(GameEvent.P1_HIT_REX, HitRex);
         Messenger.AddListener(GameEvent.P2_HIT_REX, HitRex);
+        Messenger.AddListener(GameEvent.REX_SHOW_DAZED, RexShowDazed);
 
         // Car state listeners
         Messenger.AddListener(GameEvent.REX_P1_START_MOVING, RexP1StartMoving);
@@ -72,7 +74,7 @@ public class LRRexBehavior : MonoBehaviour {
         NoddingAnimations[1] = "Laser_Rex_Nodding_Right_Side";
     }
 
-    void Start () {
+    void Start() {
 
         // Get laser behavior scripts attached to laser aims
         laserAimRed = redLaserAim.GetComponent<LRLaserAimBehavior>();
@@ -80,7 +82,7 @@ public class LRRexBehavior : MonoBehaviour {
 
         animator = GetComponent<Animator>();
         animator.Play("LAser_REx_Idle no look");
-        
+
         // At the beginning rex is in watch state
         rexInWatchState = false;
 
@@ -96,7 +98,7 @@ public class LRRexBehavior : MonoBehaviour {
 
     private void GameStart()
     {
-        RexStartWatchWarning();   
+        RexStartWatchWarning();
     }
 
     void Update()
@@ -130,6 +132,9 @@ public class LRRexBehavior : MonoBehaviour {
         dazed = false;
         starCrown.SetEnabled(false);
 
+        // Make sure rex isn't in hit state
+        rexInHitState = false;
+
         // Show heart over Rex head
         eatingIndicator.enabled = true;
         watchWarningIndicator.enabled = false;
@@ -155,6 +160,9 @@ public class LRRexBehavior : MonoBehaviour {
         // Choose a random eating time
         float candyEatTime = Random.Range(minEatingTime, maxEatingTime) - 1;
 
+        // Make sure rex isn't in hit state
+        rexInHitState = false;
+
         // Keep nodding for a second
         yield return new WaitForSeconds(1);
 
@@ -172,12 +180,22 @@ public class LRRexBehavior : MonoBehaviour {
         }
     }
 
+    public bool GetRexInHitState()
+    {
+        return rexInHitState;
+    }
+
+    public void SetRexInHitState(bool hitState)
+    {
+        rexInHitState = hitState;
+    }
+
     private IEnumerator RexEat(float eatTime, int candyPlayerNumber)
     {
         int otherPlayer = GetOtherPlayer(candyPlayerNumber);
-    
+
         eating[candyPlayerNumber] = true;
-        
+
         // Play eating anim
         animator.Play(CandyAnimations[candyPlayerNumber]);
 
@@ -187,9 +205,12 @@ public class LRRexBehavior : MonoBehaviour {
             DestroyCandy(otherPlayer);
         }
 
+        // Make sure rex isn't in hit state
+        rexInHitState = false;
+
         // Wait for eatTime
         yield return new WaitForSeconds(eatTime);
-        
+
         eating[candyPlayerNumber] = false;
 
         // Destroy candy
@@ -237,7 +258,7 @@ public class LRRexBehavior : MonoBehaviour {
         {
             candy = GameObject.Find("[Candy_Blue_Cube](Clone)");
         }
-        if (candy != null) { 
+        if (candy != null) {
             Destroy(candy);
         }
     }
@@ -259,8 +280,19 @@ public class LRRexBehavior : MonoBehaviour {
 
     private void RexDefeated()
     {
+        StartCoroutine(RexDefeatedWithDelay());
+    }
+
+    private IEnumerator RexDefeatedWithDelay()
+    {
+        // Wait for 2 seconds until after car has jumped
+        yield return new WaitForSeconds(2f);
+
         rexInWatchState = false;
         rexDefeated = true;
+
+        // Make sure rex isn't in hit state
+        rexInHitState = false;
 
         // Destroy all mama rex jets
         foreach (GameObject go in jets)
@@ -286,6 +318,7 @@ public class LRRexBehavior : MonoBehaviour {
         GetComponent<BoxCollider>().enabled = true;
     }
 
+
     private void RexStartWatch()
     {
         if (!rexDefeated)
@@ -300,7 +333,14 @@ public class LRRexBehavior : MonoBehaviour {
     private void HitRex()
     {
         rexInWatchState = false;
+        rexInHitState = true;
 
+        animator = GetComponent<Animator>();
+        animator.Play("LAser_REx_Idle no look");
+    }
+
+    private void RexShowDazed()
+    {
         if (!rexDefeated)
         {
             StartCoroutine(ReactToHit());
@@ -309,6 +349,10 @@ public class LRRexBehavior : MonoBehaviour {
 
     private IEnumerator ReactToHit()
     {
+        // Add slight delay before showing dazed state
+        // Because it looks better
+        yield return new WaitForSeconds(.1f);
+
         dazed = true;
         animator.Play("dazed");
 
@@ -344,6 +388,9 @@ public class LRRexBehavior : MonoBehaviour {
         {
             // Show watch warning indicator
             watchWarningIndicator.enabled = true;
+
+            // Make sure rex isn't in hit state
+            rexInHitState = false;
 
             // Wait for X seconds, per watchWarningTime
             yield return new WaitForSeconds(watchWarningTime);

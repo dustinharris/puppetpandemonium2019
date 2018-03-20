@@ -12,9 +12,13 @@ public class LRCarMovement : MonoBehaviour
     [SerializeField] private GameObject carStoppedIcon;
     [SerializeField] private float invincibilityDuration = 1f;
     [SerializeField] private float invincibilityBlinkInterval = .2f;
+    [SerializeField] private GameObject rexObject;
+    [SerializeField] private GameObject otherPlayer;
+    [SerializeField] private float hitTieBreakerPenalty = .05f;
     private bool carStopped;
 
     private LRDrift drift;
+    private LRRexBehavior rexBehavior;
     private bool playerKeyDown;
     private float newZ;
     private Vector3 startingPosition;
@@ -24,6 +28,7 @@ public class LRCarMovement : MonoBehaviour
     private bool rexDefeated;
     private bool gameStarted = false;
     private bool paused = false;
+    private bool rexInHitState = false;
 
     private string ButtonName;
 
@@ -65,6 +70,7 @@ public class LRCarMovement : MonoBehaviour
         carRenderer = this.GetComponent<Renderer>();
         rexDefeated = false;
         carExhaust.SetActive(true);
+        rexBehavior = rexObject.GetComponent<LRRexBehavior>();
     }
 
     private void GameStarted()
@@ -114,14 +120,31 @@ public class LRCarMovement : MonoBehaviour
             // Check to see if the player has traveled far enough to hit Mama Rex
             if (this.transform.localPosition.z > (startingPosition.z + carMaxDistanceZ))
             {
-                // Trigger hit rex event
-                if (playerNumber == 0)
+                // Get other character z distance
+                Vector3 otherCharacterDistance = otherPlayer.GetComponent<LRCarMovement>().getCarEndPosition();
+                float otherCharacterZDistance = otherCharacterDistance.z;
+
+                // Hit rex tie breaker logic:
+                // If other character is first player and their Z is >= this player's Z
+                // 1. Apply penalty to player two
+                // 2. Don't trigger event below
+
+                if (playerNumber == 1 && (otherPlayer.transform.position.z >= this.transform.position.z))
                 {
-                    Messenger.Broadcast(GameEvent.P1_HIT_REX);
-                }
-                else
+                    // Apply Z distance penalty to player two
+                    // This will prevent tie edge conditions on hit rex
+                    this.transform.position = new Vector3(this.transform.position.x, this.transform.position.y, (this.transform.position.z - hitTieBreakerPenalty));
+                } else
                 {
-                    Messenger.Broadcast(GameEvent.P2_HIT_REX);
+                    // Trigger hit rex event
+                    if (playerNumber == 0)
+                    {
+                        Messenger.Broadcast(GameEvent.P1_HIT_REX);
+                    }
+                    else
+                    {
+                        Messenger.Broadcast(GameEvent.P2_HIT_REX);
+                    }
                 }
             }
 
@@ -152,8 +175,12 @@ public class LRCarMovement : MonoBehaviour
                 ButtonReleased();
             }
 
+            // Check whether Rex is currently in hit state.
+            // If so, we won't want to move the car forward below.
+            rexInHitState = rexBehavior.GetRexInHitState();
+
             // If the player's key isn't down && not invincible && not in end sequence, move forward
-            if (!playerKeyDown && !carInvinvincible && !rexDefeated)
+            if (!playerKeyDown && !carInvinvincible && !rexDefeated && !rexInHitState)
             {
                 // Update player's z value each second if not stopped
                 newZ = this.transform.localPosition.z + (carSpeed * .1f * Time.deltaTime);
@@ -233,6 +260,7 @@ public class LRCarMovement : MonoBehaviour
     private void RexDefeated()
     {
         rexDefeated = true;
+        MoveToStartingPos(playerNumber);
         StopCar();
     }
 
