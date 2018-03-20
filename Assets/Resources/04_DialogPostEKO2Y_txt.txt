@@ -1,8 +1,15 @@
-[BLOOP] Hi my name is bloop welcome to puppet pandemonium! yall ready for a great show?
-[BLOOP] this is my next line of dialog!
-[BLEEP] Now its my turn to talk! 
-[BLOOP]  Blaj
-[AJIT]  money money money im a jerk
-[REX] RAWWAAAWRRRR
-[AJIT] Now money again
-[REX] RAWWAAAWRRRRRR
+[BLEEP] Wow. That was a game!
+[BLOOP] Yes it was Bleep, a game by wonderful and incredibly good looking developers
+[BLEEP] I think i love them. I've never _felt_ this way before
+[BLOOP] ...
+[BLOOP] Anyway, onto the next game!
+[BLEEP] Games games games!
+[BLOOP] This is the debut title from Funbrella corp...
+[BLOOP] Don't shoot grandma!
+[BLEEP] Well I wasn't going to but what's the game?
+[BLOOP] No that's the game, don't shoot grandma
+[BLEEP] What kind of puppet do you think I am? I would never!
+[BLOOP] ...Let's just start the game
+[BLEEP] Fine, but how do we play?
+[BLOOP] Just hit the button... And also... don't shoot grandma!
+[BLEEP] I promise nothing.

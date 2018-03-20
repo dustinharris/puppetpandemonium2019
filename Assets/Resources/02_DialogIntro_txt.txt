@@ -1,7 +1,19 @@
-[BLOOP] Hi my name is bloop welcome to puppet pandemonium! yall ready for a great show?
-[BLOOP] this is my next line of dialog!
-[BLEEP] Now its my turn to talk! 
-[BLOOP]  Blaj
-[AJIT]  money money money im a jerk
-[REX] RAWWAAAWRRRR
-[AJIT] Now money again
+[BLEEP] Hi everybody, Welcome to GDC! I'm Bleep! 
+[BLOOP] And I'm Bloop! I hope you're all having a great time at alt.ctrl.GDC
+[BLEEP] Welcome to our live streaming Stitch Channel, Puppet Pandemonium
+[BLEEP] We're bringing you the hottest, juiciest influencer blockchain content!
+[BLOOP] Buzzwords!
+[BLEEP] We've got our hands on the newest controller peripheral from Mad-Hatz
+[BLOOP] The Button Helmet 9000! *Gesture towards helmet*
+[BLOOP] We have a bunch of different games lined up to test these high tech hats
+[BLEEP] Haberdashery!
+[BLOOP] First up is the hit game from Doki Doki Studios
+[BLEEP] Extreme Kawaii Outrun 2 Yolo!
+[BLOOP] Oh wow, I've grown up on that franchise!
+[BLOOP] It's my favorite finite moped bunny escape runner
+[BLEEP] I've actually never played it
+[BLOOP] ...
+[BLOOP] Well let's get to it!
+[BLEEP] How do I play?
+[BLOOP] Use the button on your head!
+[BLOOP] And you can play along too! *Gesture towards audience*
