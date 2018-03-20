@@ -26,6 +26,13 @@ public class LRCarBounce : MonoBehaviour {
 
     public void BounceCarOffRex()
     {
+        // Play car bounce sound
+        
+
+        // Apply force after bouncing off Rex
         this.gameObject.GetComponent<Rigidbody>().AddForce(transform.forward * launchForce * 2f);
+
+        // Broadcast event to transition to dazed state
+        Messenger.Broadcast(GameEvent.REX_SHOW_DAZED);
     }
 }
