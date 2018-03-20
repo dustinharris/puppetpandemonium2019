@@ -12,17 +12,20 @@ public class EKO2YTimeline : MonoBehaviour {
     private float timelineObjectLength;
     private float newX;
     private Vector3 startingLocation;
-    private bool gameOngoing;
+    private bool gameOngoing = true;
 
-	// Use this for initialization
-	void Start () {
-        // Get the width of the timeline object
-        timelineObjectLength = timeline.GetComponent<SpriteRenderer>().bounds.size.x;
-        //Debug.Log("length: " + timelineObjectLength);
+    private void Awake()
+    {
         startingLocation = transform.position;
         startingLocation = new Vector3(startingLocation.x, startingLocation.y, startingLocation.z);
         // At the start, the game is ongoing
         gameOngoing = true;
+    }
+
+    void Start () {
+        // Get the width of the timeline object
+        timelineObjectLength = timeline.GetComponent<SpriteRenderer>().bounds.size.x;
+        Debug.Log("length: " + timelineObjectLength);
         // Don't render score screen
         scoreScreen.GetComponentInChildren<Renderer>().enabled = false;
         scoreScreen.GetComponentInChildren<Text>().enabled = false;
