@@ -519,7 +519,7 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
-    m_RotationOrder: 4
+    m_RotationOrder: 0
   reverbZoneMixCustomCurve:
     serializedVersion: 2
     m_Curve:
@@ -1244,7 +1244,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: b385e59ef1c98d34888c5cb378be108f, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.1
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -1300,7 +1300,7 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
-    m_RotationOrder: 4
+    m_RotationOrder: 0
   reverbZoneMixCustomCurve:
     serializedVersion: 2
     m_Curve:
@@ -1438,7 +1438,7 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
-    m_RotationOrder: 4
+    m_RotationOrder: 0
   reverbZoneMixCustomCurve:
     serializedVersion: 2
     m_Curve:
@@ -1721,7 +1721,7 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
-    m_RotationOrder: 4
+    m_RotationOrder: 0
   reverbZoneMixCustomCurve:
     serializedVersion: 2
     m_Curve:
@@ -2159,7 +2159,7 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
-    m_RotationOrder: 4
+    m_RotationOrder: 0
   reverbZoneMixCustomCurve:
     serializedVersion: 2
     m_Curve:
@@ -4017,13 +4017,13 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: c391208f52f3d3f409c75d68afe997f4, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.493
+  m_Volume: 1
   m_Pitch: 1
   Loop: 0
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
-  Priority: 128
+  Priority: 109
   DopplerLevel: 1
   MinDistance: 1
   MaxDistance: 500
@@ -4073,7 +4073,7 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
-    m_RotationOrder: 4
+    m_RotationOrder: 0
   reverbZoneMixCustomCurve:
     serializedVersion: 2
     m_Curve:
@@ -4097,13 +4097,13 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 5aa34152a6e89b149926ac0519435dd3, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.499
+  m_Volume: 1
   m_Pitch: 0.92
   Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
-  Priority: 128
+  Priority: 99
   DopplerLevel: 1
   MinDistance: 1
   MaxDistance: 500
@@ -5587,7 +5587,7 @@ Prefab:
     - target: {fileID: 224372351089093212, guid: 1bd8a252fceb2c045928fbd036b497a4,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: 53.184868
+      value: 53.184845
       objectReference: {fileID: 0}
     - target: {fileID: 224372351089093212, guid: 1bd8a252fceb2c045928fbd036b497a4,
         type: 2}
@@ -5685,7 +5685,7 @@ Prefab:
     - target: {fileID: 224372351089093212, guid: 1bd8a252fceb2c045928fbd036b497a4,
         type: 2}
       propertyPath: m_LocalScale.x
-      value: 0.90759325
+      value: 1.4637687
       objectReference: {fileID: 0}
     - target: {fileID: 224372351089093212, guid: 1bd8a252fceb2c045928fbd036b497a4,
         type: 2}
@@ -5706,6 +5706,21 @@ Prefab:
         type: 2}
       propertyPath: m_AnchorMax.y
       value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 114776622583297316, guid: 1bd8a252fceb2c045928fbd036b497a4,
+        type: 2}
+      propertyPath: m_PreserveAspect
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 224372351089093212, guid: 1bd8a252fceb2c045928fbd036b497a4,
+        type: 2}
+      propertyPath: m_LocalScale.y
+      value: 1.4758234
+      objectReference: {fileID: 0}
+    - target: {fileID: 224372351089093212, guid: 1bd8a252fceb2c045928fbd036b497a4,
+        type: 2}
+      propertyPath: m_LocalScale.z
+      value: 1.6145762
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 114277262072914674, guid: 1bd8a252fceb2c045928fbd036b497a4, type: 2}
@@ -6038,7 +6053,7 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
-    m_RotationOrder: 4
+    m_RotationOrder: 0
   reverbZoneMixCustomCurve:
     serializedVersion: 2
     m_Curve:
@@ -6149,7 +6164,7 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
-    m_RotationOrder: 4
+    m_RotationOrder: 0
   reverbZoneMixCustomCurve:
     serializedVersion: 2
     m_Curve:

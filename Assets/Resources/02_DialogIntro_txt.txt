@@ -1,8 +1,8 @@
 [BLEEP] Hi everybody, Welcome to GDC! I'm Bleep! 
 [BLOOP] And I'm Bloop! I hope you're all having a great time at alt.ctrl.GDC
-[BLEEP] Welcome to our live streaming Stitch Channel, Puppet Pandemonium
+[BLEEP] Welcome to our live streaming Stitch Channel, Puppet Pandemonium!
 [BLEEP] We're bringing you the hottest, juiciest influencer blockchain content!
-[BLOOP] Buzzwords!
+[BLOOP] Fuzzwords!
 [BLEEP] We've got our hands on the newest controller peripheral from Mad-Hatz
 [BLOOP] The Button Helmet 9000! *Gesture towards helmet*
 [BLOOP] We have a bunch of different games lined up to test these high tech hats
@@ -12,7 +12,6 @@
 [BLOOP] Oh wow, I've grown up on that franchise!
 [BLOOP] It's my favorite finite moped bunny escape runner
 [BLEEP] I've actually never played it
-[BLOOP] ...
 [BLOOP] Well let's get to it!
 [BLEEP] How do I play?
 [BLOOP] Use the button on your head!

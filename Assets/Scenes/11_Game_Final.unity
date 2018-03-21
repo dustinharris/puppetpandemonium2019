@@ -220,7 +220,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.1
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -322,7 +322,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.1
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -838,7 +838,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.1
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -4502,7 +4502,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.1
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -8325,7 +8325,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.1
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -8427,7 +8427,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.1
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -12404,7 +12404,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.1
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -13028,7 +13028,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.1
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -13150,6 +13150,9 @@ MonoBehaviour:
   carStoppedIcon: {fileID: 173027688}
   invincibilityDuration: 3
   invincibilityBlinkInterval: 0.2
+  rexObject: {fileID: 0}
+  otherPlayer: {fileID: 0}
+  hitTieBreakerPenalty: 0.05
 --- !u!114 &888167120
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13599,7 +13602,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.1
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -13932,6 +13935,9 @@ MonoBehaviour:
   carStoppedIcon: {fileID: 1356585329}
   invincibilityDuration: 3
   invincibilityBlinkInterval: 0.2
+  rexObject: {fileID: 0}
+  otherPlayer: {fileID: 0}
+  hitTieBreakerPenalty: 0.05
 --- !u!114 &1199660991
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14122,7 +14128,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.1
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -14380,6 +14386,16 @@ Prefab:
         type: 2}
       propertyPath: m_PlayOnAwake
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 82544075662570478, guid: b31839dd192d3c0478013067c319eac0,
+        type: 2}
+      propertyPath: spreadCustomCurve.m_RotationOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 82544075662570478, guid: b31839dd192d3c0478013067c319eac0,
+        type: 2}
+      propertyPath: Priority
+      value: 109
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 114510173711623144, guid: b31839dd192d3c0478013067c319eac0, type: 2}

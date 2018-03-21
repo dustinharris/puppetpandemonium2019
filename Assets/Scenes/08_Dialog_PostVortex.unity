@@ -520,6 +520,30 @@ Prefab:
       propertyPath: FilePath
       value: 08_DialogPostVortex_txt.txt
       objectReference: {fileID: 0}
+    - target: {fileID: 1297130690696898, guid: dfe1fc135e2b32844b469109fe61598a, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 224987511636447852, guid: dfe1fc135e2b32844b469109fe61598a,
+        type: 2}
+      propertyPath: m_AnchoredPosition.x
+      value: -620
+      objectReference: {fileID: 0}
+    - target: {fileID: 82872552607745398, guid: dfe1fc135e2b32844b469109fe61598a,
+        type: 2}
+      propertyPath: spreadCustomCurve.m_RotationOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114614216124995842, guid: dfe1fc135e2b32844b469109fe61598a,
+        type: 2}
+      propertyPath: EndPosition.x
+      value: -620
+      objectReference: {fileID: 0}
+    - target: {fileID: 224425274358622786, guid: dfe1fc135e2b32844b469109fe61598a,
+        type: 2}
+      propertyPath: m_AnchoredPosition.y
+      value: 418
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: dfe1fc135e2b32844b469109fe61598a, type: 2}
   m_IsPrefabParent: 0
@@ -576,6 +600,11 @@ Prefab:
         type: 2}
       propertyPath: m_Volume
       value: 0.558
+      objectReference: {fileID: 0}
+    - target: {fileID: 82544075662570478, guid: b31839dd192d3c0478013067c319eac0,
+        type: 2}
+      propertyPath: spreadCustomCurve.m_RotationOrder
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 114510173711623144, guid: b31839dd192d3c0478013067c319eac0, type: 2}

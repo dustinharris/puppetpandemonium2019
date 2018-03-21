@@ -15,7 +15,7 @@ public class EKO2YGameOver : MonoBehaviour {
     private Vector3 blueCharacterEndGamePosition;
     private Vector3 redCharacterEndGamePosition;
     private Vector3 target;
-    [SerializeField] private float timeToReachTarget = 3000f;
+    [SerializeField] private float timeToReachTarget;
     [SerializeField] private GameObject inGameScoreText;
     [SerializeField] private GameObject SceneSwitcherObject;
     private SceneSwitcher sceneSwitcher;

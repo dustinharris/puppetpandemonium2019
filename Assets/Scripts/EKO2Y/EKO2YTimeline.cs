@@ -29,6 +29,8 @@ public class EKO2YTimeline : MonoBehaviour {
         // Don't render score screen
         scoreScreen.GetComponentInChildren<Renderer>().enabled = false;
         scoreScreen.GetComponentInChildren<Text>().enabled = false;
+
+        StartCoroutine(WaitToEnd());
     }
 
     // Update is called once per frame
@@ -37,21 +39,27 @@ public class EKO2YTimeline : MonoBehaviour {
             // Every millisecond, move this GameObject closer to the end of the timeline
             newX = ((((Time.time * 1000) / gameLength) * timelineObjectLength) / timelineObjectLength) / 2;
             transform.position = new Vector3(startingLocation.x + newX, startingLocation.y, (startingLocation.z));
-            if (newX >= timelineObjectLength)
-            {
-                // The game has reached an end
-                gameOngoing = false;
-                ShowEKO2YScoreScreen();
-
-                // Broadcast Game Over Message
-                Messenger.Broadcast(GameEvent.EKO2Y_GAME_OVER);
-            }
         }
 	}
+
+    private IEnumerator WaitToEnd()
+    {
+        yield return new WaitForSeconds(gameLength / 1000);
+
+        // The game has reached an end
+        gameOngoing = false;
+        ShowEKO2YScoreScreen();
+
+        Debug.Log("Broadcasting game over");
+        // Broadcast Game Over Message
+        Messenger.Broadcast(GameEvent.EKO2Y_GAME_OVER);
+    }
 
     private void ShowEKO2YScoreScreen()
     {
         // Show background & Text
         scoreScreen.GetComponentInChildren<Renderer>().enabled = true;
     }
+
+
 }
