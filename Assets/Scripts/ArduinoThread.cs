@@ -104,6 +104,21 @@ public class ArduinoThread : MonoBehaviour
         return (string)inputQueue.Dequeue();
     }
 
+    public string[] ReadAllFromArduino()
+    {
+        if (inputQueue.Count == 0)
+            return null;
+
+        string[] newStrings = new string[inputQueue.Count];
+
+        for (int i = 0; i < inputQueue.Count; i++)
+        {
+            newStrings[i] = (string)inputQueue.Dequeue();
+        }
+
+        return newStrings;
+    }
+
     public void WriteToArduino(string message)
     {
         // Send the request
