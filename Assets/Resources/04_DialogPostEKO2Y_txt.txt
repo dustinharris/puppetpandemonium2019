@@ -7,9 +7,4 @@
 [BLOOP] This is the debut title from Funbrella corp...
 [BLOOP] Don't shoot grandma!
 [BLEEP] Well I wasn't going to but what's the game?
-[BLOOP] No that's the game, don't shoot grandma
-[BLEEP] What kind of puppet do you think I am? I would never!
-[BLOOP] ...Let's just start the game
-[BLEEP] Fine, but how do we play?
-[BLOOP] Just hit the button... And also... don't shoot grandma!
-[BLEEP] I promise nothing.
+[BLOOP] ...Let's just get started

@@ -60,6 +60,12 @@ public class ArduinoThread : MonoBehaviour
         stream.Close();
     }
 
+    public void ClearStreams()
+    {
+        inputQueue.Clear();
+        outputQueue.Clear();
+    }
+
     public void SendToArduino(string command)
     {
         outputQueue.Enqueue(command);

@@ -58,17 +58,32 @@ public class SceneSwitcher : MonoBehaviour
     {
         if (LoadOp != null)
         {
+            ClearInputs();
             LoadOp.allowSceneActivation = true;
         }
         else
         {
             if (!string.IsNullOrEmpty(NextScene))
             {
+                ClearInputs();
                 SceneManager.LoadSceneAsync(NextScene);
             }
             else
             {
                 throw new UnityException("No scene to switch to");
+            }
+        }
+    }
+
+    private void ClearInputs()
+    {
+        GameObject ctrl = GameObject.Find("ArduinoController");
+        if (ctrl != null)
+        {
+            ArduinoThread thread = ctrl.GetComponent<ArduinoManager>().GetArduinoThread();
+            if (thread != null)
+            {
+                thread.ClearStreams();
             }
         }
     }

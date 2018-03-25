@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using WindowsInput;
+using UnityEngine.SceneManagement;
 
 public class InputBroadcaster : MonoBehaviour {
 
@@ -17,6 +18,7 @@ public class InputBroadcaster : MonoBehaviour {
         {
             Messenger.Broadcast(GameEvent.A1_RED);
         }
+        
 
         if (Input.GetButtonDown("Audience0Blue"))
         {

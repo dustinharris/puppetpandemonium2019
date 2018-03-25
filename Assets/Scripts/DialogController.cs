@@ -111,7 +111,7 @@ public class DialogController : MonoBehaviour
                 if (template != null)
                 {
                     FillInfo(template, message);
-                    yield return new WaitForSeconds(.5f);
+                    yield return new WaitForSeconds(1f);
                     yield return WaitForInput(template.Button);
                 }
             }

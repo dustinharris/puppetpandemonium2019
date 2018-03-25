@@ -27,7 +27,7 @@ public class LRCarBounce : MonoBehaviour {
     public void BounceCarOffRex()
     {
         // Play car bounce sound
-        
+        //bounceSound.Play();
 
         // Apply force after bouncing off Rex
         this.gameObject.GetComponent<Rigidbody>().AddForce(transform.forward * launchForce * 2f);

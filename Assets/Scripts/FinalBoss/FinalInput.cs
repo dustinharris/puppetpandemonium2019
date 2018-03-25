@@ -21,8 +21,6 @@ public class FinalInput : MonoBehaviour {
         Messenger.AddListener(GameEvent.A4_BLUE, A4Blue);
         Messenger.AddListener(GameEvent.A5_RED, A5Red);
         Messenger.AddListener(GameEvent.A5_BLUE, A5Blue);
-        Messenger.AddListener(GameEvent.P1_BTN, P1Button);
-        Messenger.AddListener(GameEvent.P2_BTN, P2Button);
     }
 
     void OnDestroy()
@@ -123,15 +121,5 @@ public class FinalInput : MonoBehaviour {
     private void A5Blue()
     {
         AudienceInput(false, 4);
-    }
-
-    private void P1Button()
-    {
-        AudienceInput(true, 5);
-    }
-
-    private void P2Button()
-    {
-        AudienceInput(false, 5);
     }
 }
