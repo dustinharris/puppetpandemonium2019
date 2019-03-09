@@ -96,6 +96,30 @@ public class LRRexBehavior : MonoBehaviour {
         }
     }
 
+    private void OnDestroy()
+    {
+        Messenger.RemoveListener(GameEvent.REX_START_WATCH_WARNING, RexStartWatchWarning);
+        Messenger.RemoveListener(GameEvent.REX_START_WATCH, RexStartWatch);
+        Messenger.RemoveListener(GameEvent.REX_DEFEATED, RexDefeated);
+        Messenger.RemoveListener(GameEvent.P1_CUBE_NEW_CANDY, P1CubeNewCandy);
+        Messenger.RemoveListener(GameEvent.P2_CUBE_NEW_CANDY, P2CubeNewCandy);
+        Messenger.RemoveListener(GameEvent.P1_HIT_REX, HitRex);
+        Messenger.RemoveListener(GameEvent.P2_HIT_REX, HitRex);
+        Messenger.RemoveListener(GameEvent.REX_SHOW_DAZED, RexShowDazed);
+
+        // Car state listeners
+        Messenger.RemoveListener(GameEvent.REX_P1_START_MOVING, RexP1StartMoving);
+        Messenger.RemoveListener(GameEvent.REX_P2_START_MOVING, RexP2StartMoving);
+        Messenger.RemoveListener(GameEvent.REX_P1_STOP_MOVING, RexP1StopMoving);
+        Messenger.RemoveListener(GameEvent.REX_P2_STOP_MOVING, RexP2StopMoving);
+        Messenger.RemoveListener(GameEvent.REX_P1_START_INVINCIBILITY, RexP1StartInvincibility);
+        Messenger.RemoveListener(GameEvent.REX_P2_START_INVINCIBILITY, RexP2StartInvincibility);
+        Messenger.RemoveListener(GameEvent.REX_P1_STOP_INVINCIBILITY, RexP1StopInvincibility);
+        Messenger.RemoveListener(GameEvent.REX_P2_STOP_INVINCIBILITY, RexP2StopInvincibility);
+
+        Messenger.RemoveListener(GameEvent.GAME_START, GameStart);
+    }
+
     private void GameStart()
     {
         RexStartWatchWarning();

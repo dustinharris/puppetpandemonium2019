@@ -7,19 +7,27 @@ public class Explosions : MonoBehaviour {
     [SerializeField] private SceneSwitcher sceneSwitcher;
     [SerializeField] private GameObject White;
     [SerializeField] private GameObject[] ExplosionObjects;
+    public GameObject arduinoStream;
 
 	// Use this for initialization
 	void Start () {
         Messenger.AddListener(GameEvent.ALL_GO, AllGo);
+        arduinoStream = GameObject.Find("ArduinoController");
 	}
-	
-	private void AllGo()
+
+    private void OnDestroy()
+    {
+        Messenger.RemoveListener(GameEvent.ALL_GO, AllGo);
+    }
+
+    private void AllGo()
     {
         StartCoroutine(Explode());
     }
 
     private IEnumerator Explode()
     {
+        //arduinoStream.GetComponent<ArduinoConnector>().SetClearBuffer();
         for (int i = 0; i < ExplosionObjects.Length; i++) {
             ExplosionObjects[i].SetActive(true);
             if (i < ExplosionObjects.Length - 2)

@@ -38,6 +38,15 @@ public class LRCubeBehavior : MonoBehaviour {
         startPosition = transform.position;
     }
 
+    private void OnDestroy()
+    {
+        Messenger.RemoveListener(GameEvent.P1_CUBE_HIT, P1CubeHit);
+        Messenger.RemoveListener(GameEvent.P2_CUBE_HIT, P2CubeHit);
+        Messenger.RemoveListener(GameEvent.P1_REX_DONE_MUNCHING, P1Reenable);
+        Messenger.RemoveListener(GameEvent.P2_REX_DONE_MUNCHING, P2Reenable);
+        Messenger.RemoveListener(GameEvent.REX_DEFEATED, RexDefeated);
+    }
+
     public int GetPlayerNumber()
     {
         return playerNumber;

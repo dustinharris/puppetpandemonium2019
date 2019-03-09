@@ -89,7 +89,12 @@ public class DialogController : MonoBehaviour
 
     public IEnumerator ReadFile()
     {
-        using (StreamReader reader = new StreamReader("Assets/Resources/" + FilePath))
+#if UNITY_EDITOR
+        StreamReader reader = new StreamReader("Assets/Resources/" + FilePath);
+#else
+        StreamReader reader = new StreamReader("puppetpandemonium_Data/Resources/Dialog/" + FilePath);
+#endif
+        using (reader)
         {
             Debug.Log("Using stream reader");
 

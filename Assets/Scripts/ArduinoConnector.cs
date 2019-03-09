@@ -9,9 +9,11 @@ using System.IO.Ports;
 public class ArduinoConnector : MonoBehaviour
 {
 
+    public bool clearBuffer;
+
     /* The serial port where the Arduino is connected. */
     [Tooltip("The serial port where the Arduino is connected")]
-    public string port = "COM5";
+    public string port = "COM3";
     /* The baudrate of the serial port. */
     [Tooltip("The baudrate of the serial port")]
     public int baudrate = 9600;
@@ -61,7 +63,17 @@ public class ArduinoConnector : MonoBehaviour
             // A single read attempt
             try
             {
+                if (clearBuffer) {
+                    // Clear buffer
+                    string line;
+                    while((line = stream.ReadLine()) != null)
+                    {
+                        dataString = stream.ReadExisting();
+                    }
+                    clearBuffer = false;
+                } else { 
                 dataString = stream.ReadLine();
+                }
             }
             catch (TimeoutException)
             {
@@ -84,6 +96,11 @@ public class ArduinoConnector : MonoBehaviour
         if (fail != null)
             fail();
         yield return null;
+    }
+
+    public void SetClearBuffer()
+    {
+        clearBuffer = true;
     }
 
     public void Close()

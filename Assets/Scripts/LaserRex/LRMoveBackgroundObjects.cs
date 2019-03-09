@@ -19,9 +19,15 @@ public class LRMoveBackgroundObjects : MonoBehaviour {
     void Start () {
         RexStartScenery();
     }
-	
-	// Update is called once per frame
-	void Update () {
+
+    private void OnDestroy()
+    {
+        Messenger.RemoveListener(GameEvent.REX_STOP_SCENERY, RexStopScenery);
+        Messenger.RemoveListener(GameEvent.REX_START_SCENERY, RexStartScenery);
+    }
+
+    // Update is called once per frame
+    void Update () {
         // Determine how fast to move the scenery based on variable
         float newZ = sceneryEmpty.transform.position.z - (float)(currentSpeed * .1);
 

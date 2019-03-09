@@ -35,6 +35,12 @@ public class LRCoinLauncherBehavior : MonoBehaviour {
         idleAnimation = "";
     }
 
+    private void OnDestroy()
+    {
+        Messenger.RemoveListener(GameEvent.P1_CUBE_NEW_COIN, P1CubeNewCoin);
+        Messenger.RemoveListener(GameEvent.P2_CUBE_NEW_COIN, P2CubeNewCoin);
+    }
+
     private void LaunchNewCoin()
     {
         // Generate random values for new Coin's force, direction angle, and height angle

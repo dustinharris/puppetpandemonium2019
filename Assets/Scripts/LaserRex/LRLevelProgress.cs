@@ -20,11 +20,11 @@ public class LRLevelProgress : MonoBehaviour {
         livesRemaining = rexLives.Length;
         //Debug.Log("Total rex lives: " + livesRemaining);
 	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+
+    private void OnDestroy()
+    {
+        Messenger.RemoveListener(GameEvent.REX_SUBTRACT_LIFE, SubtractLife);
+    }
 
     private void SubtractLife()
     {

@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class EKO2YGameOver : MonoBehaviour {
 
-    [SerializeField] private GameObject gameOverBackground;
+    //[SerializeField] private GameObject gameOverBackground;
     [SerializeField] private GameObject blueCharacterObject;
     [SerializeField] private GameObject redCharacterObject;
     [SerializeField] private GameObject gameOverEmpty;
@@ -29,7 +29,7 @@ public class EKO2YGameOver : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-        target = new Vector3(0, 0, gameOverBackground.transform.position.z);
+        //target = new Vector3(0, gameOverBackground.transform.position.y, gameOverBackground.transform.position.z);
         blueCharacterEndGamePosition = new Vector3(3.7f, 0, 0);
         redCharacterEndGamePosition = new Vector3(2.4f, 0, 0);
     }
@@ -37,6 +37,11 @@ public class EKO2YGameOver : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 	}
+
+    private void OnDestroy()
+    {
+        Messenger.RemoveListener(GameEvent.EKO2Y_GAME_OVER, StartGameOver);
+    }
 
     private void StartGameOver()
     {
@@ -50,7 +55,7 @@ public class EKO2YGameOver : MonoBehaviour {
         blueFall.SetActive(false);
 
         // Move background in
-        StartCoroutine(MoveOverSeconds(gameOverBackground, target, timeToReachTarget));
+        //StartCoroutine(MoveOverSeconds(gameOverBackground, target, timeToReachTarget));
 
         // Move blue character in
         StartCoroutine(MoveInCharacters());

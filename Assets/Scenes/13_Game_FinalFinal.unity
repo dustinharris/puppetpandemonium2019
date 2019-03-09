@@ -4982,6 +4982,7 @@ MonoBehaviour:
   - {fileID: 2055783191}
   - {fileID: 1072601224}
   - {fileID: 1089296249}
+  arduinoStream: {fileID: 0}
 --- !u!4 &591935238
 Transform:
   m_ObjectHideFlags: 0

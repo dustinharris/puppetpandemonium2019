@@ -12,6 +12,11 @@ public class HitpointText : MonoBehaviour {
         Messenger.AddListener(GameEvent.BOSS_DECREASE_HP, BossDecreaseHP);
     }
 
+    private void OnDestroy()
+    {
+        Messenger.RemoveListener(GameEvent.BOSS_DECREASE_HP, BossDecreaseHP);
+    }
+
     private void BossDecreaseHP()
     {
         RectTransform rect = this.GetComponent<RectTransform>();

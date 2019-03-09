@@ -56,7 +56,7 @@ public class FFAudience : MonoBehaviour
                 }
                 if (Input.GetButtonUp("Audience" + i + "Red"))
                 {
-                    ReleaseCharge(true, i);
+                    //ReleaseCharge(true, i);
                 }
                 if (Input.GetButtonDown("Audience" + i + "Blue"))
                 {
@@ -64,7 +64,7 @@ public class FFAudience : MonoBehaviour
                 }
                 if (Input.GetButtonUp("Audience" + i + "Blue"))
                 {
-                    ReleaseCharge(false, i);
+                    //ReleaseCharge(false, i);
                 }
             }
 
@@ -77,8 +77,8 @@ public class FFAudience : MonoBehaviour
             }
             if (Input.GetButtonUp("RedPuppet"))
             {
-                chargingRed[playerIndex] = false;
-                redCarAlert.GetComponent<SpriteRenderer>().enabled = true;
+                //chargingRed[playerIndex] = false;
+                //redCarAlert.GetComponent<SpriteRenderer>().enabled = true;
             }
             if (Input.GetButtonDown("BluePuppet"))
             {
@@ -87,8 +87,8 @@ public class FFAudience : MonoBehaviour
             }
             if (Input.GetButtonUp("BluePuppet"))
             {
-                chargingBlue[playerIndex] = false;
-                blueCarAlert.GetComponent<SpriteRenderer>().enabled = true;
+                //chargingBlue[playerIndex] = false;
+                //blueCarAlert.GetComponent<SpriteRenderer>().enabled = true;
             }
         }
 

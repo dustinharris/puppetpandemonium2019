@@ -19,6 +19,13 @@ public class LRInstructionsScript : MonoBehaviour {
         Messenger.AddListener(GameEvent.P2_CUBE_NEW_CANDY, CubeDestroyed);
 	}
 
+    private void OnDestroy()
+    {
+        Messenger.RemoveListener(GameEvent.COUNTDOWN_FINISHED, CountdownFinished);
+        Messenger.RemoveListener(GameEvent.P1_CUBE_NEW_CANDY, CubeDestroyed);
+        Messenger.RemoveListener(GameEvent.P2_CUBE_NEW_CANDY, CubeDestroyed);
+    }
+
     private void ShowInstructions(bool shown)
     {
         InstructionsText.enabled = shown;

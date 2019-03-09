@@ -19,6 +19,11 @@ public class BossGameOver : MonoBehaviour {
         AudienceBar.ShowAll(AudienceUIScript.Notice.Glow);
     }
 
+    private void OnDestroy()
+    {
+        Messenger.RemoveListener(GameEvent.BOSS_GAME_OVER, GameOver);
+    }
+
     private void GameOver()
     {
         sceneSwitcher.SwitchScenes();

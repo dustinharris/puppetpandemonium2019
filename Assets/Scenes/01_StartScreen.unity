@@ -155,7 +155,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4548300918994540, guid: b31839dd192d3c0478013067c319eac0, type: 2}
       propertyPath: m_RootOrder
-      value: 5
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 82544075662570478, guid: b31839dd192d3c0478013067c319eac0,
         type: 2}
@@ -330,7 +330,8 @@ Prefab:
       propertyPath: m_PreserveAspect
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 114729305019738186, guid: 3d0ffd401fe7c70468bc313b4dfb241b, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 3d0ffd401fe7c70468bc313b4dfb241b, type: 2}
   m_IsPrefabParent: 0
 --- !u!1 &207409105
@@ -508,6 +509,24 @@ RectTransform:
   m_PrefabParentObject: {fileID: 224496742212303114, guid: 83aab0a58ceecb94c9eb0fb3ab9abbf4,
     type: 2}
   m_PrefabInternal: {fileID: 793587232}
+--- !u!1 &786657344 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1418818781822638, guid: e2e18fd2d67c9c94d9184674713337df,
+    type: 2}
+  m_PrefabInternal: {fileID: 827202479}
+--- !u!114 &786657345
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 786657344}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6a9558346972e4d40a011f8a7ce9980d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bounceSpeed: 15
+  distanceMultiplier: 35
 --- !u!1001 &793587232
 Prefab:
   m_ObjectHideFlags: 0
@@ -673,7 +692,8 @@ Prefab:
       propertyPath: EndPosition.x
       value: -424.5
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 114030313622262640, guid: 83aab0a58ceecb94c9eb0fb3ab9abbf4, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 83aab0a58ceecb94c9eb0fb3ab9abbf4, type: 2}
   m_IsPrefabParent: 0
 --- !u!1 &798286184
@@ -1191,7 +1211,8 @@ Prefab:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 114744969074761710, guid: e2e18fd2d67c9c94d9184674713337df, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: e2e18fd2d67c9c94d9184674713337df, type: 2}
   m_IsPrefabParent: 0
 --- !u!1 &873922129 stripped
@@ -1392,74 +1413,26 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1839299279
+--- !u!1 &1769015958 stripped
 GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 5
-  m_Component:
-  - component: {fileID: 1839299282}
-  - component: {fileID: 1839299281}
-  - component: {fileID: 1839299280}
-  - component: {fileID: 1839299283}
-  m_Layer: 0
-  m_Name: ArduinoController
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1839299280
+  m_PrefabParentObject: {fileID: 1546295390617384, guid: 83aab0a58ceecb94c9eb0fb3ab9abbf4,
+    type: 2}
+  m_PrefabInternal: {fileID: 793587232}
+--- !u!114 &1769015960
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1839299279}
+  m_GameObject: {fileID: 1769015958}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f5b9aa9ef19775641b6d7f0bd64a4d8a, type: 3}
+  m_Script: {fileID: 11500000, guid: 6a9558346972e4d40a011f8a7ce9980d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &1839299281
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1839299279}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bd355fbc279e21c49860ce6c5edea2c3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  port: COM5
-  baudrate: 9600
---- !u!4 &1839299282
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1839299279}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 4
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1839299283
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1839299279}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8c38abdc6f517d64c9d42708bf11d12f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  bounceSpeed: 15
+  distanceMultiplier: 35
 --- !u!1 &1923048340
 GameObject:
   m_ObjectHideFlags: 0
@@ -1528,3 +1501,63 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1923048340}
+--- !u!1 &1955775887
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 1955775889}
+  - component: {fileID: 1955775888}
+  m_Layer: 0
+  m_Name: CreateArduinoObjectIfNeeded
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1955775888
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1955775887}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a2e5512c0e33fe429b14bac5f457e0d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  arduinoControllerPrefab: {fileID: 1446584943084178, guid: 6434c40f59791154a8fa50e909cc5cca,
+    type: 2}
+--- !u!4 &1955775889
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1955775887}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 6.1145854, y: 1.8444586, z: 90.02479}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &2095417801 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1882873466726182, guid: 3d0ffd401fe7c70468bc313b4dfb241b,
+    type: 2}
+  m_PrefabInternal: {fileID: 179221233}
+--- !u!114 &2095417803
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2095417801}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6a9558346972e4d40a011f8a7ce9980d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bounceSpeed: 15
+  distanceMultiplier: 35

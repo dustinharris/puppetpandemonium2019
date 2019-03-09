@@ -9,7 +9,12 @@ public class HandleTextFile : MonoBehaviour {
 
     void WriteString()
     {
+#if UNITY_EDITOR
         string path = "Assets/Resources/" + fileName;
+#else
+        string path = "puppetpandemonium_Data/Resources/Levels/" + fileName;
+#endif
+
 
         //Write some text to the test.txt file
         StreamWriter writer = new StreamWriter(path, true);
@@ -22,17 +27,25 @@ public class HandleTextFile : MonoBehaviour {
     
     public void ReadString()
     {
-        string path = "Assets/Resources/" + fileName;
+#if UNITY_EDITOR
+        StreamReader reader = new StreamReader("Assets/Resources/" + fileName);
+#else
+        StreamReader reader = new StreamReader("puppetpandemonium_Data/Resources/Levels/" + fileName);
+#endif
 
         //Read the text from directly from the test.txt file
-        StreamReader reader = new StreamReader(path);
+        //StreamReader reader = new StreamReader(path);
         Debug.Log(reader.ReadToEnd());
         reader.Close();
     }
 
     public List<string> ConvertLevelLayoutToList()
     {
+#if UNITY_EDITOR
         string path = "Assets/Resources/" + fileName;
+#else
+        string path = "Resources/Levels/" + fileName;
+#endif
         var platformStateList = new List<string>();
 
         //Read the text from directly from the test.txt file

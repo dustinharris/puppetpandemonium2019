@@ -73,6 +73,20 @@ public class LRCarMovement : MonoBehaviour
         rexBehavior = rexObject.GetComponent<LRRexBehavior>();
     }
 
+    private void OnDestroy()
+    {
+        Messenger.RemoveListener(GameEvent.P1_REX_STARTING_POS, P1MoveToStartingPos);
+        Messenger.RemoveListener(GameEvent.P2_REX_STARTING_POS, P2MoveToStartingPos);
+        Messenger.RemoveListener(GameEvent.REX_P1_START_INVINCIBILITY, RexP1StartInvincibility);
+        Messenger.RemoveListener(GameEvent.REX_P2_START_INVINCIBILITY, RexP2StartInvincibility);
+        Messenger.RemoveListener(GameEvent.REX_P1_STOP_INVINCIBILITY, RexP1StopInvincibility);
+        Messenger.RemoveListener(GameEvent.REX_P2_STOP_INVINCIBILITY, RexP2StopInvincibility);
+        Messenger.RemoveListener(GameEvent.REX_DEFEATED, RexDefeated);
+        Messenger.RemoveListener(GameEvent.GAME_START, GameStarted);
+        Messenger.RemoveListener(GameEvent.REX_STOP_SCENERY, Pause);
+        Messenger.RemoveListener(GameEvent.REX_START_SCENERY, Unpause);
+    }
+
     private void GameStarted()
     {
         gameStarted = true;

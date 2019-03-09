@@ -83,6 +83,12 @@ public class EKO2YFallScript : MonoBehaviour {
         }
     }
 
+    private void OnDestroy()
+    {
+        Messenger.RemoveListener(GameEvent.P1_RELEASE, P1Release);
+        Messenger.RemoveListener(GameEvent.P2_RELEASE, P2Release);
+    }
+
     void Update()
     {
     //    // Runs every frame:

@@ -15,16 +15,12 @@ public class LRHitRex : MonoBehaviour {
         Messenger.AddListener(GameEvent.P1_HIT_REX, P1HitRex);
         Messenger.AddListener(GameEvent.P2_HIT_REX, P2HitRex);
     }
-    
-    // Use this for initialization
-    void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+
+    private void OnDestroy()
+    {
+        Messenger.RemoveListener(GameEvent.P1_HIT_REX, P1HitRex);
+        Messenger.RemoveListener(GameEvent.P2_HIT_REX, P2HitRex);
+    }
 
 
     private void P1HitRex()

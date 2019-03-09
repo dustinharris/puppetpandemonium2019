@@ -9234,7 +9234,8 @@ Prefab:
       propertyPath: m_LocalScale.z
       value: 2.4321904
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 114744969074761710, guid: e2e18fd2d67c9c94d9184674713337df, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: e2e18fd2d67c9c94d9184674713337df, type: 2}
   m_IsPrefabParent: 0
 --- !u!224 &722667196 stripped
@@ -9242,6 +9243,24 @@ RectTransform:
   m_PrefabParentObject: {fileID: 224781146036155610, guid: e2e18fd2d67c9c94d9184674713337df,
     type: 2}
   m_PrefabInternal: {fileID: 722667195}
+--- !u!1 &722667197 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1418818781822638, guid: e2e18fd2d67c9c94d9184674713337df,
+    type: 2}
+  m_PrefabInternal: {fileID: 722667195}
+--- !u!114 &722667198
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 722667197}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6a9558346972e4d40a011f8a7ce9980d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bounceSpeed: 15
+  distanceMultiplier: 35
 --- !u!1 &751365043
 GameObject:
   m_ObjectHideFlags: 0

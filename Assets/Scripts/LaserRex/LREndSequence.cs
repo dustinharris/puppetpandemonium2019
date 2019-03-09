@@ -25,7 +25,12 @@ public class LREndSequence : MonoBehaviour {
             StartCoroutine(TestEndSequence());
         }
 	}
-	
+
+    private void OnDestroy()
+    {
+        Messenger.RemoveListener(GameEvent.REX_INITIATE_END_SEQUENCE, RexInitiateEndSequence);
+    }
+
     public void RexInitiateEndSequence()
     {
         // Turn off audience lasers

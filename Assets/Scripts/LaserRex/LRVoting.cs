@@ -46,6 +46,11 @@ public class LRVoting : MonoBehaviour {
         Messenger.RemoveListener(GameEvent.A4_BLUE, A4Blue);
         Messenger.RemoveListener(GameEvent.A5_RED, A5Red);
         Messenger.RemoveListener(GameEvent.A5_BLUE, A5Blue);
+        Messenger.RemoveListener(GameEvent.REX_DISABLE_AUDIENCE_LASERS, RexDisableAudienceLasers);
+
+        Messenger.RemoveListener(GameEvent.GAME_START, RexEnableAudienceLasers);
+        Messenger.RemoveListener(GameEvent.REX_START_SCENERY, RexEnableAudienceLasers);
+        Messenger.RemoveListener(GameEvent.REX_STOP_SCENERY, RexDisableAudienceLasers);
     }
 
     // Main response logic to audience input

@@ -15,6 +15,12 @@ public class LRCandyBehavior : MonoBehaviour {
         Messenger.AddListener(GameEvent.P2_CUBE_NEW_CANDY, P2Candy);
     }
 
+    private void OnDestroy()
+    {
+        Messenger.RemoveListener(GameEvent.P1_CUBE_NEW_CANDY, P1Candy);
+        Messenger.RemoveListener(GameEvent.P2_CUBE_NEW_CANDY, P2Candy);
+    }
+
     private void GenerateCandy(int candyPlayerNumber)
     {
         // Instatiate new laser object

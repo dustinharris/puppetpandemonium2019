@@ -8,7 +8,7 @@ public class ArduinoThread : MonoBehaviour
 {
     /* The serial port where the Arduino is connected. */
     [Tooltip("The serial port where the Arduino is connected")]
-    public string port = "COM5";
+    public string port = "COM3";
     /* The baudrate of the serial port. */
     [Tooltip("The baudrate of the serial port")]
     public int baudrate = 9600;
