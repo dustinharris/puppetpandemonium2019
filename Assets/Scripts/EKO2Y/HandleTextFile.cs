@@ -6,16 +6,13 @@ using System.Collections.Generic;
 public class HandleTextFile : MonoBehaviour {
 
     public string fileName;
+    private string path
+    {
+        get { return Path.Combine(Application.streamingAssetsPath, fileName); }
+    }
 
     void WriteString()
     {
-#if UNITY_EDITOR
-        string path = "Assets/Resources/" + fileName;
-#else
-        string path = "puppetpandemonium_Data/Resources/Levels/" + fileName;
-#endif
-
-
         //Write some text to the test.txt file
         StreamWriter writer = new StreamWriter(path, true);
         writer.WriteLine("Test");
@@ -27,11 +24,7 @@ public class HandleTextFile : MonoBehaviour {
     
     public void ReadString()
     {
-#if UNITY_EDITOR
-        StreamReader reader = new StreamReader("Assets/Resources/" + fileName);
-#else
-        StreamReader reader = new StreamReader("puppetpandemonium_Data/Resources/Levels/" + fileName);
-#endif
+        StreamReader reader = new StreamReader(path);
 
         //Read the text from directly from the test.txt file
         //StreamReader reader = new StreamReader(path);
@@ -41,11 +34,6 @@ public class HandleTextFile : MonoBehaviour {
 
     public List<string> ConvertLevelLayoutToList()
     {
-#if UNITY_EDITOR
-        string path = "Assets/Resources/" + fileName;
-#else
-        string path = "Resources/Levels/" + fileName;
-#endif
         var platformStateList = new List<string>();
 
         //Read the text from directly from the test.txt file
@@ -63,6 +51,4 @@ public class HandleTextFile : MonoBehaviour {
         reader.Close();
         return platformStateList;
     }
-
-
 }
