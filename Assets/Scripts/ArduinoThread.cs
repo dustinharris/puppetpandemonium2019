@@ -6,6 +6,11 @@ using System.IO.Ports;
 
 public class ArduinoThread : MonoBehaviour
 {
+    private class TimestampedInput {
+        public string input;
+        public DateTime timestamp;
+    }
+
     /* The serial port where the Arduino is connected. */
     [Tooltip("The serial port where the Arduino is connected")]
     public string port = "COM3";
@@ -54,7 +59,12 @@ public class ArduinoThread : MonoBehaviour
             if (result != null)
             {
                 //Debug.Log("Found something in the queue");
-                inputQueue.Enqueue(result);
+                var timestampedInput = new TimestampedInput
+                {
+                    input = result,
+                    timestamp = DateTime.Now
+                };
+                inputQueue.Enqueue(timestampedInput);
             }
         }
         stream.Close();
@@ -100,14 +110,25 @@ public class ArduinoThread : MonoBehaviour
         }
     }
 
-    public string ReadFromArduino()
+    public string ReadFromArduino(int timeoutInMs)
     {
         if (inputQueue.Count != 0)
             Debug.Log("Input NOT 0");
         if (inputQueue.Count == 0)
             return null;
 
-        return (string)inputQueue.Dequeue();
+        do
+        {
+            var timestampedInput = (TimestampedInput) inputQueue.Dequeue();
+            var timeSinceInput = DateTime.Now - timestampedInput.timestamp;
+
+            if (timeSinceInput.Milliseconds < timeoutInMs)
+            {
+                return timestampedInput.input;
+            }
+        } while (inputQueue.Count > 0);
+
+        return null;
     }
 
     public string[] ReadAllFromArduino()

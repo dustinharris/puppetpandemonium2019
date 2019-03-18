@@ -38,7 +38,9 @@ public class GameStartScript : MonoBehaviour {
         yield return new WaitWhile(() => Time.realtimeSinceStartup < now + LogoLength);
 
         Background.SetActive(false);
-        StartCoroutine(Countdown());
+        //StartCoroutine(Countdown());
+        Time.timeScale = 1;
+        CountdownFinished();
     }
 
     private IEnumerator Countdown()

@@ -6,6 +6,8 @@ using WindowsInput;
 
 public class ArduinoManager : MonoBehaviour {
 
+    public int TimeoutInMs = 500;
+
     //public ArduinoConnector ardCon;
     private ArduinoThread ardThread;
     private InputSimulator inputSim;
@@ -27,7 +29,7 @@ public class ArduinoManager : MonoBehaviour {
         {
             ardThread.SendToArduino("PING");
         }
-        string fromArduino = ardThread.ReadFromArduino();
+        string fromArduino = ardThread.ReadFromArduino(TimeoutInMs);
         //string[] allFromArduino = ardThread.ReadAllFromArduino();
         
         if (fromArduino == "a1rd")

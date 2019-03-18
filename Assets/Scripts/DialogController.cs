@@ -6,8 +6,6 @@ using System.IO;
 
 public class DialogController : MonoBehaviour
 {
-
-
     [System.Serializable]
     public class DialogTemplate
     {
@@ -89,12 +87,8 @@ public class DialogController : MonoBehaviour
 
     public IEnumerator ReadFile()
     {
-#if UNITY_EDITOR
-        StreamReader reader = new StreamReader("Assets/Resources/" + FilePath);
-#else
-        StreamReader reader = new StreamReader("puppetpandemonium_Data/Resources/Dialog/" + FilePath);
-#endif
-        using (reader)
+        var path = Path.Combine(Application.streamingAssetsPath, FilePath);
+        using (StreamReader reader = new StreamReader(path))
         {
             Debug.Log("Using stream reader");
 
