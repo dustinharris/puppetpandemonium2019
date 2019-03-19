@@ -6,7 +6,7 @@ using WindowsInput;
 
 public class ArduinoManager : MonoBehaviour {
 
-    public int TimeoutInMs = 500;
+    public int TimeoutInMs = 999;
 
     //public ArduinoConnector ardCon;
     private ArduinoThread ardThread;

@@ -25,7 +25,8 @@ public class LRGameStartScript : MonoBehaviour {
         yield return new WaitForSeconds(LogoLength);
 
         Background.SetActive(false);
-        StartCoroutine(Countdown());
+        //StartCoroutine(Countdown());
+        CountdownFinished();
     }
 
     private IEnumerator Countdown()
@@ -46,8 +47,7 @@ public class LRGameStartScript : MonoBehaviour {
     }
 
     private void CountdownFinished()
-    {
-        
+    {        
         Messenger.Broadcast(GameEvent.COUNTDOWN_FINISHED);
     }
 }

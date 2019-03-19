@@ -77,10 +77,10 @@ public class SceneSwitcher : MonoBehaviour
 
     private void ClearInputs()
     {
-        GameObject ctrl = GameObject.Find("ArduinoController");
-        if (ctrl != null)
+        var manager = GameObject.FindObjectOfType<ArduinoManager>();
+        if (manager != null)
         {
-            ArduinoThread thread = ctrl.GetComponent<ArduinoManager>().GetArduinoThread();
+            ArduinoThread thread = manager.GetArduinoThread();
             if (thread != null)
             {
                 thread.ClearStreams();
