@@ -13,7 +13,7 @@ public class ArduinoThread : MonoBehaviour
 
     /* The serial port where the Arduino is connected. */
     [Tooltip("The serial port where the Arduino is connected")]
-    public string port = "COM3";
+    public string port = "COM7";
     /* The baudrate of the serial port. */
     [Tooltip("The baudrate of the serial port")]
     public int baudrate = 9600;
@@ -117,16 +117,13 @@ public class ArduinoThread : MonoBehaviour
         if (inputQueue.Count == 0)
             return null;
 
-        do
-        {
-            var timestampedInput = (TimestampedInput) inputQueue.Dequeue();
-            var timeSinceInput = DateTime.Now - timestampedInput.timestamp;
+        var timestampedInput = (TimestampedInput) inputQueue.Dequeue();
+        var timeSinceInput = DateTime.Now - timestampedInput.timestamp;
 
-            if (timeSinceInput.Milliseconds < timeoutInMs)
-            {
-                return timestampedInput.input;
-            }
-        } while (inputQueue.Count > 0);
+        if (timeSinceInput.Milliseconds < timeoutInMs)
+        {
+            return timestampedInput.input;
+        }
 
         return null;
     }
