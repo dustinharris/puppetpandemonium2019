@@ -137,7 +137,8 @@ public class ArduinoThread : MonoBehaviour
 
         for (int i = 0; i < inputQueue.Count; i++)
         {
-            newStrings[i] = (string)inputQueue.Dequeue();
+            var timestampedInput = (TimestampedInput)inputQueue.Dequeue();
+            newStrings[i] = timestampedInput.input;
         }
 
         return newStrings;
