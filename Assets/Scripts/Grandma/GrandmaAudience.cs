@@ -75,10 +75,6 @@ public class GrandmaAudience : MonoBehaviour
                     UIScript.ShowAlert(true);
                 }
             }
-            if (Input.GetButtonUp("Audience" + i + "Red"))
-            {
-                ReleaseReload(true, i);
-            }
             if (Input.GetButtonDown("Audience" + i + "Blue"))
             {
                 if (BlueNeedsReload)
@@ -89,10 +85,6 @@ public class GrandmaAudience : MonoBehaviour
                 {
                     UIScript.ShowAlert(false);
                 }
-            }
-            if (Input.GetButtonUp("Audience" + i + "Blue"))
-            {
-                ReleaseReload(false, i);
             }
         }
     }
@@ -106,21 +98,6 @@ public class GrandmaAudience : MonoBehaviour
         {
             reloading[index] = true;
             AmmoScript.AddBullet(red);
-        }
-    }
-
-    private void ReleaseReload(bool red, int index)
-    {
-        bool[] reloading = red ? ReloadingRed : ReloadingBlue;
-        if (NeedsReload(red))
-        {
-            AudienceScript.Show(index, AudienceUIScript.Notice.Alert, red);
-        }
-
-        if (reloading[index])
-        {
-            reloading[index] = false;
-            AmmoScript.RemoveBullet(red);
         }
     }
 
