@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class GrandmaPuppets : MonoBehaviour
 {
@@ -27,48 +25,41 @@ public class GrandmaPuppets : MonoBehaviour
         {
             return;
         }
+
+        var redCanFire = ammo.CanFire(true);
+        var blueCanFire = ammo.CanFire(false);
+
+        if (redCanFire)
+        {
+            RedReloading = false;
+        }
+        if (blueCanFire)
+        {
+            BlueReloading = false;
+        }
+
         if (Input.GetButtonDown("RedPuppet"))
         {
-            if (ammo.CanFire(true))
+            if (redCanFire)
             {
                 ammo.Fire(true);
-            } else
+            } 
+            else if (!RedReloading)
             {
-                if (!RedReloading)
-                {
-                    RedReloading = true;
-                    ammo.AddBullet(true);
-                }
+                RedReloading = true;
+                ammo.AddBullet(true);
             }  
-        }
-        if (Input.GetButtonUp("RedPuppet"))
-        {
-            if (!ammo.CanFire(true) && RedReloading)
-            {
-                RedReloading = false;
-                ammo.RemoveBullet(true);
-            }
         }
         if (Input.GetButtonDown("BluePuppet"))
         {
-            if (ammo.CanFire(false))
+            if (blueCanFire)
             {
                 ammo.Fire(false);
-            } else
+            } 
+            else if (!BlueReloading)
             {
-                if (!BlueReloading)
-                {
-                    BlueReloading = true;
-                    ammo.AddBullet(false);
-                }
-            }
-        }
-        if (Input.GetButtonUp("BluePuppet"))
-        {
-            if (!ammo.CanFire(false) && BlueReloading)
-            {
-                BlueReloading = false;
-                ammo.RemoveBullet(false);
+                BlueReloading = true;
+                ammo.AddBullet(false);
             }
         }
     }
