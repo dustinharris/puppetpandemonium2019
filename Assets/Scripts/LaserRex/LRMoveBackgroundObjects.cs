@@ -29,7 +29,7 @@ public class LRMoveBackgroundObjects : MonoBehaviour {
     // Update is called once per frame
     void Update () {
         // Determine how fast to move the scenery based on variable
-        float newZ = sceneryEmpty.transform.position.z - (float)(currentSpeed * .1);
+        float newZ = sceneryEmpty.transform.position.z - (float)(currentSpeed * Time.deltaTime);
 
         // Change scenery position each frame
         sceneryEmpty.transform.position = new Vector3(sceneryEmpty.transform.position.x, sceneryEmpty.transform.position.y, newZ);

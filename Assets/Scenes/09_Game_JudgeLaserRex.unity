@@ -20982,7 +20982,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sceneryEmpty: {fileID: 1761755073}
-  scenerySpeed: 4
+  scenerySpeed: 8
 --- !u!4 &2025169371
 Transform:
   m_ObjectHideFlags: 0
