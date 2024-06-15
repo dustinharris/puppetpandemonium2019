@@ -1,13 +1,13 @@
-[BLEEP] holy cow palace! Did we just get sucked into a videogame?
-[BLOOP] for once you might be right. What kind of game is this?
+[BLEEP] holy cow palace! what just happened??
+[BLOOP] I have no idea!
 [REX] You have entered the court of the honorable judge laser rex
 [BLOOP] Um, nice to meet you?
 [BLOOP] what are we in trouble for?!?!
 [REX] two counts of OPEN Sourcery for unlicensed hardware!
 [REX] how do you plead?
-[BLOOP] GUILTY AF! open source hardware for all!! 
+[BLOOP] GUILTY and proud of it! open source hardware for all!! 
 [REX] To present your case you may approach the bench
 [REX] but only when I'm distracted or else i'll zap you!
 [BLOOP] ahh i see so it's like squid game
-[REX] the jury *gestures to audience* may help you!  
+[REX] the jury  may help you! *gestures to audience*
 [BLOOP] OK BRING IT ON!
